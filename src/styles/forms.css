@@ -1,0 +1,63 @@
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+  color: var(--text-soft);
+  font-weight: 780;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 12px;
+  color: var(--text);
+  background: var(--bg-panel);
+  outline: none;
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(232, 255, 112, 0.12);
+}
+
+.form-card {
+  width: min(760px, 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(18px, 4vw, 32px);
+  background: var(--bg-panel);
+}
+
+.security-meter {
+  display: grid;
+  gap: 6px;
+  color: var(--text-faint);
+  font-size: 0.86rem;
+}
+
+.meter-line {
+  overflow: hidden;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg-panel-strong);
+}
+
+.meter-line span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}

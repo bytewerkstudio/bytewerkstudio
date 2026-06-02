@@ -1,0 +1,83 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(150px, 220px));
+  gap: 10px;
+  align-items: end;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.product-card {
+  display: grid;
+  gap: 12px;
+  min-height: 360px;
+  padding: 16px;
+}
+
+.product-card.bytewerk {
+  border-color: rgba(232, 255, 112, 0.4);
+}
+
+.product-meta,
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: var(--text-soft);
+  background: var(--bg-panel-strong);
+  font-size: 0.76rem;
+  font-weight: 820;
+}
+
+.product-title {
+  min-height: 58px;
+}
+
+.product-summary {
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.product-price {
+  margin-top: auto;
+  font-size: 1.9rem;
+  font-weight: 950;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+}
+
+.compare-bar {
+  position: sticky;
+  bottom: 12px;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--bg-soft);
+  box-shadow: var(--shadow);
+}
+
+.compare-bar.is-visible {
+  display: flex;
+}

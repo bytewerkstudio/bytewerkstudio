@@ -1,0 +1,290 @@
+@media (max-width: 1180px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .toolbar,
+  .hero,
+  .forum-grid,
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .topbar {
+    grid-template-columns: auto auto;
+  }
+
+  .topnav {
+    display: none;
+  }
+
+  .menu-button {
+    display: inline-flex;
+  }
+
+  .product-grid,
+  .grid.two,
+  .grid.three,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .brand small {
+    display: none;
+  }
+
+  h1 {
+    font-size: 3.4rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand {
+    min-width: 0;
+  }
+
+  .brand strong {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .app-main {
+    width: min(100% - 22px, var(--max));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.motion-slot-1 { --line-speed: 8.23s; --line-alpha: 0.09; }
+.motion-slot-2 { --line-speed: 8.46s; --line-alpha: 0.10; }
+.motion-slot-3 { --line-speed: 8.69s; --line-alpha: 0.11; }
+.motion-slot-4 { --line-speed: 8.92s; --line-alpha: 0.12; }
+.motion-slot-5 { --line-speed: 9.15s; --line-alpha: 0.13; }
+.motion-slot-6 { --line-speed: 9.38s; --line-alpha: 0.14; }
+.motion-slot-7 { --line-speed: 9.61s; --line-alpha: 0.15; }
+.motion-slot-8 { --line-speed: 9.84s; --line-alpha: 0.16; }
+.motion-slot-9 { --line-speed: 10.07s; --line-alpha: 0.17; }
+.motion-slot-10 { --line-speed: 10.30s; --line-alpha: 0.18; }
+.motion-slot-11 { --line-speed: 10.53s; --line-alpha: 0.19; }
+.motion-slot-12 { --line-speed: 10.76s; --line-alpha: 0.08; }
+.motion-slot-13 { --line-speed: 10.99s; --line-alpha: 0.09; }
+.motion-slot-14 { --line-speed: 11.22s; --line-alpha: 0.10; }
+.motion-slot-15 { --line-speed: 11.45s; --line-alpha: 0.11; }
+.motion-slot-16 { --line-speed: 11.68s; --line-alpha: 0.12; }
+.motion-slot-17 { --line-speed: 11.91s; --line-alpha: 0.13; }
+.motion-slot-18 { --line-speed: 12.14s; --line-alpha: 0.14; }
+.motion-slot-19 { --line-speed: 12.37s; --line-alpha: 0.15; }
+.motion-slot-20 { --line-speed: 8.00s; --line-alpha: 0.16; }
+.motion-slot-21 { --line-speed: 8.23s; --line-alpha: 0.17; }
+.motion-slot-22 { --line-speed: 8.46s; --line-alpha: 0.18; }
+.motion-slot-23 { --line-speed: 8.69s; --line-alpha: 0.19; }
+.motion-slot-24 { --line-speed: 8.92s; --line-alpha: 0.08; }
+.motion-slot-25 { --line-speed: 9.15s; --line-alpha: 0.09; }
+.motion-slot-26 { --line-speed: 9.38s; --line-alpha: 0.10; }
+.motion-slot-27 { --line-speed: 9.61s; --line-alpha: 0.11; }
+.motion-slot-28 { --line-speed: 9.84s; --line-alpha: 0.12; }
+.motion-slot-29 { --line-speed: 10.07s; --line-alpha: 0.13; }
+.motion-slot-30 { --line-speed: 10.30s; --line-alpha: 0.14; }
+.motion-slot-31 { --line-speed: 10.53s; --line-alpha: 0.15; }
+.motion-slot-32 { --line-speed: 10.76s; --line-alpha: 0.16; }
+.motion-slot-33 { --line-speed: 10.99s; --line-alpha: 0.17; }
+.motion-slot-34 { --line-speed: 11.22s; --line-alpha: 0.18; }
+.motion-slot-35 { --line-speed: 11.45s; --line-alpha: 0.19; }
+.motion-slot-36 { --line-speed: 11.68s; --line-alpha: 0.08; }
+.motion-slot-37 { --line-speed: 11.91s; --line-alpha: 0.09; }
+.motion-slot-38 { --line-speed: 12.14s; --line-alpha: 0.10; }
+.motion-slot-39 { --line-speed: 12.37s; --line-alpha: 0.11; }
+.motion-slot-40 { --line-speed: 8.00s; --line-alpha: 0.12; }
+.motion-slot-41 { --line-speed: 8.23s; --line-alpha: 0.13; }
+.motion-slot-42 { --line-speed: 8.46s; --line-alpha: 0.14; }
+.motion-slot-43 { --line-speed: 8.69s; --line-alpha: 0.15; }
+.motion-slot-44 { --line-speed: 8.92s; --line-alpha: 0.16; }
+.motion-slot-45 { --line-speed: 9.15s; --line-alpha: 0.17; }
+.motion-slot-46 { --line-speed: 9.38s; --line-alpha: 0.18; }
+.motion-slot-47 { --line-speed: 9.61s; --line-alpha: 0.19; }
+.motion-slot-48 { --line-speed: 9.84s; --line-alpha: 0.08; }
+.motion-slot-49 { --line-speed: 10.07s; --line-alpha: 0.09; }
+.motion-slot-50 { --line-speed: 10.30s; --line-alpha: 0.10; }
+.motion-slot-51 { --line-speed: 10.53s; --line-alpha: 0.11; }
+.motion-slot-52 { --line-speed: 10.76s; --line-alpha: 0.12; }
+.motion-slot-53 { --line-speed: 10.99s; --line-alpha: 0.13; }
+.motion-slot-54 { --line-speed: 11.22s; --line-alpha: 0.14; }
+.motion-slot-55 { --line-speed: 11.45s; --line-alpha: 0.15; }
+.motion-slot-56 { --line-speed: 11.68s; --line-alpha: 0.16; }
+.motion-slot-57 { --line-speed: 11.91s; --line-alpha: 0.17; }
+.motion-slot-58 { --line-speed: 12.14s; --line-alpha: 0.18; }
+.motion-slot-59 { --line-speed: 12.37s; --line-alpha: 0.19; }
+.motion-slot-60 { --line-speed: 8.00s; --line-alpha: 0.08; }
+.motion-slot-61 { --line-speed: 8.23s; --line-alpha: 0.09; }
+.motion-slot-62 { --line-speed: 8.46s; --line-alpha: 0.10; }
+.motion-slot-63 { --line-speed: 8.69s; --line-alpha: 0.11; }
+.motion-slot-64 { --line-speed: 8.92s; --line-alpha: 0.12; }
+.motion-slot-65 { --line-speed: 9.15s; --line-alpha: 0.13; }
+.motion-slot-66 { --line-speed: 9.38s; --line-alpha: 0.14; }
+.motion-slot-67 { --line-speed: 9.61s; --line-alpha: 0.15; }
+.motion-slot-68 { --line-speed: 9.84s; --line-alpha: 0.16; }
+.motion-slot-69 { --line-speed: 10.07s; --line-alpha: 0.17; }
+.motion-slot-70 { --line-speed: 10.30s; --line-alpha: 0.18; }
+.motion-slot-71 { --line-speed: 10.53s; --line-alpha: 0.19; }
+.motion-slot-72 { --line-speed: 10.76s; --line-alpha: 0.08; }
+.motion-slot-73 { --line-speed: 10.99s; --line-alpha: 0.09; }
+.motion-slot-74 { --line-speed: 11.22s; --line-alpha: 0.10; }
+.motion-slot-75 { --line-speed: 11.45s; --line-alpha: 0.11; }
+.motion-slot-76 { --line-speed: 11.68s; --line-alpha: 0.12; }
+.motion-slot-77 { --line-speed: 11.91s; --line-alpha: 0.13; }
+.motion-slot-78 { --line-speed: 12.14s; --line-alpha: 0.14; }
+.motion-slot-79 { --line-speed: 12.37s; --line-alpha: 0.15; }
+.motion-slot-80 { --line-speed: 8.00s; --line-alpha: 0.16; }
+.motion-slot-81 { --line-speed: 8.23s; --line-alpha: 0.17; }
+.motion-slot-82 { --line-speed: 8.46s; --line-alpha: 0.18; }
+.motion-slot-83 { --line-speed: 8.69s; --line-alpha: 0.19; }
+.motion-slot-84 { --line-speed: 8.92s; --line-alpha: 0.08; }
+.motion-slot-85 { --line-speed: 9.15s; --line-alpha: 0.09; }
+.motion-slot-86 { --line-speed: 9.38s; --line-alpha: 0.10; }
+.motion-slot-87 { --line-speed: 9.61s; --line-alpha: 0.11; }
+.motion-slot-88 { --line-speed: 9.84s; --line-alpha: 0.12; }
+.motion-slot-89 { --line-speed: 10.07s; --line-alpha: 0.13; }
+.motion-slot-90 { --line-speed: 10.30s; --line-alpha: 0.14; }
+.motion-slot-91 { --line-speed: 10.53s; --line-alpha: 0.15; }
+.motion-slot-92 { --line-speed: 10.76s; --line-alpha: 0.16; }
+.motion-slot-93 { --line-speed: 10.99s; --line-alpha: 0.17; }
+.motion-slot-94 { --line-speed: 11.22s; --line-alpha: 0.18; }
+.motion-slot-95 { --line-speed: 11.45s; --line-alpha: 0.19; }
+.motion-slot-96 { --line-speed: 11.68s; --line-alpha: 0.08; }
+.motion-slot-97 { --line-speed: 11.91s; --line-alpha: 0.09; }
+.motion-slot-98 { --line-speed: 12.14s; --line-alpha: 0.10; }
+.motion-slot-99 { --line-speed: 12.37s; --line-alpha: 0.11; }
+.motion-slot-100 { --line-speed: 8.00s; --line-alpha: 0.12; }
+.motion-slot-101 { --line-speed: 8.23s; --line-alpha: 0.13; }
+.motion-slot-102 { --line-speed: 8.46s; --line-alpha: 0.14; }
+.motion-slot-103 { --line-speed: 8.69s; --line-alpha: 0.15; }
+.motion-slot-104 { --line-speed: 8.92s; --line-alpha: 0.16; }
+.motion-slot-105 { --line-speed: 9.15s; --line-alpha: 0.17; }
+.motion-slot-106 { --line-speed: 9.38s; --line-alpha: 0.18; }
+.motion-slot-107 { --line-speed: 9.61s; --line-alpha: 0.19; }
+.motion-slot-108 { --line-speed: 9.84s; --line-alpha: 0.08; }
+.motion-slot-109 { --line-speed: 10.07s; --line-alpha: 0.09; }
+.motion-slot-110 { --line-speed: 10.30s; --line-alpha: 0.10; }
+.motion-slot-111 { --line-speed: 10.53s; --line-alpha: 0.11; }
+.motion-slot-112 { --line-speed: 10.76s; --line-alpha: 0.12; }
+.motion-slot-113 { --line-speed: 10.99s; --line-alpha: 0.13; }
+.motion-slot-114 { --line-speed: 11.22s; --line-alpha: 0.14; }
+.motion-slot-115 { --line-speed: 11.45s; --line-alpha: 0.15; }
+.motion-slot-116 { --line-speed: 11.68s; --line-alpha: 0.16; }
+.motion-slot-117 { --line-speed: 11.91s; --line-alpha: 0.17; }
+.motion-slot-118 { --line-speed: 12.14s; --line-alpha: 0.18; }
+.motion-slot-119 { --line-speed: 12.37s; --line-alpha: 0.19; }
+.motion-slot-120 { --line-speed: 8.00s; --line-alpha: 0.08; }
+.motion-slot-121 { --line-speed: 8.23s; --line-alpha: 0.09; }
+.motion-slot-122 { --line-speed: 8.46s; --line-alpha: 0.10; }
+.motion-slot-123 { --line-speed: 8.69s; --line-alpha: 0.11; }
+.motion-slot-124 { --line-speed: 8.92s; --line-alpha: 0.12; }
+.motion-slot-125 { --line-speed: 9.15s; --line-alpha: 0.13; }
+.motion-slot-126 { --line-speed: 9.38s; --line-alpha: 0.14; }
+.motion-slot-127 { --line-speed: 9.61s; --line-alpha: 0.15; }
+.motion-slot-128 { --line-speed: 9.84s; --line-alpha: 0.16; }
+.motion-slot-129 { --line-speed: 10.07s; --line-alpha: 0.17; }
+.motion-slot-130 { --line-speed: 10.30s; --line-alpha: 0.18; }
+.motion-slot-131 { --line-speed: 10.53s; --line-alpha: 0.19; }
+.motion-slot-132 { --line-speed: 10.76s; --line-alpha: 0.08; }
+.motion-slot-133 { --line-speed: 10.99s; --line-alpha: 0.09; }
+.motion-slot-134 { --line-speed: 11.22s; --line-alpha: 0.10; }
+.motion-slot-135 { --line-speed: 11.45s; --line-alpha: 0.11; }
+.motion-slot-136 { --line-speed: 11.68s; --line-alpha: 0.12; }
+.motion-slot-137 { --line-speed: 11.91s; --line-alpha: 0.13; }
+.motion-slot-138 { --line-speed: 12.14s; --line-alpha: 0.14; }
+.motion-slot-139 { --line-speed: 12.37s; --line-alpha: 0.15; }
+.motion-slot-140 { --line-speed: 8.00s; --line-alpha: 0.16; }
+.motion-slot-141 { --line-speed: 8.23s; --line-alpha: 0.17; }
+.motion-slot-142 { --line-speed: 8.46s; --line-alpha: 0.18; }
+.motion-slot-143 { --line-speed: 8.69s; --line-alpha: 0.19; }
+.motion-slot-144 { --line-speed: 8.92s; --line-alpha: 0.08; }
+.motion-slot-145 { --line-speed: 9.15s; --line-alpha: 0.09; }
+.motion-slot-146 { --line-speed: 9.38s; --line-alpha: 0.10; }
+.motion-slot-147 { --line-speed: 9.61s; --line-alpha: 0.11; }
+.motion-slot-148 { --line-speed: 9.84s; --line-alpha: 0.12; }
+.motion-slot-149 { --line-speed: 10.07s; --line-alpha: 0.13; }
+.motion-slot-150 { --line-speed: 10.30s; --line-alpha: 0.14; }
+.motion-slot-151 { --line-speed: 10.53s; --line-alpha: 0.15; }
+.motion-slot-152 { --line-speed: 10.76s; --line-alpha: 0.16; }
+.motion-slot-153 { --line-speed: 10.99s; --line-alpha: 0.17; }
+.motion-slot-154 { --line-speed: 11.22s; --line-alpha: 0.18; }
+.motion-slot-155 { --line-speed: 11.45s; --line-alpha: 0.19; }
+.motion-slot-156 { --line-speed: 11.68s; --line-alpha: 0.08; }
+.motion-slot-157 { --line-speed: 11.91s; --line-alpha: 0.09; }
+.motion-slot-158 { --line-speed: 12.14s; --line-alpha: 0.10; }
+.motion-slot-159 { --line-speed: 12.37s; --line-alpha: 0.11; }
+.motion-slot-160 { --line-speed: 8.00s; --line-alpha: 0.12; }
+.motion-slot-161 { --line-speed: 8.23s; --line-alpha: 0.13; }
+.motion-slot-162 { --line-speed: 8.46s; --line-alpha: 0.14; }
+.motion-slot-163 { --line-speed: 8.69s; --line-alpha: 0.15; }
+.motion-slot-164 { --line-speed: 8.92s; --line-alpha: 0.16; }
+.motion-slot-165 { --line-speed: 9.15s; --line-alpha: 0.17; }
+.motion-slot-166 { --line-speed: 9.38s; --line-alpha: 0.18; }
+.motion-slot-167 { --line-speed: 9.61s; --line-alpha: 0.19; }
+.motion-slot-168 { --line-speed: 9.84s; --line-alpha: 0.08; }
+.motion-slot-169 { --line-speed: 10.07s; --line-alpha: 0.09; }
+.motion-slot-170 { --line-speed: 10.30s; --line-alpha: 0.10; }
+.motion-slot-171 { --line-speed: 10.53s; --line-alpha: 0.11; }
+.motion-slot-172 { --line-speed: 10.76s; --line-alpha: 0.12; }
+.motion-slot-173 { --line-speed: 10.99s; --line-alpha: 0.13; }
+.motion-slot-174 { --line-speed: 11.22s; --line-alpha: 0.14; }
+.motion-slot-175 { --line-speed: 11.45s; --line-alpha: 0.15; }
+.motion-slot-176 { --line-speed: 11.68s; --line-alpha: 0.16; }
+.motion-slot-177 { --line-speed: 11.91s; --line-alpha: 0.17; }
+.motion-slot-178 { --line-speed: 12.14s; --line-alpha: 0.18; }
+.motion-slot-179 { --line-speed: 12.37s; --line-alpha: 0.19; }
+.motion-slot-180 { --line-speed: 8.00s; --line-alpha: 0.08; }
+.motion-slot-181 { --line-speed: 8.23s; --line-alpha: 0.09; }
+.motion-slot-182 { --line-speed: 8.46s; --line-alpha: 0.10; }
+.motion-slot-183 { --line-speed: 8.69s; --line-alpha: 0.11; }
+.motion-slot-184 { --line-speed: 8.92s; --line-alpha: 0.12; }
+.motion-slot-185 { --line-speed: 9.15s; --line-alpha: 0.13; }
+.motion-slot-186 { --line-speed: 9.38s; --line-alpha: 0.14; }
+.motion-slot-187 { --line-speed: 9.61s; --line-alpha: 0.15; }
+.motion-slot-188 { --line-speed: 9.84s; --line-alpha: 0.16; }
+.motion-slot-189 { --line-speed: 10.07s; --line-alpha: 0.17; }
+.motion-slot-190 { --line-speed: 10.30s; --line-alpha: 0.18; }
+.motion-slot-191 { --line-speed: 10.53s; --line-alpha: 0.19; }
+.motion-slot-192 { --line-speed: 10.76s; --line-alpha: 0.08; }
+.motion-slot-193 { --line-speed: 10.99s; --line-alpha: 0.09; }
+.motion-slot-194 { --line-speed: 11.22s; --line-alpha: 0.10; }
+.motion-slot-195 { --line-speed: 11.45s; --line-alpha: 0.11; }
+.motion-slot-196 { --line-speed: 11.68s; --line-alpha: 0.12; }
+.motion-slot-197 { --line-speed: 11.91s; --line-alpha: 0.13; }
+.motion-slot-198 { --line-speed: 12.14s; --line-alpha: 0.14; }
+.motion-slot-199 { --line-speed: 12.37s; --line-alpha: 0.15; }
+.motion-slot-200 { --line-speed: 8.00s; --line-alpha: 0.16; }
+.motion-slot-201 { --line-speed: 8.23s; --line-alpha: 0.17; }
+.motion-slot-202 { --line-speed: 8.46s; --line-alpha: 0.18; }
+.motion-slot-203 { --line-speed: 8.69s; --line-alpha: 0.19; }
+.motion-slot-204 { --line-speed: 8.92s; --line-alpha: 0.08; }
+.motion-slot-205 { --line-speed: 9.15s; --line-alpha: 0.09; }
+.motion-slot-206 { --line-speed: 9.38s; --line-alpha: 0.10; }
+.motion-slot-207 { --line-speed: 9.61s; --line-alpha: 0.11; }
+.motion-slot-208 { --line-speed: 9.84s; --line-alpha: 0.12; }
+.motion-slot-209 { --line-speed: 10.07s; --line-alpha: 0.13; }
+.motion-slot-210 { --line-speed: 10.30s; --line-alpha: 0.14; }
+.motion-slot-211 { --line-speed: 10.53s; --line-alpha: 0.15; }
+.motion-slot-212 { --line-speed: 10.76s; --line-alpha: 0.16; }
+.motion-slot-213 { --line-speed: 10.99s; --line-alpha: 0.17; }
+.motion-slot-214 { --line-speed: 11.22s; --line-alpha: 0.18; }
+.motion-slot-215 { --line-speed: 11.45s; --line-alpha: 0.19; }
+.motion-slot-216 { --line-speed: 11.68s; --line-alpha: 0.08; }
+.motion-slot-217 { --line-speed: 11.91s; --line-alpha: 0.09; }
+.motion-slot-218 { --line-speed: 12.14s; --line-alpha: 0.10; }
+.motion-slot-219 { --line-speed: 12.37s; --line-alpha: 0.11; }
+.motion-slot-220 { --line-speed: 8.00s; --line-alpha: 0.12; }

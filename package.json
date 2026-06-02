@@ -1,0 +1,12 @@
+{
+  "name": "bytewerkstudio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node tools/generate-bytewerk-shop.mjs",
+    "bundle": "npx --yes esbuild@0.24.2 src/app.js --bundle --format=iife --global-name=BytewerkShop --target=es2020 --outfile=assets/app.bundle.js --log-level=warning",
+    "build": "npm run generate && npm run bundle",
+    "serve": "python -m http.server 4173 --bind 127.0.0.1"
+  }
+}

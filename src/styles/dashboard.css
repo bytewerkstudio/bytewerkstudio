@@ -1,0 +1,57 @@
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.side-menu,
+.dashboard-card,
+.seller-card,
+.settings-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+}
+
+.side-menu {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 10px;
+}
+
+.side-menu button {
+  border: 0;
+  border-radius: var(--radius-small);
+  padding: 11px 12px;
+  color: var(--text-soft);
+  background: transparent;
+  text-align: left;
+  font-weight: 800;
+}
+
+.side-menu button.is-active,
+.side-menu button:hover {
+  color: var(--bg);
+  background: var(--text);
+}
+
+.dashboard-card,
+.seller-card,
+.settings-card {
+  padding: 18px;
+}
+
+.table {
+  display: grid;
+  gap: 8px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
