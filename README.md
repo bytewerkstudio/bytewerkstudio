@@ -1,7 +1,11 @@
-# Bytewerk Studio
+# Bytewerk Studio Website
 
 **Software-Gründer & CIO**  
 **2026 - heute**
+
+Dieses Repository enthaelt die GitHub-Pages-Website fuer Bytewerk Studio.
+
+Website: https://bytewerkstudio.com
 
 Bytewerk Studio entwickelt und vertreibt digitale Softwareprodukte. Der Fokus liegt auf moderner Web- und App-Entwicklung, IT-Dienstleistungen sowie dem Betrieb eines Online-Shops fuer digitale Produkte.
 
