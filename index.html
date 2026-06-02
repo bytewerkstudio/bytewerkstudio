@@ -3,160 +3,515 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bytewerk Studio | Software, Web & Apps</title>
-    <meta
-      name="description"
-      content="Bytewerk Studio entwickelt Software, Websites, Apps und digitale Produkte fuer Unternehmen, Projekte und digitale Marken."
-    >
+    <title>Bytewerk Studio | Software, Web, Apps & digitale Produkte</title>
+    <meta name="description" content="Bytewerk Studio entwickelt Software, Websites, Apps, Automationen und digitale Produkte. Gruender & CIO: Hijratullah Haqmal von hhaqmal.de.">
+    <meta name="theme-color" content="#0f766e">
+    <meta property="og:title" content="Bytewerk Studio">
+    <meta property="og:description" content="Premium-Website fuer Software, Web- und App-Entwicklung, IT-Dienstleistungen und digitale Produkte.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bytewerkstudio.com/">
+    <link rel="canonical" href="https://bytewerkstudio.com/">
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="Bytewerk Studio Startseite">
         <span class="brand-mark">B</span>
-        <span>Bytewerk Studio</span>
+        <span>
+          <strong>Bytewerk Studio</strong>
+          <small>Software · Web · Apps</small>
+        </span>
       </a>
 
-      <nav class="site-nav" aria-label="Hauptnavigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
-        <a href="#rolle">Profil</a>
+        <a href="#studio-os">Studio OS</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#gruender">Gruender</a>
+        <a href="#rechner">Rechner</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
+
+      <button class="command-open" type="button" data-command-open>
+        <span>⌘K</span>
+        Navigation
+      </button>
     </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">Software-Gründer & CIO · 2026 - heute</p>
-          <h1>Digitale Produkte, die klar gedacht und sauber gebaut sind.</h1>
-          <p class="hero-text">
-            Bytewerk Studio entwickelt und vertreibt Software, Web- und App-Loesungen
-            sowie digitale Produkte fuer moderne Unternehmen und Projekte.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#kontakt">Projekt anfragen</a>
-            <a class="button secondary" href="#leistungen">Leistungen ansehen</a>
+    <main id="main">
+      <section class="hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="hero-content reveal">
+            <p class="eyebrow">Software-Gruender & CIO · 2026 - heute</p>
+            <h1>Bytewerk Studio baut digitale Systeme, die wie ein Produkt wirken.</h1>
+            <p class="hero-text">
+              Software, Websites, Apps, Automationen und digitale Produkte fuer moderne Projekte:
+              strategisch geplant, visuell stark, technisch sauber und direkt auf Wachstum vorbereitet.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#kontakt">Projekt starten</a>
+              <a class="button button-glass" href="#capabilities">Capability-Suche</a>
+            </div>
           </div>
-        </div>
 
-        <div class="hero-panel" aria-label="Bytewerk Studio Leistungsuebersicht">
-          <div class="panel-topline">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="panel-grid">
-            <div>
-              <strong>Software</strong>
-              <span>Individuelle Loesungen</span>
+          <aside class="hero-console reveal" aria-label="Live Studio Console">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <strong>studio.system</strong>
             </div>
-            <div>
-              <strong>Web</strong>
-              <span>Websites & Plattformen</span>
+            <div class="console-lines">
+              <p><span>status</span> GitHub Pages live</p>
+              <p><span>domain</span> bytewerkstudio.com</p>
+              <p><span>founder</span> hhaqmal.de</p>
+              <p><span>focus</span> Software · Web · Apps · Shop</p>
             </div>
-            <div>
-              <strong>Apps</strong>
-              <span>Mobile Erlebnisse</span>
+            <div class="console-metric">
+              <strong data-counter="360">0</strong>
+              <span>Capability-Bausteine im Studio-System</span>
             </div>
-            <div>
-              <strong>Shop</strong>
-              <span>Digitale Produkte</span>
-            </div>
-          </div>
+          </aside>
         </div>
+      </section>
+
+      <section class="metric-band" aria-label="Bytewerk Studio Kennzahlen">
+        <div><strong data-counter="6">0</strong><span>Leistungsfelder</span></div>
+        <div><strong data-counter="90">0</strong><span>Produktmodule</span></div>
+        <div><strong data-counter="360">0</strong><span>Capabilities</span></div>
+        <div><strong data-counter="2026">0</strong><span>Startjahr</span></div>
       </section>
 
       <section class="section" id="leistungen">
-        <div class="section-heading">
-          <p class="eyebrow">Was wir machen</p>
-          <h2>Technik fuer Ideen, die wachsen sollen.</h2>
+        <div class="section-heading reveal">
+          <p class="eyebrow">Leistungen</p>
+          <h2>Ein Studio fuer digitale Umsetzung, Betrieb und Vertrieb.</h2>
+          <p>
+            Bytewerk Studio verbindet Softwareentwicklung, Webdesign, App-Logik,
+            Datenverstaendnis und digitale Produktstrategie in einem modularen System.
+          </p>
+        </div>
+
+        <div class="filter-row" aria-label="Leistungsfilter">
+          <button class="chip is-active" type="button" data-service-filter="all">Alle</button>
+          <button class="chip" type="button" data-service-filter="build">Build</button>
+          <button class="chip" type="button" data-service-filter="launch">Launch</button>
+          <button class="chip" type="button" data-service-filter="mobile">Mobile</button>
+          <button class="chip" type="button" data-service-filter="ops">Ops</button>
+          <button class="chip" type="button" data-service-filter="shop">Shop</button>
+          <button class="chip" type="button" data-service-filter="insight">Insight</button>
         </div>
 
         <div class="service-grid">
-          <article class="service-card">
-            <span class="service-number">01</span>
+
+          <article class="service-card reveal" data-service="software" data-filter-card="build">
+            <div class="service-card__top">
+              <span class="service-number">01</span>
+              <span class="service-tag">Build</span>
+            </div>
             <h3>Softwareentwicklung</h3>
-            <p>Individuelle Anwendungen, Automatisierungen und digitale Werkzeuge fuer konkrete Anforderungen.</p>
+            <p>Individuelle Anwendungen, interne Tools, Automatisierungen und produktreife Software fuer reale Prozesse.</p>
+            <ul>
+              <li>SaaS-Prototypen</li>
+              <li>Admin-Dashboards</li>
+              <li>Workflow-Tools</li>
+              <li>API-Schnittstellen</li>
+            </ul>
           </article>
-          <article class="service-card">
-            <span class="service-number">02</span>
+
+          <article class="service-card reveal" data-service="web" data-filter-card="launch">
+            <div class="service-card__top">
+              <span class="service-number">02</span>
+              <span class="service-tag">Launch</span>
+            </div>
             <h3>Webentwicklung</h3>
-            <p>Moderne Websites, Landingpages und Webplattformen mit sauberer Struktur und klarer Nutzerfuehrung.</p>
+            <p>Websites, Landingpages und Plattformen mit sauberer Struktur, responsivem Design und starker Performance.</p>
+            <ul>
+              <li>Corporate Websites</li>
+              <li>Landingpages</li>
+              <li>Portale</li>
+              <li>SEO-Struktur</li>
+            </ul>
           </article>
-          <article class="service-card">
-            <span class="service-number">03</span>
+
+          <article class="service-card reveal" data-service="apps" data-filter-card="mobile">
+            <div class="service-card__top">
+              <span class="service-number">03</span>
+              <span class="service-tag">Mobile</span>
+            </div>
             <h3>App-Entwicklung</h3>
-            <p>Mobile und webbasierte App-Loesungen, die Prozesse vereinfachen und Nutzer erreichen.</p>
+            <p>App-Erlebnisse fuer Kunden, Teams und digitale Produkte, vom klickbaren Prototyp bis zur stabilen Version.</p>
+            <ul>
+              <li>Mobile UX</li>
+              <li>PWA</li>
+              <li>MVP</li>
+              <li>App-Konzept</li>
+            </ul>
           </article>
-          <article class="service-card">
-            <span class="service-number">04</span>
+
+          <article class="service-card reveal" data-service="it" data-filter-card="ops">
+            <div class="service-card__top">
+              <span class="service-number">04</span>
+              <span class="service-tag">Ops</span>
+            </div>
             <h3>IT-Dienstleistungen</h3>
-            <p>Technische Beratung, Setup, Betreuung und digitale Unterstuetzung fuer Unternehmen und Projekte.</p>
+            <p>Technische Beratung, Setup, Prozessdigitalisierung und Betreuung fuer Unternehmen, Teams und Projekte.</p>
+            <ul>
+              <li>Setup</li>
+              <li>Support</li>
+              <li>Automatisierung</li>
+              <li>Datenfluesse</li>
+            </ul>
           </article>
-          <article class="service-card">
-            <span class="service-number">05</span>
+
+          <article class="service-card reveal" data-service="commerce" data-filter-card="shop">
+            <div class="service-card__top">
+              <span class="service-number">05</span>
+              <span class="service-tag">Shop</span>
+            </div>
             <h3>Digitale Produkte</h3>
-            <p>Entwicklung und Vertrieb digitaler Produkte ueber einen eigenen Online-Shop.</p>
+            <p>Konzeption, Verpackung und Vertrieb digitaler Produkte ueber einen schlanken Online-Shop.</p>
+            <ul>
+              <li>Templates</li>
+              <li>Toolkits</li>
+              <li>Downloads</li>
+              <li>Launch-Systeme</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal" data-service="data" data-filter-card="insight">
+            <div class="service-card__top">
+              <span class="service-number">06</span>
+              <span class="service-tag">Insight</span>
+            </div>
+            <h3>Daten &amp; Controlling</h3>
+            <p>Dashboards, Datenmodelle und Auswertungen, die Entscheidungen schneller und transparenter machen.</p>
+            <ul>
+              <li>Reporting</li>
+              <li>KPIs</li>
+              <li>Forecasts</li>
+              <li>Controlling</li>
+            </ul>
           </article>
         </div>
       </section>
 
-      <section class="split-section" id="rolle">
-        <div>
-          <p class="eyebrow">Rolle</p>
-          <h2>Gründer & CIO</h2>
+      <section class="studio-os" id="studio-os">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Studio OS</p>
+          <h2>Ein Betriebssystem fuer digitale Produkte.</h2>
+          <p>
+            Das Studio OS strukturiert Projekte vom ersten Gedanken bis zum laufenden Betrieb:
+            Strategie, Designsystem, Entwicklung, Launch, Messung und Weiterentwicklung.
+          </p>
         </div>
-        <div class="split-content">
+        <div class="os-layout reveal">
+          <div class="os-tabs" role="tablist" aria-label="Studio OS Bereiche">
+
+          <button class="os-tab is-active" type="button" data-os-tab="0">
+            <span>Klarheit</span>
+            Discovery Engine
+          </button>
+
+          <button class="os-tab" type="button" data-os-tab="1">
+            <span>Umsetzung</span>
+            Build Pipeline
+          </button>
+
+          <button class="os-tab" type="button" data-os-tab="2">
+            <span>Weiterentwicklung</span>
+            Growth Console
+          </button>
+
+          <button class="os-tab" type="button" data-os-tab="3">
+            <span>Vertrieb</span>
+            Digital Shop Layer
+          </button>
+          </div>
+          <div class="os-panels">
+
+          <article class="os-panel is-active" data-os-panel="0">
+            <p class="eyebrow">Klarheit</p>
+            <h3>Discovery Engine</h3>
+            <p>Strukturierte Aufnahme von Zielgruppe, Nutzenversprechen, Prozessen, Daten und technischen Grenzen.</p>
+          </article>
+
+          <article class="os-panel" data-os-panel="1">
+            <p class="eyebrow">Umsetzung</p>
+            <h3>Build Pipeline</h3>
+            <p>Planbare Entwicklung mit UI-System, Datenmodell, Schnittstellen, Tests und Launch-Checkliste.</p>
+          </article>
+
+          <article class="os-panel" data-os-panel="2">
+            <p class="eyebrow">Weiterentwicklung</p>
+            <h3>Growth Console</h3>
+            <p>Messbare Optimierung nach Launch: Performance, Conversion, Automatisierung und neue Produktmodule.</p>
+          </article>
+
+          <article class="os-panel" data-os-panel="3">
+            <p class="eyebrow">Vertrieb</p>
+            <h3>Digital Shop Layer</h3>
+            <p>Struktur fuer digitale Produkte, Produktseiten, Download-Logik, Zahlungswege und Support-Prozesse.</p>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="capability-section" id="capabilities">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Capability Library</p>
+          <h2>Suche im Bytewerk-Baukasten.</h2>
           <p>
-            Als Gruender & CIO verantworte ich die technische Ausrichtung,
-            digitale Produktentwicklung und strategische Weiterentwicklung von
-            Bytewerk Studio.
+            Filtere nach Software, Web, App, Daten, Automation oder Shop und finde
+            konkrete Bausteine fuer dein naechstes Projekt.
           </p>
+        </div>
+
+        <div class="capability-toolbar reveal">
+          <label class="search-box">
+            <span>Suchen</span>
+            <input id="capability-search" type="search" placeholder="z. B. Dashboard, API, Launch, Automatisierung">
+          </label>
+          <div class="capability-chips" id="capability-chips" aria-label="Capability Filter"></div>
+        </div>
+        <div class="capability-meta" id="capability-meta">Lade Capabilities...</div>
+        <div class="capability-grid" id="capability-grid"></div>
+        <button class="button button-secondary load-more" type="button" id="capability-more">Mehr laden</button>
+      </section>
+
+      <section class="founder-section" id="gruender">
+        <div class="founder-card reveal">
+          <div>
+            <p class="eyebrow">Gruenderprofil</p>
+            <h2>Hijratullah Haqmal verbindet Business, Daten und IT.</h2>
+            <p>
+              Bytewerk Studio wird von Hijratullah Haqmal als Gruender & CIO aufgebaut.
+              Der Hintergrund aus Betriebswirtschaft, Controlling, Datenanalyse, Prozessen
+              und IT praegt die Art, wie digitale Loesungen geplant und umgesetzt werden.
+            </p>
+            <div class="founder-actions">
+              <a class="button button-primary" href="https://hhaqmal.de/" target="_blank" rel="noreferrer">Profil auf hhaqmal.de</a>
+              <a class="button button-glass-light" href="#kontakt">Mit Bytewerk sprechen</a>
+            </div>
+          </div>
+          <div class="founder-signal" aria-label="Gruender Signal">
+            <span>Controlling</span>
+            <span>Datenanalyse</span>
+            <span>Prozessdenken</span>
+            <span>Software</span>
+            <span>Automatisierung</span>
+            <span>Digitale Produkte</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stack-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Stack</p>
+          <h2>Technologien mit Praxisblick.</h2>
           <p>
-            Der Fokus liegt auf klarer Produktstrategie, verlaesslicher Umsetzung
-            und digitalen Loesungen, die vom ersten Konzept bis zum laufenden
-            Betrieb tragfaehig bleiben.
+            Der Stack bleibt bewusst pragmatisch: schnell genug fuer Launches,
+            strukturiert genug fuer Wachstum und anschlussfaehig fuer Daten und Prozesse.
           </p>
+        </div>
+        <div class="stack-cloud" id="stack-cloud"></div>
+      </section>
+
+      <section class="calculator-section" id="rechner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Projektrechner</p>
+          <h2>Schätze Projektumfang und Nutzen direkt auf der Seite.</h2>
+        </div>
+        <div class="calculator-grid">
+          <form class="calculator-card reveal" id="estimate-form">
+            <h3>Projekt-Scope</h3>
+            <label>
+              Projekttyp
+              <select id="project-type">
+                <option value="website">Premium Website</option>
+                <option value="software">Software / Tool</option>
+                <option value="app">App / PWA</option>
+                <option value="automation">Automation</option>
+                <option value="shop">Digitaler Produktshop</option>
+              </select>
+            </label>
+            <label>
+              Umfang
+              <input id="project-scope" type="range" min="1" max="10" value="6">
+            </label>
+            <label>
+              Geschwindigkeit
+              <select id="project-speed">
+                <option value="normal">Normal</option>
+                <option value="fast">Schneller Launch</option>
+                <option value="deep">Mehr Strategie & System</option>
+              </select>
+            </label>
+            <label class="check-row">
+              <input id="project-integrations" type="checkbox" checked>
+              Schnittstellen oder Automationen einplanen
+            </label>
+            <output class="estimate-output" id="estimate-output">Berechnung wird geladen...</output>
+          </form>
+
+          <form class="calculator-card reveal" id="roi-form">
+            <h3>Automation-Nutzen</h3>
+            <label>
+              Stunden pro Woche
+              <input id="roi-hours" type="number" min="1" max="80" value="8">
+            </label>
+            <label>
+              Interner Stundensatz
+              <input id="roi-rate" type="number" min="10" max="250" value="65">
+            </label>
+            <label>
+              Automatisierbarer Anteil
+              <input id="roi-percent" type="range" min="10" max="90" value="45">
+            </label>
+            <output class="estimate-output" id="roi-output">Berechnung wird geladen...</output>
+          </form>
         </div>
       </section>
 
       <section class="process-section">
-        <div class="section-heading">
+        <div class="section-heading reveal">
           <p class="eyebrow">Arbeitsweise</p>
-          <h2>Von der Idee bis zum digitalen Produkt.</h2>
+          <h2>Von der Idee bis zum Betrieb in sechs klaren Phasen.</h2>
         </div>
+        <div class="process-grid">
 
-        <div class="process-list">
-          <div>
-            <span>Planen</span>
-            <p>Anforderungen klaeren, Ziel definieren und den passenden technischen Weg festlegen.</p>
-          </div>
-          <div>
-            <span>Entwickeln</span>
-            <p>Loesung strukturiert umsetzen, testen und fuer echte Nutzung vorbereiten.</p>
-          </div>
-          <div>
-            <span>Betreiben</span>
-            <p>Website, App oder digitales Produkt veroeffentlichen, pflegen und weiterentwickeln.</p>
-          </div>
+          <article class="process-card reveal">
+            <span>01</span>
+            <h3>Strategie</h3>
+            <p>Ziele, Zielgruppe, Produktkern und technische Prioritaeten werden verdichtet.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <span>02</span>
+            <h3>Architektur</h3>
+            <p>Daten, Seiten, Komponenten, Workflows und Integrationen werden sauber geplant.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <span>03</span>
+            <h3>Designsystem</h3>
+            <p>Interface, Typografie, Farben, Komponenten und Zustandslogik entstehen als System.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <span>04</span>
+            <h3>Entwicklung</h3>
+            <p>Die Loesung wird umgesetzt, getestet und fuer die echte Nutzung vorbereitet.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <span>05</span>
+            <h3>Launch</h3>
+            <p>Domain, Deployment, SEO, Analytics, Sicherheit und Inhalte werden final geschaltet.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <span>06</span>
+            <h3>Iteration</h3>
+            <p>Nach dem Start werden Nutzerverhalten, Prozesse und Produktideen weiter verbessert.</p>
+          </article>
         </div>
+      </section>
+
+      <section class="product-section" id="shop">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Digitaler Shop</p>
+          <h2>Produktmodule fuer den spaeteren Online-Shop.</h2>
+          <p>
+            Die Website enthaelt bereits eine erweiterbare Produktlogik fuer digitale Downloads,
+            Templates und Workflow-Pakete.
+          </p>
+        </div>
+        <div class="product-toolbar reveal">
+          <select id="product-filter" aria-label="Produktfamilie filtern">
+            <option value="all">Alle Produktfamilien</option>
+          </select>
+          <span id="product-count">0 Produkte</span>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+      </section>
+
+      <section class="brief-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Brief Builder</p>
+          <h2>Erstelle in 60 Sekunden eine Projektanfrage.</h2>
+        </div>
+        <form class="brief-form reveal" id="brief-form">
+          <label>
+            Name / Unternehmen
+            <input id="brief-name" type="text" placeholder="z. B. Bytewerk Projekt">
+          </label>
+          <label>
+            Ziel
+            <textarea id="brief-goal" rows="4" placeholder="Was soll entstehen? Website, App, Software, Automation..."></textarea>
+          </label>
+          <label>
+            Wichtigste Funktion
+            <input id="brief-feature" type="text" placeholder="z. B. Anfrageformular, Dashboard, Produktshop">
+          </label>
+          <div class="brief-actions">
+            <button class="button button-primary" type="submit">E-Mail vorbereiten</button>
+            <button class="button button-secondary" type="button" id="brief-copy">Brief kopieren</button>
+          </div>
+          <p class="form-note" id="brief-note">Noch kein Brief erstellt.</p>
+        </form>
+      </section>
+
+      <section class="faq-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Kurze Antworten vor dem ersten Gespraech.</h2>
+        </div>
+        <div class="faq-list" id="faq-list"></div>
       </section>
 
       <section class="contact-section" id="kontakt">
-        <div>
+        <div class="contact-copy reveal">
           <p class="eyebrow">Kontakt</p>
-          <h2>Lass uns dein digitales Projekt starten.</h2>
+          <h2>Bereit fuer ein digitales Produkt mit Substanz?</h2>
           <p>
-            Ob Website, App, Softwareloesung oder digitales Produkt:
-            Bytewerk Studio hilft bei der technischen Umsetzung.
+            Schreib Bytewerk Studio, wenn eine Website, App, Softwareloesung,
+            Automation oder ein digitaler Produktshop entstehen soll.
           </p>
         </div>
-        <a class="button primary" href="mailto:kontakt@bytewerkstudio.com">kontakt@bytewerkstudio.com</a>
+        <div class="contact-card reveal">
+          <a class="button button-primary" href="mailto:kontakt@bytewerkstudio.com">kontakt@bytewerkstudio.com</a>
+          <a class="button button-glass-light" href="https://github.com/bytewerkstudio/bytewerkstudio" target="_blank" rel="noreferrer">GitHub Repository</a>
+        </div>
       </section>
     </main>
 
+    <button class="back-to-top" type="button" data-back-top aria-label="Zurueck nach oben">↑</button>
+
+    <div class="command-palette" data-command-palette aria-hidden="true">
+      <div class="command-dialog" role="dialog" aria-modal="true" aria-label="Schnellnavigation">
+        <div class="command-head">
+          <strong>Schnellnavigation</strong>
+          <button type="button" data-command-close aria-label="Schliessen">×</button>
+        </div>
+        <input id="command-input" type="search" placeholder="Springe zu Leistungen, Rechner, Kontakt...">
+        <div class="command-results" id="command-results"></div>
+      </div>
+    </div>
+
     <footer class="site-footer">
-      <span>© 2026 Bytewerk Studio</span>
+      <span>© <span id="year">2026</span> Bytewerk Studio</span>
+      <span>Gruender & CIO: <a href="https://hhaqmal.de/" target="_blank" rel="noreferrer">Hijratullah Haqmal</a></span>
       <span>Software. Web. Apps. Digitale Produkte.</span>
     </footer>
   </body>

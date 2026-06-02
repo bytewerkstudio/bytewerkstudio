@@ -1,31 +1,20 @@
 # Bytewerk Studio Website
 
-**Software-Gründer & CIO**  
-**2026 - heute**
-
-Dieses Repository enthaelt die GitHub-Pages-Website fuer Bytewerk Studio.
-
 Website: https://bytewerkstudio.com
 
-Bytewerk Studio entwickelt und vertreibt digitale Softwareprodukte. Der Fokus liegt auf moderner Web- und App-Entwicklung, IT-Dienstleistungen sowie dem Betrieb eines Online-Shops fuer digitale Produkte.
+Bytewerk Studio entwickelt Software, Websites, Apps, Automationen, IT-Dienstleistungen und digitale Produkte. Gruender & CIO ist Hijratullah Haqmal, mit Profil unter https://hhaqmal.de/.
 
-## Was wir machen
+## Inhalte
 
-- Entwicklung individueller Softwareloesungen
-- Webentwicklung fuer Unternehmen, Projekte und digitale Marken
-- App-Entwicklung fuer moderne Nutzererlebnisse
-- IT-Dienstleistungen und technische Beratung
-- Vertrieb digitaler Produkte ueber einen eigenen Online-Shop
+- Premium-Landingpage mit interaktivem Canvas-Hero
+- Servicebereiche fuer Software, Web, Apps, IT, Shop und Daten
+- Studio-OS-Sektion fuer Strategie, Build, Growth und digitalen Vertrieb
+- Capability Library mit 360 durchsuchbaren Bausteinen
+- Projekt-Scope-Rechner und Automation-ROI-Rechner
+- Digitaler Produktbereich mit vorbereiteten Template-Paketen
+- Brief Builder fuer Projektanfragen
+- FAQ, Kontaktbereich, SEO-Dateien und Custom-Domain-Konfiguration
 
-## Rolle
+## Deployment
 
-Als Gruender & CIO verantworte ich die technische Ausrichtung, digitale Produktentwicklung und strategische Weiterentwicklung von Bytewerk Studio.
-
-## Fokus
-
-Wir verbinden technische Umsetzung mit klarer Produktstrategie: von der ersten Idee ueber die Entwicklung bis hin zum Betrieb und Vertrieb digitaler Loesungen.
-
----
-
-**Bytewerk Studio**  
-Software. Web. Apps. Digitale Produkte.
+Die Seite wird ueber GitHub Pages aus dem Branch main veroeffentlicht. Die Datei CNAME muss bytewerkstudio.com enthalten.
