@@ -20,7 +20,7 @@
 <section class="wrap pd" data-screen-label="Produkt">
   <!-- MEDIA -->
   <div class="pd-media reveal">
-    <div class="pd-hero"><span>[ Lernreich Screenshot 16:9 ]</span></div>
+    <div class="pd-hero app-mark-panel"><img class="app-logo-mark hero-logo-mark" src="media/lernreich-logo.png" alt="Lernreich Logo"></div>
     <div class="pd-thumbs">
       <div class="pd-thumb"></div>
       <div class="pd-thumb"></div>
@@ -106,7 +106,7 @@
 <script src="components.js"></script>
 <script src="main.js"></script>
 <script>
-/* Add-to-cart toast + thumbnail swap */
+/* Download toast */
 (function () {
   const btn = document.getElementById('buy-btn');
   const toast = document.getElementById('toast');
@@ -118,13 +118,6 @@
       timer = setTimeout(() => toast.classList.remove('show'), 2600);
     });
   }
-  const hero = document.querySelector('.pd-hero');
-  document.querySelectorAll('.pd-thumb').forEach((t, i) => {
-    t.addEventListener('click', () => {
-      const span = hero.querySelector('span');
-      if (span) span.textContent = '[ Lernreich Screenshot ' + (i + 1) + ' ]';
-    });
-  });
 })();
 </script>
 </body>
