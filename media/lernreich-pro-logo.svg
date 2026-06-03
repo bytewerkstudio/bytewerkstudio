@@ -1,0 +1,9 @@
+<svg width="720" height="180" viewBox="0 0 720 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="12" y="20" width="140" height="140" rx="34" fill="#15191d"/>
+  <path d="M28 132C49 122 63 98 76 77C88 57 102 42 136 41V145H28V132Z" fill="#0f7d6c" opacity=".72"/>
+  <path d="M52 48H72V116H111V134H52V48Z" fill="#f1e6ce"/>
+  <path d="M76 48H98L73 71H59L76 48Z" fill="#d7aa45"/>
+  <rect x="12" y="20" width="140" height="140" rx="34" stroke="#f1e6ce" stroke-opacity=".14" stroke-width="2"/>
+  <text x="184" y="106" fill="#f4ead7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="760" letter-spacing="0">Lernreich</text>
+  <text x="187" y="139" fill="#98a7a5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="520" letter-spacing="0">Fokus. Fortschritt. Ruhe.</text>
+</svg>

@@ -1,7 +1,7 @@
 # Bytewerk Studio
 
 Statische Website fuer Bytewerk Studio, basierend auf der im Ordner abgelegten Vorlage.
-Der Shop listet die kostenlosen Windows-Apps `Lernreich` und `Pruefungs-Countdown`.
+Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown` und `Lernreich Pro`.
 
 ## Seiten
 
@@ -9,6 +9,7 @@ Der Shop listet die kostenlosen Windows-Apps `Lernreich` und `Pruefungs-Countdow
 - `shop.html`: Shop-Uebersicht
 - `produkt.html`: Produktdetailseite
 - `pruefungs-countdown.html`: Produktdetailseite fuer die Windows-App Pruefungs-Countdown
+- `lernreich-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Lernreich Pro
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
