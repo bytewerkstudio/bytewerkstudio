@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Bytewerk Studio — Digitales Handwerk. Software, Web, Apps & Games.</title>
+<meta name="description" content="Bytewerk Studio entwickelt Software, Web- und App-Lösungen, bietet IT-Dienstleistungen und entwickelt eigene Games. Sauber gebaut, Byte für Byte.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<style id="theme">
+  /* Editorial / structured theme — warm amber accent */
+  :root {
+    --accent:     oklch(0.62 0.16 52);
+    --accent-700: oklch(0.52 0.15 52);
+    --accent-300: oklch(0.78 0.11 52);
+    --accent-tint:oklch(0.95 0.04 52);
+  }
+  .hero-ed { min-height: 100svh; display: flex; align-items: center; padding-top: 72px; overflow: hidden; }
+  .hero-ed-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 25%);
+    opacity: 0.7;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+            mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+  }
+  .hero-ed-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; padding-block: 10vh 12vh; width: 100%; }
+  .hero-ed-l { display: flex; flex-direction: column; gap: 26px; }
+  .hero-ed .display { font-size: clamp(52px, 9vw, 116px); line-height: 0.92; letter-spacing: -0.04em; }
+  .hero-ed .display span { display: block; }
+  .hero-ed-r { border-top: 1.5px solid var(--ink); }
+  .ed-idx-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; color: var(--accent-700); padding: 16px 0; text-transform: uppercase; }
+  .ed-idx {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px;
+    padding: 18px 4px; border-top: 1px solid var(--line);
+    font-family: var(--display); font-weight: 500; font-size: 17px;
+    transition: padding 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .ed-idx .n { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .ed-idx .ar { color: var(--accent); opacity: 0; transform: translateX(-6px); transition: all 0.3s var(--ease); }
+  .ed-idx:hover { padding-left: 14px; color: var(--accent-700); }
+  .ed-idx:hover .ar { opacity: 1; transform: none; }
+  .ed-idx:hover .n { color: var(--accent); }
+  @media (max-width: 900px) {
+    .hero-ed-grid { grid-template-columns: 1fr; align-items: start; gap: 40px; }
+    .hero-ed-bg { background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 50%); }
+  }
+</style>
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero hero-ed" data-screen-label="Hero">
+  <div class="hero-ed-bg" aria-hidden="true"></div>
+  <div class="wrap hero-ed-grid">
+    <div class="hero-ed-l">
+      <span class="eyebrow reveal" data-en="Bytewerk Studio — digital craft">Bytewerk Studio — digitales Handwerk</span>
+      <h1 class="display reveal" data-d="1"><span>Software.</span><span>Web.</span><span class="accent-word">Games.</span></h1>
+      <p class="lead reveal" data-d="2" data-en="We build software, web and app solutions — and develop our own games and digital products you can use right away. Precise, performant, no fluff.">
+        Wir entwickeln Software, Web- und App-Lösungen — und bauen eigene Games und digitale Produkte,
+        die du sofort einsetzen kannst. Präzise, performant, ohne Schnörkel.
+      </p>
+      <div class="hero-cta reveal" data-d="3">
+        <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-lg" href="shop.html" data-en="Browse the shop">Shop ansehen</a>
+      </div>
+    </div>
+    <aside class="hero-ed-r reveal" data-d="2">
+      <div class="ed-idx-head" data-en="// Four disciplines">// Vier Disziplinen</div>
+      <a class="ed-idx" href="#leistungen"><span class="n">01</span><span class="t" data-en="Software development">Softwareentwicklung</span><span class="ar">→</span></a>
+      <a class="ed-idx" href="#leistungen"><span class="n">02</span><span class="t" data-en="Web development">Web-Entwicklung</span><span class="ar">→</span></a>
+      <a class="ed-idx" href="#leistungen"><span class="n">03</span><span class="t" data-en="App development">App-Entwicklung</span><span class="ar">→</span></a>
+      <a class="ed-idx" href="#leistungen"><span class="n">04</span><span class="t" data-en="Games &amp; IT services">Games &amp; IT-Services</span><span class="ar">→</span></a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>TypeScript</span><span>React</span><span>Node.js</span><span>Next.js</span><span>Swift</span>
+    <span>Kotlin</span><span>Python</span><span>Rust</span><span>Unity</span><span>Godot</span>
+    <span>PostgreSQL</span><span>Docker</span><span>AWS</span><span>Tailwind</span>
+    <span>TypeScript</span><span>React</span><span>Node.js</span><span>Next.js</span><span>Swift</span>
+    <span>Kotlin</span><span>Python</span><span>Rust</span><span>Unity</span><span>Godot</span>
+    <span>PostgreSQL</span><span>Docker</span><span>AWS</span><span>Tailwind</span>
+  </div>
+</div>
+
+<!-- ============ LEISTUNGEN ============ -->
+<section class="sec-pad" id="leistungen" data-screen-label="Leistungen">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:48px">
+      <span class="eyebrow" data-en="What we build">Was wir bauen</span>
+      <h2 class="h2" data-en="Four disciplines, one standard:<br>software that lasts.">Vier Disziplinen, ein Anspruch:<br>Software, die hält.</h2>
+      <p class="lead" data-en="From the first architecture sketch to running operations — we accompany your product across its entire lifecycle.">Von der ersten Architektur-Skizze bis zum laufenden Betrieb — wir begleiten dein Produkt über den gesamten Lebenszyklus.</p>
+    </div>
+    <div class="svc-grid reveal" data-d="1">
+      <article class="svc">
+        <span class="num">01 / Software</span>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M8 6 3 12l5 6"/><path d="m16 6 5 6-5 6"/><path d="m13 4-2 16"/></svg>
+        <h3 data-en="Software development">Softwareentwicklung</h3>
+        <p data-en="Tailor-made software from concept to deployment. Clean architecture, tested code, maintainable systems — no black boxes.">Maßgeschneiderte Software vom Konzept bis zum Deployment. Saubere Architektur, getesteter Code, wartbare Systeme — keine Black Boxes.</p>
+        <div class="tags"><span class="tag">Backends</span><span class="tag">APIs</span><span class="tag" data-en="Automation">Automatisierung</span></div>
+      </article>
+      <article class="svc">
+        <span class="num">02 / Web</span>
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <h3 data-en="Web development">Web-Entwicklung</h3>
+        <p data-en="Modern, lightning-fast websites and web apps. Performance-optimised, accessible, with a frontend that's a joy to use.">Moderne, blitzschnelle Websites und Web-Apps. Performance-optimiert, barrierearm und mit einem Frontend, das Spaß macht.</p>
+        <div class="tags"><span class="tag">Web-Apps</span><span class="tag">Landingpages</span><span class="tag">E-Commerce</span></div>
+      </article>
+      <article class="svc">
+        <span class="num">03 / Apps</span>
+        <svg class="icon" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+        <h3 data-en="App development">App-Entwicklung</h3>
+        <p data-en="Native and cross-platform apps for iOS &amp; Android. From prototype to store — considered in every detail.">Native und plattformübergreifende Apps für iOS &amp; Android. Vom Prototyp bis in den Store — durchdacht in jedem Detail.</p>
+        <div class="tags"><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">Cross-Platform</span></div>
+      </article>
+      <article class="svc">
+        <span class="num">04 / Games</span>
+        <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <h3 data-en="Games &amp; IT">Games &amp; IT</h3>
+        <p data-en="Our own games — and the IT services to keep everything running: consulting, hosting, operations and support.">Eigene Games — und die IT-Dienstleistungen, die alles am Laufen halten: Beratung, Hosting, Betrieb und Support.</p>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">Godot</span><span class="tag">DevOps</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOP (GAMES) ============ -->
+<section class="sec-pad" id="shop" style="background:var(--paper-2);border-block:1px solid var(--line)" data-screen-label="Shop">
+  <div class="wrap">
+    <div class="shop-head reveal">
+      <div class="sec-head">
+        <span class="eyebrow" data-en="Bytewerk Shop">Bytewerk Shop</span>
+        <h2 class="h2" data-en="Games &amp; software, straight from the workshop.">Games &amp; Software aus eigener Werkstatt.</h2>
+        <p class="lead" data-en="Independently developed games and tools — built with care, ready to play and use in minutes.">Eigenständig entwickelte Games und Tools — gebaut mit Liebe zum Detail, in Minuten spielbereit.</p>
+      </div>
+      <a class="btn btn-ghost" href="shop.html"><span data-en="Browse all">Zum ganzen Shop</span> <span class="arr">→</span></a>
+    </div>
+    <div class="shop-grid reveal" data-d="1" style="margin-top:46px">
+      <a class="prod" href="produkt.html">
+        <div class="ph"><span>[ Game-Screenshot ]</span></div>
+        <div class="body">
+          <span class="cat">PC · Konsole</span>
+          <h3>Neon Circuit</h3>
+          <p data-en="A high-speed arcade racer with synthwave soundtrack and a ruthless time-attack mode.">Rasanter Arcade-Racer mit Synthwave-Soundtrack und gnadenlosem Time-Attack-Modus.</p>
+          <div class="foot">
+            <span class="price">19,99 €</span>
+            <span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="prod" href="produkt.html">
+        <div class="ph"><span>[ Game-Screenshot ]</span></div>
+        <div class="body">
+          <span class="cat">iOS · Android</span>
+          <h3>Glyph</h3>
+          <p data-en="A minimalist puzzle game about light, symmetry and quiet focus. 120 handcrafted levels.">Minimalistisches Puzzle über Licht, Symmetrie und stillen Fokus. 120 handgebaute Level.</p>
+          <div class="foot">
+            <span class="price" data-en="Free">Kostenlos</span>
+            <span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="prod" href="produkt.html">
+        <div class="ph"><span>[ Game-Screenshot ]</span></div>
+        <div class="body">
+          <span class="cat">PC · Steam</span>
+          <h3>Hollow Keep</h3>
+          <p data-en="A pixel-art roguelite dungeon crawler. Every run is different, every death teaches you something.">Pixel-Art-Roguelite im Dungeon. Jeder Run ist anders, jeder Tod bringt dich weiter.</p>
+          <div class="foot">
+            <span class="price">14,99 €</span>
+            <span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROZESS ============ -->
+<section class="sec-pad" id="prozess" data-screen-label="Prozess">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:44px">
+      <span class="eyebrow" data-en="How we work">Wie wir arbeiten</span>
+      <h2 class="h2" data-en="Transparent, iterative, no nonsense.">Transparent, iterativ, ohne Bullshit.</h2>
+    </div>
+    <div class="principles reveal" data-d="1">
+      <div class="principle">
+        <span class="k">// 01</span>
+        <h3 data-en="Understand before building">Verstehen vor Bauen</h3>
+        <p data-en="We dive deep into your problem before a single line of code is written. A good brief saves half the work.">Wir steigen tief in dein Problem ein, bevor eine einzige Zeile Code entsteht. Gutes Briefing spart die Hälfte der Arbeit.</p>
+      </div>
+      <div class="principle">
+        <span class="k">// 02</span>
+        <h3 data-en="In small steps">In kleinen Schritten</h3>
+        <p data-en="Shippable increments instead of monster projects. You see real results early and steer at any time.">Lieferbare Inkremente statt Monsterprojekte. Du siehst früh echte Ergebnisse und steuerst jederzeit mit.</p>
+      </div>
+      <div class="principle">
+        <span class="k">// 03</span>
+        <h3 data-en="Built to last">Gebaut zum Bleiben</h3>
+        <p data-en="Documented, tested, ready to hand over. In two years someone will still understand what's going on here.">Dokumentiert, getestet, übergabefertig. Auch in zwei Jahren versteht noch jemand, was hier passiert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO / WHY ============ -->
+<section class="sec-pad" id="studio-teaser" style="padding-top:0" data-screen-label="Studio">
+  <div class="wrap studio-split">
+    <div class="reveal">
+      <span class="eyebrow" data-en="The studio">Das Studio</span>
+      <h2 class="h2" style="margin-top:18px" data-en="A small workshop with big ambition.">Eine kleine Werkstatt mit großem Anspruch.</h2>
+      <p class="lead" style="margin-top:22px" data-en="Bytewerk Studio stands for digital craft: considered software instead of quickly clicked-together solutions. We work directly, honestly and close to you — from the first conversation to running operations.">
+        Bytewerk Studio steht für digitales Handwerk: durchdachte Software statt schnell zusammengeklickter Lösungen.
+        Wir arbeiten direkt, ehrlich und nah an dir — vom ersten Gespräch bis zum laufenden Betrieb.
+      </p>
+      <div class="studio-points">
+        <div class="pt"><span class="dot"></span> <span data-en="Direct line — no agency ping-pong">Direkter Draht — kein Agentur-Pingpong</span></div>
+        <div class="pt"><span class="dot"></span> <span data-en="Code that's yours — full transparency">Code, der dir gehört — volle Transparenz</span></div>
+        <div class="pt"><span class="dot"></span> <span data-en="Open-source friendly, published on GitHub">Open-Source-freundlich, veröffentlicht auf GitHub</span></div>
+      </div>
+      <a class="btn btn-primary" style="margin-top:30px" href="studio.html"><span data-en="Get to know us">Lern uns kennen</span> <span class="arr">→</span></a>
+    </div>
+    <div class="studio-visual reveal" data-d="1" aria-hidden="true">
+      <div class="code-card">
+        <div class="code-bar"><span></span><span></span><span></span><em>bytewerk.ts</em></div>
+        <pre><code><span class="c-key">const</span> <span class="c-var">studio</span> = {
+  name: <span class="c-str">'Bytewerk Studio'</span>,
+  craft: [<span class="c-str">'software'</span>, <span class="c-str">'web'</span>, <span class="c-str">'apps'</span>, <span class="c-str">'games'</span>],
+  values: <span class="c-str">'clean &amp; maintainable'</span>,
+  ship(): <span class="c-key">Product</span> {
+    <span class="c-key">return</span> build(<span class="c-str">'byte für byte'</span>)
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section style="padding-bottom:clamp(72px,11vw,140px)" data-screen-label="CTA">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <canvas id="cta-canvas" class="cta-grid-bg" aria-hidden="true"></canvas>
+      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Ready?">Bereit?</span>
+      <h2 class="h2" style="position:relative" data-en="Let's build your next digital product.">Lass uns dein nächstes digitales Produkt bauen.</h2>
+      <p class="lead" style="color:oklch(0.82 0.01 264);position:relative;max-width:48ch" data-en="Tell us about your idea — we'll get back to you within 24 hours with an honest assessment.">Erzähl uns von deiner Idee — wir melden uns innerhalb von 24 Stunden mit einer ehrlichen Einschätzung.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;position:relative">
+        <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-lg" style="background:transparent;color:var(--paper);border-color:oklch(1 0 0 / 0.25)" href="mailto:hallo@bytewerkstudio.com">hallo@bytewerkstudio.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<style id="hero-styles">
+.hero { position: relative; display: flex; align-items: center; padding-top: 72px; overflow: hidden; }
+.accent-word { color: var(--accent); position: relative; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+.shop-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+a.prod { color: inherit; }
+.studio-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
+.studio-points { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.studio-points .pt { display: flex; align-items: center; gap: 12px; font-size: 15.5px; font-weight: 500; color: var(--ink-soft); }
+.studio-points .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--accent); flex-shrink: 0; }
+.studio-visual { position: relative; }
+.code-card { background: oklch(0.19 0.012 264); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid oklch(0.3 0.012 264); }
+.code-bar { display: flex; align-items: center; gap: 7px; padding: 14px 18px; border-bottom: 1px solid oklch(0.27 0.012 264); }
+.code-bar span { width: 11px; height: 11px; border-radius: 999px; background: oklch(0.4 0.012 264); }
+.code-bar em { margin-left: auto; font-family: var(--mono); font-style: normal; font-size: 12px; color: oklch(0.6 0.01 264); }
+.code-card pre { margin: 0; padding: 24px 22px 26px; overflow-x: auto; }
+.code-card code { font-family: var(--mono); font-size: 14px; line-height: 1.85; color: oklch(0.82 0.01 264); white-space: pre; }
+.c-key { color: oklch(0.78 0.14 305); }
+.c-var { color: oklch(0.82 0.13 230); }
+.c-str { color: oklch(0.8 0.14 150); }
+@media (max-width: 900px) {
+  .studio-split { grid-template-columns: 1fr; }
+  .shop-head .btn { display: none; }
+}
+</style>
+
+<script src="components.js"></script>
+<script src="main.js"></script>
+<script>
+/* CTA band subtle grid canvas */
+(function () {
+  const c = document.getElementById('cta-canvas');
+  if (!c) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ctx = c.getContext('2d');
+  let w, h, dpr, t = 0, raf;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = c.getBoundingClientRect(); w = r.width; h = r.height;
+    c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function draw() {
+    ctx.clearRect(0,0,w,h);
+    t += reduce ? 0 : 0.01;
+    const gap = 30;
+    for (let x = 0; x < w + gap; x += gap) {
+      for (let y = 0; y < h + gap; y += gap) {
+        const wv = Math.sin(x*0.02 + t) + Math.cos(y*0.02 - t);
+        const a = 0.06 + ((wv+2)/4)*0.16;
+        ctx.beginPath(); ctx.arc(x, y, 1.1, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${a})`; ctx.fill();
+      }
+    }
+    if (!reduce) raf = requestAnimationFrame(draw);
+  }
+  function start(){ cancelAnimationFrame(raf); size(); draw(); }
+  window.addEventListener('resize', start);
+  requestAnimationFrame(start);
+})();
+</script>
+</body>
+</html>

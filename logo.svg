@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" role="img" aria-label="Bytewerk Studio">
+  <rect x="1.5" y="1.5" width="11.5" height="11.5" rx="3" fill="#1c1c24"></rect>
+  <rect x="15" y="1.5" width="11.5" height="11.5" rx="3" fill="#1c1c24"></rect>
+  <rect x="1.5" y="15" width="11.5" height="11.5" rx="3" fill="#1c1c24"></rect>
+  <circle cx="20.75" cy="20.75" r="5.95" fill="#c9711f"></circle>
+</svg>

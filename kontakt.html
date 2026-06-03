@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Kontakt — Bytewerk Studio</title>
+<meta name="description" content="Projektanfrage an Bytewerk Studio senden: Software, Web, Apps, Games und IT-Dienstleistungen.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<main class="wrap contact-grid" data-screen-label="Kontakt">
+  <aside class="contact-info reveal">
+    <div>
+      <span class="eyebrow" data-en="Contact">Kontakt</span>
+      <h1 class="display" style="font-size:clamp(38px,5.8vw,74px);margin-top:18px" data-en="Start a clean digital project.">Starte ein sauberes digitales Projekt.</h1>
+      <p class="lead" style="margin-top:22px" data-en="Send a short brief. We reply with the next practical step and an honest first assessment.">
+        Schick uns ein kurzes Briefing. Wir antworten mit dem naechsten sinnvollen Schritt und einer ehrlichen Ersteinschaetzung.
+      </p>
+    </div>
+    <div class="ci-block">
+      <div class="k">E-Mail</div>
+      <a class="v" href="mailto:hallo@bytewerkstudio.com">hallo@bytewerkstudio.com</a>
+    </div>
+    <div class="ci-block">
+      <div class="k" data-en="Focus">Fokus</div>
+      <div class="v">Software · Web · Apps · Games · IT</div>
+    </div>
+    <div class="ci-block">
+      <div class="k" data-en="Response">Antwort</div>
+      <div class="v" data-en="Usually within 24 hours">Meist innerhalb von 24 Stunden</div>
+    </div>
+  </aside>
+
+  <section class="form-card reveal" data-d="1">
+    <form class="form" id="contact-form" novalidate>
+      <div class="form-success" id="form-success" role="status" aria-live="polite">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+        <h3 data-en="Ready to send">Bereit zum Senden</h3>
+        <p data-en="Your mail program opens with the filled project request.">Dein Mailprogramm oeffnet sich mit der ausgefuellten Projektanfrage.</p>
+        <a class="btn btn-primary" href="mailto:hallo@bytewerkstudio.com">hallo@bytewerkstudio.com</a>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="name" data-en="Name *">Name <span class="req">*</span></label>
+          <input id="name" name="name" autocomplete="name" required>
+          <span class="err" data-en="Please enter your name.">Bitte Namen eintragen.</span>
+        </div>
+        <div class="field">
+          <label for="email">E-Mail <span class="req">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <span class="err" data-en="Please enter a valid email.">Bitte gueltige E-Mail eintragen.</span>
+        </div>
+        <div class="field">
+          <label for="type" data-en="Project type">Projektart</label>
+          <select id="type" name="type">
+            <option>Softwareentwicklung</option>
+            <option>Web-Entwicklung</option>
+            <option>App-Entwicklung</option>
+            <option>Game / Digitales Produkt</option>
+            <option>IT-Dienstleistung</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="budget" data-en="Budget">Budget</label>
+          <select id="budget" name="budget">
+            <option>Noch offen</option>
+            <option>bis 2.500 EUR</option>
+            <option>2.500 - 10.000 EUR</option>
+            <option>10.000+ EUR</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="message" data-en="Briefing *">Briefing <span class="req">*</span></label>
+          <textarea id="message" name="message" required data-en-ph="What should be built, for whom, and by when?" placeholder="Was soll gebaut werden, fuer wen und bis wann?"></textarea>
+          <span class="err" data-en="Please describe your project briefly.">Bitte Projekt kurz beschreiben.</span>
+        </div>
+      </div>
+      <div class="form-foot">
+        <p class="hint" data-en="No tracking, no upload, no hidden backend. The request is sent through your mail program.">Kein Tracking, kein Upload, kein verstecktes Backend. Die Anfrage wird ueber dein Mailprogramm gesendet.</p>
+        <button class="btn btn-primary btn-lg" type="submit"><span data-en="Prepare request">Anfrage vorbereiten</span> <span class="arr">→</span></button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="main.js"></script>
+<script>
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const success = document.getElementById('form-success');
+  const fields = [...form.querySelectorAll('[required]')];
+
+  function mark(field) {
+    const wrap = field.closest('.field');
+    const invalid = !field.checkValidity() || !String(field.value || '').trim();
+    if (wrap) wrap.classList.toggle('invalid', invalid);
+    return !invalid;
+  }
+
+  fields.forEach(field => field.addEventListener('input', () => mark(field)));
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const ok = fields.map(mark).every(Boolean);
+    if (!ok) return;
+    const data = new FormData(form);
+    const body = [
+      'Name: ' + data.get('name'),
+      'E-Mail: ' + data.get('email'),
+      'Projektart: ' + data.get('type'),
+      'Budget: ' + data.get('budget'),
+      '',
+      String(data.get('message') || '')
+    ].join('\n');
+    form.classList.add('sent');
+    if (success) success.classList.add('show');
+    window.location.href = 'mailto:hallo@bytewerkstudio.com?subject=' + encodeURIComponent('Projektanfrage an Bytewerk Studio') + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
+</body>
+</html>
