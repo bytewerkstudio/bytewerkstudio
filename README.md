@@ -9,6 +9,7 @@ Der Shop ist auf die aktuelle App `Lernreich` ausgerichtet.
 - `shop.html`: Shop-Uebersicht
 - `produkt.html`: Produktdetailseite
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
+- `apps/pruefungs-countdown/`: kostenlose installierbare Pruefungs-Countdown-PWA
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten

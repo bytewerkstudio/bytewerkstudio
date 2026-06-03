@@ -206,7 +206,8 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.0
 
 /* ---------- Product / shop cards ---------- */
 .shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.single-product-grid { grid-template-columns: minmax(260px, 460px); }
+.shop-grid.single-product-grid,
+.shop-page-grid.single-product-grid { grid-template-columns: minmax(260px, 460px); }
 .prod {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); overflow: hidden;
