@@ -72,10 +72,10 @@
           </div>
           <div class="footer-col">
             <h4 data-en="Services">Leistungen</h4>
-            <a href="index.html#leistungen" data-en="Software development">Softwareentwicklung</a>
-            <a href="index.html#leistungen" data-en="Web development">Web-Entwicklung</a>
-            <a href="index.html#leistungen" data-en="App development">App-Entwicklung</a>
-            <a href="index.html#leistungen" data-en="IT services">IT-Dienstleistungen</a>
+            <a href="softwareentwicklung-ludwigshafen.html" data-en="Software development">Softwareentwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html#webentwicklung" data-en="Web development">Web-Entwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html#app-entwicklung" data-en="App development">App-Entwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html" data-en="IT services">IT-Dienstleistungen</a>
           </div>
           <div class="footer-col">
             <h4 data-en="Studio">Studio</h4>

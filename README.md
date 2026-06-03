@@ -6,6 +6,7 @@ Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown` und `Lernrei
 ## Seiten
 
 - `index.html`: Startseite
+- `softwareentwicklung-ludwigshafen.html`: lokale SEO-Landingpage fuer Softwareentwicklung, Webentwicklung, App-Entwicklung und IT-Dienstleistungen
 - `shop.html`: Shop-Uebersicht
 - `produkt.html`: Produktdetailseite
 - `pruefungs-countdown.html`: Produktdetailseite fuer die Windows-App Pruefungs-Countdown
