@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Checkout — Bytewerk Studio</title>
-<meta name="description" content="Checkout fuer digitale Produkte von Bytewerk Studio.">
+<title>Download vorbereiten — Lernreich · Bytewerk Studio</title>
+<meta name="description" content="Download- und Kontaktseite fuer Lernreich von Bytewerk Studio.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,14 +20,14 @@
 <main class="wrap contact-grid" data-screen-label="Checkout">
   <aside class="contact-info reveal">
     <div>
-      <span class="eyebrow">Checkout</span>
-      <h1 class="display" style="font-size:clamp(38px,5.8vw,74px);margin-top:18px" data-en="Finish your order.">Bestellung abschliessen.</h1>
-      <p class="lead" style="margin-top:22px" data-en="This static checkout prepares an order email. Real payments can be connected later through a payment provider.">
-        Dieser statische Checkout bereitet eine Bestell-E-Mail vor. Echte Zahlungen koennen spaeter ueber einen Payment-Anbieter angebunden werden.
+      <span class="eyebrow">Lernreich</span>
+      <h1 class="display" style="font-size:clamp(38px,5.8vw,74px);margin-top:18px" data-en="Download or ask a question.">Download oder Rueckfrage.</h1>
+      <p class="lead" style="margin-top:22px" data-en="Lernreich is available through the official app page. This page can also prepare an email if you have a question before downloading.">
+        Lernreich ist ueber die offizielle App-Seite verfuegbar. Diese Seite kann zusaetzlich eine E-Mail vorbereiten, falls du vor dem Download eine Frage hast.
       </p>
     </div>
     <div class="form-card" style="padding:24px">
-      <h2 class="h3" style="margin-bottom:18px" data-en="Cart">Warenkorb</h2>
+      <h2 class="h3" style="margin-bottom:18px" data-en="App">App</h2>
       <div class="pd-list" id="cart-list"></div>
       <a class="btn btn-ghost" style="margin-top:22px" href="shop.html" data-en="Back to shop">Zurueck zum Shop</a>
     </div>
@@ -37,8 +37,8 @@
     <form class="form" id="checkout-form" novalidate>
       <div class="form-success" id="checkout-success" role="status" aria-live="polite">
         <div class="check"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-        <h3 data-en="Order prepared">Bestellung vorbereitet</h3>
-        <p data-en="Your mail program opens with the prepared order request.">Dein Mailprogramm oeffnet sich mit der vorbereiteten Bestellung.</p>
+        <h3 data-en="Message prepared">Nachricht vorbereitet</h3>
+        <p data-en="Your mail program opens with the prepared message.">Dein Mailprogramm oeffnet sich mit der vorbereiteten Nachricht.</p>
       </div>
       <div class="form-grid">
         <div class="field">
@@ -58,7 +58,8 @@
       </div>
       <div class="form-foot">
         <p class="hint" data-en="No payment data is processed on this static website.">Auf dieser statischen Website werden keine Zahlungsdaten verarbeitet.</p>
-        <button class="btn btn-primary btn-lg" type="submit"><span data-en="Prepare order">Bestellung vorbereiten</span> <span class="arr">→</span></button>
+        <button class="btn btn-primary btn-lg" type="submit"><span data-en="Prepare message">Nachricht vorbereiten</span> <span class="arr">→</span></button>
+        <a class="btn btn-ghost btn-lg" href="https://lernreich.pro/#download" target="_blank" rel="noopener">Direkt zum Download</a>
       </div>
     </form>
   </section>
@@ -70,14 +71,7 @@
 <script src="main.js"></script>
 <script>
 (function () {
-  const fallback = [{ title: 'Neon Circuit', price: '19,99 €', qty: 1 }];
-  let cart = fallback;
-  try {
-    const saved = JSON.parse(localStorage.getItem('bw-cart') || 'null');
-    if (Array.isArray(saved) && saved.length) cart = saved;
-  } catch (error) {
-    cart = fallback;
-  }
+  const cart = [{ title: 'Lernreich', price: 'Kostenlos', qty: 1 }];
 
   const list = document.getElementById('cart-list');
   if (list) {
@@ -105,7 +99,7 @@
     if (!fields.map(mark).every(Boolean)) return;
     const data = new FormData(form);
     const body = [
-      'Bestellung Bytewerk Studio',
+      'Lernreich Anfrage Bytewerk Studio',
       '',
       ...cart.map(item => '- ' + (item.qty || 1) + 'x ' + item.title + ' / ' + item.price),
       '',
@@ -115,7 +109,7 @@
     ].join('\n');
     form.classList.add('sent');
     if (success) success.classList.add('show');
-    window.location.href = 'mailto:hallo@bytewerkstudio.com?subject=' + encodeURIComponent('Bestellung Bytewerk Studio') + '&body=' + encodeURIComponent(body);
+    window.location.href = 'mailto:Haqmalh@icloud.com?subject=' + encodeURIComponent('Lernreich Anfrage') + '&body=' + encodeURIComponent(body);
   });
 })();
 </script>
