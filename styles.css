@@ -205,7 +205,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.0
 .svc:hover .icon { stroke: var(--accent); }
 
 /* ---------- Product / shop cards ---------- */
-.shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
 .single-product-grid { grid-template-columns: minmax(260px, 460px); }
 .prod {
   background: var(--surface); border: 1px solid var(--line);
@@ -326,7 +326,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.0
 .chip { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.03em; color: var(--ink-soft); border: 1px solid var(--line-2); background: var(--surface); border-radius: 999px; padding: 9px 16px; transition: all 0.22s var(--ease); }
 .chip:hover { border-color: var(--ink); }
 .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.shop-page-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.shop-page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
 .prod.hide { display: none; }
 .prod .ph .badge { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 4px 9px; border-radius: 6px; }
 
@@ -335,8 +335,12 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.0
 .pd-media { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 96px; }
 .pd-hero { aspect-ratio: 16/10; border-radius: var(--radius); border: 1px solid var(--line); background: repeating-linear-gradient(135deg, oklch(0.94 0.006 95) 0 12px, oklch(0.965 0.005 95) 12px 24px); display: grid; place-items: center; overflow: hidden; }
 .pd-hero span { font-family: var(--mono); font-size: 13px; color: var(--faint); letter-spacing: 0.08em; }
+.pd-hero.pd-screenshot { background: oklch(0.12 0.018 264); padding: 0; }
+.pd-screenshot-img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
 .pd-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .pd-thumb { aspect-ratio: 1; border-radius: var(--radius-sm); border: 1px solid var(--line); background: repeating-linear-gradient(135deg, oklch(0.94 0.006 95) 0 8px, oklch(0.965 0.005 95) 8px 16px); cursor: pointer; transition: border-color 0.2s; }
+.pd-thumb.app-mark-panel { display: grid; place-items: center; background: linear-gradient(145deg, oklch(0.98 0.008 95), oklch(0.93 0.018 95)); }
+.pd-thumb.app-mark-panel img { width: 52%; height: auto; filter: drop-shadow(0 10px 18px oklch(0.2 0.02 264 / 0.18)); }
 .pd-thumb:hover { border-color: var(--accent); }
 .pd-info .cat { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-700); }
 .pd-info h1 { font-size: clamp(34px, 5vw, 54px); letter-spacing: -0.03em; margin: 10px 0 18px; }
