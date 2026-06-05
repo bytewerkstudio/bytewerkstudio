@@ -68,7 +68,7 @@
               ${LOGO}
               <span class="brand-name">Bytewerk<i> Studio</i></span>
             </a>
-            <p class="footer-blurb" data-en="Digital craft from Germany. Software, web &amp; app development, IT services and a shop for digital products.">Digitales Handwerk aus Deutschland. Software, Web- &amp; App-Entwicklung, IT-Dienstleistungen und ein Shop für digitale Produkte.</p>
+            <p class="footer-blurb" data-en="Software, web and app development, IT services and digital products from Ludwigshafen am Rhein.">Software, Web- &amp; App-Entwicklung, IT-Dienstleistungen und digitale Produkte aus Ludwigshafen am Rhein.</p>
           </div>
           <div class="footer-col">
             <h4 data-en="Services">Leistungen</h4>
