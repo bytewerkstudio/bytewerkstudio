@@ -1,0 +1,17 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="220" rx="36" fill="#F7F9FC"/>
+  <rect x="42" y="42" width="136" height="136" rx="32" fill="url(#paint0_linear)"/>
+  <path d="M78 92C78 78.7452 88.7452 68 102 68H130C143.255 68 154 78.7452 154 92V120C154 133.255 143.255 144 130 144H102C88.7452 144 78 133.255 78 120V92Z" fill="white" fill-opacity="0.94"/>
+  <path d="M96 96H136" stroke="#3B82F6" stroke-width="8" stroke-linecap="round"/>
+  <path d="M96 116H124" stroke="#10B981" stroke-width="8" stroke-linecap="round"/>
+  <path d="M94 151L151 74" stroke="white" stroke-width="10" stroke-linecap="round" stroke-opacity="0.62"/>
+  <text x="210" y="105" fill="#111827" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="54" font-weight="800" letter-spacing="0">LumaWeek</text>
+  <text x="214" y="151" fill="#64748B" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="0">Planner by Bytewerk Studio</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="42" y1="42" x2="178" y2="178" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.52" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+</svg>
