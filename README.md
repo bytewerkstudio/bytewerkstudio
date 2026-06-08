@@ -1,7 +1,7 @@
 # Bytewerk Studio
 
 Statische Website fuer Bytewerk Studio, basierend auf der im Ordner abgelegten Vorlage.
-Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown`, `Lernreich Pro`, `KeyForge Vault`, `LumaWeek Planner`, `UpdatePilot` und `Bytewerk PDF Text Pro`.
+Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown`, `Lernreich Pro`, `KeyForge Vault`, `LumaWeek Planner`, `UpdatePilot`, `Bytewerk PDF Text Pro` und das Spiel `MASTIL`.
 
 ## Seiten
 
@@ -15,6 +15,7 @@ Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown`, `Lernreich 
 - `lumaweek-planner.html`: Produktdetailseite fuer die kostenpflichtige Windows-App LumaWeek Planner
 - `updatepilot.html`: Produktdetailseite fuer die kostenpflichtige Windows-App UpdatePilot
 - `bytewerk-pdf-text-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Bytewerk PDF Text Pro
+- `mastil.html`: Produktdetailseite fuer das Web- und Windows-Spiel MASTIL
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
