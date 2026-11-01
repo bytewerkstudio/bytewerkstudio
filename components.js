@@ -37,7 +37,7 @@
   const HEADER = `
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite">
+        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite" data-en-aria="Bytewerk Studio — Home">
           ${LOGO}
           <span class="brand-name">Bytewerk<i> Studio</i></span>
         </a>
@@ -46,8 +46,8 @@
         </nav>
         <div class="nav-right">
           ${langToggle}
-          <a class="btn btn-primary" href="kontakt.html" data-en="Start a project →">Projekt starten <span class="arr">→</span></a>
-          <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <a class="btn btn-primary" href="kontakt.html" data-en="Start a project <span class=&quot;arr&quot;>→</span>">Projekt starten <span class="arr">→</span></a>
+          <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" data-en-aria="Open menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
           </button>
         </div>
@@ -55,7 +55,7 @@
     </header>
     <div class="mobile-menu">
       ${linksHTML(true)}
-      <a class="btn btn-primary" href="kontakt.html" data-en="Start a project →">Projekt starten →</a>
+      <a class="btn btn-primary" href="kontakt.html" data-en="Start a project <span class=&quot;arr&quot;>→</span>">Projekt starten →</a>
       ${langToggle}
     </div>`;
 
@@ -113,11 +113,11 @@
 
   /* ---- i18n ---- */
   const LANG_KEY = 'bw-lang';
-  function getLang() {
-    return localStorage.getItem(LANG_KEY) || (navigator.language || '').toLowerCase().startsWith('en') ? localStorage.getItem(LANG_KEY) || 'en' : 'de';
+  function currentLang() {
+    const stored = localStorage.getItem(LANG_KEY);
+    if (stored) return stored;
+    return (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'de';
   }
-  // Simpler, predictable default: stored value, else 'de'
-  function currentLang() { return localStorage.getItem(LANG_KEY) || 'de'; }
 
   function applyLang(lang) {
     document.documentElement.lang = lang;

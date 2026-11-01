@@ -82,8 +82,8 @@
     const m = s.split(',').map(n => parseInt(n.trim(), 10));
     return (m.length === 3 && m.every(n => !isNaN(n))) ? m : fb;
   };
-  const accent = parseRGB(canvas.dataset.accent, [89, 92, 230]);   // cobalt default
-  const ink = parseRGB(canvas.dataset.dot, [60, 64, 92]);
+  const accent = parseRGB(canvas.dataset.accent, [232, 164, 92]);  // amber default (dark)
+  const ink = parseRGB(canvas.dataset.dot, [228, 231, 240]);       // light dots (dark)
   const intensity = parseFloat(canvas.dataset.intensity) || 1;
 
   const mouse = { x: -9999, y: -9999 };

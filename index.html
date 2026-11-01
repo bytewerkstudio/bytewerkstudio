@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171a26">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Bytewerk Studio — Software, Web & Apps aus Ludwigshafen</title>
@@ -14,6 +15,7 @@
 <meta property="og:description" content="Bytewerk Studio entwickelt Software, Websites, Apps, IT-Dienstleistungen und digitale Produkte in Ludwigshafen am Rhein.">
 <meta property="og:url" content="https://bytewerkstudio.com/">
 <meta property="og:site_name" content="Bytewerk Studio">
+<meta property="og:locale" content="de_DE">
 <meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
@@ -67,44 +69,6 @@
   ]
 }
 </script>
-<style id="theme">
-  /* Editorial / structured theme — warm amber accent */
-  :root {
-    --accent:     oklch(0.62 0.16 52);
-    --accent-700: oklch(0.52 0.15 52);
-    --accent-300: oklch(0.78 0.11 52);
-    --accent-tint:oklch(0.95 0.04 52);
-  }
-  .hero-ed { min-height: 100svh; display: flex; align-items: center; padding-top: 72px; overflow: hidden; }
-  .hero-ed-bg {
-    position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 25%);
-    opacity: 0.7;
-    -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
-            mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
-  }
-  .hero-ed-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; padding-block: 10vh 12vh; width: 100%; }
-  .hero-ed-l { display: flex; flex-direction: column; gap: 26px; }
-  .hero-ed .display { font-size: clamp(52px, 9vw, 116px); line-height: 0.92; letter-spacing: -0.04em; }
-  .hero-ed .display span { display: block; }
-  .hero-ed-r { border-top: 1.5px solid var(--ink); }
-  .ed-idx-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; color: var(--accent-700); padding: 16px 0; text-transform: uppercase; }
-  .ed-idx {
-    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px;
-    padding: 18px 4px; border-top: 1px solid var(--line);
-    font-family: var(--display); font-weight: 500; font-size: 17px;
-    transition: padding 0.3s var(--ease), color 0.3s var(--ease);
-  }
-  .ed-idx .n { font-family: var(--mono); font-size: 12px; color: var(--faint); }
-  .ed-idx .ar { color: var(--accent); opacity: 0; transform: translateX(-6px); transition: all 0.3s var(--ease); }
-  .ed-idx:hover { padding-left: 14px; color: var(--accent-700); }
-  .ed-idx:hover .ar { opacity: 1; transform: none; }
-  .ed-idx:hover .n { color: var(--accent); }
-  @media (max-width: 900px) {
-    .hero-ed-grid { grid-template-columns: 1fr; align-items: start; gap: 40px; }
-    .hero-ed-bg { background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 50%); }
-  }
-</style>
 </head>
 <body>
 
@@ -116,7 +80,7 @@
   <div class="wrap hero-ed-grid">
     <div class="hero-ed-l">
       <span class="eyebrow reveal" data-en="Bytewerk Studio">Bytewerk Studio</span>
-      <h1 class="display reveal" data-d="1"><span>Software.</span><span>Web.</span><span class="accent-word">Apps.</span></h1>
+      <h1 class="display reveal" data-d="1" data-en="<span>Software.</span><span>Web.</span><span class=&quot;accent-word&quot;>Apps.</span>"><span>Software.</span><span>Web.</span><span class="accent-word">Apps.</span></h1>
       <p class="lead reveal" data-d="2" data-en="We develop software, websites and apps and provide IT services for small businesses, founders and our own digital products.">
         Wir entwickeln Software, Websites und Apps und bieten IT-Dienstleistungen fuer kleine Unternehmen,
         Gruender und eigene digitale Produkte.
@@ -188,7 +152,7 @@
     </div>
     <div class="reveal" data-d="2" style="margin-top:34px">
       <a class="btn btn-ghost" href="softwareentwicklung-ludwigshafen.html">
-        <span>Softwareentwicklung in Ludwigshafen ansehen</span> <span class="arr">→</span>
+        <span data-en="Explore software development in Ludwigshafen">Softwareentwicklung in Ludwigshafen ansehen</span> <span class="arr">→</span>
       </a>
     </div>
   </div>
@@ -385,10 +349,10 @@
       <canvas id="cta-canvas" class="cta-grid-bg" aria-hidden="true"></canvas>
       <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Ready?">Bereit?</span>
       <h2 class="h2" style="position:relative" data-en="Let's start your next project.">Lass uns dein naechstes Projekt starten.</h2>
-      <p class="lead" style="color:oklch(0.82 0.01 264);position:relative;max-width:48ch" data-en="Send a short message and we will reply with the next step.">Schick eine kurze Nachricht, wir melden uns mit dem naechsten Schritt.</p>
+      <p class="lead" style="max-width:48ch" data-en="Send a short message and we will reply with the next step.">Schick eine kurze Nachricht, wir melden uns mit dem naechsten Schritt.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;position:relative">
         <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
-        <a class="btn btn-ghost btn-lg" style="background:transparent;color:var(--paper);border-color:oklch(1 0 0 / 0.25)" href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>
+        <a class="btn btn-ghost btn-lg" style="background:transparent;color:var(--accent-300);border-color:var(--line-2)" href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>
       </div>
     </div>
   </div>
@@ -396,31 +360,6 @@
 
 <div data-include="footer"></div>
 
-<style id="hero-styles">
-.hero { position: relative; display: flex; align-items: center; padding-top: 72px; overflow: hidden; }
-.accent-word { color: var(--accent); position: relative; }
-.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
-.shop-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
-a.prod { color: inherit; }
-.studio-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
-.studio-points { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-.studio-points .pt { display: flex; align-items: center; gap: 12px; font-size: 15.5px; font-weight: 500; color: var(--ink-soft); }
-.studio-points .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--accent); flex-shrink: 0; }
-.studio-visual { position: relative; }
-.code-card { background: oklch(0.19 0.012 264); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid oklch(0.3 0.012 264); }
-.code-bar { display: flex; align-items: center; gap: 7px; padding: 14px 18px; border-bottom: 1px solid oklch(0.27 0.012 264); }
-.code-bar span { width: 11px; height: 11px; border-radius: 999px; background: oklch(0.4 0.012 264); }
-.code-bar em { margin-left: auto; font-family: var(--mono); font-style: normal; font-size: 12px; color: oklch(0.6 0.01 264); }
-.code-card pre { margin: 0; padding: 24px 22px 26px; overflow-x: auto; }
-.code-card code { font-family: var(--mono); font-size: 14px; line-height: 1.85; color: oklch(0.82 0.01 264); white-space: pre; }
-.c-key { color: oklch(0.78 0.14 305); }
-.c-var { color: oklch(0.82 0.13 230); }
-.c-str { color: oklch(0.8 0.14 150); }
-@media (max-width: 900px) {
-  .studio-split { grid-template-columns: 1fr; }
-  .shop-head .btn { display: none; }
-}
-</style>
 
 <script src="components.js"></script>
 <script src="main.js"></script>
@@ -446,7 +385,7 @@ a.prod { color: inherit; }
         const wv = Math.sin(x*0.02 + t) + Math.cos(y*0.02 - t);
         const a = 0.06 + ((wv+2)/4)*0.16;
         ctx.beginPath(); ctx.arc(x, y, 1.1, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,255,255,${a})`; ctx.fill();
+        ctx.fillStyle = `rgba(232,164,92,${a})`; ctx.fill();
       }
     }
     if (!reduce) raf = requestAnimationFrame(draw);
