@@ -24,6 +24,7 @@ Spiele `MASTIL` und `Neon Dominion`.
 - `bytewerk-pdf-text-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Bytewerk PDF Text Pro
 - `mastil.html`: Produktdetailseite fuer das Web- und Windows-Spiel MASTIL
 - `neon-dominion.html`: Produktdetailseite fuer das kostenpflichtige Windows-Strategiespiel Neon Dominion
+- `burgenwerk.html`: Produktdetailseite fuer das kostenlose Browserspiel BURGENWERK
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
