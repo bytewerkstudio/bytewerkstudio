@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+# temporäre Test-Artefakte
+/tmp/
+nh_*_test*
+.shop-*
+.shop-final.js
+.shop-harness.tmp.js
+dbg_*
+backup/
