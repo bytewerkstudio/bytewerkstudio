@@ -332,7 +332,9 @@ function boot() {
   const panelRows = Array.from(document.querySelectorAll('.hero-v3-panel .ed-idx'));
   const hudIndex = stage.querySelector('.bs-hud b');
   const hudLabel = stage.querySelector('.bs-hud span');
-  const hudIdle = hudLabel ? hudLabel.textContent : '';
+  const hudIdleDe = hudLabel ? (hudLabel.dataset.de || hudLabel.textContent) : '';
+  const hudIdleEn = hudLabel ? (hudLabel.dataset.en || hudIdleDe) : '';
+  const hudIdle = () => (document.documentElement.lang === 'en' ? hudIdleEn : hudIdleDe);
   const toggle = stage.querySelector('[data-bs-toggle]');
 
   const raycaster = new THREE.Raycaster();
@@ -344,17 +346,21 @@ function boot() {
     if (!hudIndex || !hudLabel) return;
     if (index < 0) {
       hudIndex.textContent = '00';
-      hudLabel.textContent = hudIdle;
+      hudLabel.textContent = hudIdle();
       return;
     }
     const row = panelRows[index];
     const name = row ? (row.querySelector('.t > span')?.textContent || '').trim() : '';
     const num = row ? (row.querySelector('.n')?.textContent || '').trim() : '';
     hudIndex.textContent = num || String(index + 1).padStart(2, '0');
-    hudLabel.textContent = name || hudIdle;
+    hudLabel.textContent = name || hudIdle();
   };
 
+  let activePart = -1;
+  document.addEventListener('bw:lang', () => setHud(activePart));
+
   const setHover = (index) => {
+    activePart = index;
     parts.forEach((p) => {
       const it = p.userData.part;
       it.liftTarget = (it.index >= 0 && it.index === index) ? 1 : 0;
