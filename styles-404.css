@@ -1,0 +1,440 @@
+/* ============================================================
+   BYTEWERK STUDIO — 404 (06.11.2026)
+   ------------------------------------------------------------
+   Layer for 404.html only. Loaded after styles-claude.css.
+   Everything is scoped to .nf-*. No global tokens or overrides.
+   The page must work at any path depth, because GitHub Pages
+   serves this document under the URL that was requested.
+
+   1  Stage & grid
+   2  Copy, search, results
+   3  Scene
+   4  Link columns
+   5  Responsive, motion, print
+   ============================================================ */
+
+.nf-main {
+  position: relative;
+  padding-top: calc(var(--header-h, 72px) + clamp(24px, 4vw, 54px));
+  padding-bottom: clamp(56px, 8vw, 104px);
+}
+
+/* ---------- 1. Stage & grid ---------- */
+.nf-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(30px, 4.4vw, 64px);
+  align-items: center;
+}
+
+.nf-copy { max-width: 34rem; }
+
+.nf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+.nf-eyebrow i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+}
+.nf-eyebrow s { text-decoration: none; color: var(--faint); }
+
+.nf-copy h1 {
+  margin: 18px 0 0;
+  font-size: clamp(44px, 6.4vw, 82px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+.nf-copy h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.nf-copy .lead {
+  margin-top: 24px;
+  font-size: clamp(15px, 1.25vw, 17.5px);
+  max-width: 44ch;
+}
+
+/* ---------- 2. Search ---------- */
+.nf-search {
+  position: relative;
+  margin-top: 30px;
+}
+.nf-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 8px 0 15px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.nf-field:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+}
+.nf-field svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.8;
+}
+.nf-field input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: none;
+  font-family: var(--body);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.nf-field input::placeholder { color: var(--faint); }
+.nf-field input:focus { outline: none; }
+.nf-field .nf-go {
+  flex: 0 0 auto;
+  min-width: max-content;
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--body);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.nf-field .nf-go:hover { background: var(--accent-700); }
+.nf-field .nf-go:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.nf-results {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf8;
+  box-shadow: var(--shadow-lg);
+  max-height: 344px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.nf-results[hidden] { display: none; }
+.nf-results li { margin: 0; }
+.nf-hit {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nf-hit .k {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--paper-2);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nf-hit[data-kind="product"] .k { background: var(--accent-tint); color: var(--accent-700); }
+.nf-hit .t { min-width: 0; }
+.nf-hit .t b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nf-hit .t span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nf-hit .p { font-size: 11.5px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.nf-hit[aria-selected="true"] { background: var(--accent-tint); }
+.nf-hit:hover { background: var(--surface-2); }
+.nf-empty {
+  padding: 14px 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.nf-empty a { color: var(--accent-700); font-weight: 600; }
+
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.nf-hint {
+  margin: 14px 0 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+/* Header and footer are injected by components.js. Without JS the
+   page keeps a plain way out instead of an empty top bar. */
+.nf-noscript {
+  margin-bottom: 26px;
+  padding: 12px 15px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: var(--paper-2);
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.nf-noscript b {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+.nf-noscript a {
+  margin-right: 14px;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+}
+.nf-noscript a:hover { color: var(--accent-700); border-color: var(--accent); }
+
+/* ---------- 3. Scene ---------- */
+.nf-scene {
+  position: relative;
+  min-height: clamp(430px, 56vh, 600px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(76% 62% at 50% 34%, #fffdf8 0%, #faf9f5 46%, #f0ebdd 100%);
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nf-scene.dragging { cursor: grabbing; }
+.nf-scene:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.nf-scene canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nf-frame {
+  position: absolute;
+  inset: 12px;
+  z-index: 2;
+  border: 1px solid rgba(31, 30, 29, 0.055);
+  border-radius: 11px;
+  pointer-events: none;
+}
+.nf-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.6'/></svg>");
+  background-size: 200px 200px;
+}
+
+/* Static mark: the no-JS and no-WebGL state. scene-404.js hides it. */
+.nf-mark {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.nf-mark svg {
+  width: clamp(96px, 17vw, 148px);
+  height: auto;
+  animation: nf-float 9s ease-in-out infinite;
+}
+.nf-scene[data-scene="on"] .nf-mark { display: none; }
+
+/* Without a WebGL context the stage is a framed still, not a control. */
+.nf-scene[data-scene="off"] { cursor: default; }
+.nf-scene[data-scene="off"] canvas { display: none; }
+.nf-scene[data-scene="off"] .nf-scene-bar button,
+.nf-scene[data-scene="off"] [data-nf-caption] { display: none; }
+@keyframes nf-float {
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(6px); }
+}
+
+.nf-scene-bar {
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+.nf-scene-cap {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.nf-scene-bar button {
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.9);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 11px;
+  cursor: pointer;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.nf-scene-bar button:hover { color: var(--ink); border-color: var(--accent); background: #fff; }
+.nf-scene-bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.nf-badge {
+  position: absolute;
+  z-index: 5;
+  top: 20px;
+  left: 22px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+  opacity: 0.85;
+}
+
+/* ---------- 4. Link columns ---------- */
+.nf-map {
+  margin-top: clamp(46px, 6vw, 84px);
+  padding-top: clamp(26px, 3.4vw, 40px);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  gap: clamp(24px, 4vw, 60px);
+}
+.nf-map h2 {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+.nf-map p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 32ch;
+}
+.nf-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px clamp(16px, 3vw, 40px);
+}
+.nf-list { margin: 0; padding: 0; list-style: none; }
+.nf-list li { border-bottom: 1px solid var(--line); }
+.nf-list a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 2px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.16s, padding 0.16s;
+}
+.nf-list a span { color: var(--faint); font-size: 11px; font-variant-numeric: tabular-nums; }
+.nf-list a:hover, .nf-list a:focus-visible { color: var(--accent-700); padding-left: 4px; }
+.nf-list a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- 5. Responsive, motion, print ---------- */
+@media (max-width: 980px) {
+  .nf-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  /* Message, search and the way out come first; the scene follows. */
+  .nf-scene { order: 2; min-height: clamp(320px, 46vh, 430px); }
+  .nf-copy { max-width: none; }
+  .nf-map { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
+@media (max-width: 620px) {
+  .nf-copy h1 { font-size: clamp(40px, 12vw, 56px); }
+  .nf-field { height: 50px; padding-right: 6px; }
+  .nf-field .nf-go { padding: 9px 12px; font-size: 12px; }
+  .nf-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .nf-cols { grid-template-columns: minmax(0, 1fr); }
+  .nf-scene-cap { display: none; }
+  .nf-scene-bar { justify-content: flex-end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-mark svg { animation: none; }
+  .nf-field, .nf-hit, .nf-list a, .nf-scene-bar button { transition: none; }
+}
+
+@media print {
+  .nf-scene, .nf-search { display: none; }
+}
