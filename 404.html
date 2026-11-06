@@ -7,39 +7,176 @@
 <meta name="theme-color" content="#faf9f5">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Nicht gefunden — Bytewerk Studio</title>
-<meta name="description" content="Diese Seite wurde nicht gefunden.">
+<title>Seite nicht gefunden — Bytewerk Studio</title>
+<meta name="description" content="Diese Adresse gibt es nicht. Suche eine Seite oder ein Produkt, oder geh zur Startseite.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="logo.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bytewerk Studio">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Seite nicht gefunden — Bytewerk Studio">
+<meta property="og:url" content="https://bytewerkstudio.com/404.html">
+<meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="styles-v3.css">
-<link rel="stylesheet" href="styles-auth.css">
-<link rel="stylesheet" href="styles-claude.css">
-<link rel="stylesheet" href="styles-v5.css">
-  <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles-v3.css">
+<link rel="stylesheet" href="/styles-auth.css">
+<link rel="stylesheet" href="/styles-claude.css">
+<link rel="stylesheet" href="/styles-v5.css">
+<link rel="stylesheet" href="/styles-3d.css">
+<link rel="stylesheet" href="/styles-404.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 <div data-include="header"></div>
-<main class="wrap legal-wrap">
-  <span class="eyebrow">404</span>
-  <h1 class="display" style="font-size:clamp(44px,7vw,86px);margin-top:18px" data-en="This page was not found.">Diese Seite wurde nicht gefunden.</h1>
-  <p class="lead" style="margin-top:22px" data-en="The link may be old or the file no longer exists.">Der Link ist vielleicht alt oder die Datei existiert nicht mehr.</p>
-  <div class="hero-cta" style="margin-top:32px">
-    <a class="btn btn-primary btn-lg" href="index.html"><span data-en="Back home">Zur Startseite</span> <span class="arr">→</span></a>
-    <a class="btn btn-ghost btn-lg" href="shop.html">Shop</a>
-  </div>
+
+<main id="main" class="nf-main">
+  <section class="wrap nf-grid" data-screen-label="404">
+    <div class="nf-copy">
+      <noscript>
+        <div class="nf-noscript">
+          <b>Direkt weiter</b>
+          <a href="/index.html">Startseite</a>
+          <a href="/shop.html">Shop</a>
+          <a href="/arbeiten.html">Arbeiten</a>
+          <a href="/kontakt.html">Kontakt</a>
+          <a href="/impressum.html">Impressum</a>
+        </div>
+      </noscript>
+
+      <span class="nf-eyebrow"><i aria-hidden="true"></i> Fehler 404 <s>·</s> <s data-en="Page not found">Seite nicht gefunden</s></span>
+
+      <h1 class="display" data-en="This page<em>.</em><br>is not here.">Diese Seite<br>ist nicht&nbsp;<em>hier</em>.</h1>
+
+      <p class="lead" data-en="The link is old, a product moved, or the address has a typo. Everything else is still there: eleven products, four disciplines, one studio in Ludwigshafen.">
+        Der Link ist alt, ein Produkt ist umgezogen oder die Adresse hat einen Tippfehler.
+        Alles andere steht noch: elf Produkte, vier Disziplinen, ein Studio in Ludwigshafen.
+      </p>
+
+      <form class="nf-search" role="search" data-nf-search action="/shop.html" method="get">
+        <div class="nf-field">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+          <input id="nf-q" name="q" type="search" autocomplete="off" spellcheck="false"
+                 placeholder="Seite oder Produkt suchen …" data-en-ph="Search a page or product …"
+                 aria-label="Seite oder Produkt suchen" data-en-aria="Search a page or product"
+                 role="combobox" aria-expanded="false" aria-controls="nf-results" aria-autocomplete="list">
+          <button class="nf-go" type="submit" data-en="Search">Suchen</button>
+        </div>
+        <ul class="nf-results" id="nf-results" role="listbox" aria-label="Treffer" hidden></ul>
+      </form>
+
+      <div class="nf-actions">
+        <a class="btn btn-primary btn-lg" href="/index.html" data-nf-home>
+          <span data-en="Back home">Zur Startseite</span> <span class="arr">→</span>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="/shop.html" data-en="Open the shop">Zum Shop</a>
+      </div>
+
+      <p class="nf-hint" data-en="Ctrl K or / opens the full site search. Drag the mark to turn it, click to assemble.">
+        Strg K oder / öffnet die volle Suche. Zieh am Zeichen, um es zu drehen — Klick setzt es zusammen.
+      </p>
+    </div>
+
+    <div class="nf-scene" data-nf-scene>
+      <canvas id="nf-canvas" aria-hidden="true"></canvas>
+      <div class="nf-frame" aria-hidden="true"></div>
+      <div class="nf-grain" aria-hidden="true"></div>
+
+      <div class="nf-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" role="img" aria-label="Bytewerk Studio">
+          <rect x="1.5" y="1.5" width="11.5" height="11.5" rx="3" fill="#1f1e1d"/>
+          <rect x="15" y="1.5" width="11.5" height="11.5" rx="3" fill="#1f1e1d" opacity="0.86"/>
+          <rect x="1.5" y="15" width="11.5" height="11.5" rx="3" fill="#1f1e1d" opacity="0.7"/>
+          <circle cx="20.75" cy="20.75" r="5.95" fill="#b04f31"/>
+        </svg>
+      </div>
+
+      <span class="nf-badge" aria-hidden="true">Bytewerk · 404</span>
+
+      <div class="nf-scene-bar">
+        <span class="nf-scene-cap" data-nf-caption data-en="The mark, in four parts">Das Zeichen, in vier Teilen</span>
+        <button type="button" data-nf-toggle data-en="Assemble">Zusammensetzen</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap nf-map" data-screen-label="404 Wege">
+    <div>
+      <h2 data-en="Where to next">Wo es weitergeht</h2>
+      <p data-en="Everything the studio has, one click away. No dead end.">
+        Alles, was das Studio hat, einen Klick entfernt. Keine Sackgasse.
+      </p>
+    </div>
+    <div class="nf-cols">
+      <ul class="nf-list">
+        <li><a href="/index.html"><span data-en="Home">Startseite</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="/arbeiten.html"><span data-en="Work">Arbeiten</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="/shop.html"><span data-en="Shop">Shop</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="/vergleich.html"><span data-en="Compare products">Produktvergleich</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="/studio.html"><span>Studio</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="/kontakt.html"><span data-en="Contact">Kontakt</span><span aria-hidden="true">→</span></a></li>
+      </ul>
+      <ul class="nf-list">
+        <li><a href="/produkt.html">Lernreich<span>kostenlos</span></a></li>
+        <li><a href="/pruefungs-countdown.html">Prüfungs-Countdown<span>kostenlos</span></a></li>
+        <li><a href="/lernreich-pro.html">Lernreich Pro<span>9,99 €</span></a></li>
+        <li><a href="/keyforge-vault.html">KeyForge Vault<span>12,99 €</span></a></li>
+        <li><a href="/lumaweek-planner.html">LumaWeek Planner<span>5,99 €</span></a></li>
+        <li><a href="/updatepilot.html">UpdatePilot<span>12,99 €</span></a></li>
+        <li><a href="/bytewerk-pdf-text-pro.html">Bytewerk PDF Text Pro<span>59,00 €</span></a></li>
+        <li><a href="/mastil.html">MASTIL<span>Demo</span></a></li>
+        <li><a href="/neon-dominion.html">Neon Dominion<span>20,00 €</span></a></li>
+        <li><a href="/burgenwerk.html">BURGENWERK<span>kostenlos</span></a></li>
+        <li><a href="/neon-horde/">NEON HORDE<span>kostenlos</span></a></li>
+      </ul>
+    </div>
+  </section>
 </main>
+
 <div data-include="footer"></div>
-<script src="components.js"></script>
-<script src="auth-config.js"></script>
-<script src="auth.js"></script>
-<script src="main.js"></script>
-<script src="ui-v3.js"></script>
-<script src="ui-v4.js"></script>
-<script src="ui-v5.js"></script>
-<script src="background.js"></script>
-  <script src="scene3d.js"></script>
+
+<script src="/components.js"></script>
+<script src="/auth-config.js"></script>
+<script src="/auth.js"></script>
+<script src="/main.js"></script>
+<script src="/ui-v3.js"></script>
+<script src="/ui-v4.js"></script>
+<script src="/background.js"></script>
+<script src="/nf-find.js"></script>
+<script>
+/* GitHub Pages serves this document under the requested URL, so every
+   relative link would point into the path that does not exist. Header,
+   footer and the account menu are injected by scripts, so rewrite as
+   they appear rather than once. */
+(function () {
+  var ABS = /^([a-z][a-z0-9+.-]*:|\/|#)/i;
+  function fix(root) {
+    var nodes = (root || document).querySelectorAll('a[href], link[href], img[src]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var attr = el.hasAttribute('href') ? 'href' : 'src';
+      var v = el.getAttribute(attr);
+      if (!v || ABS.test(v)) continue;
+      el.setAttribute(attr, '/' + v.replace(/^\.\//, ''));
+    }
+  }
+  fix();
+  if ('MutationObserver' in window) {
+    new MutationObserver(function (list) {
+      list.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType !== 1) return;
+          fix(n);
+          if (n.hasAttribute && n.hasAttribute('href')) fix(n.parentNode || document);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
+<script type="module" src="/scene-404.js"></script>
 </body>
 </html>
