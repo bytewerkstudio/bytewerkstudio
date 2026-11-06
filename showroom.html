@@ -84,12 +84,20 @@
         <button class="chip" type="button" data-sr-filter="windows" aria-pressed="false">Windows</button>
         <button class="chip" type="button" data-sr-filter="web" aria-pressed="false">Web</button>
       </div>
-      <p class="sr-counter" aria-live="polite">
-        <span class="sr-counter-now" data-sr-count>01</span>
-        <span class="sr-counter-sep">/</span>
-        <span class="sr-counter-all" data-sr-total>11</span>
-        <span class="sr-counter-label" data-en="on the shelf">im Regal</span>
-      </p>
+      <div class="sr-toolbar-right">
+        <button class="sr-motion" type="button" data-sr-motion aria-pressed="true"
+                aria-label="Bewegung pausieren" data-en-aria="Pause motion">
+          <svg class="sr-motion-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6.5" width="3.1" height="11" rx="1.1"/><rect x="13.9" y="6.5" width="3.1" height="11" rx="1.1"/></svg>
+          <svg class="sr-motion-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.2 6.4v11.2L18 12z"/></svg>
+          <span class="sr-motion-label" data-en="Motion">Bewegung</span>
+        </button>
+        <p class="sr-counter" aria-live="polite">
+          <span class="sr-counter-now" data-sr-count>01</span>
+          <span class="sr-counter-sep">/</span>
+          <span class="sr-counter-all" data-sr-total>11</span>
+          <span class="sr-counter-label" data-en="on the shelf">im Regal</span>
+        </p>
+      </div>
     </div>
 
     <div class="sr-layout">

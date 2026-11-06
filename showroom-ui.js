@@ -311,6 +311,49 @@
     }
   });
 
+  /* ---- motion switch ----
+     Same key as the site's scene3d.js, so one switch calms every page.
+     The button only sets the wish; the scene decides whether that is
+     possible (no WebGL means nothing to pause). */
+  var motionBtn = document.querySelector('[data-sr-motion]');
+  var MAC = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function storedMotion() {
+    try { return localStorage.getItem('bw-motion'); } catch (e) { return null; }
+  }
+  function motionWanted() {
+    if (storedMotion() === 'off') return false;
+    if (storedMotion() === 'on') return true;
+    return !MAC.matches;
+  }
+  function paintMotion(on) {
+    if (!motionBtn) return;
+    var label = motionBtn.querySelector('.sr-motion-label');
+    var de = on ? 'Bewegung pausieren' : 'Bewegung fortsetzen';
+    var en = on ? 'Pause motion' : 'Resume motion';
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'de';
+    motionBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    motionBtn.setAttribute('aria-label', lang === 'en' ? en : de);
+    motionBtn.setAttribute('title', lang === 'en' ? en : de);
+    motionBtn.setAttribute('data-en-aria', en);
+    if (label) {
+      label.setAttribute('data-en', 'Motion');
+      label.textContent = lang === 'en' ? 'Motion' : 'Bewegung';
+    }
+  }
+  if (motionBtn) {
+    paintMotion(motionWanted());
+    motionBtn.addEventListener('click', function () {
+      var on = motionBtn.getAttribute('aria-pressed') !== 'true';
+      try { localStorage.setItem('bw-motion', on ? 'on' : 'off'); } catch (e) {}
+      paintMotion(on);
+      document.dispatchEvent(new CustomEvent('bw:showroom-motion', { detail: { on: on } }));
+    });
+    document.addEventListener('bw:lang', function () {
+      paintMotion(motionBtn.getAttribute('aria-pressed') === 'true');
+    });
+  }
+
   /* ---- share ---- */
   var copyBtn = document.querySelector('[data-sr-share]');
   function copyLabel() {

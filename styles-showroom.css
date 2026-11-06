@@ -121,6 +121,54 @@
 .sr-counter-sep { opacity: 0.5; }
 .sr-counter-label { margin-left: 4px; letter-spacing: 0.04em; }
 
+/* ---------- motion switch ---------- */
+.sr-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.sr-motion {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px 6px 9px;
+  border: 1px solid var(--line-2, #d8d1c0);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted, #6b665c);
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.sr-motion svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  flex: none;
+}
+.sr-motion:hover,
+.sr-motion:focus-visible {
+  color: var(--accent-700, #96402a);
+  border-color: rgba(176, 79, 49, 0.32);
+  background: rgba(255, 253, 248, 0.7);
+}
+.sr-motion:focus-visible {
+  outline: 2px solid var(--accent, #b04f31);
+  outline-offset: 2px;
+}
+/* Paused: the label invites resuming. */
+.sr-motion[aria-pressed="false"] {
+  color: var(--accent-700, #96402a);
+  border-color: rgba(176, 79, 49, 0.28);
+}
+.sr-motion-play { display: none; }
+.sr-motion[aria-pressed="false"] .sr-motion-pause { display: none; }
+.sr-motion[aria-pressed="false"] .sr-motion-play { display: block; }
+
 /* ---------- 3. 3D stage ---------- */
 .sr-layout {
   display: grid;
