@@ -43,11 +43,11 @@
   var visible = true;
   var active = 0;
   var hovered = -1;
-  var yaw = 0.76;
-  var pitch = 0.58;
+  var yaw = 0.18;
+  var pitch = 0.64;
   var yawShown = yaw;
   var pitchShown = pitch;
-  var radius = 10.4;
+  var radius = 8.75;
   var dragging = false;
   var moved = false;
   var lastX = 0;
@@ -82,7 +82,7 @@
       g.fillRect(Math.random() * size, Math.random() * size, 1, 1);
     }
 
-    g.strokeStyle = 'rgba(43, 39, 34, 0.06)';
+    g.strokeStyle = 'rgba(43, 39, 34, 0.042)';
     g.lineWidth = 1;
     for (i = 0; i <= size; i += 64) {
       g.beginPath();
@@ -98,7 +98,7 @@
     var tex = new THREE.CanvasTexture(c);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(3, 2.4);
+    tex.repeat.set(2.2, 1.9);
     tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
     return tex;
   }
@@ -107,6 +107,7 @@
     return {
       paper: new THREE.MeshStandardMaterial({ color: PAPER, roughness: 1, metalness: 0 }),
       deep: new THREE.MeshStandardMaterial({ color: PAPER_DEEP, roughness: 1, metalness: 0 }),
+      board: new THREE.MeshStandardMaterial({ color: 0xded0b0, roughness: 1, metalness: 0 }),
       ink: new THREE.MeshStandardMaterial({ color: INK, roughness: 0.78, metalness: 0.04 }),
       accent: new THREE.MeshStandardMaterial({ color: ACCENT, roughness: 0.68, metalness: 0.02 }),
       sage: new THREE.MeshStandardMaterial({ color: SAGE, roughness: 0.82, metalness: 0 }),
@@ -119,6 +120,14 @@
   }
 
   /* ---------- geometry helpers ---------- */
+  function outline(mesh, color, opacity) {
+    var edges = new THREE.LineSegments(
+      new THREE.EdgesGeometry(mesh.geometry, 24),
+      new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: opacity })
+    );
+    mesh.add(edges);
+  }
+
   function box(w, h, d, mat, x, y, z) {
     var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
     m.position.set(x || 0, y || 0, z || 0);
@@ -133,6 +142,7 @@
     for (i = 0; i < 3; i++) {
       var sheet = box(1.46 - i * 0.05, 0.022, 1.06 - i * 0.04, M.paper, 0, 0.013 + i * 0.026, 0);
       sheet.rotation.y = (i - 1) * 0.04;
+      outline(sheet, 0x8d8677, 0.42);
       g.add(sheet);
     }
 
@@ -167,7 +177,7 @@
     var W = 1.36;
     var H = 1.06;
     var D = 1.04;
-    var t = 0.05;
+    var t = 0.072;
 
     var vGeo = new THREE.BoxGeometry(t, H, t);
     var corners = [[-W / 2, -D / 2], [W / 2, -D / 2], [-W / 2, D / 2], [W / 2, D / 2]];
@@ -236,6 +246,7 @@
   function stationHandover(M) {
     var g = new THREE.Group();
     var env = box(1.36, 0.04, 0.94, M.paper, 0, 0.022, 0);
+    outline(env, 0x8d8677, 0.42);
     g.add(env);
 
     var y = 0.048;
@@ -276,14 +287,14 @@
     stage.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(31, 1, 0.1, 80);
+    camera = new THREE.PerspectiveCamera(30, 1, 0.1, 80);
     raycaster = new THREE.Raycaster();
     pointer = new THREE.Vector2(-10, -10);
     tmp = new THREE.Vector3();
 
-    scene.add(new THREE.HemisphereLight(0xfff8ec, 0xd8cebb, 1.5));
+    scene.add(new THREE.HemisphereLight(0xfff8ec, 0xcfc3ac, 1.35));
 
-    var key = new THREE.DirectionalLight(0xfff2dd, 2.0);
+    var key = new THREE.DirectionalLight(0xfff2dd, 2.35);
     key.position.set(4.6, 7.6, 3.4);
     key.castShadow = true;
     key.shadow.mapSize.set(1024, 1024);
@@ -307,8 +318,8 @@
     var M = makeMaterials();
 
     var ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(26, 20),
-      new THREE.MeshStandardMaterial({ map: paperTexture(), roughness: 1, metalness: 0 })
+      new THREE.PlaneGeometry(16, 13),
+      new THREE.MeshStandardMaterial({ color: 0xf4eddd, map: paperTexture(), roughness: 1, metalness: 0 })
     );
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
@@ -321,7 +332,7 @@
       var sx = spots[i][0];
       var sz = spots[i][1];
 
-      var board = box(2.62, 0.03, 2.1, M.deep, sx, 0.015, sz);
+      var board = box(2.46, 0.03, 1.98, M.board, sx, 0.015, sz);
       board.receiveShadow = true;
       scene.add(board);
 
@@ -334,6 +345,7 @@
       scene.add(ring);
 
       var g = builders[i](M);
+      g.scale.setScalar(1.06);
       g.position.set(sx, 0.032, sz);
       g.userData.si = i;
       scene.add(g);
@@ -343,7 +355,7 @@
         ring: ring,
         lift: 0,
         target: 0,
-        anchor: new THREE.Vector3(sx, 1.18, sz)
+        anchor: new THREE.Vector3(sx, 1.02, sz)
       });
     }
 
@@ -374,7 +386,7 @@
       radius * Math.sin(pitchShown),
       radius * Math.cos(pitchShown) * Math.cos(yawShown)
     );
-    camera.lookAt(0, 0.5, 0);
+    camera.lookAt(0, 0.12, 0);
   }
 
   function clamp(v, a, b) {
@@ -494,17 +506,13 @@
         tags[idx].addEventListener('mouseenter', function () { hovered = idx; });
         tags[idx].addEventListener('mouseleave', function () { hovered = -1; });
         tags[idx].addEventListener('focus', function () { setActive(idx, false); });
-        tags[idx].addEventListener('click', function () { setActive(idx, true); });
+        tags[idx].addEventListener('click', function (e) { e.preventDefault(); setActive(idx, true); });
       })(i);
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) setActive(parseInt(entry.target.getAttribute('data-station'), 10), false);
-      });
-    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
-
-    steps.forEach(function (step) { io.observe(step); });
+    steps.forEach(function (step, idx) {
+      step.addEventListener('focusin', function () { setActive(idx, false); });
+    });
 
     var vis = new IntersectionObserver(function (entries) {
       visible = entries[0].isIntersecting;
@@ -528,10 +536,12 @@
       var p = tmp.copy(stations[i].anchor).project(camera);
       var x = (p.x * 0.5 + 0.5) * rect.width;
       var y = (-p.y * 0.5 + 0.5) * rect.height;
-      var inside = p.z < 1 && x > 34 && x < rect.width - 34 && y > 24 && y < rect.height - 46;
-      tag.style.opacity = inside ? '1' : '0';
-      tag.style.pointerEvents = inside ? 'auto' : 'none';
-      tag.style.transform = 'translate(-50%, -50%) translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)';
+      var vis = p.z < 1;
+      var cx = Math.min(Math.max(x, 46), Math.max(46, rect.width - 46));
+      var cy = Math.min(Math.max(y, 20), Math.max(20, rect.height - 32));
+      tag.style.opacity = vis ? '1' : '0';
+      tag.style.pointerEvents = vis ? 'auto' : 'none';
+      tag.style.transform = 'translate(-50%, -50%) translate(' + cx.toFixed(1) + 'px, ' + cy.toFixed(1) + 'px)';
     }
   }
 
