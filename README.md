@@ -38,6 +38,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
+- `probierstand.html`: vier Produkt-Werkzeuge live im Browser (Passwort, Countdown, Text, Woche)
 - `404.html`: Fehlerseite fuer GitHub Pages
 
 ## Konto und Anmeldung
@@ -65,6 +66,10 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
 - `background.js`: Bewegter, code-only Hintergrund (Canvas), respektiert
   `prefers-reduced-motion` und pausiert in Hintergrund-Tabs
+- `probierstand.js` + `scene-probierstand.js` + `styles-probierstand.css`:
+  vier echte Werkzeuge (Passwort-Schmiede, Pruefungs-Countdown, Text-Werkstatt,
+  Wochenbrett) und eine three.js-Werkbank mit vier Papierwerkzeugen. Alle Daten
+  bleiben im Browser (localStorage), kein Backend, kein Upload.
 
 ## Betrieb
 
