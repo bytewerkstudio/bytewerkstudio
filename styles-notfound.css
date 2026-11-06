@@ -1,0 +1,212 @@
+/* ============================================================
+   BYTEWERK STUDIO — NICHT GEFUNDEN (06.11.2026)
+   ------------------------------------------------------------
+   Eine Seite, ein Baustein: der Karteikasten. Alles unter .nf-*,
+   keine globalen Regeln, keine Token-Overrides.
+   ============================================================ */
+
+.nf-wrap {
+  position: relative;
+  padding-block: clamp(56px, 9vh, 110px) clamp(56px, 9vh, 110px);
+}
+
+.nf-head { max-width: 70ch; }
+
+.nf-title {
+  font-size: clamp(40px, 5.6vw, 76px);
+  line-height: 1.02;
+  margin: 18px 0 0;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.nf-lead {
+  margin-top: 20px;
+  max-width: 46ch;
+}
+
+.nf-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* Register: die echten Links. Immer sichtbar, immer bedienbar. */
+.nf-register {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.nf-register li { display: flex; }
+.nf-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 5px 9px 5px 6px;
+  border-radius: 999px;
+  color: var(--muted, #6b665c);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.nf-link .n {
+  font-size: 9px;
+  color: var(--faint, #6f6a60);
+  opacity: 0.75;
+}
+.nf-link:hover,
+.nf-link:focus-visible {
+  color: var(--accent-700, #96402a);
+  background: var(--accent-tint, rgba(176, 79, 49, 0.10));
+}
+.nf-link[aria-current="true"] {
+  color: var(--accent-700, #96402a);
+}
+
+/* ---------- Bühne ---------- */
+.nf-figure {
+  margin: clamp(34px, 5vw, 54px) 0 0;
+  min-width: 0;
+}
+
+.nf-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.62 / 1;
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 90% at 62% 12%, rgba(255, 255, 255, 0.9), transparent 62%),
+    radial-gradient(90% 70% at 30% 100%, rgba(176, 79, 49, 0.07), transparent 66%),
+    linear-gradient(168deg, #f7f3ea, #efe9dc);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1px rgba(216, 209, 192, 0.55),
+    0 26px 60px -40px rgba(31, 30, 29, 0.45);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.nf-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.nf-canvas.is-dragging { cursor: grabbing; }
+.nf-canvas.is-over { cursor: pointer; }
+
+.nf-stage.is-flat .nf-canvas { display: none; }
+
+.nf-hint {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint, #6f6a60);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.nf-hint svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.nf-stage.is-flat .nf-hint { display: none; }
+
+.nf-cap {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line, #e6e1d4);
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint, #6f6a60);
+}
+
+/* Ohne WebGL: gestapelte Karten aus CSS, gleiche Idee, kein Bild. */
+.nf-flat {
+  display: none;
+  position: absolute;
+  inset: 0;
+  place-items: center;
+}
+.nf-stage.is-flat .nf-flat { display: grid; }
+.nf-flat i {
+  position: absolute;
+  width: 15.5%;
+  height: 68%;
+  border-radius: 9px;
+  background: linear-gradient(172deg, #fdfbf4, #f1e9d9);
+  border: 1px solid rgba(198, 189, 170, 0.95);
+  box-shadow: 0 14px 26px -16px rgba(31, 30, 29, 0.7);
+  overflow: hidden;
+}
+.nf-flat i::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 13%;
+  background: var(--tab, #b04f31);
+  opacity: 0.92;
+}
+.nf-flat i:nth-child(1) { --tab: #b04f31; transform: translate(-192%, -9%) rotate(-1.2deg); }
+.nf-flat i:nth-child(2) { --tab: #8f7a52; transform: translate(-96%, -5%) rotate(-0.6deg); }
+.nf-flat i:nth-child(3) {
+  --tab: #4f7a63;
+  transform: translate(0, -1%) rotate(0deg);
+  background: linear-gradient(172deg, #fffdf7, #f4ebdc);
+  border-color: rgba(150, 138, 116, 0.8);
+}
+.nf-flat i:nth-child(4) { --tab: #3f3a33; transform: translate(96%, -6%) rotate(0.6deg); }
+.nf-flat i:nth-child(5) { --tab: #c1734f; transform: translate(192%, -9%) rotate(1.2deg); }
+
+@media (max-width: 980px) {
+  .nf-flat i { width: 21%; height: 54%; }
+  .nf-flat i:nth-child(1) { transform: translate(-88%, -24%) rotate(-1.5deg); }
+  .nf-flat i:nth-child(2) { transform: translate(-44%, -17%) rotate(-0.8deg); }
+  .nf-flat i:nth-child(3) { transform: translate(0, -10%) rotate(0deg); }
+  .nf-flat i:nth-child(4) { transform: translate(44%, -17%) rotate(0.8deg); }
+  .nf-flat i:nth-child(5) { transform: translate(88%, -24%) rotate(1.5deg); }
+}
+
+@media (max-width: 980px) {
+  .nf-stage { aspect-ratio: 1.9 / 1; }
+}
+
+@media (max-width: 520px) {
+  .nf-stage { aspect-ratio: 1.06 / 1; }
+  .nf-register { font-size: 10px; gap: 2px 2px; }
+  .nf-link { padding: 4px 7px 4px 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-link { transition: none; }
+}
+
+@media print {
+  .nf-figure { display: none; }
+}

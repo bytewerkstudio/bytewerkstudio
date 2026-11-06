@@ -38,7 +38,8 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
-- `404.html`: Fehlerseite fuer GitHub Pages
+- `404.html`: Fehlerseite fuer GitHub Pages mit Karteikasten (`scene-notfound.js`,
+  `styles-notfound.css`): fuenf Ziele als 3D-Karten, Register als normaler Linkweg
 
 ## Konto und Anmeldung
 

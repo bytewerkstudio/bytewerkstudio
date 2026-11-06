@@ -40,3 +40,4 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `components.js` | Header, Footer, DE/EN |
 | `ui-v4.js` | Suche, Shop-Werkzeuge, Konfigurator |
 | `background.js` | Bewegter Hintergrund, code-only |
+| `scene-notfound.js`, `styles-notfound.css` | Karteikasten auf der 404-Seite, three.js |
