@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Showroom — elf Produkte in 3D — Bytewerk Studio</title>
+<meta name="description" content="Der Bytewerk Showroom: alle elf Produkte als drehbare 3D-Tafel — Lernreich, KeyForge Vault, UpdatePilot, MASTIL, Neon Dominion, BURGENWERK, NEON HORDE und mehr.">
+<link rel="canonical" href="https://bytewerkstudio.com/showroom.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bytewerk Studio">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Bytewerk Showroom — elf Produkte in 3D">
+<meta property="og:description" content="Alle elf Bytewerk-Produkte als drehbare 3D-Tafel: Apps, Spiele und Werkzeuge aus Ludwigshafen.">
+<meta property="og:url" content="https://bytewerkstudio.com/showroom.html">
+<meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
+<link rel="stylesheet" href="styles-showroom.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Bytewerk Showroom",
+  "url": "https://bytewerkstudio.com/showroom.html",
+  "description": "Alle elf Produkte von Bytewerk Studio in einem interaktiven 3D-Showroom.",
+  "isPartOf": { "@type": "WebSite", "url": "https://bytewerkstudio.com/" },
+  "about": { "@type": "Organization", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" }
+}
+</script>
+</head>
+<body class="sr-page">
+
+<div data-include="header"></div>
+
+<main id="main">
+
+<!-- ============ HEAD ============ -->
+<header class="sr-head">
+  <div class="sr-head-lines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="crumb reveal"><a href="index.html" data-en="Home">Start</a> <span>/</span> <span>Showroom</span></div>
+    <div class="sr-head-grid">
+      <div>
+        <span class="eyebrow reveal" data-d="1">Showroom · 3D</span>
+        <h1 class="display sr-title reveal" data-d="2" data-en="Eleven products.<br>One shelf.">Elf Produkte.<br>Ein Regal.</h1>
+      </div>
+      <div class="sr-head-copy reveal" data-d="3">
+        <p class="lead" data-en="Every Bytewerk product as a physical plate: drag, browse, open. Built with three.js on a warm paper stage — no plugin, no tracking, no external scripts.">
+          Jedes Bytewerk-Produkt als greifbare Tafel: ziehen, blättern, öffnen. Gebaut mit three.js auf einer warmen Papierbühne — ohne Plugin, ohne Tracking, ohne fremde Skripte.
+        </p>
+        <div class="sr-head-meta">
+          <span><b>11</b> <span data-en="products">Produkte</span></span>
+          <span><b>7</b> <span data-en="Windows apps">Windows-Apps</span></span>
+          <span><b>4</b> <span data-en="games">Spiele</span></span>
+          <span><b>0</b> <span data-en="external scripts">fremde Skripte</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STAGE ============ -->
+<section class="sr-main" id="showroom" aria-labelledby="sr-stage-label">
+  <div class="wrap">
+    <h2 class="sr-sr-only" id="sr-stage-label" data-en="Interactive product showroom">Interaktiver Produkt-Showroom</h2>
+    <p class="sr-sr-only" aria-live="polite" data-sr-live></p>
+
+    <div class="sr-toolbar reveal">
+      <div class="sr-filters" role="group" aria-label="Produkte filtern" data-en-aria="Filter products">
+        <button class="chip active" type="button" data-sr-filter="all" aria-pressed="true" data-en="All">Alle</button>
+        <button class="chip" type="button" data-sr-filter="app" aria-pressed="false" data-en="Apps">Apps</button>
+        <button class="chip" type="button" data-sr-filter="game" aria-pressed="false" data-en="Games">Spiele</button>
+        <button class="chip" type="button" data-sr-filter="free" aria-pressed="false" data-en="Free">Kostenlos</button>
+        <button class="chip" type="button" data-sr-filter="windows" aria-pressed="false">Windows</button>
+        <button class="chip" type="button" data-sr-filter="web" aria-pressed="false">Web</button>
+      </div>
+      <p class="sr-counter" aria-live="polite">
+        <span class="sr-counter-now" data-sr-count>01</span>
+        <span class="sr-counter-sep">/</span>
+        <span class="sr-counter-all" data-sr-total>11</span>
+        <span class="sr-counter-label" data-en="on the shelf">im Regal</span>
+      </p>
+    </div>
+
+    <div class="sr-layout">
+
+      <div class="sr-stage-col">
+        <div class="sr-stage is-loading" id="sr-stage" tabindex="0" role="group"
+             aria-label="3D-Bühne: Produkte mit Pfeiltasten wechseln, Enter öffnet das Produkt"
+             data-en-aria="3D stage: change products with the arrow keys, Enter opens the product"
+             aria-describedby="sr-hint">
+          <span class="sr-watermark" aria-hidden="true" data-sr-wm>01</span>
+          <canvas id="sr-canvas" aria-hidden="true"></canvas>
+
+          <div class="sr-flat" aria-hidden="true">
+            <div class="sr-flat-plate">
+              <img alt="" data-sr-flat-icon src="media/lernreich-logo.png">
+              <span class="sr-flat-name" data-sr-flat-name>Lernreich</span>
+              <span class="sr-flat-meta" data-sr-flat-meta>Windows · Lernen</span>
+            </div>
+          </div>
+
+          <div class="sr-loader" aria-hidden="true">
+            <span class="sr-loader-mark"></span>
+            <span data-en="Building the stage">Bühne wird aufgebaut</span>
+          </div>
+
+          <div class="sr-stage-ui">
+            <span class="sr-chip-live"><span class="sr-dot"></span><span data-sr-badge>Windows · Lernen</span></span>
+            <div class="sr-stage-btns">
+              <button type="button" class="sr-arrow" data-sr-prev aria-label="Vorheriges Produkt" data-en-aria="Previous product">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="sr-arrow" data-sr-next aria-label="Nächstes Produkt" data-en-aria="Next product">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sr-rail" data-sr-rail role="group" aria-label="Produktauswahl" data-en-aria="Product selection"></div>
+
+        <p class="sr-hint" id="sr-hint">
+          <span data-en="Drag or use ← → to browse · Enter opens the product · click a plate twice to open it">
+            Ziehen oder ← → blättern · Enter öffnet das Produkt · Tafel zweimal antippen zum Öffnen
+          </span>
+        </p>
+      </div>
+
+      <aside class="sr-detail" id="sr-detail" aria-label="Produktdetails" data-en-aria="Product details">
+        <div class="sr-detail-inner">
+          <div class="sr-detail-top">
+            <span class="sr-detail-idx" data-sr-idx>01</span>
+            <span class="sr-detail-kind" data-sr-kind>Windows</span>
+          </div>
+          <div class="sr-detail-head">
+            <span class="sr-detail-icon"><img alt="" data-sr-icon src="media/lernreich-logo.png"></span>
+            <div>
+              <h2 class="sr-detail-name" data-sr-name>Lernreich</h2>
+              <p class="sr-detail-cat" data-sr-cat>Windows · Lernen</p>
+            </div>
+          </div>
+          <p class="sr-detail-desc" data-sr-desc>Eine fokussierte Lern-App mit Fokus-Sanduhr, XP, Streaks, Heatmap, Journal und Wiederholungsplanung.</p>
+          <dl class="sr-facts">
+            <div><dt data-en="Platform">Plattform</dt><dd data-sr-platform>Windows</dd></div>
+            <div><dt data-en="Price">Preis</dt><dd data-sr-price>Kostenlos</dd></div>
+            <div><dt data-en="License">Lizenz</dt><dd data-sr-license>Kostenlos</dd></div>
+          </dl>
+          <div class="sr-detail-actions">
+            <a class="btn btn-primary" data-sr-open href="produkt.html"><span data-en="Open product">Zum Produkt</span> <span class="arr">→</span></a>
+            <button class="btn btn-ghost sr-copy" type="button" data-sr-share data-en="Copy link">Link kopieren</button>
+          </div>
+          <p class="sr-detail-note" data-en="Local rendering. No cookies, no analytics, no external requests.">
+            Lokal gerendert. Keine Cookies, keine Analyse, keine externen Anfragen.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+    <noscript>
+      <p class="sr-noscript">Der 3D-Showroom braucht JavaScript. Alle Produkte stehen darunter als vollständige Liste — mit Preisen und Links.</p>
+    </noscript>
+
+    <!-- ============ INDEX ============ -->
+    <div class="sr-index-wrap">
+      <div class="sr-index-head">
+        <h2 class="h2" data-en="All eleven products">Alle elf Produkte</h2>
+        <a class="btn btn-ghost btn-sm" href="shop.html"><span data-en="Open shop">Zum Shop</span> <span class="arr">→</span></a>
+      </div>
+
+      <ol class="sr-index" id="sr-index">
+        <li class="sr-row" data-family="app" data-tags="app free windows learning">
+          <a href="produkt.html" data-sr-product
+             data-id="lernreich" data-name="Lernreich" data-name-en="Lernreich"
+             data-cat="Windows · Lernen" data-cat-en="Windows · Learning"
+             data-desc="Eine fokussierte Lern-App mit Fokus-Sanduhr, XP, Streaks, Heatmap, Journal und Wiederholungsplanung."
+             data-desc-en="A focused learning app with a focus hourglass, XP, streaks, heatmap, journal and spaced repetition."
+             data-price="Kostenlos" data-price-en="Free" data-platform="Windows"
+             data-license="Kostenlos" data-license-en="Free"
+             data-icon="media/lernreich-logo.png" data-kind="App">
+            <span class="sr-row-num">01</span>
+            <span class="sr-row-icon"><img src="media/lernreich-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>Lernreich</b><small data-en="Windows · Learning">Windows · Lernen</small></span>
+            <span class="sr-row-price" data-en="Free">Kostenlos</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app free windows exam planning">
+          <a href="pruefungs-countdown.html" data-sr-product
+             data-id="pruefungs-countdown" data-name="Prüfungs-Countdown" data-name-en="Exam Countdown"
+             data-cat="Windows · Prüfung" data-cat-en="Windows · Exam"
+             data-desc="Kostenlose Windows-App für Prüfungscountdowns, Lernziele, Fokus-Timer, XP, Streaks, Heatmap, Journal und lokale Exporte."
+             data-desc-en="A free Windows app for exam countdowns, learning goals, a focus timer, XP, streaks, heatmap, journal and local exports."
+             data-price="Kostenlos" data-price-en="Free" data-platform="Windows"
+             data-license="Kostenlos" data-license-en="Free"
+             data-icon="media/pruefungs-countdown-logo.png" data-kind="App">
+            <span class="sr-row-num">02</span>
+            <span class="sr-row-icon"><img src="media/pruefungs-countdown-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>Prüfungs-Countdown</b><small data-en="Windows · Exam">Windows · Prüfung</small></span>
+            <span class="sr-row-price" data-en="Free">Kostenlos</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app paid paypal windows focus pro">
+          <a href="lernreich-pro.html" data-sr-product
+             data-id="lernreich-pro" data-name="Lernreich Pro" data-name-en="Lernreich Pro"
+             data-cat="Windows · Fokus" data-cat-en="Windows · Focus"
+             data-desc="Die Premium-Offline-Fokus-App mit Electron, React, SQLite, XP, Streaks, Lernstadt, Journal und ruhigem Windows-Workflow."
+             data-desc-en="The premium offline focus app with Electron, React, SQLite, XP, streaks, a learning city, journal and a calm Windows workflow."
+             data-price="9,99 €" data-price-en="€9.99" data-platform="Windows"
+             data-license="Einmalig" data-license-en="One-time"
+             data-icon="media/lernreich-pro-icon.svg" data-kind="App">
+            <span class="sr-row-num">03</span>
+            <span class="sr-row-icon"><img src="media/lernreich-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>Lernreich Pro</b><small data-en="Windows · Focus">Windows · Fokus</small></span>
+            <span class="sr-row-price">9,99 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app paid paypal windows security password pro">
+          <a href="keyforge-vault.html" data-sr-product
+             data-id="keyforge-vault" data-name="KeyForge Vault" data-name-en="KeyForge Vault"
+             data-cat="Windows · Sicherheit" data-cat-en="Windows · Security"
+             data-desc="Verschlüsselter Offline-Vault mit AES-256-GCM, portablen Vault-Dateien, Audit-Log, Auto-Lock und Clipboard-Clearing."
+             data-desc-en="Encrypted offline vault with AES-256-GCM, portable vault files, audit log, auto-lock and clipboard clearing."
+             data-price="12,99 €" data-price-en="€12.99" data-platform="Windows"
+             data-license="Einmalig" data-license-en="One-time"
+             data-icon="media/keyforge-vault-icon.svg" data-kind="App">
+            <span class="sr-row-num">04</span>
+            <span class="sr-row-icon"><img src="media/keyforge-vault-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>KeyForge Vault</b><small data-en="Windows · Security">Windows · Sicherheit</small></span>
+            <span class="sr-row-price">12,99 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app paid paypal windows planning academic pro">
+          <a href="lumaweek-planner.html" data-sr-product
+             data-id="lumaweek" data-name="LumaWeek Planner" data-name-en="LumaWeek Planner"
+             data-cat="Windows · Planung" data-cat-en="Windows · Planning"
+             data-desc="Minimaler Wochen- und Jahresplaner für Schule, Uni und Arbeit mit Aufgaben, Notizen, PDF-Export, Drucken und lokalen Backups."
+             data-desc-en="A minimal weekly and yearly planner for school, university and work with tasks, notes, PDF export, printing and local backups."
+             data-price="5,99 €" data-price-en="€5.99" data-platform="Windows"
+             data-license="Einmalig" data-license-en="One-time"
+             data-icon="media/lumaweek-icon.svg" data-kind="App">
+            <span class="sr-row-num">05</span>
+            <span class="sr-row-icon"><img src="media/lumaweek-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>LumaWeek Planner</b><small data-en="Windows · Planning">Windows · Planung</small></span>
+            <span class="sr-row-price">5,99 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app paid windows updates business pro">
+          <a href="updatepilot.html" data-sr-product
+             data-id="updatepilot" data-name="UpdatePilot" data-name-en="UpdatePilot"
+             data-cat="Windows · Updates" data-cat-en="Windows · Updates"
+             data-desc="Minimaler Windows-Update-Manager mit winget-Scan, freigegebenen Updates, Blocklisten, Technikerprofilen und PDF/CSV-Reports."
+             data-desc-en="A minimal Windows update manager with winget scanning, approved updates, blocklists, technician profiles and PDF/CSV reports."
+             data-price="12,99 €" data-price-en="€12.99" data-platform="Windows"
+             data-license="Lebenslang" data-license-en="Lifetime"
+             data-icon="media/updatepilot-icon.svg" data-kind="App">
+            <span class="sr-row-num">06</span>
+            <span class="sr-row-icon"><img src="media/updatepilot-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>UpdatePilot</b><small data-en="Windows · Updates">Windows · Updates</small></span>
+            <span class="sr-row-price">12,99 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="app" data-tags="app paid windows pdf ocr pro">
+          <a href="bytewerk-pdf-text-pro.html" data-sr-product
+             data-id="pdf-text-pro" data-name="Bytewerk PDF Text Pro" data-name-en="Bytewerk PDF Text Pro"
+             data-cat="Windows · PDF/OCR" data-cat-en="Windows · PDF/OCR"
+             data-desc="PDFs in sauberen Text umwandeln, mit OCR für Scans, fünf Gratis-PDFs pro Tag und Offline-Lifetime-Lizenz."
+             data-desc-en="Turn PDFs into clean text, with OCR for scans, five free PDFs per day and an offline lifetime license."
+             data-price="59,00 €" data-price-en="€59.00" data-platform="Windows"
+             data-license="Lifetime" data-license-en="Lifetime"
+             data-icon="media/bytewerk-pdf-text-pro-icon.svg" data-kind="App">
+            <span class="sr-row-num">07</span>
+            <span class="sr-row-icon"><img src="media/bytewerk-pdf-text-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>Bytewerk PDF Text Pro</b><small>Windows · PDF/OCR</small></span>
+            <span class="sr-row-price">59,00 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="game" data-tags="game free web strategy">
+          <a href="burgenwerk.html" data-sr-product
+             data-id="burgenwerk" data-name="BURGENWERK" data-name-en="BURGENWERK"
+             data-cat="Web · Strategie" data-cat-en="Web · Strategy"
+             data-desc="Vollwertiges Strategiespiel im Browser: Burg bauen, gegen Wellen verteidigen und fremde Festungen erobern."
+             data-desc-en="A full strategy game in the browser: build your castle, defend it against waves and conquer foreign fortresses."
+             data-price="Kostenlos" data-price-en="Free" data-platform="Web"
+             data-license="Kostenlos" data-license-en="Free"
+             data-icon="media/burgenwerk-logo.png" data-kind="Spiel">
+            <span class="sr-row-num">08</span>
+            <span class="sr-row-icon"><img src="media/burgenwerk-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>BURGENWERK</b><small data-en="Web · Strategy">Web · Strategie</small></span>
+            <span class="sr-row-price" data-en="Free">Kostenlos</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="game" data-tags="game free web shooter">
+          <a href="neon-horde/" data-sr-product
+             data-id="neon-horde" data-name="NEON HORDE" data-name-en="NEON HORDE"
+             data-cat="Web · Shooter" data-cat-en="Web · Shooter"
+             data-desc="Auto-Aim-Wave-Shooter im Browser: zehn Waffen, endlose Horden, Bosse, tägliche Belohnungen und Prestige."
+             data-desc-en="An auto-aim wave shooter in the browser: ten weapons, endless hordes, bosses, daily rewards and prestige."
+             data-price="Kostenlos" data-price-en="Free" data-platform="Web"
+             data-license="Kostenlos" data-license-en="Free"
+             data-icon="media/neon-horde-icon.svg" data-kind="Spiel">
+            <span class="sr-row-num">09</span>
+            <span class="sr-row-icon"><img src="media/neon-horde-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>NEON HORDE</b><small data-en="Web · Shooter">Web · Shooter</small></span>
+            <span class="sr-row-price" data-en="Free">Kostenlos</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="game" data-tags="game free web windows strategy">
+          <a href="mastil.html" data-sr-product
+             data-id="mastil" data-name="MASTIL" data-name-en="MASTIL"
+             data-cat="Web &amp; Windows · Strategie" data-cat-en="Web &amp; Windows · Strategy"
+             data-desc="Mittelalterliches Strategie- und Tower-Defense-Spiel für Web und Windows mit Offline-KI, Wellenfortschritt und Reichsauswahl."
+             data-desc-en="A medieval strategy and tower-defense game for web and Windows with offline AI, wave progression and realm selection."
+             data-price="Demo frei" data-price-en="Free demo" data-platform="Web &amp; Windows"
+             data-license="Demo frei" data-license-en="Free demo"
+             data-icon="media/mastil-logo.jpg" data-kind="Spiel">
+            <span class="sr-row-num">10</span>
+            <span class="sr-row-icon"><img src="media/mastil-logo.jpg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>MASTIL</b><small data-en="Web &amp; Windows · Strategy">Web &amp; Windows · Strategie</small></span>
+            <span class="sr-row-price">Demo frei</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="sr-row" data-family="game" data-tags="game paid windows strategy premium">
+          <a href="neon-dominion.html" data-sr-product
+             data-id="neon-dominion" data-name="Neon Dominion" data-name-en="Neon Dominion"
+             data-cat="Windows · Premium" data-cat-en="Windows · Premium"
+             data-desc="Premium-Tower-Conquest-Spiel mit 30 Offline-Missionen, lokalen Saves, Achievements, Overdrive und Upgrade Lab."
+             data-desc-en="A premium tower-conquest game with 30 offline missions, local saves, achievements, Overdrive and an Upgrade Lab."
+             data-price="20,00 €" data-price-en="€20.00" data-platform="Windows"
+             data-license="Einmalig" data-license-en="One-time"
+             data-icon="media/neon-dominion-icon.svg" data-kind="Spiel">
+            <span class="sr-row-num">11</span>
+            <span class="sr-row-icon"><img src="media/neon-dominion-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-main"><b>Neon Dominion</b><small data-en="Windows · Premium">Windows · Premium</small></span>
+            <span class="sr-row-price">20,00 €</span>
+            <span class="sr-row-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sr-cta-sec">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Your product">Dein Produkt</span>
+      <h2 class="h2" style="position:relative" data-en="The next plate on this shelf could be yours.">Die nächste Tafel in diesem Regal könnte deine sein.</h2>
+      <p class="lead" style="max-width:48ch" data-en="From the first sketch to the shipped app — with a fixed price and a direct line.">
+        Vom ersten Entwurf bis zur fertigen App — mit Festpreis und direktem Draht.
+      </p>
+      <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="main.js"></script>
+<script src="ui-v3.js"></script>
+<script src="ui-v4.js"></script>
+<script src="background.js"></script>
+<script src="showroom-ui.js"></script>
+<script type="module" src="showroom-scene.js"></script>
+</body>
+</html>
