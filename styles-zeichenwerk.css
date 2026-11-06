@@ -1,0 +1,571 @@
+/* ============================================================
+   BYTEWERK STUDIO — styles-zeichenwerk.css
+   ------------------------------------------------------------
+   Layer for the 3D letterpress (zeichenwerk.html and the band
+   on index.html). Everything lives under .zw-* or #zeichenwerk,
+   so the rest of the site keeps its Claude look untouched.
+   Loaded after styles-v5.css.
+   ============================================================ */
+
+/* ---------- 1. Stage ---------- */
+.zw-stage {
+  position: relative;
+  aspect-ratio: 2.6;
+  min-height: 240px;
+  max-height: 420px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 100% at 26% 6%, #fffefb 0%, #f8f4e9 48%, #efe8d7 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -30px 60px rgba(176, 79, 49, 0.045),
+    var(--shadow-sm);
+}
+
+.zw-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(31, 30, 29, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 30, 29, 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(80% 80% at 50% 40%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(80% 80% at 50% 40%, #000 20%, transparent 78%);
+  opacity: 0.55;
+}
+
+.zw-stage--band {
+  aspect-ratio: 2.9;
+  min-height: 230px;
+  max-height: 380px;
+}
+
+.zw-canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: opacity 0.55s ease;
+}
+
+.zw-canvas.is-dragging {
+  cursor: grabbing;
+}
+
+.zw-canvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+.zw-stage.is-live .zw-canvas {
+  opacity: 1;
+}
+
+/* Real text stand-in: before WebGL, without JS, or without WebGL. */
+.zw-static {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(30px, 7.4vw, 84px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--accent);
+  text-shadow: 0 1px 0 #fff, 0 10px 24px rgba(176, 79, 49, 0.18);
+  overflow-wrap: anywhere;
+}
+
+.zw-stage.is-live .zw-static {
+  display: none;
+}
+
+.zw-hint {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.zw-stage.is-fallback .zw-hint {
+  display: none;
+}
+
+.zw-badge {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.zw-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(176, 79, 49, 0.14);
+}
+
+/* ---------- 2. Band on the homepage ---------- */
+#zeichenwerk {
+  border-top: 1px solid var(--line);
+}
+
+.zw-band-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(30px, 4.4vw, 64px);
+  align-items: center;
+}
+
+.zw-band-copy .lead {
+  margin-top: 18px;
+  max-width: 46ch;
+}
+
+.zw-band-copy .eyebrow {
+  margin-bottom: 14px;
+}
+
+.zw-band-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.zw-band-form .zw-field {
+  flex: 1 1 210px;
+  min-width: 0;
+}
+
+.zw-band-form .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.zw-band-note {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+/* ---------- 3. Field ---------- */
+.zw-field {
+  position: relative;
+  display: block;
+}
+
+.zw-field input {
+  width: 100%;
+  height: 52px;
+  padding: 0 92px 0 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 21px;
+  letter-spacing: 0.02em;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.zw-field input:hover {
+  border-color: var(--accent);
+}
+
+.zw-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+}
+
+.zw-count {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+/* ---------- 4. Tool page ---------- */
+.zw-period {
+  color: var(--accent);
+}
+
+.zw-head::after {
+  content: "Z";
+  position: absolute;
+  right: max(2vw, 12px);
+  top: 50%;
+  transform: translateY(-52%);
+  font-family: var(--display);
+  font-size: clamp(200px, 30vw, 420px);
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(31, 30, 29, 0.045);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.zw-head .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.zw-werk {
+  padding-block: clamp(34px, 4.6vw, 62px) clamp(48px, 6vw, 84px);
+}
+
+.zw-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.78fr);
+  gap: clamp(18px, 2.4vw, 30px);
+  align-items: start;
+}
+
+.zw-tool .zw-stage {
+  aspect-ratio: auto;
+  min-height: 300px;
+  max-height: 480px;
+}
+
+/* Live spec line in the lower right corner of the stage. */
+.zw-spec {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.zw-spec span + span::before {
+  content: "·";
+  margin-right: 10px;
+  color: var(--line-2);
+}
+
+.zw-stage.is-fallback .zw-spec {
+  display: none;
+}
+
+.zw-panel {
+  position: sticky;
+  top: calc(var(--header-h) + 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.zw-panel h2 {
+  margin: 0;
+  font-size: 13px;
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+
+.zw-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.zw-group > legend,
+.zw-group > label,
+.zw-label {
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.zw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zw-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 0 14px 0 11px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.zw-chip:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.zw-chip.is-active,
+.zw-chip[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.zw-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.zw-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--sw, var(--accent));
+  box-shadow: inset 0 0 0 1px rgba(31, 30, 29, 0.18);
+}
+
+.zw-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+
+.zw-seg button {
+  min-height: 38px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.zw-seg button:hover {
+  color: var(--ink);
+}
+
+.zw-seg button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.zw-seg button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.zw-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zw-range input[type="range"] {
+  flex: 1;
+  height: 22px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.zw-range output {
+  min-width: 46px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.zw-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.zw-actions .btn {
+  justify-content: center;
+}
+
+.zw-actions .zw-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.zw-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--faint);
+  min-height: 2.6em;
+}
+
+.zw-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Without WebGL the controls that need the 3D stage disappear;
+   the word and the material colour keep working. */
+.zw-no-webgl [data-zw-depth-group],
+.zw-no-webgl [data-zw-view-group],
+.zw-no-webgl [data-zw-png],
+.zw-no-webgl [data-zw-link],
+.zw-no-webgl [data-zw-depth] {
+  display: none;
+}
+
+/* ---------- 5. Responsive ---------- */
+@media (max-width: 1080px) {
+  .zw-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zw-panel {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 22px;
+  }
+
+  .zw-panel h2,
+  .zw-actions,
+  .zw-note {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .zw-band-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zw-band-grid .zw-stage {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .zw-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .zw-stage,
+  .zw-tool .zw-stage {
+    aspect-ratio: 1.55;
+    height: auto;
+    min-height: 260px;
+    max-height: 320px;
+    border-radius: 14px;
+  }
+
+  .zw-field input {
+    font-size: 18px;
+    padding-right: 76px;
+  }
+
+  .zw-hint {
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    left: 14px;
+    bottom: 12px;
+    right: 14px;
+  }
+
+  .zw-actions .zw-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 6. Motion & print ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .zw-canvas {
+    transition: none;
+  }
+}
+
+@media print {
+  .zw-panel,
+  .zw-hint,
+  .zw-badge {
+    display: none !important;
+  }
+
+  .zw-stage {
+    box-shadow: none;
+    border-color: #ccc;
+  }
+}

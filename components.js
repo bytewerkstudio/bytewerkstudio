@@ -97,6 +97,7 @@
             <a href="arbeiten.html" data-en="Work">Arbeiten</a>
             <a href="bauplan.html" data-en="Blueprint">Bauplan</a>
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
+            <a href="zeichenwerk.html" data-en="Zeichenwerk">Zeichenwerk</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
