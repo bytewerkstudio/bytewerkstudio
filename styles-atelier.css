@@ -1,0 +1,412 @@
+/* ============================================================
+   BYTEWERK STUDIO — ATELIER / STUDIO-SEITE
+   ------------------------------------------------------------
+   Only loaded on studio.html. Every selector lives in the
+   .atl- namespace, so the rest of the site is untouched.
+   Depends on the tokens from styles-claude.css.
+
+   1  Hero
+   2  3D stage and labels
+   3  Figures
+   4  Stations
+   5  Disciplines
+   6  CTA
+   7  Responsive, motion, print
+   ============================================================ */
+
+/* ---------- 1. Hero ---------- */
+.atl-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--header-h) + clamp(24px, 4vw, 52px));
+  padding-bottom: clamp(22px, 3.4vw, 44px);
+}
+.atl-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(760px 520px at 78% 4%, rgba(176, 79, 49, 0.055), transparent 66%),
+    radial-gradient(620px 480px at 2% 26%, rgba(79, 122, 99, 0.045), transparent 68%);
+}
+.atl-hero > .wrap { position: relative; z-index: 1; }
+
+.atl-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(28px, 4.4vw, 64px);
+  align-items: center;
+}
+
+.atl-hero .crumb {
+  margin-bottom: clamp(18px, 2.4vw, 26px);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.atl-hero .crumb a { transition: color 0.2s; }
+.atl-hero .crumb a:hover { color: var(--accent-700); }
+
+.atl-title {
+  margin: 14px 0 0;
+  font-family: var(--display);
+  font-size: clamp(54px, 7.4vw, 104px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+.atl-title .line { display: block; }
+.atl-title .line:nth-child(2) { color: var(--muted); }
+.atl-title .atl-accent { color: var(--accent); }
+.atl-dot { color: var(--accent); }
+
+.atl-hero .lead {
+  margin-top: clamp(20px, 2.6vw, 30px);
+  max-width: 46ch;
+  font-size: clamp(15.5px, 1.25vw, 17.5px);
+  color: var(--muted);
+}
+
+.atl-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(24px, 3vw, 34px);
+}
+.atl-note {
+  margin-top: 22px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ---------- 2. 3D stage and labels ---------- */
+.atl-stage-col { min-width: 0; }
+
+.atl-stage {
+  position: relative;
+  height: clamp(390px, 39vw, 520px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  background:
+    radial-gradient(120% 92% at 72% 6%, #fffdf8 0%, rgba(255, 253, 248, 0) 58%),
+    linear-gradient(158deg, #f9f5eb 0%, #f1ebdd 100%);
+  box-shadow:
+    0 28px 64px -34px rgba(31, 30, 29, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+.atl-stage:active { cursor: grabbing; }
+.atl-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+html.atl-ready .atl-stage canvas { opacity: 1; }
+
+.atl-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  color: var(--ink);
+  opacity: 0.42;
+  transition: opacity 0.6s ease;
+}
+html.atl-ready .atl-fallback { opacity: 0; }
+
+.atl-tags {
+  position: absolute;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+html.atl-ready .atl-tags { display: block; }
+
+.atl-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px 6px 9px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(250, 249, 245, 0.93);
+  box-shadow: 0 8px 22px rgba(31, 30, 29, 0.12);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  pointer-events: auto;
+  will-change: transform;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.atl-tag b { color: var(--accent); font-weight: 600; transition: color 0.25s; }
+.atl-tag:hover,
+.atl-tag:focus-visible,
+.atl-tag.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 10px 26px rgba(31, 30, 29, 0.22);
+}
+.atl-tag:hover b,
+.atl-tag:focus-visible b,
+.atl-tag.is-active b { color: #e8a88f; }
+.atl-tag:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.atl-hint {
+  position: absolute;
+  left: 16px;
+  bottom: 13px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  opacity: 0.82;
+  pointer-events: none;
+}
+.atl-caption {
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+}
+
+/* ---------- 3. Figures ---------- */
+.atl-figures-wrap { padding-bottom: clamp(6px, 1.6vw, 14px); }
+.atl-figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-block: 1px solid var(--line);
+}
+.atl-figures > div {
+  padding: 20px 0 20px clamp(14px, 2vw, 26px);
+  border-left: 1px solid var(--line);
+}
+.atl-figures > div:first-child { padding-left: 0; border-left: 0; }
+.atl-figures dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.atl-figures dd {
+  margin: 7px 0 0;
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 4. Stations ---------- */
+.atl-steps-section { padding-top: clamp(58px, 8vw, 108px); }
+.atl-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(32px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.atl-step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(26px, 3vw, 38px);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  outline: none;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  transition: background 0.35s ease;
+}
+.atl-step:nth-child(2n) { border-right: 0; }
+.atl-step:nth-last-child(-n + 2) { border-bottom: 0; }
+.atl-step.is-active { background: var(--surface-2); }
+.atl-step:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
+
+.atl-step-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.atl-num {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--line-2);
+  transition: color 0.3s ease;
+}
+.atl-step.is-active .atl-num { color: var(--accent); }
+.atl-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.atl-step h3 {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.1vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.atl-step p {
+  max-width: 44ch;
+  font-size: 14.8px;
+  line-height: 1.62;
+  color: var(--muted);
+}
+.atl-result {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.atl-result span {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.atl-result b {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.atl-result b::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--neon);
+  vertical-align: 1px;
+}
+
+/* ---------- 5. Disciplines ---------- */
+.atl-disc-section { padding-top: 0; }
+.atl-disc-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(26px, 3.6vw, 40px);
+}
+.atl-disc { border-top: 1px solid var(--line-2); }
+.atl-disc a {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1.05fr) minmax(0, 1fr) 28px;
+  gap: clamp(10px, 2vw, 24px);
+  align-items: baseline;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.25s ease, padding 0.25s ease;
+}
+.atl-disc a:hover,
+.atl-disc a:focus-visible {
+  background: var(--surface-2);
+  padding-inline: 14px 4px;
+}
+.atl-disc a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.atl-disc-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+.atl-disc-t {
+  font-family: var(--display);
+  font-size: clamp(19px, 1.9vw, 24px);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.atl-disc-d { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.atl-disc-a {
+  justify-self: end;
+  color: var(--accent);
+  transition: transform 0.25s ease;
+}
+.atl-disc a:hover .atl-disc-a { transform: translateX(4px); }
+
+/* ---------- 6. CTA ---------- */
+.atl-cta-section { padding-bottom: clamp(72px, 11vw, 140px); }
+.atl-cta-section .cta-band .lead { max-width: 46ch; }
+
+/* ---------- 7. Responsive, motion, print ---------- */
+@media (max-width: 1040px) {
+  .atl-hero-grid { grid-template-columns: 1fr; gap: clamp(26px, 4vw, 38px); }
+  .atl-stage { height: clamp(340px, 54vw, 470px); }
+  .atl-title { font-size: clamp(50px, 9.6vw, 86px); }
+
+  .atl-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .atl-figures > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .atl-figures > div:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+
+  .atl-steps { grid-template-columns: 1fr; }
+  .atl-step { border-right: 0; }
+  .atl-step:nth-last-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .atl-step:last-child { border-bottom: 0; }
+
+  .atl-disc a { grid-template-columns: 44px minmax(0, 1fr) 24px; }
+  .atl-disc-d { grid-column: 2 / 3; }
+}
+
+@media (max-width: 640px) {
+  .atl-title { font-size: clamp(46px, 13.5vw, 64px); letter-spacing: -0.04em; }
+  .atl-tags { display: none !important; }
+  .atl-stage { height: 340px; }
+  .atl-hint { font-size: 9px; letter-spacing: 0.07em; }
+  .atl-figures > div { padding-block: 16px; }
+  .atl-disc a { padding-block: 16px; row-gap: 6px; }
+  .atl-cta { gap: 10px; }
+  .atl-cta .btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atl-stage canvas,
+  .atl-fallback,
+  .atl-tag,
+  .atl-step,
+  .atl-num,
+  .atl-disc a,
+  .atl-disc-a {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .atl-stage-col { display: none; }
+  .atl-hero-grid { grid-template-columns: 1fr; }
+  .atl-step { break-inside: avoid; }
+}
