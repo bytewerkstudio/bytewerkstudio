@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-studio3d.css">
 <link rel="stylesheet" href="styles-workstoff.css">
+<link rel="stylesheet" href="styles-schichtmodell.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
 <link rel="stylesheet" href="styles-work.css">
@@ -312,6 +313,178 @@
       </a>
     </div>
   </div>
+</section>
+
+<!-- ============ SCHICHTMODELL (3D) ============ -->
+<section class="sec-pad" id="schichtmodell" data-screen-label="Schichtmodell (3D)">
+  <div class="wrap">
+    <div class="schm-head reveal">
+      <span class="eyebrow" data-en="Under the surface">Unter der Oberfläche</span>
+      <h2 class="h2" data-en="One product. Four layers.">Ein Produkt. Vier Schichten.</h2>
+      <p class="lead" data-en="Good software is not a single trick. It is a stack: surface, logic, data, operations. Pull the layers apart and see what we build.">Gute Software ist kein einzelnes Kunststück. Sie ist ein Stapel: Oberfläche, Logik, Daten, Betrieb. Zieh die Schichten auseinander und sieh, was wir bauen.</p>
+    </div>
+
+    <div class="schm-grid">
+      <div class="schm-side reveal">
+        <div class="schm-list" role="tablist" aria-orientation="vertical" aria-label="Schichten eines Produkts" data-en-aria="Layers of a product">
+          <button class="schm-row" type="button" role="tab" id="schm-tab-0" aria-selected="true" aria-controls="schm-panel-0" data-schm-row="0">
+            <span class="schm-num">01</span>
+            <span class="schm-t"><b data-en="Surface">Oberfläche</b><small data-en="What people see and touch.">Was Menschen sehen und bedienen.</small></span>
+            <span class="schm-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </button>
+          <button class="schm-row" type="button" role="tab" id="schm-tab-1" aria-selected="false" aria-controls="schm-panel-1" data-schm-row="1" tabindex="-1">
+            <span class="schm-num">02</span>
+            <span class="schm-t"><b data-en="Logic">Logik</b><small data-en="Rules, types and tests.">Regeln, Typen und Tests.</small></span>
+            <span class="schm-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </button>
+          <button class="schm-row" type="button" role="tab" id="schm-tab-2" aria-selected="false" aria-controls="schm-panel-2" data-schm-row="2" tabindex="-1">
+            <span class="schm-num">03</span>
+            <span class="schm-t"><b data-en="Data">Daten</b><small data-en="Schema, migration and backup.">Schema, Migration und Backup.</small></span>
+            <span class="schm-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </button>
+          <button class="schm-row" type="button" role="tab" id="schm-tab-3" aria-selected="false" aria-controls="schm-panel-3" data-schm-row="3" tabindex="-1">
+            <span class="schm-num">04</span>
+            <span class="schm-t"><b data-en="Operations">Betrieb</b><small data-en="Hosting, deploy and monitoring.">Hosting, Deploy und Monitoring.</small></span>
+            <span class="schm-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </button>
+        </div>
+
+        <div class="schm-detail">
+          <div class="schm-panel" role="tabpanel" id="schm-panel-0" aria-labelledby="schm-tab-0" tabindex="0">
+            <span class="schm-kicker" data-en="01 / Surface">01 / Oberfläche</span>
+            <p data-en="Design system, components and states. We build interfaces people understand without an explanation — on desktop, tablet and phone. Contrast, focus and keyboard are part of the design, not a later fix.">Design-System, Komponenten und Zustände. Wir bauen Interfaces, die man ohne Erklärung versteht — auf Desktop, Tablet und Telefon. Kontrast, Fokus und Tastatur sind Teil des Entwurfs, keine Nachbesserung.</p>
+            <ul class="schm-tags">
+              <li data-en="Design system">Design-System</li>
+              <li>Accessibility</li>
+              <li>Responsive</li>
+            </ul>
+          </div>
+          <div class="schm-panel" role="tabpanel" id="schm-panel-1" aria-labelledby="schm-tab-1" tabindex="0" hidden>
+            <span class="schm-kicker" data-en="02 / Logic">02 / Logik</span>
+            <p data-en="Types, tests and clear boundaries. Every rule lives in exactly one place so features can grow without breaking the whole. Errors become visible before they reach a customer.">Typen, Tests und klare Grenzen. Jede Regel steht an genau einer Stelle, damit Funktionen wachsen können, ohne das Ganze zu zerbrechen. Fehler werden sichtbar, bevor sie beim Kunden landen.</p>
+            <ul class="schm-tags">
+              <li>TypeScript</li>
+              <li data-en="Tests">Tests</li>
+              <li>APIs</li>
+            </ul>
+          </div>
+          <div class="schm-panel" role="tabpanel" id="schm-panel-2" aria-labelledby="schm-tab-2" tabindex="0" hidden>
+            <span class="schm-kicker" data-en="03 / Data">03 / Daten</span>
+            <p data-en="Schema, migrations and backups. Data belongs to the client, not the platform: exportable, versioned, traceable. We plan for the day something goes wrong.">Schema, Migrationen und Backups. Daten gehören dem Kunden, nicht der Plattform: exportierbar, versioniert, nachvollziehbar. Wir planen den Tag mit, an dem etwas schiefgeht.</p>
+            <ul class="schm-tags">
+              <li>PostgreSQL</li>
+              <li data-en="Migrations">Migrationen</li>
+              <li data-en="Backups">Backups</li>
+            </ul>
+          </div>
+          <div class="schm-panel" role="tabpanel" id="schm-panel-3" aria-labelledby="schm-tab-3" tabindex="0" hidden>
+            <span class="schm-kicker" data-en="04 / Operations">04 / Betrieb</span>
+            <p data-en="Hosting, deployments and monitoring. We hand over more than code: a running operation with documentation, access and a clear way back.">Hosting, Deployments und Monitoring. Wir übergeben nicht nur Code, sondern einen laufenden Betrieb — mit Dokumentation, Zugängen und einem klaren Weg zurück.</p>
+            <ul class="schm-tags">
+              <li>CI/CD</li>
+              <li>Monitoring</li>
+              <li data-en="Documentation">Dokumentation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="schm-foot">
+          <a class="btn btn-primary" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
+          <span class="schm-meta" data-en="three.js r180 · WebGL · no tracking">three.js r180 · WebGL · kein Tracking</span>
+        </div>
+      </div>
+
+      <div class="schm-stage reveal" data-d="1">
+        <div class="schm-stage-top">
+          <span class="schm-live"><i aria-hidden="true"></i><span data-en="Interactive">Interaktiv</span></span>
+          <span data-en="4 layers">04 Schichten</span>
+        </div>
+
+        <canvas id="schichtmodell-canvas" aria-hidden="true"></canvas>
+
+        <div class="schm-fallback" aria-hidden="true">
+          <svg viewBox="0 0 520 470" focusable="false">
+            <defs>
+              <radialGradient id="schm-cast" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#3a2a1c" stop-opacity="0.28"/>
+                <stop offset="1" stop-color="#3a2a1c" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <ellipse cx="262" cy="404" rx="176" ry="26" fill="url(#schm-cast)"/>
+
+            <g class="schm-plate" data-fallback-layer="3" transform="translate(6,-252)">
+              <polygon class="schm-cast-sheet" points="114,326 266,382 266,390 114,334"/>
+              <polygon class="schm-cast-sheet" points="266,382 418,326 418,334 266,390"/>
+              <polygon class="schm-cast-sheet" points="114,326 266,270 418,326 266,382"/>
+              <polygon class="schm-sheet-left schm-sheet-edge" points="108,318 260,374 260,382 108,326"/>
+              <polygon class="schm-sheet-right schm-sheet-edge" points="260,374 412,318 412,326 260,382"/>
+              <polygon class="schm-sheet-top schm-sheet-edge" points="108,318 260,262 412,318 260,374"/>
+              <rect x="314" y="296" width="52" height="32" rx="3" fill="none" class="schm-sheet-line"/>
+              <path class="schm-sheet-line" d="M322 306h36M322 315h24"/>
+              <path class="schm-sheet-line" d="M166 320h58M166 329h34"/>
+              <circle cx="288" cy="336" r="4.2" class="schm-sheet-accent"/>
+              <text x="78" y="302">04</text>
+            </g>
+
+            <g class="schm-plate" data-fallback-layer="2" transform="translate(4,-178)">
+              <polygon class="schm-cast-sheet" points="114,326 266,382 266,390 114,334"/>
+              <polygon class="schm-cast-sheet" points="266,382 418,326 418,334 266,390"/>
+              <polygon class="schm-cast-sheet" points="114,326 266,270 418,326 266,382"/>
+              <polygon class="schm-sheet-left schm-sheet-edge" points="108,318 260,374 260,382 108,326"/>
+              <polygon class="schm-sheet-right schm-sheet-edge" points="260,374 412,318 412,326 260,382"/>
+              <polygon class="schm-sheet-top schm-sheet-edge" points="108,318 260,262 412,318 260,374"/>
+              <ellipse cx="184" cy="312" rx="23" ry="8" fill="none" class="schm-sheet-line"/>
+              <ellipse cx="184" cy="321" rx="23" ry="8" fill="none" class="schm-sheet-line"/>
+              <ellipse cx="184" cy="330" rx="23" ry="8" fill="none" class="schm-sheet-line"/>
+              <path class="schm-sheet-line" d="M250 304h88M250 315h62M250 326h74M250 337h42"/>
+              <text x="78" y="302">03</text>
+            </g>
+
+            <g class="schm-plate" data-fallback-layer="1" transform="translate(2,-104)">
+              <polygon class="schm-cast-sheet" points="114,326 266,382 266,390 114,334"/>
+              <polygon class="schm-cast-sheet" points="266,382 418,326 418,334 266,390"/>
+              <polygon class="schm-cast-sheet" points="114,326 266,270 418,326 266,382"/>
+              <polygon class="schm-sheet-left schm-sheet-edge" points="108,318 260,374 260,382 108,326"/>
+              <polygon class="schm-sheet-right schm-sheet-edge" points="260,374 412,318 412,326 260,382"/>
+              <polygon class="schm-sheet-top schm-sheet-edge" points="108,318 260,262 412,318 260,374"/>
+              <path class="schm-sheet-line" d="M180 314l62-25 64 25-54 25z"/>
+              <path class="schm-sheet-line" d="M180 314l72 25M242 289l64 25"/>
+              <circle cx="180" cy="314" r="4.6" class="schm-sheet-accent"/>
+              <circle cx="242" cy="289" r="3.8" class="schm-sheet-node"/>
+              <circle cx="306" cy="314" r="3.8" class="schm-sheet-node"/>
+              <circle cx="252" cy="339" r="3.8" class="schm-sheet-node"/>
+              <text x="78" y="302">02</text>
+            </g>
+
+            <g class="schm-plate" data-fallback-layer="0" transform="translate(0,-30)">
+              <polygon class="schm-cast-sheet" points="114,326 266,382 266,390 114,334"/>
+              <polygon class="schm-cast-sheet" points="266,382 418,326 418,334 266,390"/>
+              <polygon class="schm-cast-sheet" points="114,326 266,270 418,326 266,382"/>
+              <polygon class="schm-sheet-left schm-sheet-edge" points="108,318 260,374 260,382 108,326"/>
+              <polygon class="schm-sheet-right schm-sheet-edge" points="260,374 412,318 412,326 260,382"/>
+              <polygon class="schm-sheet-top schm-sheet-edge" points="108,318 260,262 412,318 260,374"/>
+              <path d="M146 316l48-19 36 15-48 19z" fill="#fffdf6" stroke="rgba(58,42,28,0.42)"/>
+              <path class="schm-sheet-line" d="M154 311h26M154 317h17"/>
+              <rect x="252" y="294" width="62" height="38" rx="3" fill="#fffdf6" stroke="rgba(58,42,28,0.42)"/>
+              <path class="schm-sheet-line" d="M260 305h44M260 314h28"/>
+              <rect x="194" y="330" width="60" height="15" rx="7.5" class="schm-sheet-accent"/>
+              <text x="78" y="302">01</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="schm-stage-bottom">
+          <span class="schm-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            <span data-en="Drag to rotate · click to focus">Ziehen zum Drehen · Klick zum Fokussieren</span>
+          </span>
+          <button class="schm-reset" type="button" data-en="Reset view">Ansicht zurücksetzen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <noscript><style>#schichtmodell .schm-panel[hidden]{display:block}#schichtmodell .schm-detail{display:grid;gap:14px}</style></noscript>
 </section>
 
 <!-- ============ ARBEITEN ============ -->
@@ -785,6 +958,7 @@
   <script src="scene3d.js"></script>
 <script type="module" src="scene-studio.js"></script>
 <script type="module" src="scene-workstoff.js"></script>
+<script type="module" src="schichtmodell.js"></script>
 <script>
 /* CTA band subtle grid canvas */
 (function () {

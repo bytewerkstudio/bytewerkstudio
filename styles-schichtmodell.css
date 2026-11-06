@@ -1,0 +1,432 @@
+/* ============================================================
+   BYTEWERK STUDIO — SCHICHTMODELL (Startseite, 3D)
+   ------------------------------------------------------------
+   Isolierte Schicht für die interaktive 3D-Sektion auf
+   index.html. Alle Regeln liegen unter #schichtmodell oder
+   .schm-*. Wird nach styles-claude.css geladen.
+
+   1  Sektion & Kopf
+   2  Schichten-Liste
+   3  Detail-Panel
+   4  Bühne (Canvas)
+   5  SVG-Fallback
+   6  Responsive & Motion
+   ============================================================ */
+
+/* ---------- 1. Sektion & Kopf ---------- */
+#schichtmodell {
+  position: relative;
+  background: var(--paper-2);
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+}
+
+#schichtmodell::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: min(760px, 80%);
+  height: min(760px, 80%);
+  background: radial-gradient(closest-side, rgba(176, 79, 49, 0.085), transparent 70%);
+  pointer-events: none;
+}
+
+#schichtmodell::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -30% -12%;
+  width: min(680px, 70%);
+  height: min(680px, 70%);
+  background: radial-gradient(closest-side, rgba(79, 122, 99, 0.07), transparent 70%);
+  pointer-events: none;
+}
+
+#schichtmodell .wrap { position: relative; z-index: 1; }
+
+.schm-head { max-width: 720px; margin-bottom: clamp(34px, 4.6vw, 56px); }
+.schm-head .h2 { margin-top: 12px; }
+.schm-head .lead { max-width: 56ch; margin-top: 16px; }
+
+.schm-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 4.4vw, 64px);
+  align-items: start;
+}
+
+/* ---------- 2. Schichten-Liste ---------- */
+.schm-list { border-top: 1px solid var(--line-2); }
+
+.schm-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 20px;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 15px 8px 15px 12px;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.28s var(--ease-out, ease);
+}
+
+.schm-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  transform: translateY(-50%);
+  transition: height 0.32s var(--ease-out, ease);
+}
+
+.schm-row:hover,
+.schm-row.is-hover { background: rgba(255, 255, 255, 0.55); }
+
+.schm-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.schm-row[aria-selected="true"]::before { height: 62%; }
+.schm-row[aria-selected="true"] { background: rgba(255, 255, 255, 0.72); }
+.schm-row[aria-selected="true"] .schm-t b { color: var(--accent-700); }
+
+.schm-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: var(--faint);
+  transition: color 0.28s ease;
+}
+
+.schm-row[aria-selected="true"] .schm-num,
+.schm-row.is-hover .schm-num { color: var(--accent-700); }
+
+.schm-t b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(21px, 2vw, 26px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  transition: color 0.28s ease;
+}
+
+.schm-t small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.schm-ar {
+  justify-self: end;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 0.28s ease, transform 0.28s var(--ease-out, ease);
+}
+
+.schm-ar svg { width: 18px; height: 18px; display: block; }
+.schm-row[aria-selected="true"] .schm-ar { opacity: 1; transform: none; }
+
+/* ---------- 3. Detail-Panel ---------- */
+.schm-detail { margin-top: 22px; }
+
+.schm-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 22px 21px;
+  box-shadow: var(--shadow-sm);
+}
+
+.schm-panel[hidden] { display: none; }
+
+.schm-kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+
+.schm-panel p {
+  margin: 10px 0 15px;
+  max-width: 48ch;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.62;
+}
+
+.schm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schm-tags li {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+}
+
+.schm-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.schm-meta {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 4. Bühne ---------- */
+.schm-stage {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 0.94 / 1;
+  min-height: 430px;
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 92% at 72% 10%, #fffdf7 0%, #f8f3e8 52%, #eee6d6 100%);
+  box-shadow: var(--shadow-md), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.schm-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(31, 30, 29, 0.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 30, 29, 0.038) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(120% 90% at 55% 42%, #000 34%, transparent 82%);
+  -webkit-mask-image: radial-gradient(120% 90% at 55% 42%, #000 34%, transparent 82%);
+  pointer-events: none;
+}
+
+.schm-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(78% 60% at 50% 104%, rgba(176, 79, 49, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+#schichtmodell-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: opacity 0.6s ease;
+}
+
+#schichtmodell-canvas.is-live { opacity: 1; }
+#schichtmodell-canvas.is-dragging { cursor: grabbing; }
+#schichtmodell-canvas.is-over { cursor: pointer; }
+
+.schm-stage-top,
+.schm-stage-bottom {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.schm-stage-top {
+  inset: 15px 18px auto;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.schm-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--accent-700);
+}
+
+.schm-live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(176, 79, 49, 0.42);
+  animation: schm-pulse 2.6s ease-out infinite;
+}
+
+@keyframes schm-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(176, 79, 49, 0.42); }
+  55% { box-shadow: 0 0 0 7px rgba(176, 79, 49, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(176, 79, 49, 0); }
+}
+
+.schm-stage-bottom {
+  inset: auto 16px 13px;
+  justify-content: space-between;
+}
+
+.schm-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 249, 245, 0.74);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1;
+}
+
+.schm-hint svg { width: 14px; height: 14px; flex: none; }
+
+.schm-reset {
+  pointer-events: auto;
+  padding: 6px 2px;
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 11.5px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.schm-reset:hover { color: var(--accent-700); }
+.schm-reset:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+/* ---------- 5. SVG-Fallback ---------- */
+.schm-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.schm-fallback[hidden] { display: none; }
+.schm-fallback.is-out { opacity: 0; }
+
+.schm-fallback svg {
+  width: 96%;
+  max-height: 94%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* No CSS transforms on the SVG groups: `transform-box: fill-box`
+   resolves against the group's fill box and shifts the sheets far
+   below the stage in Chromium. Opacity carries the state instead. */
+.schm-plate { transition: opacity 0.32s ease; }
+.schm-plate.is-dim { opacity: 0.55; }
+.schm-plate.is-active { opacity: 1; }
+
+.schm-cast-sheet { fill: rgba(58, 42, 28, 0.13); }
+
+.schm-sheet-top { fill: #f2e4c6; }
+.schm-sheet-left { fill: #cbb187; }
+.schm-sheet-right { fill: #b2956a; }
+.schm-sheet-edge { stroke: rgba(58, 42, 28, 0.55); stroke-width: 1.4; stroke-linejoin: round; }
+.schm-sheet-line { stroke: rgba(58, 42, 28, 0.55); stroke-width: 1.4; fill: none; }
+.schm-sheet-accent { fill: var(--accent); opacity: 0.95; }
+.schm-sheet-node { fill: #fffdf6; stroke: rgba(58, 42, 28, 0.68); stroke-width: 1.4; }
+.schm-fallback text {
+  fill: rgba(150, 64, 42, 0.95);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* Each sheet sits a little darker than the one above it. */
+.schm-fallback [data-fallback-layer="1"] .schm-sheet-top { fill: #ecd9b6; }
+.schm-fallback [data-fallback-layer="1"] .schm-sheet-left { fill: #c2a67b; }
+.schm-fallback [data-fallback-layer="1"] .schm-sheet-right { fill: #a98c60; }
+
+.schm-fallback [data-fallback-layer="2"] .schm-sheet-top { fill: #e4cea4; }
+.schm-fallback [data-fallback-layer="2"] .schm-sheet-left { fill: #b6996c; }
+.schm-fallback [data-fallback-layer="2"] .schm-sheet-right { fill: #9c7f54; }
+
+.schm-fallback [data-fallback-layer="3"] .schm-sheet-top { fill: #dbc192; }
+.schm-fallback [data-fallback-layer="3"] .schm-sheet-left { fill: #aa8c5f; }
+.schm-fallback [data-fallback-layer="3"] .schm-sheet-right { fill: #8f7449; }
+
+/* ---------- 6. Responsive & Motion ---------- */
+@media (max-width: 960px) {
+  .schm-grid { grid-template-columns: 1fr; gap: 28px; }
+  .schm-stage { order: -1; aspect-ratio: 1 / 0.94; min-height: 340px; }
+  .schm-head { margin-bottom: 28px; }
+}
+
+@media (max-width: 520px) {
+  .schm-stage { min-height: 330px; aspect-ratio: 1 / 1.02; }
+  .schm-stage-top { inset: 12px 14px auto; }
+  .schm-stage-bottom { inset: auto 12px 11px; justify-content: flex-end; }
+  .schm-hint { display: none; }
+  .schm-reset { padding: 7px 4px; font-size: 11px; }
+  .schm-row { grid-template-columns: 36px minmax(0, 1fr) 18px; gap: 11px; padding: 13px 6px 13px 10px; }
+  .schm-t b { font-size: 22px; }
+  .schm-t small { font-size: 12.5px; }
+  .schm-panel { padding: 17px 17px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schm-live i { animation: none; }
+  .schm-plate,
+  .schm-row,
+  .schm-row::before,
+  .schm-ar,
+  #schichtmodell-canvas,
+  .schm-fallback { transition-duration: 0.01ms; }
+}
+
+@media print {
+  .schm-stage { display: none; }
+  .schm-panel[hidden] { display: block; }
+}
