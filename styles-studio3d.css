@@ -1,0 +1,207 @@
+/* ============================================================
+   BYTEWERK STUDIO — STUDIO-MODELL (Hero, three.js)
+   ------------------------------------------------------------
+   Scope: only .bs-* (stage, HUD, fallback) and the hero visual
+   column. Loaded after styles-claude.css. No global overrides.
+
+   1  Hero layout with visual column
+   2  Stage surface
+   3  Canvas + fallback drawing
+   4  HUD, toggle, hint
+   5  Panel tuning
+   6  Responsive
+   7  Motion, print, no-WebGL
+   ============================================================ */
+
+/* ---------- 1. Hero layout with visual column ---------- */
+.hero-v3-grid { align-items: center; }
+.hero-v3-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+@media (min-width: 1025px) {
+  .hero-v3-grid { grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr); }
+}
+
+/* ---------- 2. Stage surface ---------- */
+.bs-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  max-height: clamp(272px, 33vh, 352px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 90% at 58% 18%, #fffdf7 0%, rgba(255, 253, 247, 0) 62%),
+    linear-gradient(168deg, #f8f4ea 0%, #f1ebdd 58%, #eae3d2 100%);
+  box-shadow: var(--shadow-sm);
+}
+.bs-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(31, 30, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 30, 29, 0.055) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 40%, #000 0%, transparent 78%);
+          mask-image: radial-gradient(120% 90% at 50% 40%, #000 0%, transparent 78%);
+  opacity: 0.7;
+}
+.bs-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -30px 60px rgba(31, 30, 29, 0.045);
+}
+
+/* ---------- 3. Canvas + fallback drawing ---------- */
+.bs-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  touch-action: pan-y;
+}
+.bs-stage.is-live .bs-canvas { opacity: 1; }
+.bs-stage.is-live { cursor: grab; }
+.bs-stage.is-live.is-dragging { cursor: grabbing; }
+
+.bs-fallback {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: min(74%, 340px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  transition: opacity 0.5s ease;
+}
+.bs-fallback-shadow { filter: blur(0.6px); }
+.bs-stage.is-live .bs-fallback { opacity: 0; visibility: hidden; }
+
+/* ---------- 4. HUD, toggle, hint ---------- */
+.bs-hud {
+  position: absolute;
+  z-index: 4;
+  left: 16px;
+  bottom: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.bs-stage.is-live .bs-hud { opacity: 1; transform: none; }
+.bs-hud b {
+  font-weight: 500;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.bs-hud span { color: var(--ink); }
+.bs-hud i {
+  font-style: normal;
+  color: var(--faint);
+  letter-spacing: 0.06em;
+}
+
+.bs-toggle {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.82);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.bs-stage.is-live .bs-toggle { opacity: 1; visibility: visible; }
+.bs-toggle:hover { background: #fffdf7; border-color: var(--accent); color: var(--accent-700); }
+.bs-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bs-toggle::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  box-shadow: 0 3px 0 -1px currentColor;
+  opacity: 0.65;
+}
+.bs-toggle[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.bs-toggle .bs-l[data-state="1"] { display: none; }
+.bs-toggle[aria-pressed="true"] .bs-l[data-state="0"] { display: none; }
+.bs-toggle[aria-pressed="true"] .bs-l[data-state="1"] { display: inline; }
+
+/* ---------- 5. Panel tuning ---------- */
+.hero-v3-visual .hero-v3-panel {
+  border-top: 1.5px solid var(--line-2);
+  padding-top: 0;
+  background: linear-gradient(180deg, rgba(31, 30, 29, 0.028), transparent 70%);
+}
+.hero-v3-visual .hero-v3-panel .ed-idx {
+  padding: 11px 4px;
+  transition: background-color 0.25s ease, padding-left 0.25s ease;
+}
+.hero-v3-visual .hero-v3-panel .ed-idx .n { color: var(--faint); transition: color 0.25s ease; }
+.hero-v3-visual .hero-v3-panel .ed-idx.is-bs {
+  background: linear-gradient(90deg, var(--accent-tint), transparent 82%);
+  padding-left: 10px;
+}
+.hero-v3-visual .hero-v3-panel .ed-idx.is-bs .n { color: var(--accent); }
+
+/* ---------- 6. Responsive ---------- */
+@media (max-width: 1024px) {
+  .hero-v3-visual { max-width: 560px; width: 100%; }
+  .bs-stage { max-height: 380px; aspect-ratio: 5 / 4; }
+}
+@media (max-width: 640px) {
+  .bs-stage { aspect-ratio: 1 / 1; max-height: 340px; }
+  .bs-fallback { width: min(82%, 300px); }
+  .bs-hud { left: 12px; bottom: 11px; font-size: 9.5px; }
+  .bs-toggle { right: 10px; top: 10px; font-size: 9.5px; padding: 6px 9px; }
+}
+
+/* ---------- 7. Motion, print, no-WebGL ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .bs-canvas, .bs-fallback, .bs-hud, .bs-toggle { transition: none; }
+  .hero-v3-visual .hero-v3-panel .ed-idx { transition: none; }
+}
+@media print {
+  .bs-stage { display: none; }
+}
+html.no-webgl .bs-toggle { display: none; }
