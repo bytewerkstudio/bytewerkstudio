@@ -10,6 +10,7 @@
 /* ---------- 1. Stage ---------- */
 .zw-stage {
   position: relative;
+  width: 100%;
   aspect-ratio: 2.6;
   min-height: 240px;
   max-height: 420px;
@@ -148,6 +149,11 @@
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: clamp(30px, 4.4vw, 64px);
   align-items: center;
+}
+
+.zw-band-grid > *,
+.zw-grid > * {
+  min-width: 0;
 }
 
 .zw-band-copy .lead {
@@ -490,7 +496,7 @@
 /* ---------- 5. Responsive ---------- */
 @media (max-width: 1080px) {
   .zw-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .zw-panel {
@@ -509,7 +515,7 @@
 
 @media (max-width: 900px) {
   .zw-band-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .zw-band-grid .zw-stage {

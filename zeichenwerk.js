@@ -866,12 +866,18 @@ function createStage(THREE, host) {
       const input = document.querySelector('[data-zw-input]');
       const value = normalize(input ? input.value : staticWords[0] && staticWords[0].textContent) || 'BYTEWERK';
       staticWords.forEach((el) => { el.textContent = value; });
+      document.querySelectorAll('[data-zw-spec-chars]').forEach((el) => {
+        el.textContent = value.length + ' ' + t('Zeichen', 'chars');
+      });
     };
 
     const paintMaterial = () => {
       const active = document.querySelector('[data-zw-preset][aria-pressed="true"]');
       const preset = PRESETS[active && active.dataset.zwPreset] || PRESETS.terrakotta;
       staticWords.forEach((el) => { el.style.color = preset.base; });
+      document.querySelectorAll('[data-zw-spec-material]').forEach((el) => {
+        el.textContent = preset[lang()];
+      });
     };
 
     document.querySelectorAll('[data-zw-input]').forEach((input) => {
@@ -895,12 +901,35 @@ function createStage(THREE, host) {
     document.querySelectorAll('[data-zw-reset]').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('[data-zw-input]').forEach((input) => { input.value = 'BYTEWERK'; });
+        document.querySelectorAll('[data-zw-preset]').forEach((other) => {
+          const active = other.dataset.zwPreset === 'terrakotta';
+          other.setAttribute('aria-pressed', String(active));
+          other.classList.toggle('is-active', active);
+        });
+        document.querySelectorAll('[data-zw-depth]').forEach((input) => { input.value = '0.62'; });
+        paintDepth();
         paintWord();
+        paintMaterial();
       });
     });
 
+    const depthFallback = document.querySelector('[data-zw-depth]');
+    const depthOutFallback = document.getElementById('zw-depth-out');
+
+    function paintDepth() {
+      if (!depthOutFallback) return;
+      const value = Number(depthFallback && depthFallback.value) || 0.62;
+      depthOutFallback.textContent = value.toFixed(2).replace('.', ',');
+      document.querySelectorAll('[data-zw-spec-depth]').forEach((el) => {
+        el.textContent = t('Tiefe ', 'depth ') + value.toFixed(2).replace('.', ',');
+      });
+    }
+
+    if (depthFallback) depthFallback.addEventListener('input', paintDepth);
+
     paintWord();
     paintMaterial();
+    paintDepth();
   };
 
   const boot = async () => {
