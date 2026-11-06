@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
+  <link rel="stylesheet" href="styles-3d.css">
 <link rel="stylesheet" href="styles-work.css">
 <script type="application/ld+json">
 {
@@ -84,6 +85,9 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero-v3" data-screen-label="Hero">
+  <!-- Three.js-Skulptur: Zeichentisch-Modell in der Claude-Palette.
+       Ohne WebGL bleibt der CSS-Wash stehen. -->
+  <div class="hero-scene" data-scene3d="stratum" aria-hidden="true"></div>
   <div class="wrap hero-v3-grid">
     <div class="hero-v3-copy">
       <span class="hero-badge reveal">
@@ -661,6 +665,7 @@
 <script src="ui-v4.js"></script>
 <script src="ui-v5.js"></script>
 <script src="background.js"></script>
+  <script src="scene3d.js"></script>
 <script>
 /* CTA band subtle grid canvas */
 (function () {

@@ -40,3 +40,20 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `components.js` | Header, Footer, DE/EN |
 | `ui-v4.js` | Suche, Shop-Werkzeuge, Konfigurator |
 | `background.js` | Bewegter Hintergrund, code-only |
+| `styles-3d.css` | Rahmen, Masken und Motion-Schalter der 3D-Szenen |
+| `scene3d.js` | Three.js-Szenen (`stratum`, `contour`), laedt `vendor/` on demand |
+| `vendor/three.module.min.js` + `vendor/three.core.min.js` | Three.js r180, lokal — die CSP erlaubt nur `'self'` |
+
+## Three.js — eine Regel, ein Build
+
+- Szenen laufen ueber `scene3d.js` und den lokalen Build in `vendor/`.
+  Kein CDN: `script-src 'self'` blockt jede fremde Quelle, das faellt erst im
+  Browser auf. Wer eine neue Szene baut, haengt sie als Typ in `scene3d.js`
+  ein — siehe `docs/SZENE3D.md`.
+- Genau **ein** Three.js-Build im Repo: `vendor/three.module.min.js`
+  (laedt `vendor/three.core.min.js` nach). Weitere Builds im Ordner sind
+  Zwischenstaende und gehoeren nicht ins Repository.
+- Gestaltung: Claude-Look (Papier, Terrakotta, Salbei, serifenlose Ruhe).
+  Linien statt Neon, langsame Bewegung, kein Bloom, kein Partikelregen.
+- Budget: DPR ≤ 2, ≤ 2,6 Mio. Pixel, Start erst im Viewport, Pause im
+  Hintergrund-Tab, `prefers-reduced-motion` → ein statisches Bild.
