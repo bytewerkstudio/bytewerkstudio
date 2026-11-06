@@ -26,7 +26,16 @@ if (stage && canvas && api) {
 async function boot() {
   'use strict';
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  /* The site's own motion switch in scene3d.js writes `bw-motion`;
+     the showroom follows it, so one switch calms every page. */
+  let motionOff = false;
+  try { motionOff = localStorage.getItem('bw-motion') === 'off'; } catch (e) {}
+  const reduceMotion = {
+    get matches() {
+      if (motionOff) return true;
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+  };
   let products = api.products;
 
   /* Ask the browser once, without letting three.js log an error. */
