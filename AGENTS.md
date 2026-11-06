@@ -40,3 +40,5 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `components.js` | Header, Footer, DE/EN |
 | `ui-v4.js` | Suche, Shop-Werkzeuge, Konfigurator |
 | `background.js` | Bewegter Hintergrund, code-only |
+| `styles-studio3d.css` | Hero-Bühne (Studio-Modell), zuletzt geladen |
+| `scene-studio.js` | three.js-Szene der Hero-Bühne (r180 aus `vendor/`) |
