@@ -62,6 +62,8 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
 - `ui-v3.js`: Scroll-Fortschritt, Zaehler, FAQ, Spotlight
 - `ui-v4.js`: Befehlspalette/Suche, Shop-Werkzeuge, Sticky-Kaufleiste,
   Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
+- `background.js`: Bewegter, code-only Hintergrund (Canvas), respektiert
+  `prefers-reduced-motion` und pausiert in Hintergrund-Tabs
 
 ## Betrieb
 
