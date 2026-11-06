@@ -65,6 +65,10 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
 - `background.js`: Bewegter, code-only Hintergrund (Canvas), respektiert
   `prefers-reduced-motion` und pausiert in Hintergrund-Tabs
+- `scene-workstoff.js` + `styles-workstoff.css`: Materialstudie auf der
+  Startseite. 72 Papierkarten formen sich beim Scrollen vom Raster ueber Lagen
+  und Koerper zum Feld; Ziehen dreht das Modell. Ohne JavaScript oder WebGL
+  steht dort ein CSS-Poster, bei `prefers-reduced-motion` ein fester Zustand.
 
 ## Betrieb
 
