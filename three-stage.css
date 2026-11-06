@@ -1,0 +1,112 @@
+/* ============================================================
+   BYTEWERK STUDIO — THREE-STAGE
+   ------------------------------------------------------------
+   Scope: only .page-head[data-stage]. A fine survey drawing
+   (contour field) sits behind the shop page head. The text
+   column stays on paper; the drawing lives on the right.
+
+   Loaded after styles-claude.css, shop.html only.
+   1  Layer and canvas
+   2  Paper veil for contrast
+   3  Responsive
+   4  Motion and print
+   ============================================================ */
+
+/* ---------- 1. Layer and canvas ---------- */
+.page-head[data-stage] {
+  isolation: isolate;
+}
+
+.page-head[data-stage] .stage-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 82% at 78% 26%, rgba(255, 253, 247, 0.92), rgba(243, 240, 232, 0) 72%),
+    radial-gradient(40% 60% at 96% 92%, rgba(176, 79, 49, 0.05), rgba(243, 240, 232, 0) 70%);
+}
+
+.page-head[data-stage] .stage-layer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.page-head[data-stage].stage-ready .stage-layer canvas {
+  opacity: 1;
+}
+
+/* The old vertical rules step back so the drawing reads. */
+.page-head[data-stage] .page-head-bg {
+  opacity: 0.28;
+}
+
+/* ---------- 2. Paper veil ----------
+   The left 70% stays nearly paper-white so crumb, headline and
+   lead never lose contrast. The right side opens up. */
+.page-head[data-stage] .stage-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(243, 240, 232, 0.96) 0%,
+      rgba(243, 240, 232, 0.90) 22%,
+      rgba(243, 240, 232, 0.55) 42%,
+      rgba(243, 240, 232, 0.10) 56%,
+      rgba(243, 240, 232, 0) 64%);
+}
+
+/* ---------- 2b. Mono label ---------- */
+.stage-label {
+  position: absolute;
+  right: 26px;
+  bottom: 16px;
+  z-index: 2;
+  padding: 3px 7px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+  background: rgba(243, 240, 232, 0.74);
+  pointer-events: none;
+}
+
+/* ---------- 3. Responsive ---------- */
+@media (max-width: 900px) {
+  .page-head[data-stage] .stage-layer::after {
+    background:
+      linear-gradient(180deg,
+        rgba(243, 240, 232, 0.94) 0%,
+        rgba(243, 240, 232, 0.82) 40%,
+        rgba(243, 240, 232, 0.52) 68%,
+        rgba(243, 240, 232, 0.30) 100%);
+  }
+}
+
+@media (max-width: 900px) {
+  .stage-label { display: none; }
+}
+
+@media (max-width: 560px) {
+  .page-head[data-stage] .stage-layer {
+    background:
+      radial-gradient(70% 70% at 82% 30%, rgba(255, 253, 247, 0.9), rgba(243, 240, 232, 0) 76%);
+  }
+}
+
+/* ---------- 4. Motion and print ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .page-head[data-stage] .stage-layer canvas {
+    transition: none;
+  }
+}
+
+@media print {
+  .page-head[data-stage] .stage-layer { display: none; }
+}
