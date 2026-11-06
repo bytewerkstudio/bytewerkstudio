@@ -74,6 +74,10 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   vier echte Werkzeuge (Passwort-Schmiede, Pruefungs-Countdown, Text-Werkstatt,
   Wochenbrett) und eine three.js-Werkbank mit vier Papierwerkzeugen. Alle Daten
   bleiben im Browser (localStorage), kein Backend, kein Upload.
+- `scene-workstoff.js` + `styles-workstoff.css`: Materialstudie auf der
+  Startseite. 72 Papierkarten formen sich beim Scrollen vom Raster ueber Lagen
+  und Koerper zum Feld; Ziehen dreht das Modell. Ohne JavaScript oder WebGL
+  steht dort ein CSS-Poster, bei `prefers-reduced-motion` ein fester Zustand.
 
 ## Betrieb
 

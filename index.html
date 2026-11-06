@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-studio3d.css">
+<link rel="stylesheet" href="styles-workstoff.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
 <link rel="stylesheet" href="styles-work.css">
@@ -210,6 +211,50 @@
     </div>
   </div>
 </section>
+
+<!-- ============ WERKSTOFF ============ -->
+<section class="sec-pad ws-sec" id="werkstoff" data-screen-label="Werkstoff" aria-labelledby="ws-title">
+  <div class="wrap ws-grid">
+    <div class="ws-copy reveal">
+      <span class="eyebrow" data-en="Material study">Werkstoff</span>
+      <h2 class="h2" id="ws-title" data-en="One material. Four states.">Ein Werkstoff. Vier Zustände.</h2>
+      <p class="lead" data-en="Before the first line of code we settle form and behaviour. The same 72 sheets become a grid, layers, a body and a field — scroll through the model and watch the idea take shape. Drag it to turn it.">
+        Bevor eine Zeile Code entsteht, klären wir Form und Verhalten. Dieselben 72 Blätter werden zum Raster,
+        zu Lagen, zu einem Körper und zu einem Feld. Scroll am Modell vorbei und sieh zu, wie aus einer Idee
+        ein Produkt wird — oder zieh es, um es zu drehen.
+      </p>
+      <div class="ws-meta" aria-hidden="true">
+        <span>three.js</span>
+        <span data-en="72 sheets">72 Blätter</span>
+        <span data-en="4 states">4 Zustände</span>
+      </div>
+      <div class="ws-rail" aria-hidden="true">
+        <span class="ws-step is-on"><i>01</i><b data-en="Grid">Raster</b></span>
+        <span class="ws-step"><i>02</i><b data-en="Layers">Lagen</b></span>
+        <span class="ws-step"><i>03</i><b data-en="Body">Körper</b></span>
+        <span class="ws-step"><i>04</i><b data-en="Field">Feld</b></span>
+      </div>
+      <div class="ws-foot">
+        <p class="ws-cap" data-ws-caption>Raster — Ordnung, bevor gebaut wird.</p>
+        <a class="ws-more" href="#prozess"><span data-en="How we work">So arbeiten wir</span> <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="ws-stage" data-workstoff data-screen-label="Werkstoff-Modell" aria-hidden="true">
+      <div class="ws-glow" aria-hidden="true"></div>
+      <canvas aria-hidden="true"></canvas>
+      <div class="ws-poster" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="ws-hair top" aria-hidden="true"></div>
+      <div class="ws-hair bottom" aria-hidden="true"></div>
+      <span class="ws-cue" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/></svg>
+        <span data-en="Drag to rotate">Ziehen zum Drehen</span>
+      </span>
+      <span class="ws-fig" aria-hidden="true">Abb. 01 — Werkstoff</span>
+    </div>
+  </div>
+</section>
+
 
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
@@ -739,6 +784,7 @@
 <script src="background.js"></script>
   <script src="scene3d.js"></script>
 <script type="module" src="scene-studio.js"></script>
+<script type="module" src="scene-workstoff.js"></script>
 <script>
 /* CTA band subtle grid canvas */
 (function () {
