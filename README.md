@@ -20,6 +20,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
 - `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
 - `arbeiten.html`: Werkverzeichnis aller elf Produkte mit Filter, Tastaturbedienung und drei Fallstudien
+- `musterbuch.html`: interaktives Musterbuch — Ton, Schrift, Dichte und Kante wählen, echte Vorschau mit Kontrastprüfung, Tokens als CSS oder Briefing
 - `produkt.html`: Produktdetailseite fuer Lernreich
 - `pruefungs-countdown.html`: Produktdetailseite fuer die kostenlose Windows-App Pruefungs-Countdown
 - `lernreich-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Lernreich Pro
