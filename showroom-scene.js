@@ -26,7 +26,20 @@ if (stage && canvas && api) {
 async function boot() {
   'use strict';
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  /* The site's own motion switch in scene3d.js writes `bw-motion`;
+     the showroom follows it, so one switch calms every page. */
+  const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let motionOff = REDUCE.matches;
+  try {
+    const stored = localStorage.getItem('bw-motion');
+    if (stored === 'off') motionOff = true;
+    else if (stored === 'on') motionOff = false;
+  } catch (e) {}
+  const reduceMotion = {
+    get matches() {
+      return motionOff;
+    }
+  };
   let products = api.products;
 
   /* Ask the browser once, without letting three.js log an error. */
@@ -419,6 +432,15 @@ async function boot() {
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stop();
     else start();
+  });
+
+  /* The switch in the toolbar: pause means "stop the loop and set the
+     stage once", resume restarts the loop where it left off. */
+  document.addEventListener('bw:showroom-motion', (e) => {
+    const on = !!(e.detail && e.detail.on);
+    motionOff = !on;
+    if (motionOff) { stop(); settle(); }
+    else { start(); }
   });
 
   if ('ResizeObserver' in window) {
