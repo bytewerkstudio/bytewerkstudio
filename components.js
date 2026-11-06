@@ -168,4 +168,25 @@
 
   // expose for other scripts / pages added later
   window.bwApplyLang = applyLang;
+
+  /* ---- Werkkorb: only where something can be bought ---- */
+  (function () {
+    const BUY_PAGES = [
+      'index.html', 'shop.html',
+      'lernreich-pro.html', 'keyforge-vault.html', 'updatepilot.html',
+      'bytewerk-pdf-text-pro.html', 'neon-dominion.html'
+    ];
+    const file = (location.pathname.split('/').pop() || 'index.html');
+    if (BUY_PAGES.indexOf(file) === -1) return;
+
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'styles-werkkorb.css';
+    document.head.appendChild(css);
+
+    const js = document.createElement('script');
+    js.src = 'werkkorb.js';
+    js.defer = true;
+    document.body.appendChild(js);
+  })();
 })();
