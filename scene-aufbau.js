@@ -200,16 +200,19 @@
       return s;
     }
 
-    function labelTexture(layer) {
-      var ratio = layer.w / layer.h;
-      var W = 1024;
-      var H = Math.round(W / ratio);
-      var cv = document.createElement('canvas');
-      cv.width = W;
-      cv.height = H;
+    var labels = [];
 
+    function currentLang() {
+      return (document.documentElement.lang || 'de').toLowerCase().indexOf('en') === 0 ? 'en' : 'de';
+    }
+
+    function drawLabel(cv, layer) {
+      var W = cv.width;
+      var H = cv.height;
       var ctx = cv.getContext('2d');
-      if (!ctx) return null;
+      if (!ctx) return;
+
+      var english = currentLang() === 'en';
 
       ctx.clearRect(0, 0, W, H);
 
@@ -242,23 +245,44 @@
       ctx.textBaseline = 'top';
       ctx.fillText(layer.num, 46, 40);
 
-      /* Name */
+      /* Name in der aktiven Sprache */
       ctx.fillStyle = '#1f1e1d';
       ctx.font = '500 76px Newsreader, Georgia, serif';
-      ctx.fillText(layer.label, 44, 92);
+      ctx.fillText(english ? layer.en : layer.label, 44, 92);
 
-      /* englische Zeile */
+      /* die jeweils andere Sprache als leise Zeile */
       ctx.fillStyle = 'rgba(31,30,29,0.42)';
       ctx.font = '400 25px Inter, system-ui, sans-serif';
-      ctx.fillText(layer.en.toUpperCase(), 47, 198);
+      ctx.fillText((english ? layer.label : layer.en).toUpperCase(), 47, 198);
+    }
+
+    function labelTexture(layer) {
+      var ratio = layer.w / layer.h;
+      var W = 1024;
+      var H = Math.round(W / ratio);
+      var cv = document.createElement('canvas');
+      cv.width = W;
+      cv.height = H;
+
+      drawLabel(cv, layer);
 
       var texture = new THREE.CanvasTexture(cv);
       if (THREE.SRGBColorSpace) texture.colorSpace = THREE.SRGBColorSpace;
       if (renderer.capabilities && renderer.capabilities.getMaxAnisotropy) {
         texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       }
+      labels.push({ cv: cv, texture: texture, layer: layer });
       return texture;
     }
+
+    function repaintLabels() {
+      labels.forEach(function (entry) {
+        drawLabel(entry.cv, entry.layer);
+        entry.texture.needsUpdate = true;
+      });
+    }
+
+    document.addEventListener('bw:lang', repaintLabels);
 
     LAYERS.forEach(function (layer, index) {
       var shape = roundedShape(layer.w, layer.h, 0.16);
