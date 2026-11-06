@@ -35,6 +35,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `passwort-vergessen.html`: Reset-Anfrage
 - `konto.html`: Konto-Dashboard mit Uebersicht, Bibliothek, Bestellungen, Profil und Sicherheit
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
+- `marke.html`: die Marke als 3D-Objekt — Aufbau, Regeln, Dateien (three.js)
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
@@ -63,6 +64,9 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
 - `ui-v3.js`: Scroll-Fortschritt, Zaehler, FAQ, Spotlight
 - `ui-v4.js`: Befehlspalette/Suche, Shop-Werkzeuge, Sticky-Kaufleiste,
   Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
+- `marke-3d.js`: drehbares 3D-Zeichen auf `marke.html` (three.js r180 aus
+  `vendor/`), mit Zerlege-Ansicht, Tastaturbedienung, WebGL-Fallback und
+  Standbild bei `prefers-reduced-motion`
 - `background.js`: Bewegter, code-only Hintergrund (Canvas), respektiert
   `prefers-reduced-motion` und pausiert in Hintergrund-Tabs
 
