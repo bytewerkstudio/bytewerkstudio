@@ -65,6 +65,11 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
 - `background.js`: Bewegter, code-only Hintergrund (Canvas), respektiert
   `prefers-reduced-motion` und pausiert in Hintergrund-Tabs
+- `produktbuehne.js` + `styles-produktbuehne.css`: 3D-Produktbühne auf den
+  fünf App-Seiten mit Logo-Hero (three.js aus `vendor/`). Papierskulptur je
+  Produkt, Ziehen zum Drehen, Zeiger-Parallaxe, Standbild bei
+  `prefers-reduced-motion`, Pause außerhalb des Viewports. Ohne WebGL bleibt
+  das bisherige Logo-Panel stehen.
 
 ## Betrieb
 
