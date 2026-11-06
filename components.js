@@ -93,6 +93,7 @@
             <h4 data-en="Studio">Studio</h4>
             <a href="studio.html" data-en="About us">Über uns</a>
             <a href="arbeiten.html" data-en="Work">Arbeiten</a>
+            <a href="musterbuch.html" data-en="Sample book">Musterbuch</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
