@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Probierstand — vier Werkzeuge live im Browser | Bytewerk Studio</title>
+<meta name="description" content="Passwort-Schmiede, Prüfungs-Countdown, Text-Werkstatt und Wochenbrett: vier Bytewerk-Produkte direkt im Browser testen. Ohne Konto, ohne Upload, ohne Installation.">
+<link rel="canonical" href="https://bytewerkstudio.com/probierstand.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Probierstand — Bytewerk Studio">
+<meta property="og:description" content="Vier eigene Werkzeuge live ausprobieren: Passwort, Countdown, Text aufräumen, Wochenplan. Läuft lokal im Browser.">
+<meta property="og:url" content="https://bytewerkstudio.com/probierstand.html">
+<meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
+<meta property="og:site_name" content="Bytewerk Studio">
+<meta property="og:locale" content="de_DE">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
+<link rel="stylesheet" href="styles-probierstand.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Probierstand — Bytewerk Studio",
+  "url": "https://bytewerkstudio.com/probierstand.html",
+  "description": "Vier Bytewerk-Werkzeuge live im Browser: Passwort-Schmiede, Prüfungs-Countdown, Text-Werkstatt, Wochenbrett.",
+  "isPartOf": { "@type": "WebSite", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" },
+  "publisher": { "@type": "Organization", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" }
+}
+</script>
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="pb-hero" data-screen-label="Probierstand">
+  <div class="wrap pb-hero-grid">
+
+    <div>
+      <div class="pb-crumb">
+        <a href="index.html" data-en="Home">Start</a>
+        <span aria-hidden="true">/</span>
+        <span>Probierstand</span>
+      </div>
+
+      <span class="pb-kicker" data-en="Try before you buy · no account">Erst ausprobieren · ohne Konto</span>
+
+      <h1 class="pb-title" data-en="Try it first.<br><em>Then decide.</em>">
+        Erst ausprobieren.<br>
+        <em>Dann entscheiden.</em>
+      </h1>
+
+      <p class="pb-lead" data-en="Four tools from our own shop, running right here in the browser. No download, no account, no upload — everything stays on this device.">
+        Vier Werkzeuge aus dem eigenen Shop, direkt hier im Browser.
+        <strong>Kein Download, kein Konto, kein Upload</strong> — alles bleibt auf diesem Gerät.
+      </p>
+
+      <div class="pb-badges">
+        <span class="pb-badge"><b aria-hidden="true"></b><span data-en="0 uploads">0 Uploads</span></span>
+        <span class="pb-badge"><b aria-hidden="true"></b><span data-en="Runs offline">Läuft offline</span></span>
+        <span class="pb-badge"><b aria-hidden="true"></b><span data-en="Keyboard ready">Tastaturbereit</span></span>
+        <span class="pb-badge"><b aria-hidden="true"></b><span data-en="No tracking">Kein Tracking</span></span>
+      </div>
+
+      <div class="pb-actions">
+        <a class="btn btn-primary btn-lg" href="#werkzeuge"><span data-en="Open the workbench">Werkbank öffnen</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-lg" href="shop.html" data-en="All products">Alle Produkte</a>
+      </div>
+    </div>
+
+    <div>
+      <figure class="pb-bench-figure">
+        <div class="pb-bench-head">
+          <span><span class="pb-bench-dot" aria-hidden="true"></span><b>Fig. 02</b> — <span data-en="Workbench">Werkbank</span></span>
+          <span data-en="Paper, tools, light">Papier, Werkzeug, Licht</span>
+        </div>
+
+        <div class="pb-bench" data-bench>
+          <canvas role="img" aria-label="Dreidimensionales Modell einer Werkbank aus Papier mit vier Werkzeugen: Schlüssel, Uhr, Dokument und Kalender."></canvas>
+          <div class="pb-bench-fallback" aria-hidden="true">
+            <a href="#werkzeuge" data-goto="pw"><span>01 · KeyForge Vault</span>Passwort-Schmiede</a>
+            <a href="#werkzeuge" data-goto="cd"><span>02 · Prüfungs-Countdown</span>Countdown</a>
+            <a href="#werkzeuge" data-goto="text"><span>03 · PDF Text Pro</span>Text-Werkstatt</a>
+            <a href="#werkzeuge" data-goto="week"><span>04 · LumaWeek</span>Wochenbrett</a>
+          </div>
+        </div>
+
+        <figcaption class="pb-bench-foot">
+          <span data-en="Choose a tool on the bench">Wähle ein Werkzeug auf der Bank</span>
+          <span class="pb-bench-live" data-bench-label aria-live="polite">Passwort-Schmiede</span>
+        </figcaption>
+      </figure>
+
+      <div class="pb-picker" role="group" aria-label="Werkzeug auf der Werkbank wählen">
+        <button class="pb-pick" type="button" data-goto="pw" data-bench-pick="pw" aria-pressed="true"><i>01</i><span data-en="Password">Passwort</span></button>
+        <button class="pb-pick" type="button" data-goto="cd" data-bench-pick="cd" aria-pressed="false"><i>02</i><span data-en="Countdown">Countdown</span></button>
+        <button class="pb-pick" type="button" data-goto="text" data-bench-pick="text" aria-pressed="false"><i>03</i><span data-en="Text">Text</span></button>
+        <button class="pb-pick" type="button" data-goto="week" data-bench-pick="week" aria-pressed="false"><i>04</i><span data-en="Week">Woche</span></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ WORKBENCH ============ -->
+<section class="pb-work" id="werkzeuge" data-screen-label="Werkzeuge">
+  <div class="wrap pb-work-shell">
+
+    <div class="pb-rail" role="tablist" aria-label="Werkzeuge" aria-orientation="vertical" data-pb-tabs>
+      <div class="pb-rail-head" data-en="Four tools · all local">Vier Werkzeuge · alles lokal</div>
+
+      <button class="pb-tab" type="button" role="tab" id="pb-tab-pw" aria-controls="pb-panel-pw" aria-selected="true" tabindex="0">
+        <span class="n">01</span>
+        <span><span class="t" data-en="Password forge">Passwort-Schmiede</span><span class="p">KeyForge Vault · 12,99 €</span></span>
+        <span class="a" aria-hidden="true">→</span>
+      </button>
+      <button class="pb-tab" type="button" role="tab" id="pb-tab-cd" aria-controls="pb-panel-cd" aria-selected="false" tabindex="-1">
+        <span class="n">02</span>
+        <span><span class="t" data-en="Exam countdown">Prüfungs-Countdown</span><span class="p" data-en="Countdown · free">Prüfungs-Countdown · kostenlos</span></span>
+        <span class="a" aria-hidden="true">→</span>
+      </button>
+      <button class="pb-tab" type="button" role="tab" id="pb-tab-text" aria-controls="pb-panel-text" aria-selected="false" tabindex="-1">
+        <span class="n">03</span>
+        <span><span class="t" data-en="Text workshop">Text-Werkstatt</span><span class="p">Bytewerk PDF Text Pro · 59 €</span></span>
+        <span class="a" aria-hidden="true">→</span>
+      </button>
+      <button class="pb-tab" type="button" role="tab" id="pb-tab-week" aria-controls="pb-panel-week" aria-selected="false" tabindex="-1">
+        <span class="n">04</span>
+        <span><span class="t" data-en="Week board">Wochenbrett</span><span class="p">LumaWeek Planner · 5,99 €</span></span>
+        <span class="a" aria-hidden="true">→</span>
+      </button>
+
+      <p class="pb-rail-note" data-en="These are reduced versions of the real apps. The full versions run on Windows and keep their data offline, too.">
+        Das sind verkleinerte Fassungen der echten Apps. Die Vollversionen laufen unter
+        Windows und halten ihre Daten ebenfalls offline.
+      </p>
+    </div>
+
+    <div>
+
+      <!-- ---------- 01 Password ---------- -->
+      <div class="pb-panel" role="tabpanel" id="pb-panel-pw" aria-labelledby="pb-tab-pw" tabindex="-1">
+        <div class="pb-panel-head">
+          <div>
+            <span class="pb-eyebrow" data-en="Tool 01 · KeyForge Vault">Werkzeug 01 · KeyForge Vault</span>
+            <h2 data-en="Passwords you can actually remember to copy.">Passwörter, die man wirklich kopiert.</h2>
+            <p data-en="Generated in the browser with the system's cryptographic random source. Nothing is stored, nothing is sent.">
+              Im Browser mit der kryptografischen Zufallsquelle des Systems erzeugt.
+              Nichts wird gespeichert, nichts gesendet.
+            </p>
+          </div>
+          <a class="pb-product-tag" href="keyforge-vault.html"><b>→</b> KeyForge Vault</a>
+        </div>
+
+        <div class="pb-panel-body">
+          <div class="pb-pw-out">
+            <div class="pb-pw-field" id="pb-pw-out" data-pw-out aria-live="polite">—</div>
+            <div class="pb-pw-actions">
+              <button class="pb-btn pb-btn-solid" type="button" data-pw-new>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg>
+                <span data-en="New">Neu</span>
+              </button>
+              <button class="pb-btn" type="button" data-pw-copy>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+                <span data-en="Copy">Kopieren</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="pb-slider">
+            <label class="pb-label" for="pb-pw-len" style="margin:0" data-en="Length">Länge</label>
+            <input type="range" id="pb-pw-len" min="12" max="48" value="20" step="1" data-pw-len>
+            <output for="pb-pw-len" data-pw-len-out>20</output>
+          </div>
+
+          <fieldset class="pb-options">
+            <legend data-en="Character sets">Zeichensätze</legend>
+            <label class="pb-check"><input type="checkbox" checked data-pw-set="upper"> <span data-en="Capital letters (A–Z)">Großbuchstaben (A–Z)</span></label>
+            <label class="pb-check"><input type="checkbox" checked data-pw-set="lower"> <span data-en="Lowercase (a–z)">Kleinbuchstaben (a–z)</span></label>
+            <label class="pb-check"><input type="checkbox" checked data-pw-set="digits"> <span data-en="Digits (0–9)">Ziffern (0–9)</span></label>
+            <label class="pb-check"><input type="checkbox" checked data-pw-set="symbols"> <span data-en="Symbols (!?&#38;…)">Sonderzeichen (!?&#38;…)</span></label>
+            <label class="pb-check"><input type="checkbox" data-pw-set="plain"> <span data-en="No look-alikes (O0Il1)">Ohne Verwechslung (O0Il1)</span></label>
+            <label class="pb-check"><input type="checkbox" data-pw-set="words"> <span data-en="Group in blocks of 4">In 4er-Blöcken</span></label>
+          </fieldset>
+
+          <div class="pb-strength">
+            <div class="pb-strength-head">
+              <span class="k" data-en="Strength">Stärke</span>
+              <span class="v" data-pw-label>stark</span>
+            </div>
+            <div class="pb-strength-bars" data-pw-bars data-score="4" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="pb-strength-meta">
+              <span><b data-pw-bits>119</b> <span data-en="bits of entropy">Bit Entropie</span></span>
+              <span data-en="Brute force at 10¹² guesses/s:">Brute Force bei 10¹² Raten/s:</span>
+              <span><b data-pw-time>rund 3 Millionen Jahre</b></span>
+            </div>
+          </div>
+
+          <p class="pb-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span data-en="Entropy is length × log₂ of the character set. Every extra character multiplies the search space.">Entropie ist Länge × log₂ des Zeichensatzes. Jedes zusätzliche Zeichen multipliziert den Suchraum.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------- 02 Countdown ---------- -->
+      <div class="pb-panel" role="tabpanel" id="pb-panel-cd" aria-labelledby="pb-tab-cd" tabindex="-1" hidden>
+        <div class="pb-panel-head">
+          <div>
+            <span class="pb-eyebrow" data-en="Tool 02 · Prüfungs-Countdown">Werkzeug 02 · Prüfungs-Countdown</span>
+            <h2 data-en="A date, and the rest becomes visible.">Ein Datum, und der Rest wird sichtbar.</h2>
+            <p data-en="Set the date once. The countdown keeps running on this device, even after a reload.">
+              Einmal das Datum setzen. Der Countdown läuft auf diesem Gerät weiter,
+              auch nach einem Neuladen.
+            </p>
+          </div>
+          <a class="pb-product-tag" href="pruefungs-countdown.html"><b>→</b> <span data-en="Free app">Kostenlose App</span></a>
+        </div>
+
+        <div class="pb-panel-body">
+          <div class="pb-cd-grid">
+            <div class="pb-cd-field">
+              <label class="pb-label" for="pb-cd-title" data-en="What is coming up?">Was steht an?</label>
+              <input class="pb-input" type="text" id="pb-cd-title" maxlength="60" value="Prüfung" data-en-ph="e.g. Statistics exam">
+            </div>
+            <div class="pb-cd-field">
+              <label class="pb-label" for="pb-cd-date" data-en="Date and time">Datum und Uhrzeit</label>
+              <input class="pb-input" type="datetime-local" id="pb-cd-date" data-cd-date>
+            </div>
+          </div>
+
+          <div class="pb-cd-display" data-cd-display aria-live="polite">
+            <div class="pb-cd-cell"><b data-cd-d>30</b><span data-en="Days">Tage</span></div>
+            <div class="pb-cd-cell"><b data-cd-h>00</b><span data-en="Hours">Stunden</span></div>
+            <div class="pb-cd-cell"><b data-cd-m>00</b><span data-en="Minutes">Minuten</span></div>
+            <div class="pb-cd-cell is-accent"><b data-cd-s>00</b><span data-en="Seconds">Sekunden</span></div>
+          </div>
+
+          <div class="pb-cd-progress" aria-hidden="true"><i data-cd-bar></i></div>
+          <div class="pb-cd-meta">
+            <span data-cd-since>Start heute</span>
+            <span data-cd-left>30 Tage verbleibend</span>
+          </div>
+
+          <div class="pb-presets">
+            <button class="pb-chip" type="button" data-cd-preset="7" data-en="In 7 days">In 7 Tagen</button>
+            <button class="pb-chip" type="button" data-cd-preset="30" data-en="In 30 days">In 30 Tagen</button>
+            <button class="pb-chip" type="button" data-cd-preset="90" data-en="In 90 days">In 90 Tagen</button>
+            <button class="pb-chip" type="button" data-cd-reset data-en="Reset">Zurücksetzen</button>
+          </div>
+
+          <p class="pb-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5l3 2"/></svg>
+            <span data-en="The date is stored in this browser only (localStorage). No account, no sync, no server.">Das Datum liegt nur in diesem Browser (localStorage). Kein Konto, keine Synchronisierung, kein Server.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------- 03 Text ---------- -->
+      <div class="pb-panel" role="tabpanel" id="pb-panel-text" aria-labelledby="pb-tab-text" tabindex="-1" hidden>
+        <div class="pb-panel-head">
+          <div>
+            <span class="pb-eyebrow" data-en="Tool 03 · Bytewerk PDF Text Pro">Werkzeug 03 · Bytewerk PDF Text Pro</span>
+            <h2 data-en="Text from a PDF, cleaned up in one pass.">Text aus dem PDF, in einem Durchgang aufgeräumt.</h2>
+            <p data-en="Copied text arrives with broken lines and soft hyphens. These four steps turn it back into readable prose.">
+              Kopierter Text kommt mit harten Umbrüchen und Trennstrichen an. Vier Schritte
+              machen daraus wieder lesbaren Fließtext.
+            </p>
+          </div>
+          <a class="pb-product-tag" href="bytewerk-pdf-text-pro.html"><b>→</b> PDF Text Pro</a>
+        </div>
+
+        <div class="pb-panel-body">
+          <div class="pb-toolbar">
+            <button class="pb-btn" type="button" data-tx="hyphen"><span data-en="Fix hyphens">Silbentrennung</span></button>
+            <button class="pb-btn" type="button" data-tx="lines"><span data-en="Join lines">Umbrüche glätten</span></button>
+            <button class="pb-btn" type="button" data-tx="space"><span data-en="Normalise spaces">Leerraum</span></button>
+            <button class="pb-btn pb-btn-solid" type="button" data-tx="all"><span data-en="Clean everything">Alles aufräumen</span></button>
+            <button class="pb-btn pb-btn-quiet" type="button" data-tx="clear"><span data-en="Clear">Leeren</span></button>
+          </div>
+
+          <div class="pb-text-wrap">
+            <label class="pb-label" for="pb-tx" data-en="Text (paste here)">Text (hier einfügen)</label>
+            <textarea class="pb-textarea" id="pb-tx" data-tx-area spellcheck="false" placeholder="Text aus einem PDF hier einfügen …" data-en-ph="Paste text from a PDF here …">Die Prüfungsordnung regelt, welche Leistungen für den Ab-&#10;schluss notwendig sind. Sie gilt für alle Studierenden, die&#10;im Wintersemester immatrikuliert wurden.
+
+Ein Antrag auf Fristverlängerung muss spätestens zwei Wochen&#10;vor dem Prüfungstermin gestellt werden.</textarea>
+          </div>
+
+          <div class="pb-stats" aria-live="polite">
+            <div class="pb-stat"><b data-stat-words>0</b><span data-en="Words">Wörter</span></div>
+            <div class="pb-stat"><b data-stat-chars>0</b><span data-en="Characters">Zeichen</span></div>
+            <div class="pb-stat"><b data-stat-paras>0</b><span data-en="Paragraphs">Absätze</span></div>
+            <div class="pb-stat"><b data-stat-time>0</b><span data-en="Reading time">Lesezeit</span></div>
+          </div>
+
+          <div class="pb-row pb-row-between">
+            <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)" data-en="Nothing leaves this page">Nichts verlässt diese Seite</span>
+            <button class="pb-btn" type="button" data-tx-copy>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+              <span data-en="Copy result">Ergebnis kopieren</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- 04 Week ---------- -->
+      <div class="pb-panel" role="tabpanel" id="pb-panel-week" aria-labelledby="pb-tab-week" tabindex="-1" hidden>
+        <div class="pb-panel-head">
+          <div>
+            <span class="pb-eyebrow" data-en="Tool 04 · LumaWeek Planner">Werkzeug 04 · LumaWeek Planner</span>
+            <h2 data-en="A week that fits on one screen.">Eine Woche, die auf einen Bildschirm passt.</h2>
+            <p data-en="Click a day, type a task, press Enter. The board keeps its state on this device.">
+              Tag anklicken, Aufgabe tippen, Enter drücken. Das Brett behält seinen Stand
+              auf diesem Gerät.
+            </p>
+          </div>
+          <a class="pb-product-tag" href="lumaweek-planner.html"><b>→</b> LumaWeek</a>
+        </div>
+
+        <div class="pb-panel-body">
+          <div class="pb-week" data-week></div>
+          <div class="pb-week-foot">
+            <span data-week-summary>0 Aufgaben</span>
+            <div class="pb-row">
+              <button class="pb-btn pb-btn-quiet" type="button" data-week-clear data-en="Clear week">Woche leeren</button>
+            </div>
+          </div>
+          <p class="pb-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v15H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>
+            <span data-en="Saved as plain JSON in this browser. Deleting site data removes the week as well.">Als einfaches JSON in diesem Browser gespeichert. Wer die Seitendaten löscht, löscht auch die Woche.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="pb-close" data-screen-label="Abschluss">
+  <div class="wrap pb-close-grid">
+    <div>
+      <span class="pb-eyebrow" data-en="From demo to product">Vom Probierstand zum Produkt</span>
+      <h2 data-en="Four small tools. Eleven products behind them.">Vier kleine Werkzeuge.<br>Elf Produkte dahinter.</h2>
+      <p data-en="The full versions are Windows apps with local data, licence and updates. If a tool fits, the shop has the full version — if something is missing, tell us.">
+        Die Vollversionen sind Windows-Apps mit lokalen Daten, Lizenz und Updates.
+        Wenn ein Werkzeug passt, steht die Vollversion im Shop — wenn etwas fehlt,
+        sag es einfach.
+      </p>
+    </div>
+    <div class="pb-close-actions">
+      <a class="btn btn-primary btn-lg" href="shop.html"><span data-en="Open shop">Zum Shop</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost btn-lg" href="kontakt.html" data-en="Give feedback">Feedback geben</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-include="footer"></div>
+
+<div class="pb-toast" role="status" aria-live="polite" data-toast></div>
+
+<script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="main.js"></script>
+<script src="ui-v3.js"></script>
+<script src="ui-v4.js"></script>
+<script src="background.js"></script>
+<script src="probierstand.js"></script>
+<script type="module" src="scene-probierstand.js"></script>
+</body>
+</html>
