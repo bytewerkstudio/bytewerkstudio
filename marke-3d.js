@@ -205,10 +205,21 @@ if (stage) {
     resize();
 
     // ---------- interaction ----------
+    function syncLabel() {
+      if (!ui.explode) return;
+      const isEn = (document.documentElement.lang || 'de').slice(0, 2).toLowerCase() === 'en';
+      const label = ui.explode.querySelector('span');
+      if (!label) return;
+      label.textContent = exploded
+        ? ui.explode.dataset[isEn ? 'labelOnEn' : 'labelOnDe']
+        : ui.explode.dataset[isEn ? 'labelOffEn' : 'labelOffDe'];
+    }
+
     function setExploded(on) {
       exploded = on;
       stage.classList.toggle('is-open', on);
-      if (ui.explode) ui.explode.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (ui.explode) ui.explode.setAttribute('aria-pressed', on ? 'true' : 'false');
+      syncLabel();
       if (reduced.matches) {
         // no easing: jump straight to the new state and draw one frame
         openAmount = on ? 1 : 0;
@@ -222,6 +233,8 @@ if (stage) {
     }
 
     if (ui.explode) ui.explode.addEventListener('click', () => setExploded(!exploded));
+    syncLabel();
+    document.addEventListener('bw:lang', syncLabel);
 
     stage.addEventListener('pointerdown', (e) => {
       if (e.button !== 0 && e.pointerType === 'mouse') return;
