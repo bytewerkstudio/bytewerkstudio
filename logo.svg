@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" role="img" aria-label="Bytewerk Studio">
-  <rect x="1.5" y="1.5" width="11.5" height="11.5" rx="3" fill="#e9ecf3"></rect>
-  <rect x="15" y="1.5" width="11.5" height="11.5" rx="3" fill="#e9ecf3"></rect>
-  <rect x="1.5" y="15" width="11.5" height="11.5" rx="3" fill="#e9ecf3"></rect>
-  <circle cx="20.75" cy="20.75" r="5.95" fill="#e8a45c"></circle>
+  <rect x="1.5" y="1.5" width="11.5" height="11.5" rx="3" fill="#1f1e1d"></rect>
+  <rect x="15" y="1.5" width="11.5" height="11.5" rx="3" fill="#1f1e1d"></rect>
+  <rect x="1.5" y="15" width="11.5" height="11.5" rx="3" fill="#1f1e1d"></rect>
+  <circle cx="20.75" cy="20.75" r="5.95" fill="#b04f31"></circle>
 </svg>

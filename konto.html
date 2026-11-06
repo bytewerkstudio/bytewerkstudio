@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<title>Mein Konto — Bytewerk Studio</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
+</head>
+<body class="dash-page">
+
+<div data-include="header"></div>
+
+<main class="dash-main">
+  <div class="wrap">
+
+    <div class="dash-head">
+      <div class="dash-id">
+        <div class="dash-avatar" id="dash-avatar">—</div>
+        <div>
+          <h1 id="dash-greet">Mein Konto</h1>
+          <div class="dash-sub">
+            <span id="dash-email">—</span>
+            <span class="pill ok" data-en="Active">Aktiv</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-ghost" href="shop.html"><span data-en="Browse shop">Zum Shop</span> <span class="arr">→</span></a>
+        <button class="btn btn-ghost" type="button" data-logout data-en="Sign out">Abmelden</button>
+      </div>
+    </div>
+
+    <div class="dash-layout">
+      <aside class="dash-nav" aria-label="Konto-Navigation">
+        <button type="button" class="active" data-tab="overview">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+          <span data-en="Overview">Übersicht</span>
+        </button>
+        <button type="button" data-tab="bibliothek">
+          <svg viewBox="0 0 24 24"><path d="M4 5.5h5v14H4zM10.5 3.5h4v16h-4zM16 7h4v12.5h-4z"/></svg>
+          <span data-en="Library">Bibliothek</span>
+        </button>
+        <button type="button" data-tab="bestellungen">
+          <svg viewBox="0 0 24 24"><path d="M5 4h14v16l-7-4-7 4z"/></svg>
+          <span data-en="Orders">Bestellungen</span>
+        </button>
+        <button type="button" data-tab="profil">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c.6-3.4 3.4-5.4 7-5.4s6.4 2 7 5.4"/></svg>
+          <span data-en="Profile">Profil</span>
+        </button>
+        <button type="button" data-tab="sicherheit">
+          <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>
+          <span data-en="Security">Sicherheit</span>
+        </button>
+        <div class="dn-sep"></div>
+        <button type="button" class="dn-logout" data-logout>
+          <svg viewBox="0 0 24 24"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 8l-4 4 4 4M6 12h9"/></svg>
+          <span data-en="Sign out">Abmelden</span>
+        </button>
+      </aside>
+
+      <section class="dash-panels">
+
+        <!-- OVERVIEW -->
+        <div class="dash-panel active" id="overview" data-panel="overview">
+          <div class="panel-title">
+            <div>
+              <h2 data-en="Welcome back.">Willkommen zurück.</h2>
+              <p data-en="Everything about your products in one place.">Alles zu deinen Produkten an einem Ort.</p>
+            </div>
+          </div>
+
+          <div class="dash-stats">
+            <div class="stat-tile">
+              <span class="st-k" data-en="Library">Bibliothek</span>
+              <span class="st-n" id="stat-library">0</span>
+              <span class="st-s" data-en="Products added">Produkte hinzugefügt</span>
+              <a class="st-link" href="#bibliothek" data-en="Open library →">Bibliothek öffnen →</a>
+            </div>
+            <div class="stat-tile">
+              <span class="st-k" data-en="Orders">Bestellungen</span>
+              <span class="st-n" id="stat-orders">0</span>
+              <span class="st-s" data-en="Purchases on record">Käufe im Konto</span>
+              <a class="st-link" href="#bestellungen" data-en="View orders →">Bestellungen ansehen →</a>
+            </div>
+            <div class="stat-tile">
+              <span class="st-k" data-en="Member since">Mitglied seit</span>
+              <span class="st-n" id="stat-since" style="font-size:22px">—</span>
+              <span class="st-s" data-en="Free account">Kostenloses Konto</span>
+              <a class="st-link" href="#profil" data-en="Edit profile →">Profil bearbeiten →</a>
+            </div>
+          </div>
+
+          <div class="dash-grid-2">
+            <div class="dash-card">
+              <h3 data-en="Quick start">Schnellstart</h3>
+              <p class="dc-sub" data-en="Add free tools to your library or pick a premium app.">Füge kostenlose Tools deiner Bibliothek hinzu oder wähle eine Premium-App.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="btn btn-primary" href="#bibliothek" data-en="Browse library">Bibliothek ansehen</a>
+                <a class="btn btn-ghost" href="shop.html" data-en="All products">Alle Produkte</a>
+              </div>
+            </div>
+            <div class="dash-card">
+              <h3 data-en="Recent activity">Letzte Aktivität</h3>
+              <p class="dc-sub" data-en="The last actions in your account.">Die letzten Aktionen in deinem Konto.</p>
+              <div class="activity" id="activity-list">
+                <div class="act-row"><span class="act-dot"></span><div><div class="act-t">Noch keine Aktivität.</div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="auth-mode-note" id="mode-note" hidden>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.7" fill="currentColor" stroke="none"/></svg>
+            <span data-en="Preview mode: this account is stored in this browser. The account server enables cross-device sign-in and email reset.">Vorschau-Modus: Dieses Konto wird in diesem Browser gespeichert. Der Konto-Server ermöglicht Anmeldung über Geräte und Passwort-Reset per E-Mail.</span>
+          </div>
+        </div>
+
+        <!-- BIBLIOTHEK -->
+        <div class="dash-panel" id="bibliothek" data-panel="bibliothek">
+          <div class="panel-title">
+            <div>
+              <h2 data-en="Your library">Deine Bibliothek</h2>
+              <p data-en="Free tools you added plus licenses from your orders.">Kostenlose Tools, die du hinzugefügt hast, plus Lizenzen aus Bestellungen.</p>
+            </div>
+            <a class="btn btn-ghost" href="shop.html"><span data-en="Open shop">Zum Shop</span> <span class="arr">→</span></a>
+          </div>
+          <div class="lib-grid" id="lib-grid"></div>
+        </div>
+
+        <!-- BESTELLUNGEN -->
+        <div class="dash-panel" id="bestellungen" data-panel="bestellungen">
+          <div class="panel-title">
+            <div>
+              <h2 data-en="Orders">Bestellungen</h2>
+              <p data-en="Purchases and license keys connected to this account.">Käufe und Lizenzschlüssel, die mit diesem Konto verbunden sind.</p>
+            </div>
+          </div>
+          <div class="dash-card" id="orders-card">
+            <div class="empty-state">
+              <div class="es-i"><svg viewBox="0 0 24 24"><path d="M5 4h14v16l-7-4-7 4z"/></svg></div>
+              <h4 data-en="No orders yet">Noch keine Bestellungen</h4>
+              <p data-en="Orders placed with your account email will appear here automatically, including license keys and downloads.">Bestellungen mit deiner Konto-E-Mail erscheinen hier automatisch, inklusive Lizenzschlüsseln und Downloads.</p>
+              <a class="btn btn-primary" href="shop.html" data-en="Browse products">Produkte ansehen <span class="arr">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROFIL -->
+        <div class="dash-panel" id="profil" data-panel="profil">
+          <div class="panel-title">
+            <div>
+              <h2 data-en="Profile">Profil</h2>
+              <p data-en="How your account appears and how we can reach you.">Wie dein Konto erscheint und wie wir dich erreichen.</p>
+            </div>
+          </div>
+          <div class="dash-card">
+            <form class="profile-form" id="profile-form" novalidate>
+              <div class="field">
+                <label for="pf-name" data-en="Name">Name</label>
+                <input id="pf-name" name="name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="pf-email" data-en="Email">E-Mail</label>
+                <input id="pf-email" name="email" type="email" readonly>
+              </div>
+              <div class="field">
+                <label for="pf-lang" data-en="Language">Sprache</label>
+                <select id="pf-lang" name="lang">
+                  <option value="de">Deutsch</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="pf-plan" data-en="Plan">Tarif</label>
+                <input id="pf-plan" name="plan" readonly value="Free">
+              </div>
+              <div class="field full">
+                <label class="checkline" for="pf-marketing" style="font-family:var(--body);font-size:13.5px;letter-spacing:0">
+                  <input type="checkbox" id="pf-marketing" name="marketing">
+                  <span data-en="Send me occasional product news. No spam, unsubscribe anytime.">Schick mir gelegentlich Produktneuigkeiten. Kein Spam, jederzeit abbestellbar.</span>
+                </label>
+              </div>
+              <div class="profile-actions full">
+                <button class="btn btn-primary" type="submit" id="profile-save"><span data-en="Save changes">Änderungen speichern</span></button>
+                <span class="save-note" id="profile-note"></span>
+              </div>
+            </form>
+          </div>
+          <div class="dash-card">
+            <h3 data-en="Your data">Deine Daten</h3>
+            <p class="dc-sub" data-en="Download everything stored about your account as JSON.">Lade alles, was zu deinem Konto gespeichert ist, als JSON herunter.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-ghost" type="button" id="export-data" data-en="Export data">Daten exportieren</button>
+              <a class="btn btn-ghost" href="datenschutz.html" data-en="Privacy policy">Datenschutzerklärung</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SICHERHEIT -->
+        <div class="dash-panel" id="sicherheit" data-panel="sicherheit">
+          <div class="panel-title">
+            <div>
+              <h2 data-en="Security">Sicherheit</h2>
+              <p data-en="Password, sessions and account deletion.">Passwort, Sitzungen und Kontolöschung.</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <h3 data-en="Change password">Passwort ändern</h3>
+            <p class="dc-sub" data-en="At least 10 characters with upper and lower case plus a number or symbol.">Mindestens 10 Zeichen mit Groß- und Kleinschreibung sowie Zahl oder Sonderzeichen.</p>
+            <form class="profile-form" id="pw-form" novalidate>
+              <div class="field full">
+                <label for="pw-current" data-en="Current password">Aktuelles Passwort</label>
+                <input id="pw-current" name="current" type="password" autocomplete="current-password" required>
+              </div>
+              <div class="field">
+                <label for="pw-new" data-en="New password">Neues Passwort</label>
+                <input id="pw-new" name="next" type="password" autocomplete="new-password" required>
+              </div>
+              <div class="field">
+                <label for="pw-confirm" data-en="Repeat new password">Neues Passwort wiederholen</label>
+                <input id="pw-confirm" name="confirm" type="password" autocomplete="new-password" required>
+              </div>
+              <div class="profile-actions full">
+                <button class="btn btn-primary" type="submit" data-en="Update password">Passwort aktualisieren</button>
+                <span class="save-note" id="pw-note"></span>
+              </div>
+            </form>
+          </div>
+
+          <div class="danger-zone">
+            <h4 data-en="Delete account">Konto löschen</h4>
+            <p data-en="This removes the account and its library from this browser. This cannot be undone.">Dies entfernt das Konto und seine Bibliothek aus diesem Browser. Das kann nicht rückgängig gemacht werden.</p>
+            <div class="field" style="max-width:340px">
+              <label for="del-confirm" data-en="Type DELETE to confirm">Zum Bestätigen LÖSCHEN eintippen</label>
+              <input id="del-confirm" placeholder="LÖSCHEN" autocomplete="off">
+            </div>
+            <div class="field" style="max-width:340px">
+              <label for="del-password" data-en="Password">Passwort</label>
+              <input id="del-password" type="password" autocomplete="current-password">
+            </div>
+            <div>
+              <button class="btn btn-danger" type="button" id="delete-account" data-en="Delete account">Konto löschen</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</main>
+
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="main.js"></script>
+<script src="ui-v3.js"></script>
+<script src="ui-v4.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const user = BWAuth.requireAuth();
+  if (!user) return;
+
+  const L = document.documentElement.lang === 'en' ? 'en' : 'de';
+  const tr = (de, en) => (L === 'en' ? en : de);
+
+  const PRODUCTS = [
+    { id: 'lernreich-pro', name: 'Lernreich Pro', price: '9,99 €', img: 'media/lernreich-pro-icon.svg', href: 'lernreich-pro.html', free: false, cat: 'Windows · Fokus' },
+    { id: 'keyforge-vault', name: 'KeyForge Vault', price: '12,99 €', img: 'media/keyforge-vault-icon.svg', href: 'keyforge-vault.html', free: false, cat: 'Windows · Security' },
+    { id: 'lumaweek', name: 'LumaWeek Planner', price: '5,99 €', img: 'media/lumaweek-icon.svg', href: 'lumaweek-planner.html', free: false, cat: 'Windows · Planung' },
+    { id: 'updatepilot', name: 'UpdatePilot', price: '12,99 €', img: 'media/updatepilot-icon.svg', href: 'updatepilot.html', free: false, cat: 'Windows · Updates' },
+    { id: 'pdf-text-pro', name: 'Bytewerk PDF Text Pro', price: '59,00 €', img: 'media/bytewerk-pdf-text-pro-icon.svg', href: 'bytewerk-pdf-text-pro.html', free: false, cat: 'Windows · PDF/OCR' },
+    { id: 'neon-dominion', name: 'Neon Dominion', price: '20,00 €', img: 'media/neon-dominion-icon.svg', href: 'neon-dominion.html', free: false, cat: 'Windows · Spiel' },
+    { id: 'lernreich', name: 'Lernreich', price: tr('Kostenlos', 'Free'), img: 'media/lernreich-logo.png', href: 'produkt.html', free: true, cat: 'Windows · Lernen' },
+    { id: 'pruefungs-countdown', name: 'Prüfungs-Countdown', price: tr('Kostenlos', 'Free'), img: 'media/pruefungs-countdown-logo.png', href: 'pruefungs-countdown.html', free: true, cat: 'Windows · Prüfung' },
+    { id: 'neon-horde', name: 'NEON HORDE', price: tr('Kostenlos', 'Free'), img: 'media/neon-horde-icon.svg', href: 'neon-horde/', free: true, cat: 'Web · Spiel' },
+    { id: 'burgenwerk', name: 'BURGENWERK', price: tr('Kostenlos', 'Free'), img: 'media/burgenwerk-logo.png', href: 'burgenwerk.html', free: true, cat: 'Web · Spiel' },
+    { id: 'mastil', name: 'MASTIL', price: tr('Demo frei', 'Free demo'), img: 'media/mastil-logo.jpg', href: 'mastil.html', free: true, cat: 'Web · Windows' }
+  ];
+
+  let state = user;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  function initials(name, email) {
+    const parts = String(name || email || '?').trim().split(/\s+/);
+    return (parts.length > 1 ? parts[0][0] + parts[1][0] : String(name || email || '?').slice(0, 2)).toUpperCase();
+  }
+
+  /* ---------- Header ---------- */
+  document.getElementById('dash-avatar').textContent = initials(state.name, state.email);
+  document.getElementById('dash-greet').textContent = tr('Hallo, ', 'Hi, ') + (state.name || state.email.split('@')[0]);
+  document.getElementById('dash-email').textContent = state.email;
+  document.getElementById('stat-since').textContent = BWAuth.prettyDate(state.createdAt);
+
+  /* ---------- Tabs ---------- */
+  const tabs = document.querySelectorAll('[data-tab]');
+  const panels = document.querySelectorAll('[data-panel]');
+  const allowed = ['overview', 'bibliothek', 'bestellungen', 'profil', 'sicherheit'];
+
+  function activate(tab) {
+    if (!allowed.includes(tab)) tab = 'overview';
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+    if (location.hash !== '#' + tab) history.replaceState(null, '', '#' + tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+  window.addEventListener('hashchange', () => activate(location.hash.replace('#', '')));
+  activate(location.hash.replace('#', '') || 'overview');
+
+  /* ---------- Render stats ---------- */
+  function renderStats() {
+    document.getElementById('stat-library').textContent = state.library.length;
+    document.getElementById('stat-orders').textContent = state.orders.length;
+  }
+
+  function renderActivity() {
+    const map = {
+      'account.created': tr('Konto erstellt', 'Account created'),
+      'account.login': tr('Angemeldet', 'Signed in'),
+      'profile.updated': tr('Profil aktualisiert', 'Profile updated'),
+      'password.changed': tr('Passwort geändert', 'Password changed'),
+      'library.added': tr('Produkt zur Bibliothek hinzugefügt', 'Product added to library'),
+      'library.removed': tr('Produkt aus Bibliothek entfernt', 'Product removed from library')
+    };
+    const list = document.getElementById('activity-list');
+    if (!state.activity || !state.activity.length) {
+      list.innerHTML = '<div class="act-row"><span class="act-dot"></span><div><div class="act-t">' + tr('Noch keine Aktivität.', 'No activity yet.') + '</div></div></div>';
+      return;
+    }
+    list.innerHTML = state.activity.slice(0, 6).map(a =>
+      '<div class="act-row"><span class="act-dot"></span><div><div class="act-t">' + esc(map[a.t] || a.t) + '</div><div class="act-d">' + esc(BWAuth.prettyDate(a.at)) + '</div></div></div>'
+    ).join('');
+  }
+
+  /* ---------- Library ---------- */
+  function isOwned(p) {
+    return state.library.includes(p.id) || state.orders.some(o => o.productId === p.id);
+  }
+
+  function renderLibrary() {
+    const grid = document.getElementById('lib-grid');
+    grid.innerHTML = PRODUCTS.map(p => {
+      const owned = isOwned(p);
+      const stateText = owned
+        ? (p.free ? tr('In Bibliothek', 'In library') : tr('Lizenz aktiv', 'License active'))
+        : (p.free ? tr('Kostenlos', 'Free') : tr('Kauf erforderlich', 'Purchase required'));
+      let action;
+      if (owned) {
+        action = '<a class="btn btn-ghost" href="' + p.href + '">' + tr('Öffnen', 'Open') + '</a>';
+      } else if (p.free) {
+        action = '<button class="btn btn-primary" type="button" data-add="' + p.id + '">' + tr('Hinzufügen', 'Add') + '</button>';
+      } else {
+        action = '<a class="btn btn-ghost" href="' + p.href + '">' + tr('Im Shop ansehen', 'View in shop') + '</a>';
+      }
+      return '<article class="lib-item">' +
+        '<div class="li-head"><img src="' + p.img + '" alt="" loading="lazy"><div><div class="li-t">' + esc(p.name) + '</div><div class="li-s">' + esc(p.cat) + '</div></div></div>' +
+        '<div class="li-body"><span class="li-state ' + (owned ? 'owned' : '') + '">' + stateText + ' · ' + esc(p.price) + '</span>' + action + '</div>' +
+        '</article>';
+    }).join('');
+
+    grid.querySelectorAll('[data-add]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        try {
+          state = await BWAuth.toggleLibrary(btn.dataset.add, true);
+          renderAll();
+          BWAuth.toast(tr('Zur Bibliothek hinzugefügt.', 'Added to your library.'), 'ok');
+        } catch (e) {
+          BWAuth.toast(e.message, 'err');
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+
+  function renderOrders() {
+    const card = document.getElementById('orders-card');
+    if (!state.orders.length) return;
+    card.innerHTML = '<table class="orders"><thead><tr><th>' + tr('Bestellung', 'Order') + '</th><th>' + tr('Datum', 'Date') + '</th><th>' + tr('Produkt', 'Product') + '</th><th style="text-align:right">' + tr('Betrag', 'Amount') + '</th></tr></thead><tbody>' +
+      state.orders.map(o => '<tr><td class="o-id">' + esc(o.id) + '</td><td>' + esc(BWAuth.prettyDate(o.date)) + '</td><td>' + esc(o.product) + '</td><td class="o-amount">' + esc(o.amount) + '</td></tr>').join('') +
+      '</tbody></table>';
+  }
+
+  function renderAll() {
+    renderStats();
+    renderActivity();
+    renderLibrary();
+    renderOrders();
+  }
+  renderAll();
+
+  if (window.BWAuth && BWAuth.backend === 'local') document.getElementById('mode-note').hidden = false;
+  if (new URLSearchParams(location.search).get('welcome') === '1') {
+    BWAuth.toast(tr('Willkommen bei Bytewerk. Dein Konto ist bereit.', 'Welcome to Bytewerk. Your account is ready.'), 'ok', 5200);
+  }
+
+  /* ---------- Profile ---------- */
+  const pfName = document.getElementById('pf-name');
+  const pfEmail = document.getElementById('pf-email');
+  const pfLang = document.getElementById('pf-lang');
+  const pfMarketing = document.getElementById('pf-marketing');
+  const pfNote = document.getElementById('profile-note');
+
+  pfName.value = state.name || '';
+  pfEmail.value = state.email;
+  pfLang.value = L;
+  pfMarketing.checked = !!state.marketing;
+
+  document.getElementById('profile-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    pfNote.textContent = '';
+    try {
+      state = await BWAuth.updateProfile({ name: pfName.value, marketing: pfMarketing.checked });
+      localStorage.setItem('bw-lang', pfLang.value);
+      renderAll();
+      pfNote.textContent = tr('Gespeichert.', 'Saved.');
+      BWAuth.toast(tr('Profil gespeichert.', 'Profile saved.'), 'ok');
+      if (pfLang.value !== L) setTimeout(() => location.reload(), 700);
+    } catch (err) {
+      pfNote.textContent = err.message;
+      BWAuth.toast(err.message, 'err');
+    }
+  });
+
+  document.getElementById('export-data').addEventListener('click', () => {
+    const data = BWAuth.exportData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'bytewerk-konto.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    BWAuth.toast(tr('Export gestartet.', 'Export started.'), 'ok');
+  });
+
+  /* ---------- Password ---------- */
+  document.getElementById('pw-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const cur = document.getElementById('pw-current').value;
+    const next = document.getElementById('pw-new').value;
+    const conf = document.getElementById('pw-confirm').value;
+    const note = document.getElementById('pw-note');
+    note.textContent = '';
+    if (next !== conf) { note.textContent = tr('Die Passwörter stimmen nicht überein.', 'Passwords do not match.'); return; }
+    try {
+      await BWAuth.changePassword(cur, next);
+      e.target.reset();
+      note.textContent = tr('Passwort geändert.', 'Password updated.');
+      BWAuth.toast(tr('Passwort geändert.', 'Password updated.'), 'ok');
+      state = BWAuth.getUser() || state;
+      renderAll();
+    } catch (err) {
+      note.textContent = err.message;
+      BWAuth.toast(err.message, 'err');
+    }
+  });
+
+  /* ---------- Delete ---------- */
+  document.getElementById('delete-account').addEventListener('click', async () => {
+    const typed = document.getElementById('del-confirm').value.trim().toUpperCase();
+    const pw = document.getElementById('del-password').value;
+    if (typed !== 'LÖSCHEN' && typed !== 'LOESCHEN' && typed !== 'DELETE') {
+      BWAuth.toast(tr('Bitte LÖSCHEN eintippen.', 'Please type DELETE.'), 'err');
+      return;
+    }
+    if (!pw) { BWAuth.toast(tr('Bitte das Passwort eingeben.', 'Please enter your password.'), 'err'); return; }
+    if (!confirm(tr('Konto wirklich löschen? Alle Daten in diesem Browser werden entfernt.', 'Really delete the account? All data in this browser will be removed.'))) return;
+    try {
+      await BWAuth.deleteAccount(pw);
+      location.replace('index.html');
+    } catch (err) {
+      BWAuth.toast(err.message, 'err');
+    }
+  });
+
+  /* ---------- Sign out ---------- */
+  document.querySelectorAll('[data-logout]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      await BWAuth.logout();
+      location.replace('index.html');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -17,8 +17,8 @@
   /* Text — light on dark */
   --ink:        oklch(0.93 0.008 262);
   --ink-soft:   oklch(0.77 0.014 262);
-  --muted:      oklch(0.62 0.014 262);
-  --faint:      oklch(0.48 0.012 262);
+  --muted:      oklch(0.68 0.014 262);
+  --faint:      oklch(0.60 0.012 262);
 
   /* Lines */
   --line:       oklch(0.27 0.016 262);

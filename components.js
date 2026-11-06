@@ -15,6 +15,8 @@
 
   const NAV_LINKS = [
     { href: 'index.html#leistungen', de: 'Leistungen', en: 'Services', match: null },
+    { href: 'index.html#arbeiten',   de: 'Arbeiten',   en: 'Work',     match: null },
+    { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
@@ -45,7 +47,12 @@
           ${linksHTML(false)}
         </nav>
         <div class="nav-right">
+          <button class="nav-search" type="button" data-search-open aria-label="Suche öffnen (Strg+K)" data-en-aria="Open search (Ctrl+K)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+            <kbd>Ctrl K</kbd>
+          </button>
           ${langToggle}
+          <div class="acct-slot" data-account-slot></div>
           <a class="btn btn-primary" href="kontakt.html" data-en="Start a project <span class=&quot;arr&quot;>→</span>">Projekt starten <span class="arr">→</span></a>
           <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" data-en-aria="Open menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
@@ -55,6 +62,11 @@
     </header>
     <div class="mobile-menu">
       ${linksHTML(true)}
+      <button class="nav-search" type="button" data-search-open aria-label="Suche öffnen" data-en-aria="Open search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <div class="acct-slot" data-account-slot></div>
       <a class="btn btn-primary" href="kontakt.html" data-en="Start a project <span class=&quot;arr&quot;>→</span>">Projekt starten →</a>
       ${langToggle}
     </div>`;
@@ -80,8 +92,12 @@
           <div class="footer-col">
             <h4 data-en="Studio">Studio</h4>
             <a href="studio.html" data-en="About us">Über uns</a>
+            <a href="index.html#arbeiten" data-en="Work">Arbeiten</a>
+            <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
-            <a href="index.html#prozess" data-en="Process">Prozess</a>
+            <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
+            <a href="konto.html" data-en="My account">Mein Konto</a>
+            <a href="login.html" data-en="Sign in">Anmelden</a>
             <a href="kontakt.html" data-en="Contact">Kontakt</a>
           </div>
           <div class="footer-col">

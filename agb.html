@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#171a26">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>AGB — Bytewerk Studio</title>
 <meta name="description" content="Allgemeine Hinweise fuer Leistungen und digitale Produkte von Bytewerk Studio.">
@@ -14,6 +14,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
 </head>
 <body>
 <div data-include="header"></div>
@@ -51,6 +54,10 @@
 </main>
 <div data-include="footer"></div>
 <script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
 <script src="main.js"></script>
+<script src="ui-v3.js"></script>
+<script src="ui-v4.js"></script>
 </body>
 </html>

@@ -2,19 +2,23 @@
 
 Statische Website fuer Bytewerk Studio (bytewerkstudio.com), gehostet auf GitHub Pages.
 
-Design v2 (01.11.2026): Dunkles Tech-Studio-Theme mit Amber-Akzent, dezentes Grid im Hero,
-Dark-Mode-Designsystem in [styles.css](styles.css). Seiten teilen Header/Footer und
-DE/EN-Sprachumschaltung ueber [components.js](components.js).
+Design v4 (06.11.2026): Claude-Optik mit warmem Papierweiss, Terrakotta-Akzent,
+Serif-Ueberschriften (Newsreader) und ruhigen Flaechen. Basis bleibt
+[styles.css](styles.css), darauf liegen [styles-v3.css](styles-v3.css),
+[styles-auth.css](styles-auth.css) und die neue Schicht
+[styles-claude.css](styles-claude.css). Wird nur die letzte Datei entfernt, ist
+das dunkle Theme sofort wieder aktiv.
 
-Der Shop listet die Windows-Apps `Lernreich`, `Pruefungs-Countdown`, `Lernreich Pro`,
-`KeyForge Vault`, `LumaWeek Planner`, `UpdatePilot`, `Bytewerk PDF Text Pro` und die
-Spiele `MASTIL` und `Neon Dominion`.
+Funktionen der Schicht: globale Suche (Strg/Cmd+K), Projekt-Konfigurator auf der
+Startseite, Shop mit Suche/Sortierung/URL-Zustand, Sticky-Kaufleiste auf
+Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 
 ## Seiten
 
-- `index.html`: Startseite
+- `index.html`: Startseite mit Hero, Kennzahlen, Leistungen, Arbeiten, Shop-Auszug, Prozess, Studio, Paketen und FAQ
 - `softwareentwicklung-ludwigshafen.html`: lokale SEO-Landingpage fuer Softwareentwicklung, Webentwicklung, App-Entwicklung und IT-Dienstleistungen
-- `shop.html`: Shop-Uebersicht mit Filtern
+- `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
+- `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
 - `produkt.html`: Produktdetailseite fuer Lernreich
 - `pruefungs-countdown.html`: Produktdetailseite fuer die kostenlose Windows-App Pruefungs-Countdown
 - `lernreich-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Lernreich Pro
@@ -25,13 +29,50 @@ Spiele `MASTIL` und `Neon Dominion`.
 - `mastil.html`: Produktdetailseite fuer das Web- und Windows-Spiel MASTIL
 - `neon-dominion.html`: Produktdetailseite fuer das kostenpflichtige Windows-Strategiespiel Neon Dominion
 - `burgenwerk.html`: Produktdetailseite fuer das kostenlose Browserspiel BURGENWERK
+- `login.html`: Anmeldung
+- `register.html`: Registrierung
+- `passwort-vergessen.html`: Reset-Anfrage
+- `konto.html`: Konto-Dashboard mit Uebersicht, Bibliothek, Bestellungen, Profil und Sicherheit
 - `checkout.html`: Download-/Kontaktseite fuer Lernreich
 - `studio.html`: Studio-Profil
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
 - `404.html`: Fehlerseite fuer GitHub Pages
 
+## Konto und Anmeldung
+
+Die Auth-Engine ist [auth.js](auth.js), konfiguriert ueber [auth-config.js](auth-config.js).
+Zwei Modi:
+
+- `local` (Standard): Konten liegen im Browser, Passwoerter mit PBKDF2-SHA256
+  (310.000 Iterationen, Salt) gehasht. Funktioniert sofort, aber nur auf einem Geraet
+  und ohne E-Mail-Reset.
+- `supabase`: echte Konten mit E-Mail-Bestaetigung, Passwort-Reset und Synchronisierung.
+  Einrichtung und Schema stehen in [docs/KONTO.md](docs/KONTO.md) und
+  [supabase/schema.sql](supabase/schema.sql).
+
+Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist auf
+`noindex` gesetzt und nicht in der Sitemap.
+
+## Skripte
+
+- `components.js`: Header, Footer, DE/EN-Umschaltung
+- `auth-config.js`, `auth.js`: Registrierung, Login, Session, Dashboard-Daten
+- `main.js`: Navigation, Scroll-Reveals, Hero-Canvas
+- `ui-v3.js`: Scroll-Fortschritt, Zaehler, FAQ, Spotlight
+- `ui-v4.js`: Befehlspalette/Suche, Shop-Werkzeuge, Sticky-Kaufleiste,
+  Projekt-Konfigurator, Kontakt-Vorbelegung, Nach-oben-Knopf
+
 ## Betrieb
 
 Die Seite laeuft direkt auf GitHub Pages unter `bytewerkstudio.com` (CNAME, HTTPS erzwungen).
 Nach Aenderungen reicht ein Push auf `main`.
+
+Lokaler Test:
+
+```
+python -m http.server 8765
+```
+
+Dann `http://127.0.0.1:8765/` oeffnen. Konten funktionieren auch auf `localhost`,
+weil Web Crypto dort als sicherer Kontext gilt.
