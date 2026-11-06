@@ -98,6 +98,7 @@
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
+            <a href="marke.html" data-en="The mark">Die Marke</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
             <a href="login.html" data-en="Sign in">Anmelden</a>
             <a href="kontakt.html" data-en="Contact">Kontakt</a>
