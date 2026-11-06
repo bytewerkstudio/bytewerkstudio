@@ -1,0 +1,440 @@
+/* ============================================================
+   BYTEWERK STUDIO — ARBEITEN / WERKVERZEICHNIS
+   ------------------------------------------------------------
+   Only loaded on arbeiten.html. Every selector lives in the
+   .wk- namespace so the rest of the site is untouched.
+   Depends on the tokens from styles-claude.css.
+
+   1  Page head
+   2  Filter bar
+   3  Index rows
+   4  Hover preview
+   5  Case studies
+   6  Method
+   7  Responsive
+   8  Motion, focus, print
+   ============================================================ */
+
+/* ---------- 1. Page head ---------- */
+.wk-head {
+  padding-bottom: clamp(34px, 4.5vw, 58px);
+  overflow: hidden;
+}
+.wk-head .display {
+  font-size: clamp(58px, 11.5vw, 152px);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  margin-top: 12px;
+  max-width: none;
+}
+.wk-dot { color: var(--accent); }
+.wk-head .lead { max-width: 60ch; margin-top: 26px; }
+
+.wk-head-grid {
+  position: absolute;
+  right: clamp(16px, 4vw, 56px);
+  bottom: 20px;
+  display: flex;
+  gap: clamp(20px, 5vw, 62px);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: var(--faint);
+  opacity: 0.65;
+  pointer-events: none;
+}
+.wk-head-grid span { position: relative; padding-top: 9px; }
+.wk-head-grid span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 1px;
+  background: var(--line-2);
+}
+
+.wk-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(22px, 4vw, 54px);
+  margin: clamp(28px, 4vw, 42px) 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+}
+.wk-figures div { display: flex; align-items: baseline; gap: 10px; }
+.wk-figures dt {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.wk-figures dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 25px;
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 2. Filter bar ---------- */
+.wk-catalogue { border-top: 0; }
+.wk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.wk-filters { display: flex; gap: 8px; }
+.wk-filter {
+  appearance: none;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 8px 14px 7px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.wk-filter em {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--faint);
+  margin-left: 5px;
+  transition: color 0.25s;
+}
+.wk-filter:hover { border-color: var(--accent); color: var(--accent-700); }
+.wk-filter.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.wk-filter.is-active em { color: rgba(250, 249, 245, 0.62); }
+.wk-count {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 3. Index rows ---------- */
+.wk-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-2);
+  counter-reset: none;
+}
+.wk-row { border-bottom: 1px solid var(--line); }
+.wk-row[hidden] { display: none; }
+
+.wk-link {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) auto 38px;
+  align-items: center;
+  gap: clamp(12px, 2.2vw, 28px);
+  padding: clamp(15px, 1.9vw, 21px) 10px;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+}
+.wk-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(176, 79, 49, 0.07), rgba(176, 79, 49, 0.015) 46%, transparent 68%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.wk-row:hover .wk-link::before,
+.wk-link:focus-visible::before { opacity: 1; }
+
+.wk-no {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s;
+}
+.wk-row:hover .wk-no { color: var(--accent); }
+
+.wk-body { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.wk-title {
+  font-family: var(--display);
+  font-size: clamp(21px, 2.5vw, 31px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: transform 0.45s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)), color 0.3s;
+}
+.wk-row:hover .wk-title {
+  transform: translateX(7px);
+  color: var(--accent-700);
+}
+.wk-sub {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wk-price {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+.wk-go {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.35s var(--ease-spring, cubic-bezier(0.22, 1.2, 0.36, 1));
+}
+.wk-go svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wk-row:hover .wk-go {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  transform: rotate(-45deg);
+}
+
+.wk-empty {
+  margin: 34px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--faint);
+}
+
+/* ---------- 4. Hover preview ---------- */
+.wk-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 306px;
+  padding: 9px 9px 0;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 60;
+  will-change: transform;
+  transition: opacity 0.22s ease;
+}
+.wk-preview.is-on { opacity: 1; }
+.wk-preview-media {
+  height: 178px;
+  border-radius: 9px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #fbf7ee, #f1ebdd);
+}
+.wk-preview-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wk-preview-media img.is-mark { width: 62px; height: 62px; object-fit: contain; }
+.wk-preview[data-tone="sage"] .wk-preview-media { background: linear-gradient(145deg, #eef2ec, #dde7df); }
+.wk-preview[data-tone="ink"] .wk-preview-media { background: linear-gradient(145deg, #2b2926, #141312); }
+.wk-preview-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 4px 11px;
+}
+.wk-preview-name { font-family: var(--display); font-size: 16px; line-height: 1.1; }
+.wk-preview-hint {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+/* ---------- 5. Case studies ---------- */
+.wk-cases { background: linear-gradient(180deg, rgba(243, 240, 232, 0.5), transparent 42%); }
+.wk-case {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(24px, 5vw, 62px);
+  align-items: center;
+  padding-block: clamp(26px, 4vw, 46px);
+  border-top: 1px solid var(--line);
+}
+.wk-case:last-of-type { border-bottom: 1px solid var(--line); }
+.wk-case--flip .wk-case-media { order: 2; }
+
+.wk-case-media {
+  margin: 0;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow: var(--shadow-md);
+}
+.wk-case-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.wk-case-media:hover img { transform: scale(1.035); }
+.wk-case-media figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 5px 10px 4px;
+  border-radius: 999px;
+  background: rgba(250, 249, 245, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.wk-case-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 10px 0 14px;
+}
+.wk-case-text p { color: var(--ink-soft); max-width: 46ch; }
+.wk-facts {
+  margin: 22px 0 26px;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.wk-facts div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.wk-facts dt {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.wk-facts dd { margin: 0; font-size: 13px; color: var(--ink); text-align: right; }
+
+/* ---------- 6. Method ---------- */
+.wk-method { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.wk-method-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(26px, 5vw, 68px);
+  align-items: start;
+}
+.wk-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.wk-steps li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 5px 16px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+.wk-step-no {
+  grid-row: span 2;
+  padding-top: 3px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+.wk-steps b { font-weight: 600; font-size: 14.5px; color: var(--ink); }
+.wk-steps li > span:last-child { font-size: 13.5px; color: var(--muted); max-width: 44ch; }
+
+/* ---------- 7. Responsive ---------- */
+@media (max-width: 980px) {
+  .wk-case { grid-template-columns: 1fr; gap: 26px; }
+  .wk-case--flip .wk-case-media { order: 0; }
+  .wk-method-grid { grid-template-columns: 1fr; }
+  .wk-head-grid { display: none; }
+}
+@media (max-width: 700px) {
+  .wk-head .display { font-size: clamp(52px, 15vw, 78px); }
+  .wk-figures { gap: 18px 26px; }
+  .wk-figures dd { font-size: 21px; }
+  .wk-link {
+    grid-template-columns: 32px minmax(0, 1fr) 30px;
+    gap: 10px;
+    padding: 15px 4px;
+  }
+  .wk-price { display: none; }
+  .wk-go { width: 30px; height: 30px; }
+  .wk-title { font-size: 20px; }
+  .wk-sub { font-size: 9.5px; letter-spacing: 0.07em; }
+  .wk-row:hover .wk-title { transform: none; }
+  .wk-preview { display: none; }
+}
+
+/* ---------- 8. Motion, focus, print ---------- */
+.wk-link:focus-visible,
+.wk-filter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.wk-filter:focus-visible { border-radius: 999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wk-title,
+  .wk-go,
+  .wk-link::before,
+  .wk-case-media img,
+  .wk-preview { transition: none !important; }
+  .wk-row:hover .wk-title { transform: none; }
+  .wk-row:hover .wk-go { transform: none; }
+  .wk-case-media:hover img { transform: none; }
+}
+
+@media print {
+  .wk-preview,
+  .wk-filters,
+  .wk-bar,
+  .cta-band { display: none !important; }
+  .wk-case { break-inside: avoid; grid-template-columns: 1fr 1fr; }
+  .wk-index a { color: #000; }
+}

@@ -19,6 +19,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `softwareentwicklung-ludwigshafen.html`: lokale SEO-Landingpage fuer Softwareentwicklung, Webentwicklung, App-Entwicklung und IT-Dienstleistungen
 - `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
 - `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
+- `arbeiten.html`: Werkverzeichnis aller elf Produkte mit Filter, Tastaturbedienung und drei Fallstudien
 - `produkt.html`: Produktdetailseite fuer Lernreich
 - `pruefungs-countdown.html`: Produktdetailseite fuer die kostenlose Windows-App Pruefungs-Countdown
 - `lernreich-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Lernreich Pro

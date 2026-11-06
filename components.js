@@ -15,7 +15,7 @@
 
   const NAV_LINKS = [
     { href: 'index.html#leistungen', de: 'Leistungen', en: 'Services', match: null },
-    { href: 'index.html#arbeiten',   de: 'Arbeiten',   en: 'Work',     match: null },
+    { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
@@ -92,7 +92,7 @@
           <div class="footer-col">
             <h4 data-en="Studio">Studio</h4>
             <a href="studio.html" data-en="About us">Über uns</a>
-            <a href="index.html#arbeiten" data-en="Work">Arbeiten</a>
+            <a href="arbeiten.html" data-en="Work">Arbeiten</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
