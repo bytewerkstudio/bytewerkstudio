@@ -41,6 +41,8 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
 - `probierstand.html`: vier Produkt-Werkzeuge live im Browser (Passwort, Countdown, Text, Woche)
 - `404.html`: Fehlerseite fuer GitHub Pages
+- `404.html`: Fehlerseite fuer GitHub Pages mit Karteikasten (`scene-notfound.js`,
+  `styles-notfound.css`): fuenf Ziele als 3D-Karten, Register als normaler Linkweg
 
 ## Konto und Anmeldung
 

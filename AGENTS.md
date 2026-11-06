@@ -46,7 +46,8 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `styles-studio3d.css` | Styling der Hero-Buehne |
 | `vendor/three.module.min.js` + `vendor/three.core.min.js` | Three.js r180, lokal - die CSP erlaubt nur `'self'` |
 
-## Three.js - eine Regel, ein Build
+#| `scene-notfound.js`, `styles-notfound.css` | Karteikasten auf der 404-Seite, three.js |
+# Three.js - eine Regel, ein Build
 
 - Szenen laufen ueber `scene3d.js` und den lokalen Build in `vendor/`.
   Kein CDN: `script-src 'self'` blockt jede fremde Quelle, das faellt erst im
