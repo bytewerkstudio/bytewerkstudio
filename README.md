@@ -41,6 +41,8 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
 - `probierstand.html`: vier Produkt-Werkzeuge live im Browser (Passwort, Countdown, Text, Woche)
 - `404.html`: Fehlerseite fuer GitHub Pages
+- `404.html`: Fehlerseite fuer GitHub Pages mit Karteikasten (`scene-notfound.js`,
+  `styles-notfound.css`): fuenf Ziele als 3D-Karten, Register als normaler Linkweg
 
 ## Konto und Anmeldung
 
@@ -74,6 +76,10 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   vier echte Werkzeuge (Passwort-Schmiede, Pruefungs-Countdown, Text-Werkstatt,
   Wochenbrett) und eine three.js-Werkbank mit vier Papierwerkzeugen. Alle Daten
   bleiben im Browser (localStorage), kein Backend, kein Upload.
+- `scene-workstoff.js` + `styles-workstoff.css`: Materialstudie auf der
+  Startseite. 72 Papierkarten formen sich beim Scrollen vom Raster ueber Lagen
+  und Koerper zum Feld; Ziehen dreht das Modell. Ohne JavaScript oder WebGL
+  steht dort ein CSS-Poster, bei `prefers-reduced-motion` ein fester Zustand.
 
 ## Betrieb
 

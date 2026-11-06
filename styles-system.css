@@ -1,0 +1,235 @@
+/* ============================================================
+   BYTEWERK STUDIO — styles-system.css
+   ------------------------------------------------------------
+   Abschnitt "Systembau" auf softwareentwicklung-ludwigshafen.html.
+   Ausschliesslich unter .sys-* und [data-system-stage] gekapselt.
+   Wird nach styles-claude.css geladen.
+   ============================================================ */
+
+.sys {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+
+.sys-copy { min-width: 0; }
+
+.sys-copy .lead { margin-top: 18px; max-width: 46ch; }
+
+/* ---------- Liste der Schichten ---------- */
+
+.sys-layers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  border-top: 1px solid var(--line-2);
+}
+
+.sys-layer {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 18px;
+  gap: 14px;
+  align-items: start;
+  width: 100%;
+  padding: 16px 4px 16px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease, padding-inline-start 0.25s ease, background 0.25s ease;
+}
+
+.sys-layer:last-child { border-bottom: 0; }
+
+.sys-layer .k {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--faint);
+  padding-top: 5px;
+  transition: color 0.25s ease;
+}
+
+.sys-layer .t {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.sys-layer .t b {
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.sys-layer .t small {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.sys-layer .dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.sys-layer:hover,
+.sys-layer:focus-visible {
+  color: var(--ink);
+  padding-inline-start: 8px;
+  outline: none;
+}
+
+.sys-layer:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--accent);
+  border-radius: 4px;
+}
+
+.sys-layer.is-active {
+  padding-inline-start: 8px;
+  background: linear-gradient(90deg, rgba(176, 79, 49, 0.07), transparent 62%);
+}
+
+.sys-layer.is-active .k { color: var(--accent); }
+
+.sys-layer.is-active .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.25);
+}
+
+/* ---------- Buehne ---------- */
+
+[data-system-stage] {
+  position: relative;
+  aspect-ratio: 1 / 0.78;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(120% 92% at 50% 8%, #ffffff 0%, rgba(243, 240, 232, 0.86) 54%, rgba(233, 227, 214, 0.72) 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+[data-system-stage]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(31, 30, 29, 0.05) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(0deg, rgba(31, 30, 29, 0.035) 0 1px, transparent 1px 28px);
+  -webkit-mask-image: radial-gradient(74% 68% at 50% 48%, #000 0%, transparent 80%);
+          mask-image: radial-gradient(74% 68% at 50% 48%, #000 0%, transparent 80%);
+}
+
+[data-system-stage] canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+[data-system-stage][data-dragging] canvas { cursor: grabbing; }
+
+[data-system-stage] .sys-hint {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+[data-system-stage][data-ready] .sys-hint {
+  opacity: 0.9;
+  transform: none;
+}
+
+[data-system-stage] .sys-hint::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+/* Ohne WebGL: kein leerer Kasten, die Liste bleibt die Aussage. */
+[data-system-stage]:not([data-ready]) { display: none; }
+
+.sys:has([data-system-stage]:not([data-ready])) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.sys:has([data-system-stage]:not([data-ready])) .sys-copy .lead,
+.sys:has([data-system-stage]:not([data-ready])) .sys-layers {
+  max-width: 62ch;
+}
+
+/* ---------- Responsiv ---------- */
+
+@media (max-width: 900px) {
+  .sys {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  [data-system-stage] {
+    aspect-ratio: 1 / 0.78;
+    max-height: 340px;
+  }
+
+  .sys-copy { order: 1; }
+  [data-system-stage] { order: 2; }
+}
+
+@media (max-width: 480px) {
+  [data-system-stage] {
+    aspect-ratio: 1 / 0.74;
+    max-height: 280px;
+    border-radius: 14px;
+  }
+
+  .sys-layer { grid-template-columns: 34px minmax(0, 1fr) 14px; gap: 10px; }
+  .sys-layer .t b { font-size: 16px; }
+  .sys-layer .t small { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sys-layer,
+  .sys-layer .dot,
+  [data-system-stage] .sys-hint {
+    transition: none;
+  }
+}
+
+@media print {
+  [data-system-stage] { display: none; }
+  .sys { grid-template-columns: 1fr; }
+}

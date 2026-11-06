@@ -19,17 +19,47 @@
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-notfound.css">
 </head>
 <body>
 <div data-include="header"></div>
-<main class="wrap legal-wrap">
-  <span class="eyebrow">404</span>
-  <h1 class="display" style="font-size:clamp(44px,7vw,86px);margin-top:18px" data-en="This page was not found.">Diese Seite wurde nicht gefunden.</h1>
-  <p class="lead" style="margin-top:22px" data-en="The link may be old or the file no longer exists.">Der Link ist vielleicht alt oder die Datei existiert nicht mehr.</p>
-  <div class="hero-cta" style="margin-top:32px">
-    <a class="btn btn-primary btn-lg" href="index.html"><span data-en="Back home">Zur Startseite</span> <span class="arr">→</span></a>
-    <a class="btn btn-ghost btn-lg" href="shop.html">Shop</a>
-  </div>
+<main class="wrap nf-wrap">
+  <header class="nf-head">
+    <span class="eyebrow">404</span>
+    <h1 class="display nf-title" data-en="This page was not found.">Diese Seite wurde nicht gefunden.</h1>
+    <p class="lead nf-lead" data-en="The link may be old, or the file no longer exists. The card index below has five cards that lead back.">
+      Der Link ist vielleicht alt oder die Datei existiert nicht mehr.
+      Der Karteikasten unten hat fünf Karten, die zurückführen.
+    </p>
+    <div class="nf-cta">
+      <a class="btn btn-primary btn-lg" href="index.html"><span data-en="Back home">Zur Startseite</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost btn-lg" href="shop.html">Shop</a>
+    </div>
+  </header>
+
+  <figure class="nf-figure" id="notfound">
+    <div class="nf-stage is-flat">
+      <canvas class="nf-canvas" aria-hidden="true"></canvas>
+      <div class="nf-flat" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="nf-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9 6 4 12l5 6"/><path d="m15 6 5 6-5 6"/></svg>
+        <span data-en="Drag to turn, click a card">Ziehen zum Drehen, Karte anklicken</span>
+      </span>
+    </div>
+
+    <ul class="nf-register">
+      <li><a class="nf-link" href="index.html" data-nf-card data-nf-de="Startseite" data-nf-en="Home" data-nf-hint-de="Alles auf einen Blick" data-nf-hint-en="Everything at a glance"><span class="n" aria-hidden="true">01</span><span data-en="Home">Startseite</span></a></li>
+      <li><a class="nf-link" href="shop.html" data-nf-card data-nf-de="Shop" data-nf-en="Shop" data-nf-hint-de="Apps, Spiele, Tools" data-nf-hint-en="Apps, games, tools"><span class="n" aria-hidden="true">02</span><span data-en="Shop">Shop</span></a></li>
+      <li><a class="nf-link" href="arbeiten.html" data-nf-card data-nf-de="Arbeiten" data-nf-en="Work" data-nf-hint-de="Elf eigene Produkte" data-nf-hint-en="Eleven own products"><span class="n" aria-hidden="true">03</span><span data-en="Work">Arbeiten</span></a></li>
+      <li><a class="nf-link" href="vergleich.html" data-nf-card data-nf-de="Vergleich" data-nf-en="Compare" data-nf-hint-de="Produkte gegenüberstellen" data-nf-hint-en="Compare products"><span class="n" aria-hidden="true">04</span><span data-en="Compare">Vergleich</span></a></li>
+      <li><a class="nf-link" href="kontakt.html" data-nf-card data-nf-de="Kontakt" data-nf-en="Contact" data-nf-hint-de="Projekt anfragen" data-nf-hint-en="Start a project"><span class="n" aria-hidden="true">05</span><span data-en="Contact">Kontakt</span></a></li>
+    </ul>
+
+    <figcaption class="nf-cap">
+      <span data-en="Fig. 404 — card index">Abb. 404 — Karteikasten</span>
+      <span data-en="five ways back">fünf Wege zurück</span>
+    </figcaption>
+  </figure>
 </main>
 <div data-include="footer"></div>
 <script src="components.js"></script>
@@ -41,5 +71,6 @@
 <script src="ui-v5.js"></script>
 <script src="background.js"></script>
   <script src="scene3d.js"></script>
+<script type="module" src="scene-notfound.js"></script>
 </body>
 </html>
