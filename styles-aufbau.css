@@ -1,0 +1,553 @@
+/* ============================================================
+   BYTEWERK STUDIO — styles-aufbau.css
+   ------------------------------------------------------------
+   Die Seite "Bauplan" (bauplan.html): interaktives 3D-Modell
+   der vier Produktschichten.
+
+   Alles haengt unter .bp- oder #bauplan. Keine globalen Regeln,
+   damit diese Datei keinen anderen Baustein beruehrt. Wird nach
+   styles-claude.css geladen.
+
+   Ohne WebGL bleibt die Buehne nicht leer: .bp-fallback zeigt
+   vier gestapelte Platten als reine CSS-Grafik. Erst wenn das
+   Modul gezeichnet hat (.is-live), tritt sie zurueck.
+   ============================================================ */
+
+/* ---------- Aufbau ---------- */
+
+.bp-section {
+  border-top: 1px solid transparent;
+}
+
+.bp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+  gap: clamp(24px, 3.4vw, 48px);
+  align-items: start;
+}
+
+/* ---------- Buehne ---------- */
+
+.bp-stage {
+  position: relative;
+  min-height: clamp(430px, 58vh, 620px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: grab;
+  touch-action: pan-y;
+  background:
+    radial-gradient(90% 72% at 50% 12%, #fffdf8 0%, rgba(255, 253, 248, 0) 66%),
+    linear-gradient(180deg, var(--paper-2), #efe9dd 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 30px 70px -52px rgba(31, 30, 29, 0.55);
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.bp-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(31, 30, 29, 0.04) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(0deg, rgba(31, 30, 29, 0.03) 0 1px, transparent 1px 56px);
+  -webkit-mask-image: radial-gradient(92% 82% at 50% 44%, #000 38%, transparent 100%);
+          mask-image: radial-gradient(92% 82% at 50% 44%, #000 38%, transparent 100%);
+}
+
+.bp-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(120% 100% at 50% 40%, transparent 55%, rgba(31, 30, 29, 0.05) 100%);
+}
+
+.bp-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.bp-stage canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bp-stage-top {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.bp-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.85;
+}
+
+.bp-meta {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  z-index: 4;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.bp-meta b {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.bp-hint {
+  position: absolute;
+  left: 16px;
+  bottom: 13px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.bp-hint svg {
+  width: 15px;
+  height: 15px;
+  opacity: 0.7;
+  flex: none;
+}
+
+.bp-stage.is-live .bp-hint {
+  opacity: 0.72;
+}
+
+/* ---------- Ohne WebGL: gestapelte Platten aus CSS ---------- */
+
+.bp-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.bp-fb-plate {
+  position: absolute;
+  width: min(64%, 380px);
+  height: clamp(54px, 8.5%, 76px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffdf9, #f4eee1);
+  box-shadow:
+    0 22px 34px -26px rgba(31, 30, 29, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform:
+    rotateX(56deg)
+    rotateZ(-38deg)
+    translate3d(calc(var(--i) * 9px), calc(var(--i) * -56px), calc(var(--i) * 16px));
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.bp-fb-plate::before {
+  content: "";
+  width: 3px;
+  height: 22px;
+  border-radius: 99px;
+  background: var(--fb-accent, var(--accent));
+  opacity: 0.7;
+  flex: none;
+}
+
+.bp-fb-plate:nth-child(1) { --fb-accent: #b04f31; }
+.bp-fb-plate:nth-child(2) { --fb-accent: #9a7733; }
+.bp-fb-plate:nth-child(3) { --fb-accent: #4f7a63; }
+.bp-fb-plate:nth-child(4) { --fb-accent: #4b6478; }
+
+.bp-fb-n {
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--fb-accent, var(--accent));
+  flex: none;
+}
+
+.bp-fb-plate b {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.bp-fb-plate i {
+  margin-left: auto;
+  width: 52px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(31, 30, 29, 0.12);
+  flex: none;
+}
+
+.bp-stage.is-live .bp-fallback {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ---------- Rechte Spalte: Schichten ---------- */
+
+.bp-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.bp-tabs {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line-2);
+}
+
+.bp-tab {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: start;
+  width: 100%;
+  padding: 14px 12px 15px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bp-tab:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.bp-tab[aria-selected="true"] {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.bp-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.bp-num {
+  font-family: var(--display);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  padding-top: 2px;
+  transition: color 0.2s ease;
+}
+
+.bp-tab[aria-selected="true"] .bp-num {
+  color: var(--accent);
+}
+
+.bp-txt {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bp-name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.bp-sub {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* ---------- Detailtext ---------- */
+
+.bp-panels {
+  padding-top: 20px;
+  min-height: 238px;
+}
+
+.bp-panel[hidden] {
+  display: none;
+}
+
+.bp-panel {
+  animation: bp-in 0.32s var(--ease) both;
+}
+
+@keyframes bp-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.bp-panel h3 {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.bp-panel p {
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.bp-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.bp-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.bp-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+.bp-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bp-stack span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.bp-foot {
+  margin: 18px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--faint);
+}
+
+/* ---------- Ablauf ---------- */
+
+.bp-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bp-step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px 24px 30px;
+  background: var(--surface);
+}
+
+.bp-step-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.bp-step h3 {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.bp-step p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.bp-notes {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.4vw, 34px);
+}
+
+.bp-note .k {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.bp-note p {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ---------- Schmale Fenster ---------- */
+
+@media (max-width: 1024px) {
+  .bp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bp-stage {
+    min-height: clamp(360px, 54vh, 500px);
+  }
+
+  .bp-panels {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .bp-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bp-notes {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .bp-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .bp-tab {
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+    padding: 12px 10px 13px;
+  }
+
+  .bp-stage-top {
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+  }
+
+  .bp-meta {
+    font-size: 8px;
+  }
+
+  .bp-hint {
+    font-size: 8.5px;
+    letter-spacing: 0.05em;
+  }
+
+  .bp-hint svg {
+    display: none;
+  }
+}
+
+/* ---------- Bewegung und Druck ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-fb-plate,
+  .bp-hint {
+    transition: none;
+  }
+
+  .bp-panel {
+    animation: none;
+  }
+}
+
+@media print {
+  .bp-stage {
+    min-height: 340px;
+  }
+
+  .bp-stage canvas,
+  .bp-hint {
+    display: none !important;
+  }
+
+  .bp-fallback {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
