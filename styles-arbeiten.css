@@ -410,6 +410,12 @@
   .wk-preview { display: none; }
 }
 
+/* V5 numbers every eyebrow by section. On this page the case labels
+   already carry their own numbering ("Fall 01 - Security"), so the
+   counter pill is switched off instead of appearing twice. */
+main#main > .sec-pad#einblicke .eyebrow::before,
+main#main > .sec-pad#arbeitsweise .eyebrow::before { content: none; }
+
 /* ---------- 8. Motion, focus, print ---------- */
 .wk-link:focus-visible,
 .wk-filter:focus-visible {
