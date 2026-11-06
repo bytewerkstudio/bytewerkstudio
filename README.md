@@ -20,6 +20,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
 - `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
 - `arbeiten.html`: Werkverzeichnis aller elf Produkte mit Filter, Tastaturbedienung und drei Fallstudien
+- `zeichenwerk.html`: 3D-Letterpress — Wortmarken aus Papierplatten, live gesetzt, drehbar, als PNG exportierbar
 - `produkt.html`: Produktdetailseite fuer Lernreich
 - `pruefungs-countdown.html`: Produktdetailseite fuer die kostenlose Windows-App Pruefungs-Countdown
 - `lernreich-pro.html`: Produktdetailseite fuer die kostenpflichtige Windows-App Lernreich Pro
@@ -80,6 +81,10 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   Startseite. 72 Papierkarten formen sich beim Scrollen vom Raster ueber Lagen
   und Koerper zum Feld; Ziehen dreht das Modell. Ohne JavaScript oder WebGL
   steht dort ein CSS-Poster, bei `prefers-reduced-motion` ein fester Zustand.
+- `zeichenwerk.js`: Three.js-Letterpress (5 x 7-Raster, InstancedMesh) fuer
+  `zeichenwerk.html` und das Band `#zeichenwerk` auf der Startseite. Nutzt
+  `vendor/three.module.min.js` (r180), kein CDN, kein Build. `styles-zeichenwerk.css`
+  kapselt alles unter `.zw-*`.
 
 ## Betrieb
 
