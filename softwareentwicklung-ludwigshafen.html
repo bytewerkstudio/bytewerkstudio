@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
+<link rel="stylesheet" href="styles-system.css">
 <link rel="stylesheet" href="styles-v5.css">
 <script type="application/ld+json">
 {
@@ -153,6 +154,48 @@
         <p>Technische Beratung, Deployment, GitHub Pages, Domains, kleinere Automatisierungen und Hilfe beim stabilen Betrieb.</p>
         <div class="tags"><span class="tag">GitHub</span><span class="tag">Hosting</span><span class="tag">Support</span></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad" id="systembau" style="padding-top:0" data-screen-label="Systembau">
+  <div class="wrap">
+    <div class="sys">
+      <div class="sys-copy reveal">
+        <span class="eyebrow">Systembau</span>
+        <h2 class="h2" style="margin-top:16px">Jede Anwendung ist ein Stapel.</h2>
+        <p class="lead">
+          Oberflaeche, Logik, Daten und Betrieb greifen ineinander. Wer eine Schicht aendert,
+          muss wissen, was darueber und darunter liegt. Genau so planen wir Projekte.
+        </p>
+
+        <div class="sys-layers" role="group" aria-label="Schichten einer Anwendung">
+          <button class="sys-layer" type="button" aria-pressed="false">
+            <span class="k">01</span>
+            <span class="t"><b>Oberflaeche</b><small>Was Nutzer sehen und bedienen: Seiten, Formulare, Zustaende.</small></span>
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+          <button class="sys-layer" type="button" aria-pressed="false">
+            <span class="k">02</span>
+            <span class="t"><b>Logik</b><small>Regeln, Berechnungen und Ablaeufe, die aus Eingaben Ergebnisse machen.</small></span>
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+          <button class="sys-layer" type="button" aria-pressed="false">
+            <span class="k">03</span>
+            <span class="t"><b>Daten</b><small>Struktur, Speicherung und Zugriff: Datenbank, Dateien, Schnittstellen.</small></span>
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+          <button class="sys-layer" type="button" aria-pressed="false">
+            <span class="k">04</span>
+            <span class="t"><b>Betrieb</b><small>Hosting, Deployments, Sicherheit und Backups am laufenden System.</small></span>
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div data-system-stage aria-hidden="true">
+        <span class="sys-hint">Ziehen zum Drehen</span>
+      </div>
     </div>
   </div>
 </section>
@@ -327,5 +370,6 @@
 <script src="ui-v4.js"></script>
 <script src="ui-v5.js"></script>
 <script src="background.js"></script>
+<script type="module" src="scene-system.js"></script>
 </body>
 </html>
