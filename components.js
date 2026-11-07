@@ -135,7 +135,8 @@
   /* ---- i18n ---- */
   const LANG_KEY = 'bw-lang';
   function currentLang() {
-    const stored = localStorage.getItem(LANG_KEY);
+    let stored = null;
+    try { stored = localStorage.getItem(LANG_KEY); } catch (e) { /* storage blocked: use the browser language */ }
     if (stored) return stored;
     return (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'de';
   }
