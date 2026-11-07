@@ -1713,3 +1713,13 @@
 }
 .fm-price-link a:hover { color: var(--accent); border-color: var(--accent); }
 .fm-price-link a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Honest note about where threads live — reads as a footnote, not an alarm. */
+.fm-rail-hint {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--fm-quiet);
+  border-left: 2px solid var(--line-2);
+  padding-left: 9px;
+}
