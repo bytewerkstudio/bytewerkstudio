@@ -290,10 +290,55 @@ Arbeiten, Bauplan, Showroom, Probierstand, Marke. Eine Suche nach „sicher"
 fand vorher nur KeyForge Vault, jetzt die Sicherheitsseite zuerst. AGB,
 Datenschutz, Impressum, 404 und die Anmelde-Flows bleiben bewusst draußen.
 
+## PAPIERSTADT — Bauspiel (07.11.2026)
+
+Neue Seite `stadt.html` mit `styles-stadt.css` und dem ES-Modul `stadt.js`.
+Ein Bauspiel mit Strategie auf einem 7 × 7-Blatt: sieben Gebäudetypen, drei
+Rohstoffe (Papier, Terrakotta, Salbei), Nachbarschaftsboni, Stürme, Dächer,
+Mauern, Ruhm aus Ausstellungen.
+
+**Technik**
+
+- three.js ausschließlich aus `vendor/` (`import` aus dem Modul), kein CDN.
+- Simulation getrennt von der Darstellung: `simulate(dt)` rechnet, `frame()`
+  zeichnet. Ein Test kann die Zeit mit `bwStadt.tick(60)` vorspulen.
+- Spielstand in `localStorage['bw.papierstadt.v1']` als `[typ, stufe, dach]`
+  je Feld, rund 300 Byte. Offline-Ertrag höchstens zwei Stunden zur halben Rate.
+- Budget eingehalten: DPR ≤ 2, Framebuffer ≤ 2,6 Mio. Pixel, Pause bei
+  `document.hidden`, `prefers-reduced-motion` schaltet Sturm- und Einblend-
+  animationen ab.
+- Steinpapiermodell statt Neon: Kraftkarton `#d9c39a`, Papierweiß `#fffcf3`,
+  Terrakotta und Salbei aus den Tokens, Kontaktschatten je Gebäude,
+  `NoToneMapping` mit abgestimmter Beleuchtung (Hemisphäre 1,55 + Sonne 1,55).
+
+**Barrierefreiheit und Bedienung**
+
+- Canvas mit `role="application"`, Fokusrahmen und einer vollständigen
+  Tastatursteuerung: Pfeiltasten bewegen den Zeiger, Enter baut, U baut aus,
+  D kauft ein Dach, X reißt ab, Escape hebt die Auswahl auf.
+- Jede Aktion meldet sich über `#ps-live` (`aria-live="polite"`) an
+  Screenreader; die Seitenleiste ist zusätzlich komplett per Tab bedienbar.
+- Maus und Touch: ziehen dreht, Rad bzw. zwei Finger zoomen, Klick auf ein
+  Feld baut. Ein Ziehbewegung löst kein Bauen aus (Schwelle 5 px).
+
+**Ende-zu-Ende-Test** `tools/e2e-stadt.mjs`, gefahren mit
+`tools/e2e-page.mjs` — echte Klicks und Tasten, keine direkten Zustandssprünge
+außer Ressourcen-Fixtures und erzwungenem Sturmband:
+
+    passed=33 failed=0   (1440 × 900 und 390 × 844)
+
+Geprüft werden unter anderem: Bauen per Enter, Ausbauen per U, Dach per D,
+ein Sturm, der ein ungedecktes Gebäude zerstört und ein gedecktes verschont,
+Abriss, Ausstellung mit Ruhm, Reload mit erhaltenem Spielstand und der
+Sprachwechsel DE↔EN samt Paletten- und Überschriftentext.
+
+**Einbindung:** `stadt.html` steht im Suchindex (`ui-v4.js`), in der
+Hauptnavigation (`components.js`, Eintrag „Spiel") und in `sitemap.xml`.
+
 ## Veröffentlichung — offen
 
-Stand auf dem Fork `predatorhwg-commits/bytewerkstudio`, Branch `main`,
-`c2d879f`. `git push origin main` scheitert mit 403 (keine Schreibrechte).
+Stand auf dem Fork `predatorhwg-commits/bytewerkstudio`, Branch `main`.
+`git push origin main` scheitert mit 403 (keine Schreibrechte).
 
 Im Hauptrepo sind **fünf** Pull-Requests offen (#26–#30), keiner davon ist
 `predatorhwg-commits:main`. `community.html` und `sicherheit.html` liefern live

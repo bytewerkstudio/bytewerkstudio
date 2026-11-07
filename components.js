@@ -18,6 +18,7 @@
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', match: 'bauplan' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
+    { href: 'stadt.html',              de: 'Spiel',      en: 'Game',     match: 'stadt' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'community.html',        de: 'Community',  en: 'Community', match: 'community' },

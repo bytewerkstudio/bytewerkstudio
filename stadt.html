@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Papierstadt — das Bytewerk Bauspiel · Bytewerk Studio</title>
+<meta name="description" content="Papierstadt: ein Bauspiel mit Strategie, gebaut mit three.js. 49 Bauplätze, sieben Gebäudetypen, Nachbarschaftsboni und Stürme. Kostenlos, ohne Konto, Spielstand bleibt im Browser.">
+<link rel="canonical" href="https://bytewerkstudio.com/stadt.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Papierstadt — das Bytewerk Bauspiel">
+<meta property="og:description" content="Eine Stadt aus Papier auf dem Zeichentisch: bauen, Nachbarschaften nutzen, Stürme überstehen. Kostenlos im Browser.">
+<meta property="og:url" content="https://bytewerkstudio.com/stadt.html">
+<meta property="og:image" content="https://bytewerkstudio.com/media/bytewerk-pdf-text-pro-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
+<link rel="stylesheet" href="styles-v5.css">
+<link rel="stylesheet" href="styles-stadt.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://bytewerkstudio.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Papierstadt", "item": "https://bytewerkstudio.com/stadt.html" }
+      ]
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Papierstadt",
+      "url": "https://bytewerkstudio.com/stadt.html",
+      "applicationCategory": "Game",
+      "genre": "Aufbauspiel",
+      "gamePlatform": "Browser",
+      "operatingSystem": "Web",
+      "inLanguage": "de",
+      "isAccessibleForFree": true,
+      "description": "Bauspiel mit Strategie: 49 Bauplätze, sieben Gebäudetypen, Nachbarschaftsboni und Stürme. Gebaut mit three.js.",
+      "publisher": { "@type": "Organization", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="styles-inline.css">
+</head>
+<body class="ps-page">
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+<div data-include="header"></div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<header class="ps-hero">
+  <div class="wrap ps-hero-grid">
+    <div class="ps-hero-copy">
+      <span class="eyebrow" data-en="Game · free · no account">Spiel · kostenlos · ohne Konto</span>
+      <h1 class="display ps-title">Papier<em>stadt</em></h1>
+      <p class="lead" data-en="A city made of paper, built on the drawing table. Every building changes its neighbours, every storm forces a decision. No account, no ads, no server — your save stays in this browser.">
+        Eine Stadt aus Papier, gebaut auf dem Zeichentisch. Jedes Gebäude verändert seine Nachbarn, jeder Sturm erzwingt eine Entscheidung. Kein Konto, keine Werbung, kein Server — der Spielstand bleibt in diesem Browser.
+      </p>
+      <div class="ps-hero-actions">
+        <a class="btn btn-primary" href="#spiel"><span data-en="Start building">Stadt bauen</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#regeln" data-en="Read the rules">Regeln lesen</a>
+      </div>
+      <ul class="ps-facts">
+        <li><b>49</b> <span data-en="plots">Bauplätze</span></li>
+        <li><b>7</b> <span data-en="building types">Gebäudetypen</span></li>
+        <li><b>3</b> <span data-en="resources">Rohstoffe</span></li>
+        <li><b>0</b> <span data-en="third-party requests">Fremdanfragen</span></li>
+      </ul>
+    </div>
+
+    <div class="ps-hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 340" role="presentation" focusable="false">
+        <defs>
+          <linearGradient id="psg-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#faf9f5"/>
+            <stop offset="1" stop-color="#f1ece0"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="420" height="340" fill="url(#psg-sky)"/>
+        <g stroke="#d8d1c0" stroke-width="1" opacity="0.55">
+          <path d="M0 268 L420 268"/>
+          <path d="M0 292 L420 292"/>
+          <path d="M56 236 L56 340"/>
+          <path d="M140 236 L140 340"/>
+          <path d="M224 236 L224 340"/>
+          <path d="M308 236 L308 340"/>
+          <path d="M392 236 L392 340"/>
+        </g>
+        <g>
+          <path d="M78 236 L78 176 L120 158 L162 176 L162 236 Z" fill="#f3ede0" stroke="#1f1e1d" stroke-opacity="0.35" stroke-width="1.2"/>
+          <path d="M78 176 L120 158 L162 176 L120 193 Z" fill="#e6dcc8" stroke="#1f1e1d" stroke-opacity="0.35" stroke-width="1.2"/>
+          <path d="M120 193 L120 236" stroke="#1f1e1d" stroke-opacity="0.22"/>
+        </g>
+        <g>
+          <path d="M176 236 L176 150 L214 132 L252 150 L252 236 Z" fill="#faf9f5" stroke="#1f1e1d" stroke-opacity="0.4" stroke-width="1.2"/>
+          <path d="M176 150 L214 132 L252 150 L214 168 Z" fill="#b04f31" stroke="#8d3d25" stroke-width="1.2"/>
+          <path d="M196 236 L196 204 L214 196 L232 204 L232 236 Z" fill="#4f7a63" stroke="#3c6150" stroke-width="1"/>
+          <path d="M214 132 L214 150" stroke="#1f1e1d" stroke-opacity="0.25"/>
+        </g>
+        <g>
+          <path d="M266 236 L266 190 L300 174 L334 190 L334 236 Z" fill="#f3ede0" stroke="#1f1e1d" stroke-opacity="0.35" stroke-width="1.2"/>
+          <path d="M266 190 L300 174 L334 190 L300 206 Z" fill="#c97a5c" stroke="#a4573b" stroke-width="1.2"/>
+          <path d="M286 236 L286 212 L300 205 L314 212 L314 236 Z" fill="#faf9f5" stroke="#1f1e1d" stroke-opacity="0.25"/>
+        </g>
+        <g stroke="#1f1e1d" stroke-opacity="0.22" fill="none">
+          <path d="M34 236 L384 236"/>
+        </g>
+        <g fill="#4f7a63" opacity="0.9">
+          <circle cx="54" cy="228" r="7"/>
+          <circle cx="66" cy="232" r="5"/>
+          <circle cx="352" cy="230" r="6"/>
+        </g>
+        <g stroke="#b04f31" stroke-width="1.4" fill="none" opacity="0.7">
+          <path d="M30 96 q18 -10 36 0 t36 0"/>
+          <path d="M34 110 q18 -10 36 0 t36 0"/>
+        </g>
+        <g fill="#6b665c" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.8">
+          <text x="250" y="76">Blatt 01 · M 1:100</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============ GAME ============ -->
+<section class="ps-game" id="spiel" aria-labelledby="ps-game-title">
+  <div class="wrap">
+    <div class="ps-game-head">
+      <h2 class="h2" id="ps-game-title" data-en="Your sheet.">Dein Blatt.</h2>
+      <p class="ps-game-sub" data-en="Pick a building, then tap a plot. Click a finished building to upgrade it.">
+        Wähle ein Gebäude, dann tippe auf einen Bauplatz. Klicke ein fertiges Gebäude an, um es auszubauen.
+      </p>
+    </div>
+
+    <div class="ps-shell" id="ps-shell">
+
+      <div class="ps-stage" id="ps-stage">
+        <canvas id="ps-canvas" tabindex="0" role="application"
+          aria-label="Papierstadt — Spielfeld aus 7 mal 7 Bauplätzen"
+          aria-describedby="ps-keys">Papierstadt: ein 7 × 7 Baufeld. Pfeiltasten bewegen den Zeiger, Enter baut, U baut aus, X reißt ab.</canvas>
+
+        <div class="ps-topbar">
+          <div class="ps-chip ps-chip-paper" data-chip="paper">
+            <i aria-hidden="true"></i>
+            <span class="ps-chip-label" data-en="Paper">Papier</span>
+            <b data-res="paper">0</b>
+            <span class="ps-chip-rate" data-rate="paper">+0/s</span>
+          </div>
+          <div class="ps-chip ps-chip-clay" data-chip="clay">
+            <i aria-hidden="true"></i>
+            <span class="ps-chip-label" data-en="Clay">Terrakotta</span>
+            <b data-res="clay">0</b>
+            <span class="ps-chip-rate" data-rate="clay">+0/s</span>
+          </div>
+          <div class="ps-chip ps-chip-sage" data-chip="sage">
+            <i aria-hidden="true"></i>
+            <span class="ps-chip-label" data-en="Sage">Salbei</span>
+            <b data-res="sage">0</b>
+            <span class="ps-chip-rate" data-rate="sage">+0/s</span>
+          </div>
+          <div class="ps-chip ps-chip-storm" data-chip="storm">
+            <i aria-hidden="true"></i>
+            <span class="ps-chip-label" data-en="Next storm">Nächster Sturm</span>
+            <b data-storm>—</b>
+          </div>
+          <div class="ps-chip ps-chip-fame" data-chip="fame" title="Ruhm aus früheren Ausstellungen">
+            <i aria-hidden="true"></i>
+            <span class="ps-chip-label" data-en="Renown">Ruhm</span>
+            <b data-fame>0</b>
+          </div>
+        </div>
+
+        <div class="ps-alert" id="ps-alert" role="status" aria-live="polite"></div>
+
+        <div class="ps-toolbar">
+          <button type="button" class="ps-tool" data-tool="pause" aria-pressed="false">
+            <span class="ps-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6v12M15 6v12"/></svg></span>
+            <span class="ps-tool-label" data-en="Pause">Pause</span>
+          </button>
+          <button type="button" class="ps-tool" data-tool="sound" aria-pressed="false">
+            <span class="ps-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9h3l4-4v14l-4-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7" class="ps-wave"/></svg></span>
+            <span class="ps-tool-label" data-en="Sound">Ton</span>
+          </button>
+          <button type="button" class="ps-tool" data-tool="view">
+            <span class="ps-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+            <span class="ps-tool-label" data-en="Reset view">Ansicht</span>
+          </button>
+        </div>
+
+        <p class="ps-hint" id="ps-hint">
+          <span data-en="Drag to rotate · scroll to zoom">Ziehen zum Drehen · Scrollen zum Zoomen</span>
+        </p>
+
+        <p class="ps-sr" id="ps-keys" data-en="Controls: the arrow keys move the cursor across the sheet. Enter builds the selected building or selects an existing one. U upgrades the selected building, D buys a roof, X demolishes, Escape clears the selection. The buttons on the right are reachable with Tab.">
+          Steuerung: Pfeiltasten bewegen den Zeiger über das Feld. Enter baut das gewählte Gebäude oder wählt ein bestehendes aus.
+          U baut das gewählte Gebäude aus, D kauft ein Dach, X reißt ab, Escape hebt die Auswahl auf.
+          Die Knöpfe rechts sind mit der Tabulatortaste erreichbar.
+        </p>
+        <p class="ps-sr" id="ps-live" role="status" aria-live="polite"></p>
+      </div>
+
+      <aside class="ps-side" aria-label="Werkzeuge">
+        <div class="ps-side-block">
+          <div class="ps-side-head">
+            <h3 data-en="Build">Bauen</h3>
+            <span class="ps-side-note" data-en="Prices rise with every copy">Preise steigen mit jedem Exemplar</span>
+          </div>
+          <div class="ps-palette" id="ps-palette"></div>
+        </div>
+
+        <div class="ps-inspect" id="ps-inspect" hidden></div>
+
+        <div class="ps-side-foot">
+          <button type="button" class="ps-btn ps-btn-quiet" data-action="undo" hidden>
+            <span data-en="Undo last build">Letzten Bau rückgängig</span>
+          </button>
+          <button type="button" class="ps-btn ps-btn-quiet" data-action="prestige">
+            <span data-en="Open exhibition">Ausstellung eröffnen</span>
+            <small data-en="Reset the city, keep the renown">Stadt zurücksetzen, Ruhm behalten</small>
+          </button>
+          <button type="button" class="ps-btn ps-btn-quiet ps-btn-danger" data-action="reset">
+            <span data-en="New sheet">Neues Blatt</span>
+            <small data-en="Delete this save">Diesen Spielstand löschen</small>
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="ps-log" id="ps-log" aria-live="polite" aria-atomic="false"></div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="ps-how" id="regeln" aria-labelledby="ps-how-title">
+  <div class="wrap">
+    <div class="ps-section-head">
+      <span class="eyebrow" data-en="Rules">Regeln</span>
+      <h2 class="h2" id="ps-how-title" data-en="Three decisions per minute.">Drei Entscheidungen pro Minute.</h2>
+      <p class="lead" data-en="Papierstadt is not a clicker. It rewards placement: the same seven buildings produce very different yields depending on where they stand.">
+        Papierstadt ist kein Klicker. Es belohnt Platzierung: Dieselben sieben Gebäude liefern sehr unterschiedliche Erträge, je nachdem wo sie stehen.
+      </p>
+    </div>
+
+    <div class="ps-how-grid">
+      <article class="ps-how-card">
+        <span class="ps-how-num">01</span>
+        <h3 data-en="Build the chain">Die Kette bauen</h3>
+        <p data-en="Paper mills make paper. Clay pits need paper for their scaffolding. Sage gardens need fired clay. Each new resource unlocks the next tier — and the next decision.">
+          Papierwerke erzeugen Papier. Lehmgruben brauchen Papier für ihr Gerüst. Salbeigärten brauchen gebrannten Ton. Jeder neue Rohstoff schaltet die nächste Stufe frei — und die nächste Entscheidung.
+        </p>
+      </article>
+      <article class="ps-how-card">
+        <span class="ps-how-num">02</span>
+        <h3 data-en="Use the neighbourhood">Die Nachbarschaft nutzen</h3>
+        <p data-en="Buildings of the same kind next to each other earn up to +32 percent. A pottery boosts every clay pit beside it. A tower lifts its whole row and column. The centre plot adds another 15 percent.">
+          Gleiche Gebäude nebeneinander bringen bis zu +32 Prozent. Eine Töpferei stärkt jede Lehmgrube daneben. Ein Turm hebt seine ganze Reihe und Spalte. Das Mittelfeld gibt noch einmal 15 Prozent.
+        </p>
+      </article>
+      <article class="ps-how-card">
+        <span class="ps-how-num">03</span>
+        <h3 data-en="Survive the storm">Den Sturm überstehen</h3>
+        <p data-en="A band of wind crosses the sheet every 45 seconds, announced ten seconds ahead. A roof protects one building for good. A wall protects its neighbours once — then it is gone.">
+          Alle 45 Sekunden zieht ein Windband über das Blatt, zehn Sekunden vorher angekündigt. Ein Dach schützt ein Gebäude dauerhaft. Eine Mauer schützt ihre Nachbarn einmal — dann ist sie weg.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILDINGS ============ -->
+<section class="ps-table-sec" aria-labelledby="ps-table-title">
+  <div class="wrap">
+    <div class="ps-section-head">
+      <span class="eyebrow" data-en="Overview">Übersicht</span>
+      <h2 class="h2" id="ps-table-title" data-en="All seven buildings.">Alle sieben Gebäude.</h2>
+    </div>
+
+    <div class="ps-table-wrap">
+      <table class="ps-table">
+        <caption class="ps-sr">Gebäude, Kosten, Erträge und Freischaltungen</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-en="Building">Gebäude</th>
+            <th scope="col" data-en="Cost">Kosten</th>
+            <th scope="col" data-en="Yield per second">Ertrag pro Sekunde</th>
+            <th scope="col" data-en="Unlocked at">Freigeschaltet ab</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-paper" aria-hidden="true"></span><span data-en="Paper mill">Papierwerk</span></th>
+            <td><span data-en="10 paper">10 Papier</span></td>
+            <td><span data-en="+1.0 paper">+1,0 Papier</span></td>
+            <td><span data-en="from the start">von Anfang an</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-clay" aria-hidden="true"></span><span data-en="Clay pit">Lehmgrube</span></th>
+            <td><span data-en="30 paper">30 Papier</span></td>
+            <td><span data-en="+0.45 clay">+0,45 Terrakotta</span></td>
+            <td><span data-en="120 paper collected">120 Papier gesammelt</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-clay" aria-hidden="true"></span><span data-en="Wall">Mauer</span></th>
+            <td><span data-en="15 clay">15 Terrakotta</span></td>
+            <td><span data-en="Protects its neighbours once">Schützt die Nachbarn einmal</span></td>
+            <td><span data-en="12 clay collected">12 Terrakotta gesammelt</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-paper" aria-hidden="true"></span><span data-en="Pottery">Töpferei</span></th>
+            <td><span data-en="55 paper, 20 clay">55 Papier, 20 Terrakotta</span></td>
+            <td><span data-en="+1.8 paper, +25% to neighbouring clay pits">+1,8 Papier, +25 % für Lehmgruben daneben</span></td>
+            <td><span data-en="25 clay collected">25 Terrakotta gesammelt</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-sage" aria-hidden="true"></span><span data-en="Sage garden">Salbeigarten</span></th>
+            <td><span data-en="90 paper, 45 clay">90 Papier, 45 Terrakotta</span></td>
+            <td><span data-en="+0.30 sage">+0,30 Salbei</span></td>
+            <td><span data-en="60 clay collected">60 Terrakotta gesammelt</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-ink" aria-hidden="true"></span><span data-en="Tower">Turm</span></th>
+            <td><span data-en="150 paper, 70 clay, 20 sage">150 Papier, 70 Terrakotta, 20 Salbei</span></td>
+            <td><span data-en="+10% to its row and column">+10 % für Reihe und Spalte</span></td>
+            <td><span data-en="30 sage collected">30 Salbei gesammelt</span></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="ps-dot ps-dot-paper" aria-hidden="true"></span><span data-en="Press">Druckerei</span></th>
+            <td><span data-en="300 paper, 100 clay, 20 sage">300 Papier, 100 Terrakotta, 20 Salbei</span></td>
+            <td><span data-en="+6.0 paper">+6,0 Papier</span></td>
+            <td><span data-en="1200 paper collected">1200 Papier gesammelt</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="ps-close">
+  <div class="wrap ps-close-inner">
+    <div>
+      <h2 class="h2" data-en="Nothing leaves this page.">Nichts verlässt diese Seite.</h2>
+      <p class="lead" data-en="The game runs entirely in your browser: three.js from this domain, no analytics, no cloud save, no account. The save sits in localStorage — clear your browser data and it is gone.">
+        Das Spiel läuft vollständig in deinem Browser: three.js von dieser Domain, keine Analyse, kein Cloud-Speicher, kein Konto. Der Spielstand liegt in localStorage — löschst du die Browserdaten, ist er weg.
+      </p>
+    </div>
+    <a class="btn btn-primary" href="#spiel"><span data-en="Back to the sheet">Zurück zum Blatt</span> <span class="arr">↑</span></a>
+  </div>
+</section>
+
+</main>
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="main.js"></script>
+<script src="ui-v4.js"></script>
+<script src="background.js"></script>
+<script type="module" src="stadt.js"></script>
+</body>
+</html>
