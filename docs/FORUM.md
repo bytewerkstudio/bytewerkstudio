@@ -71,6 +71,24 @@ Die Pinwand ist ein Canvas mit `aria-hidden`; die vier Karten im
 Bei `prefers-reduced-motion` wird ein Standbild gezeichnet, die Schleife
 läuft nicht.
 
+## Bearbeiten
+
+Eigene Beiträge lassen sich direkt im Thread ändern. Der erste Beitrag
+darf auch den Titel korrigieren; der Slug bleibt dabei stehen, damit
+geteilte Links (`forum.html#/t/slug`) nicht ins Leere laufen. Ein
+`editedAt`-Zeitstempel erscheint am Beitrag. `Esc` bricht ab, auch wenn
+der Fokus auf „Speichern“ oder im Titelfeld liegt; `Strg`/`Cmd` +
+`Enter` speichert. Beide Felder sind über `label for` beschriftet, die
+IDs kommen aus der Beitrags-ID.
+
+## Sprachen
+
+Die Seite ist auf Deutsch und Englisch geschrieben. `lang()` liest
+zuerst `window.bwLang()` (gesetzt von `components.js`), sonst
+`documentElement.lang`, und normalisiert auf `de`, `en` oder `es`.
+Spanisch fällt auf Englisch zurück — nie auf Deutsch. Datumsformate
+richten sich danach: `de-DE` nur bei `de`, sonst `en-GB`.
+
 ## Abo-Stufen
 
 - **Community (0 €):** lesen, fragen, antworten in vier offenen Kategorien.
@@ -92,3 +110,10 @@ Webhook, der `profiles.plan` setzt — nicht einen Schalter im Browser.
 - Ohne WebGL: `.is-flat`, vier klickbare Karten, Klick öffnet das Thema.
 - Speicher blockiert: Warnung in der Seitenleiste, kein Absturz.
 - DE/EN inklusive aller dynamisch erzeugten Texte geprüft.
+- Inline-Bearbeitung: Anlegen, Titel und Text ändern, Abbrechen,
+  `Esc` von Knopf und Titelfeld, `Strg+Enter`, zu kurzer Titel, zu
+  kurzer Text, Antwort ohne Titelfeld, Persistenz nach Reload — geprüft,
+  0 Fehler. Slug bleibt beim Titel-Edit erhalten.
+- 390 px und 320 px mit offenem Editor: 0 Überlauf, Knöpfe passen.
+- Spanisch: `lang='es'` liefert englische Oberfläche und `en-GB`-Datum,
+  nie deutsche Texte.

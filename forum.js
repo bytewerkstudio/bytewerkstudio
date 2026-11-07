@@ -1252,14 +1252,16 @@
     const editor = el('div', { class: 'fm-edit' });
 
     let titleInput = null;
+    const titleId = 'fm-edit-title-' + post.id;
+    const bodyId = 'fm-edit-body-' + post.id;
     if (post.isFirst) {
-      editor.appendChild(el('label', { class: 'fm-edit-label', text: t('Titel', 'Title') }));
-      titleInput = el('input', { type: 'text', class: 'fm-edit-title', maxlength: CFG.maxTitle, value: txt(th.title) });
+      editor.appendChild(el('label', { class: 'fm-edit-label', htmlFor: titleId, text: t('Titel', 'Title') }));
+      titleInput = el('input', { type: 'text', id: titleId, class: 'fm-edit-title', maxlength: CFG.maxTitle, value: txt(th.title) });
       editor.appendChild(titleInput);
     }
 
-    editor.appendChild(el('label', { class: 'fm-edit-label', text: post.isFirst ? t('Beitrag', 'Post') : t('Antwort', 'Reply') }));
-    const ta = el('textarea', { class: 'fm-edit-area', rows: 8, maxlength: CFG.maxBody });
+    editor.appendChild(el('label', { class: 'fm-edit-label', htmlFor: bodyId, text: post.isFirst ? t('Beitrag', 'Post') : t('Antwort', 'Reply') }));
+    const ta = el('textarea', { id: bodyId, class: 'fm-edit-area', rows: 8, maxlength: CFG.maxBody });
     ta.value = txt(post.body);
     editor.appendChild(ta);
 
