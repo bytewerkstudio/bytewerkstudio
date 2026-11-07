@@ -264,3 +264,39 @@ Python-Server liefert unkomprimiert und macht jede Messung zu pessimistisch) und
 
 Damit sind die realistischen Zahlen: Startseite **624 KB** bei 1440 px
 (vorher unkomprimiert gemessen 2263 KB), 41 Anfragen, 0 Fremdanfragen.
+
+## Abschluss-Prüfung (07.11.2026, 12:35)
+
+Nach allen Änderungen, gegen `tools/serve.mjs` (gzip wie GitHub Pages):
+
+| Prüfung | Ergebnis |
+|---|---|
+| `tools/verify-site.mjs` | 32 Seiten + 2 Spielseiten, **0 Befunde** |
+| `tools/verify-csp.mjs` | 32 Seiten, 52 Inline-Blöcke, 0 Abweichungen |
+| `audit-security.mjs` | **32/32** sauber, 0 CSP-Verstöße, 0 JS-Fehler |
+| `audit-a11y.mjs` | **32/32** ohne Befund |
+| `audit-lang-final.mjs` | **32/32** sauber |
+| Überlauf 320/390/768/1440 px | keine Seite überläuft horizontal |
+| Kennzahlen Startseite 1440 px | 624 KB, 41 Anfragen, 0 Fremdanfragen |
+| Kennzahlen Startseite 390 px | 208 KB, 38 Anfragen |
+
+**Funktionsprobe im Browser** (`tools/e2e-page.mjs`): Sprache DE↔EN schaltet
+`<html lang>` und die Texte, Suche öffnet mit Cmd/Ctrl+K, findet Treffer und
+schließt mit Escape, Werkkorb-Knopf vorhanden, Konto-Sperre greift nach
+5 Fehlversuchen.
+
+**Suche ergänzt:** Sieben Seiten fehlten im Index — Sicherheit, Community,
+Arbeiten, Bauplan, Showroom, Probierstand, Marke. Eine Suche nach „sicher"
+fand vorher nur KeyForge Vault, jetzt die Sicherheitsseite zuerst. AGB,
+Datenschutz, Impressum, 404 und die Anmelde-Flows bleiben bewusst draußen.
+
+## Veröffentlichung — offen
+
+Stand auf dem Fork `predatorhwg-commits/bytewerkstudio`, Branch `main`,
+`c2d879f`. `git push origin main` scheitert mit 403 (keine Schreibrechte).
+
+Im Hauptrepo sind **fünf** Pull-Requests offen (#26–#30), keiner davon ist
+`predatorhwg-commits:main`. `community.html` und `sicherheit.html` liefern live
+weiterhin **404**. Zum Veröffentlichen entweder Schreibrechte auf
+`bytewerkstudio/bytewerkstudio` geben oder einen PR von
+`predatorhwg-commits:main` → `bytewerkstudio:main` öffnen.
