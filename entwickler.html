@@ -120,7 +120,7 @@
       </p>
     </div>
 
-    <div class="wk-billing reveal" role="group" aria-label="Abrechnungszeitraum" data-en-aria="Billing period">
+    <div class="wk-billing reveal" role="group" aria-label="Abrechnungszeitraum" data-en-aria="Billing period" data-es-aria="Periodo de facturación">
       <button type="button" data-billing="month" aria-pressed="true" data-en="Monthly" data-es="Mensual">Monatlich</button>
       <button type="button" data-billing="year" aria-pressed="false" data-en="Yearly" data-es="Anual">Jährlich</button>
       <span class="wk-save" data-en="2 months free" data-es="2 meses gratis">2 Monate gratis</span>
@@ -210,7 +210,7 @@
         <div class="wk-search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
           <label class="sr-only" for="wk-search" data-en="Search threads" data-es="Buscar hilos">Threads durchsuchen</label>
-          <input id="wk-search" type="search" autocomplete="off" data-en-ph="Search titles, tags, authors…" placeholder="Titel, Schlagwort, Autor durchsuchen …">
+          <input id="wk-search" type="search" autocomplete="off" data-en-ph="Search titles, tags, authors…" data-es-ph="Buscar en títulos, etiquetas y autores…" placeholder="Titel, Schlagwort, Autor durchsuchen …">
         </div>
         <label class="sr-only" for="wk-sort" data-en="Sort threads" data-es="Ordenar hilos">Threads sortieren</label>
         <select class="wk-sort" id="wk-sort">
@@ -221,7 +221,7 @@
         <button class="btn btn-primary wk-new" type="button" data-compose-toggle aria-expanded="false" aria-controls="wk-compose" data-en="New thread" data-es="Nuevo hilo">Neuer Beitrag</button>
       </div>
 
-      <div class="wk-tags" role="group" aria-label="Schlagwörter" data-en-aria="Tags">
+      <div class="wk-tags" role="group" aria-label="Schlagwörter" data-en-aria="Tags" data-es-aria="Etiquetas">
         <button class="wk-tag" type="button" data-tag="all" aria-pressed="true" data-en="All" data-es="Todos">Alle</button>
         <button class="wk-tag" type="button" data-tag="architektur" aria-pressed="false">Architektur</button>
         <button class="wk-tag" type="button" data-tag="threejs" aria-pressed="false">Three.js</button>
@@ -235,7 +235,7 @@
           <div class="wk-compose-grid">
             <div class="wk-field">
               <label for="wk-title" data-en="Title" data-es="Título">Titel</label>
-              <input id="wk-title" name="title" type="text" maxlength="120" required data-en-ph="What is it about, in one line?" placeholder="Worum geht es, in einer Zeile?">
+              <input id="wk-title" name="title" type="text" maxlength="120" required data-en-ph="What is it about, in one line?" data-es-ph="¿De qué trata, en una línea?" placeholder="Worum geht es, in einer Zeile?">
             </div>
             <div class="wk-field">
               <label for="wk-topic" data-en="Topic" data-es="Tema">Thema</label>
@@ -250,7 +250,7 @@
           </div>
           <div class="wk-field" style="margin-top:12px">
             <label for="wk-body" data-en="Message" data-es="Publicación">Beitrag</label>
-            <textarea id="wk-body" name="body" maxlength="2000" required data-en-ph="What did you try, what did you expect, what happened?" placeholder="Was hast du versucht, was hast du erwartet, was ist passiert?"></textarea>
+            <textarea id="wk-body" name="body" maxlength="2000" required data-en-ph="What did you try, what did you expect, what happened?" data-es-ph="¿Qué probaste, qué esperabas, qué pasó?" placeholder="Was hast du versucht, was hast du erwartet, was ist passiert?"></textarea>
           </div>
           <div class="wk-compose-foot">
             <button class="btn btn-primary" type="submit" data-en="Publish" data-es="Publicar">Veröffentlichen</button>
@@ -291,7 +291,7 @@
       </p>
     </div>
 
-    <div class="wk-tabs reveal" role="tablist" aria-label="Code-Bausteine" data-en-aria="Code snippets">
+    <div class="wk-tabs reveal" role="tablist" aria-label="Code-Bausteine" data-en-aria="Code snippets" data-es-aria="Bloques de código">
       <button class="wk-tab" role="tab" id="wk-tab-auth" aria-controls="wk-panel-auth" aria-selected="true" data-tab="auth">Auth</button>
       <button class="wk-tab" role="tab" id="wk-tab-three" aria-controls="wk-panel-three" aria-selected="false" data-tab="three" tabindex="-1">Three.js</button>
       <button class="wk-tab" role="tab" id="wk-tab-csp" aria-controls="wk-panel-csp" aria-selected="false" data-tab="csp" tabindex="-1">CSP</button>
