@@ -106,7 +106,7 @@
             <a href="shop.html" data-en="Shop" data-es="Tienda">Shop</a>
             <a href="vergleich.html" data-en="Product comparison" data-es="Comparativa">Produktvergleich</a>
             <a href="entwickler.html" data-en="Developers" data-es="Desarrolladores">Entwickler</a>
-            <a href="entwickler.html#forum" data-en="Forum" data-es="Foro">Forum</a>
+            <a href="entwickler.html#forum" data-en="Workshop forum" data-es="Foro del taller">Werkstatt-Forum</a>
             <a href="entwickler.html#abo" data-en="Developer subscription" data-es="Suscripción dev">Entwickler-Abo</a>
             <a href="marke.html" data-en="The mark" data-es="La marca">Die Marke</a>
             <a href="konto.html" data-en="My account" data-es="Mi cuenta">Mein Konto</a>

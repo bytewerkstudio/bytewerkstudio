@@ -424,7 +424,23 @@
     return wrap;
   }
 
+  function hashThread() {
+    var match = /^#thread-(.+)$/.exec(location.hash || '');
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  /* Deep link: #thread-<id> oeffnet genau diesen Beitrag. Wird beim
+     Zeichnen gelesen, damit auch ein Reload oder ein geteilter Link
+     direkt beim richtigen Thema landet. */
+  function syncHash(id) {
+    var next = id ? '#thread-' + id : '#forum';
+    if (location.hash === next) return;
+    try { history.replaceState(null, '', next); } catch (e) { location.hash = next; }
+  }
+
   function render() {
+    var linked = hashThread();
+    if (linked) open[linked] = true;
     var rows = visibleThreads();
     listEl.textContent = '';
 
@@ -478,6 +494,7 @@
 
       toggle.addEventListener('click', function () {
         open[thread.id] = !open[thread.id];
+        syncHash(open[thread.id] ? thread.id : '');
         render();
         var again = listEl.querySelector('[data-id="' + thread.id + '"] .wk-thread-open');
         if (again) again.focus();
@@ -619,6 +636,37 @@
 
   syncComposer();
   render();
+
+  /* Deep-Link beim Laden: zum Thema scrollen, ohne den Fokus zu stehlen. */
+  (function () {
+    var linked = hashThread();
+    if (!linked) return;
+    var target = listEl.querySelector('[data-id="' + linked + '"]');
+    if (target) target.scrollIntoView({ block: 'center' });
+  })();
+
+  window.addEventListener('hashchange', function () {
+    var linked = hashThread();
+    if (!linked) return;
+    open[linked] = true;
+    render();
+    var target = listEl.querySelector('[data-id="' + linked + '"]');
+    if (target) target.scrollIntoView({ block: 'center' });
+  });
+
+  /* Das offene Forum liegt in forum.html. Ob es die Seite schon gibt,
+     steht in sitemap.xml — ein HEAD auf forum.html wuerde bei jeder
+     Ansicht einen 404 in die Konsole schreiben. */
+  (function () {
+    var link = document.querySelector('[data-full-forum]');
+    if (!link || !window.fetch) return;
+    fetch('sitemap.xml')
+      .then(function (response) { return response.ok ? response.text() : ''; })
+      .then(function (xml) {
+        if (xml && xml.indexOf('forum.html') !== -1) link.hidden = false;
+      })
+      .catch(function () {});
+  })();
 
   /* ------------------------------------------------------------
      4. Code-Tabs
