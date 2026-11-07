@@ -99,6 +99,7 @@
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
+            <a href="api.html" data-en="API">API</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
             <a href="marke.html" data-en="The mark">Die Marke</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
