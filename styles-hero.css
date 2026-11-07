@@ -1,0 +1,97 @@
+/* ============================================================
+   BYTEWERK STUDIO — HERO-LAYOUT (06.11.2026)
+   ------------------------------------------------------------
+   Two fixes on top of styles-v5.css and styles-studio3d.css:
+
+   1. The NEON HORDE chip is a grid row under the hero column.
+      It used to be absolutely positioned at the bottom right and
+      covered the last row of the discipline index at 1025–1440 px.
+   2. Short desktop windows (≤ 820 px high) get a shorter stage,
+      a tighter copy and less bottom air, so the hero – including
+      the chip – ends on the fold instead of 64 px below it.
+
+   Scoped to .hero-v3, .hero-chip and .bs-stage only.
+   ============================================================ */
+
+/* ---------- 1. Two rows: copy | visual + chip ---------- */
+.hero-v3-grid {
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-content: center;
+  row-gap: clamp(12px, 1.6vh, 18px);
+  /* the chip takes the bottom air, not a new band below the fold */
+  padding-block: clamp(70px, 11vh, 120px) clamp(28px, 3.6vh, 48px);
+}
+
+.hero-v3-copy {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.hero-v3-visual {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+
+/* the product chip is part of the column now, not a floating overlay */
+/* (hidden below 1024px by styles-v3.css, where the hero note takes over) */
+.hero-v3-grid > .hero-chip {
+  grid-column: 2;
+  grid-row: 2;
+  position: static;
+  justify-self: start;
+  align-self: start;
+}
+
+/* ---------- 2. Short desktop windows ---------- */
+@media (min-width: 1025px) and (max-height: 820px) {
+  .hero-v3-grid {
+    padding-block: clamp(32px, 7vh, 56px) 18px;
+  }
+
+  /* the copy still sets the height left of the stage */
+  .hero-v3-copy {
+    gap: 18px;
+  }
+
+  /* 33vh leave the column too tall at 768 px; 30vh keeps the model readable */
+  .hero-v3-visual .bs-stage {
+    max-height: 30vh;
+  }
+
+  /* three pixels less air per index row buys the chip its own line */
+  .hero-v3-panel .ed-idx {
+    padding-block: 10px;
+  }
+}
+
+/* ---------- 3. Stacked layout, same breakpoint as styles-v3.css ---------- */
+@media (max-width: 1024px) {
+  .hero-v3-grid {
+    grid-template-rows: auto auto;
+    row-gap: clamp(28px, 4vh, 44px);
+  }
+
+  .hero-v3-copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .hero-v3-visual {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .hero-v3-grid > .hero-chip {
+    display: none;
+  }
+}
+
+/* ---------- 4. Print ---------- */
+@media print {
+  .hero-chip {
+    display: none;
+  }
+}
