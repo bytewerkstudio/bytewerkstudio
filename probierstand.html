@@ -59,7 +59,7 @@
       <div class="pb-crumb">
         <a href="index.html" data-en="Home">Start</a>
         <span aria-hidden="true">/</span>
-        <span>Probierstand</span>
+        <span data-en="Test bench">Probierstand</span>
       </div>
 
       <span class="pb-kicker" data-en="Try before you buy · no account">Erst ausprobieren · ohne Konto</span>
@@ -97,16 +97,16 @@
         <div class="pb-bench" data-bench>
           <canvas role="img" aria-label="Dreidimensionales Modell einer Werkbank aus Papier mit vier Werkzeugen: Schlüssel, Uhr, Dokument und Kalender."></canvas>
           <div class="pb-bench-fallback" aria-hidden="true">
-            <a href="#werkzeuge" data-goto="pw"><span>01 · KeyForge Vault</span>Passwort-Schmiede</a>
-            <a href="#werkzeuge" data-goto="cd"><span>02 · Prüfungs-Countdown</span>Countdown</a>
-            <a href="#werkzeuge" data-goto="text"><span>03 · PDF Text Pro</span>Text-Werkstatt</a>
-            <a href="#werkzeuge" data-goto="week"><span>04 · LumaWeek</span>Wochenbrett</a>
+            <a href="#werkzeuge" data-goto="pw"><span>01 · KeyForge Vault</span> <span data-en="Password forge">Passwort-Schmiede</span></a>
+            <a href="#werkzeuge" data-goto="cd"><span>02 · Prüfungs-Countdown</span> <span>Countdown</span></a>
+            <a href="#werkzeuge" data-goto="text"><span>03 · PDF Text Pro</span> <span data-en="Text workshop">Text-Werkstatt</span></a>
+            <a href="#werkzeuge" data-goto="week"><span>04 · LumaWeek</span> <span data-en="Week board">Wochenbrett</span></a>
           </div>
         </div>
 
         <figcaption class="pb-bench-foot">
           <span data-en="Choose a tool on the bench">Wähle ein Werkzeug auf der Bank</span>
-          <span class="pb-bench-live" data-bench-label aria-live="polite">Passwort-Schmiede</span>
+          <span class="pb-bench-live" data-bench-label aria-live="polite" data-en="Password forge">Passwort-Schmiede</span>
         </figcaption>
       </figure>
 
@@ -205,13 +205,13 @@
           <div class="pb-strength">
             <div class="pb-strength-head">
               <span class="k" data-en="Strength">Stärke</span>
-              <span class="v" data-pw-label>stark</span>
+              <span class="v" data-pw-label data-en="strong">stark</span>
             </div>
             <div class="pb-strength-bars" data-pw-bars data-score="4" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             <div class="pb-strength-meta">
               <span><b data-pw-bits>119</b> <span data-en="bits of entropy">Bit Entropie</span></span>
               <span data-en="Brute force at 10¹² guesses/s:">Brute Force bei 10¹² Raten/s:</span>
-              <span><b data-pw-time>rund 3 Millionen Jahre</b></span>
+              <span><b data-pw-time data-en="around 3 million years">rund 3 Millionen Jahre</b></span>
             </div>
           </div>
 
@@ -257,8 +257,8 @@
 
           <div class="pb-cd-progress" aria-hidden="true"><i data-cd-bar></i></div>
           <div class="pb-cd-meta">
-            <span data-cd-since>Start heute</span>
-            <span data-cd-left>30 Tage verbleibend</span>
+            <span data-cd-since data-en="Starts today">Start heute</span>
+            <span data-cd-left data-en="30 days left">30 Tage verbleibend</span>
           </div>
 
           <div class="pb-presets">
@@ -339,7 +339,7 @@ Ein Antrag auf Fristverlängerung muss spätestens zwei Wochen&#10;vor dem Prüf
         <div class="pb-panel-body">
           <div class="pb-week" data-week></div>
           <div class="pb-week-foot">
-            <span data-week-summary>0 Aufgaben</span>
+            <span data-week-summary data-en="0 tasks">0 Aufgaben</span>
             <div class="pb-row">
               <button class="pb-btn pb-btn-quiet" type="button" data-week-clear data-en="Clear week">Woche leeren</button>
             </div>
