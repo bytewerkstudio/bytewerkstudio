@@ -168,6 +168,34 @@ else {
   if (!/^Expires:/m.test(t)) fail('security-txt', 'security.txt', 'no Expires field');
 }
 
+/* ---------- 13. sub-apps (neon-horde) ----------
+   The game ships as a source page and a single-file build. Both are linked
+   from the main site and both need a CSP; a stale build is the easy mistake. */
+const SUBS = ['neon-horde/index.html', 'neon-horde/dist/index.html'];
+const sha = (text) => "'sha256-" + createHash('sha256').update(text, 'utf8').digest('base64') + "'";
+for (const sub of SUBS) {
+  const path = join(root, sub);
+  if (!existsSync(path)) { fail('subapp-missing', sub, 'file does not exist'); continue; }
+  const html = readFileSync(path, 'utf8');
+  const meta = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]*)">/);
+  if (!meta) { fail('subapp-csp', sub, 'no CSP meta tag'); continue; }
+  const csp = meta[1];
+  if (/unsafe-inline/.test(csp)) fail('subapp-csp', sub, 'unsafe-inline in CSP');
+  if (!/default-src 'self'/.test(csp)) fail('subapp-csp', sub, "no default-src 'self'");
+  if (!/object-src 'none'/.test(csp)) fail('subapp-csp', sub, "no object-src 'none'");
+  const listed = new Set(csp.match(/'sha256-[^']+'/g) || []);
+  for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    if (/\bsrc\s*=/i.test(m[1])) continue;
+    const hash = sha(m[2]);
+    if (!listed.has(hash)) fail('subapp-hash', sub, 'inline script hash missing (' + hash.slice(0, 18) + '…)');
+  }
+  for (const m of html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+    const hash = sha(m[1]);
+    if (!listed.has(hash)) fail('subapp-hash', sub, 'inline style hash missing (' + hash.slice(0, 18) + '…)');
+  }
+  if (/href="data:/.test(html)) fail('subapp-data-uri', sub, 'data: URI in markup');
+}
+
 /* ---------- report ---------- */
 const byCheck = {};
 for (const p of problems) (byCheck[p.check] = byCheck[p.check] || []).push(p);

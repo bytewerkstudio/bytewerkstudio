@@ -212,7 +212,55 @@ Messung Startseite, `performance.getEntriesByType('resource')`, 0 Fremdanfragen:
 | `harden-csp.mjs` | CSP-Hashes neu erzeugen (nach jeder Skript-Änderung) |
 | `inline-styles-to-classes.mjs` | `style="…"` → Klassen in `styles-inline.css` |
 | `responsive-images.mjs` | `srcset`/`sizes` + echte Bildmaße |
+| `externalize-data-uris.mjs` | `data:image/…` aus CSS → `media/ui/` |
+| `serve.mjs` | lokaler Server **mit gzip**, damit Messungen zu GitHub Pages passen |
+| `e2e-page.mjs` | Seite über CDP fernsteuern, Szenarien als `.mjs` |
 
 `node tools/verify-site.mjs` auf dem Stand davor (`8211496`): **102 Befunde**;
 auf dem aktuellen Stand: **0**. Damit ist der Prüfer selbst belegt, nicht nur
 die Seiten.
+
+## img-src, Konto-Sperre, Spielseite (07.11.2026, 12:10)
+
+**CSP ist jetzt vollständig zu — auch für Bilder.**
+
+- `img-src 'self' data:` → `img-src 'self'`. Die sieben `data:image/svg+xml`-
+  Symbole aus den Stylesheets liegen als Dateien in `media/ui/`
+  (`tools/externalize-data-uris.mjs`, Dateinamen sind Inhalts-Hashes, also
+  wiederholbar). Three.js-Texturen entstehen aus `<canvas>` und sind keine
+  Bildladungen — sie brauchen kein `data:`.
+- Prüfung: 8 Seiten im Browser, 0 Bilder kaputt, 0 CSP-Verstöße.
+
+**Konto-Sperre** (`auth.js`): 5 Fehlversuche, danach **exponentielles Backoff**
+30 s → 1 min → 2 min → 4 min … max. 1 h (`lockLevel`, gekappt bei 12), Rückfall
+auf 0 nur bei erfolgreicher Anmeldung. Die Sperre liegt im Konto (`lockUntil`),
+übersteht also Reload und neuen Tab; jede Sperre steht als `account.locked` in
+der Aktivität. Ende-zu-Ende geprüft (`tools/e2e-page.mjs`): 5 Fehlversuche,
+danach wird auch das **richtige** Passwort mit „in 30 Sekunden" abgewiesen.
+
+**`neon-horde/` hatte gar keine CSP.** Jetzt:
+
+- `neon-horde/index.html`: CSP mit Hashes für den Stilblock und den Boot-Guard,
+  `connect-src 'none'`, `worker-src 'none'`, `form-action 'none'`,
+  `frame-src 'none'`. Icon als `icon.svg` statt `data:`-URI.
+- Stile, die Module zur Laufzeit einfügen, gehen jetzt über ein **constructable
+  stylesheet** (`adoptedStyleSheets`) statt über ein `<style>`-Element —
+  `style-src 'self'` blockiert Letzteres, Ersteres nicht (im Browser gemessen).
+  Das `<style>`-Element bleibt nur als Fallback für alte Browser.
+- `build/build.js` erzeugt die CSP für die Einzeldatei-Fassung **aus dem
+  Output** neu, sonst würde der Hash des zusammengelegten Skriptblocks nicht
+  mehr stimmen. Der Build bricht ab, wenn die CSP fehlt.
+- Gemessen: Spiel startet im Menü, 179 CSS-Regeln, Canvas gezeichnet,
+  0 Verstöße, 0 Fehler; Screenshot vor/nach CSP **0 abweichende Pixel**.
+
+**Prüfwerkzeug erweitert:** `verify-site.mjs` prüft jetzt auch
+`neon-horde/index.html` und `neon-horde/dist/index.html` (CSP vorhanden, kein
+`unsafe-inline`, alle Hashes stimmen, keine `data:`-URIs). Gegenprobe: CSP aus
+`dist` entfernt → Prüfer meldet `subapp-csp`, wiederhergestellt → 0 Befunde.
+
+**Neue Werkzeuge:** `tools/serve.mjs` (lokaler Server **mit gzip** — der
+Python-Server liefert unkomprimiert und macht jede Messung zu pessimistisch) und
+`tools/e2e-page.mjs` (Szenarien als `.mjs`, echte Abläufe statt Screenshots).
+
+Damit sind die realistischen Zahlen: Startseite **624 KB** bei 1440 px
+(vorher unkomprimiert gemessen 2263 KB), 41 Anfragen, 0 Fremdanfragen.
