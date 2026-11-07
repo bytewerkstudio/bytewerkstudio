@@ -48,6 +48,34 @@
   const MAX_FAILS = 5;
   const LOCK_MS = 60000;
 
+  /* Some browsers throw just for touching localStorage (blocked cookies,
+     hardened privacy modes). A probe decides once; if it throws, an
+     in-memory shim keeps login, session and account pages working for the
+     visit instead of failing on the first line. */
+  function safeStorage(name) {
+    try {
+      const store = global[name];
+      const probe = '__bw_probe__';
+      store.setItem(probe, '1');
+      store.removeItem(probe);
+      return store;
+    } catch (e) {
+      const map = new Map();
+      return {
+        getItem(k) { return map.has(k) ? map.get(k) : null; },
+        setItem(k, v) { map.set(k, String(v)); },
+        removeItem(k) { map.delete(k); },
+        clear() { map.clear(); },
+        key(i) { return Array.from(map.keys())[i] || null; },
+        get length() { return map.size; }
+      };
+    }
+  }
+
+  // Shadow the globals inside this scope; every call site below stays as is.
+  const localStorage = safeStorage('localStorage');
+  const sessionStorage = safeStorage('sessionStorage');
+
   const useSupabase = CFG.mode === 'supabase' && CFG.supabaseUrl && CFG.supabaseAnonKey;
   if (CFG.mode === 'supabase' && !useSupabase) {
     console.warn('[BWAuth] Supabase ist nicht konfiguriert — local-Modus aktiv.');
