@@ -633,6 +633,8 @@
   }
 
   const idOk = (value) => typeof value === 'string' && /^[a-z0-9_-]{2,40}$/i.test(value);
+  /* Keys that would reach Object.prototype instead of the map. */
+  const keyOk = (value) => idOk(value) && value !== '__proto__' && value !== 'constructor' && value !== 'prototype';
   const clean = (value, max) => (typeof value === 'string' ? value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim().slice(0, max) : '');
 
   function validAuthor(author) {
@@ -696,7 +698,7 @@
           body,
           tags,
           author,
-          at: Number.isFinite(item.at) && item.at > 0 ? item.at : Date.now(),
+          at: Number.isFinite(item.at) && item.at > 0 ? Math.min(item.at, Date.now() + HOUR) : Date.now(),
           views: 0,
           solved: Boolean(item.solved),
           user: true,
@@ -707,7 +709,7 @@
 
     if (data.replies && typeof data.replies === 'object') {
       for (const key of Object.keys(data.replies)) {
-        if (!idOk(key)) continue;
+        if (!keyOk(key)) continue;
         const list = data.replies[key];
         if (!Array.isArray(list)) continue;
         const posts = [];
@@ -721,7 +723,7 @@
 
     if (data.votes && typeof data.votes === 'object') {
       for (const key of Object.keys(data.votes)) {
-        if (idOk(key) && data.votes[key]) state.votes[key] = 1;
+        if (keyOk(key) && (data.votes[key] === 1 || data.votes[key] === true)) state.votes[key] = 1;
       }
     }
 
@@ -730,7 +732,7 @@
     }
     if (data.solved && typeof data.solved === 'object') {
       for (const key of Object.keys(data.solved)) {
-        if (idOk(key) && typeof data.solved[key] === 'boolean') state.solved[key] = data.solved[key];
+        if (keyOk(key) && typeof data.solved[key] === 'boolean') state.solved[key] = data.solved[key];
       }
     }
     if (Array.isArray(data.hidden)) state.hidden = data.hidden.filter(idOk).slice(0, 100);
@@ -783,6 +785,15 @@
       toast(t('Speicher voll — Beitrag bleibt nur in dieser Sitzung.', 'Storage full — this post only lasts for this session.'));
     }
   }
+
+  /* A tampered or outdated store is replaced once by its cleaned form, so a
+     poisoned localStorage cannot feed junk into every later page load. */
+  (function repairStore() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw && raw !== JSON.stringify(state)) save();
+    } catch (err) { /* private mode: nothing to repair */ }
+  })();
 
   /* ---------- 3. Data ---------- */
   function isMember() {
