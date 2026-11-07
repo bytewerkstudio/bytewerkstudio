@@ -2007,6 +2007,16 @@ pre:hover .cm-copy, .cm-copy:focus-visible { opacity: 1; }
   .cm-share-btn { height: 42px; }
   .cm-stage-chip { min-height: 32px; }
   .cm-selftest-note a { display: inline-flex; align-items: center; min-height: 32px; }
+
+  /* Lesbarkeit: die kleinsten Etiketten auf dem Telefon eine Stufe groesser */
+  .cm-badge,
+  .cm-heat-legend,
+  .cm-cycle em,
+  .cm-plan-flag,
+  .cm-pin,
+  .cm-copy,
+  .cm-st-dot,
+  .cm-st-verdict { font-size: 10px; }
 }
 
 /* ---------- 14. Bewegung, Druck ---------- */
