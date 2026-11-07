@@ -53,8 +53,45 @@
     team: { month: 49, year: 490 }
   };
   var billing = 'month';
+  var MAIL = 'Haqmalh@icloud.com';
+  var PLAN_LABEL = { studio: 'Studio', team: 'Team' };
+
+  /* Die Abo-Knoepfe oeffnen eine vorbereitete Mail: Tarif, Zeitraum und
+     Preis stehen schon drin. kontakt.html kennt den ?plan=-Parameter
+     nicht, deshalb waere der Klick dort ein Formular ohne Kontext. */
+  function planMailto(key) {
+    var plan = PLANS[key];
+    if (!plan) return '';
+    var period = billing === 'month'
+      ? T('monatlich', 'monthly', 'mensual')
+      : T('jährlich', 'yearly', 'anual');
+    var price = billing === 'month' ? plan.month : plan.year;
+    var subject = T('Abo-Anfrage: ', 'Membership request: ', 'Solicitud de suscripción: ')
+      + PLAN_LABEL[key] + ' (' + period + ')';
+    var body = [
+      T('Tarif: ', 'Plan: ', 'Plan: ') + PLAN_LABEL[key],
+      T('Zeitraum: ', 'Billing period: ', 'Periodo: ') + period,
+      T('Preis: ', 'Price: ', 'Precio: ') + euro(price) + T(' inkl. 19 % MwSt.', ' incl. 19 % VAT', ' IVA incluido'),
+      '',
+      T('Name: ', 'Name: ', 'Nombre: '),
+      T('Rechnung an: ', 'Invoice to: ', 'Factura a: '),
+      '',
+      T('Kurzbeschreibung, was du bauen willst:', 'One line on what you want to build:', 'Una línea sobre lo que quieres construir:')
+    ].join('\n');
+    return 'mailto:' + MAIL
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+  }
+
+  function renderPlanLinks() {
+    document.querySelectorAll('[data-plan-cta]').forEach(function (link) {
+      var href = planMailto(link.getAttribute('data-plan-cta'));
+      if (href) link.setAttribute('href', href);
+    });
+  }
 
   function renderBilling() {
+    renderPlanLinks();
     document.querySelectorAll('[data-price]').forEach(function (el) {
       var base = Number(el.getAttribute('data-price'));
       if (!base) { el.textContent = euro(0); return; }
