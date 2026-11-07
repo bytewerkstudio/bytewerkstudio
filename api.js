@@ -447,6 +447,13 @@
         $$('[data-monthly]').forEach((el) => {
           el.textContent = yearly ? el.dataset.yearly : el.dataset.monthly;
         });
+        // Yearly prices are the total, not a monthly equivalent: 10 monthly
+        // payments for 12 months. The unit has to follow the number.
+        $$('[data-billing-unit]').forEach((el) => {
+          const de = yearly ? el.dataset.unitYear : el.dataset.unitMonth;
+          const en = yearly ? el.dataset.unitYearEn : el.dataset.unitMonthEn;
+          el.textContent = document.documentElement.lang === 'en' ? en : de;
+        });
       });
     });
   }
