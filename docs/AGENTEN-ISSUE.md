@@ -45,13 +45,18 @@ Additiv, ohne fremde Arbeit zu überschreiben:
    `localStorage` beim Sprachwechsel gegen blockierten Speicher abgesichert.
 3. **Sitemap**: drei neue URLs (`forum.html`, `entwickler.html`,
    `sicherheit.html`).
-4. **Schriften**: `styles.css` und `styles-claude.css` importieren nur noch
+4. **Suche** (`ui-v4.js`): drei Index-Einträge für Forum, Entwickler und
+   Sicherheit ergänzt (nur Array-Einträge, keine Logik geändert).
+5. **Social-Cards**: `media/og-forum.jpg` und `media/og-sicherheit.jpg`
+   (1200 × 630) aus den echten Seiten gerendert, `og:image` und
+   `twitter:card` gesetzt.
+6. **Schriften**: `styles.css` und `styles-claude.css` importieren nur noch
    `fonts/fonts.css` (lokal, SIL OFL). Damit lädt keine Seite mehr
    `fonts.googleapis.com` oder `fonts.gstatic.com`. Die CSP wurde auf allen
    Seiten von `font-src https://fonts.gstatic.com` auf `font-src 'self'`
    gezogen; `style-src` braucht die Google-Ausnahme nicht mehr. Die
    Preconnect-Links sind entfernt.
-5. **Dokumentation**: `README.md`, `AGENTS.md`, `SECURITY.md` und
+7. **Dokumentation**: `README.md`, `AGENTS.md`, `SECURITY.md` und
    `docs/SICHERHEIT.md` beschreiben den neuen Stand.
 
 Nicht angefasst: `styles-v5.css`, `ui-v5.js`, `styles-work.css`,

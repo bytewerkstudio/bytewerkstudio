@@ -72,6 +72,9 @@
     { url: 'vergleich.html', group: 'page', title: { de: 'Produktvergleich', en: 'Product comparison' }, sub: { de: 'Welche App passt zu dir?', en: 'Which app fits you?' }, keywords: 'vergleich vergleichen finder auswahl compare' },
     { url: 'studio.html', group: 'page', title: { de: 'Studio', en: 'Studio' }, sub: { de: 'Über Bytewerk Studio', en: 'About Bytewerk Studio' }, keywords: 'studio über uns about kontakt' },
     { url: 'kontakt.html', group: 'page', title: { de: 'Kontakt', en: 'Contact' }, sub: { de: 'Projektanfrage senden', en: 'Send a project request' }, keywords: 'kontakt contact anfrage email projekt' },
+    { url: 'forum.html', group: 'page', title: { de: 'Forum', en: 'Forum' }, sub: { de: 'Fragen, Antworten, Werkstattwissen', en: 'Questions, answers, workshop knowledge' }, keywords: 'forum community fragen antworten threads three.js hilfe' },
+    { url: 'entwickler.html', group: 'page', title: { de: 'Entwickler & API', en: 'Developers & API' }, sub: { de: 'Sandbox, Schlüssel, Abo-Stufen', en: 'Sandbox, keys, tiers' }, keywords: 'entwickler developer api sandbox abo lizenzen keys webhooks' },
+    { url: 'sicherheit.html', group: 'page', title: { de: 'Sicherheit', en: 'Security' }, sub: { de: 'Selbsttest, Maßnahmen, Meldeweg', en: 'Self-check, measures, reporting' }, keywords: 'sicherheit security csp selbsttest melden audit' },
     { url: 'konto.html', group: 'page', title: { de: 'Mein Konto', en: 'My account' }, sub: { de: 'Bibliothek, Bestellungen, Profil', en: 'Library, orders, profile' }, keywords: 'konto account bibliothek lizenzen bestellungen' },
     { url: 'login.html', group: 'page', title: { de: 'Anmelden', en: 'Sign in' }, sub: { de: 'Zum Konto', en: 'To your account' }, keywords: 'login anmelden konto' },
 
