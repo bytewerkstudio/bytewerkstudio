@@ -19,7 +19,7 @@ Header). Stand nach der Härtung:
 
     default-src 'self';
     script-src 'self' 'sha256-…' 'sha256-…';   (ein Hash je Inline-Block)
-    style-src 'self' 'unsafe-inline';
+    style-src 'self';
     font-src 'self';
     img-src 'self' data:;
     object-src 'none';
@@ -35,10 +35,13 @@ Inline-Skript geändert, ohne die CSP neu zu erzeugen, blockiert der Browser es 
 das ist Absicht, weil es bedeutet, dass die Datei außerhalb des Builds geändert
 wurde.
 
-`style-src` erlaubt weiterhin `unsafe-inline`, weil 203 `style="…"`-Attribute
-für Layout-Abstände im Bestand stehen. Das ist ein bekanntes, begrenztes
-Restrisiko: Ein Injection-Angriff könnte damit das Aussehen ändern, aber kein
-Skript ausführen. Der Weg dahin ist dokumentiert (siehe offene Punkte).
+Auch `style-src` ist auf `'self'` geschlossen. Die 203 `style="…"`-Attribute im
+Bestand (73 verschiedene Deklarationen) wurden in Utility-Klassen in
+`styles-inline.css` überführt; `tools/inline-styles-to-classes.mjs` erzeugt sie.
+Damit kann eine Injection weder Skript ausführen noch das Aussehen über ein
+Style-Attribut verändern. Einzige Ausnahme bleiben Inline-Stile, die Skripte zur
+Laufzeit über die CSSOM setzen (z. B. drei.js auf dem Canvas) — die erlaubt die
+Spezifikation bewusst, weil sie nicht aus Markup stammen.
 
 ## 3. Keine Fremdanfragen
 
@@ -104,8 +107,8 @@ Honigfalle gegen Bots, defensives Parsen des gespeicherten Zustands.
 
 ## 8. Offene Punkte
 
-- [ ] `style-src 'unsafe-inline'` entfernen: 203 `style`-Attribute in Klassen
-      überführen, dann Hashes oder `style-src-attr 'none'`.
+- [x] `style-src 'unsafe-inline'` entfernt: 203 Attribute → 73 Klassen in
+      `styles-inline.css`, 32/32 Seiten ohne Verstoß.
 - [ ] Echte HTTP-Header statt Meta-CSP. GitHub Pages kann das nicht; ein Proxy
       (Cloudflare) oder ein eigener Hoster könnte `Content-Security-Policy`,
       `Strict-Transport-Security`, `X-Content-Type-Options`,

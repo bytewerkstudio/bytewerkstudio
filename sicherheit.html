@@ -5,7 +5,7 @@
 <script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-kja/7nCiVHNZvFsVbw4bxdT2zNcQkDqJUwjAvUpf8Vo='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-11UjV5xN6pZdNlEtTmAhbPEIFgw+4PbUdGLDl43gC5I='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Sicherheit — Bytewerk Studio</title>
 <meta name="description" content="Wie bytewerkstudio.com geschützt ist: CSP mit Hashes statt unsafe-inline, keine Fremdanfragen, kein Tracking, lokale Schriften, Rahmen- und Formularschutz. Mit Live-Prüfung im Browser.">
@@ -49,6 +49,7 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body class="sec-page">
 
@@ -160,6 +161,11 @@
       <div class="sec-row" role="row">
         <code>script-src 'self' 'sha256-…'</code>
         <span data-en="Only own scripts and the exact inline blocks that were hashed at build time. No unsafe-inline.">Nur eigene Skripte und die exakt gehashten Inline-Blöcke. Kein unsafe-inline.</span>
+        <span class="sec-pill is-on" data-en="active">aktiv</span>
+      </div>
+      <div class="sec-row" role="row">
+        <code>style-src 'self'</code>
+        <span data-en="Not a single style attribute is allowed. The 203 attributes that were in the markup now live as utility classes in styles-inline.css.">Kein einziges Style-Attribut erlaubt. Die 203 Attribute aus dem Markup liegen jetzt als Utility-Klassen in styles-inline.css.</span>
         <span class="sec-pill is-on" data-en="active">aktiv</span>
       </div>
       <div class="sec-row" role="row">
@@ -307,6 +313,7 @@
     var checks = [];
     checks.push(row(!!meta, T('CSP-Meta vorhanden', 'CSP meta present')));
     checks.push(row(/script-src[^;]*'self'/.test(csp) && !/script-src[^;]*unsafe-inline/.test(csp), T('script-src ohne unsafe-inline', 'script-src without unsafe-inline')));
+    checks.push(row(/style-src 'self'(;|$)/.test(csp) && !/style-src[^;]*unsafe-inline/.test(csp), T('style-src ohne unsafe-inline', 'style-src without unsafe-inline')));
     checks.push(row(hashes > 0, T('Inline-Skripte gehasht', 'Inline scripts hashed'), hashes + ' SHA-256'));
     checks.push(row(/frame-src 'none'/.test(csp), "frame-src 'none'"));
     checks.push(row(/object-src 'none'/.test(csp), "object-src 'none'"));

@@ -163,3 +163,26 @@ Startseite: 2263 KB → 1736 KB, LCP 1500 → 160 ms (Stichprobe, 1440 px).
 
 Offen: die Originale (JPEG/PNG) könnten nach einer Übergangsfrist gelöscht
 werden; solange ältere Caches sie anfordern, bleiben sie liegen.
+
+## style-src geschlossen (07.11.2026, 11:40)
+
+Die letzte offene CSP-Lücke aus `docs/SICHERHEIT.md` ist zu: **kein
+`unsafe-inline` mehr, auch nicht für Stile.**
+
+- 203 `style="…"`-Attribute, 73 verschiedene Deklarationen, in Utility-Klassen
+  überführt (`styles-inline.css`, alle mit `!important`, damit sie wie zuvor
+  Element-Selektoren schlagen). Erzeugt von `tools/inline-styles-to-classes.mjs`.
+- Die sieben `style="--i:N"` im SVG von `ui-entscheidung.js` wurden zu
+  `data-i="N"` plus sechs CSS-Regeln — `innerHTML` mit Style-Attribut ist unter
+  `style-src 'self'` blockiert.
+- Neue CSP-Zeile: `style-src 'self';` — geprüft mit `verify-csp.mjs` (32 Seiten,
+  52 Blöcke, 0 Abweichungen) und `audit-security.mjs`
+  (`pages=32 clean=32 problems=0`, 0 CSP-Verstöße).
+- Die Sicherheitsseite prüft das jetzt selbst: Live-Panel **13/13**.
+
+**Geometrievergleich** gegen den Stand davor (`8211496`, zweiter Server auf
+`:8962`), 32 Seiten, jedes Element mit Position, Größe, Sichtbarkeit, Schrift,
+Farbe: 21 Seiten pixelgleich, die übrigen Abweichungen liegen im Messrauschen
+(identische Stände zeigen bis zu 8 px bei Reveal-Animationen). Ausnahmen:
+`sicherheit.html` (neue Tabellenzeile, gewollt) und `studio.html` (fremde,
+unversionierte Arbeit — nicht von mir).

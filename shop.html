@@ -5,7 +5,7 @@
 <script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-JHgwzThV2vVLgaozS6fBp5ZcLS3YzUHXAeCyvhIYVmw='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-JHgwzThV2vVLgaozS6fBp5ZcLS3YzUHXAeCyvhIYVmw='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Shop — Bytewerk Studio Apps</title>
 <meta name="description" content="Apps und Spiele von Bytewerk Studio: Lernreich, Prüfungs-Countdown, Lernreich Pro, KeyForge Vault, LumaWeek Planner, UpdatePilot, Bytewerk PDF Text Pro, MASTIL, Neon Dominion, BURGENWERK und NEON HORDE.">
@@ -104,6 +104,7 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
 
@@ -123,7 +124,7 @@
 </section>
 
 <!-- SHOP GRID -->
-<section class="sec-pad" style="padding-top:clamp(48px,7vw,80px)" data-screen-label="Shop Grid">
+<section class="sec-pad si-padding-top-clamp-48px-7vw-80px" data-screen-label="Shop Grid">
   <div class="wrap">
     <div class="shop-tools reveal">
       <label class="shop-search" for="shop-search">
@@ -139,7 +140,7 @@
       <span class="shop-count" id="shop-count" aria-live="polite"></span>
     </div>
     <div class="shop-tools-extra reveal">
-      <p style="margin:0;font-size:12.5px;color:var(--faint)" data-en="Offline apps, lifetime licenses, no account required.">Offline-Apps, Lifetime-Lizenzen, kein Konto nötig.</p>
+      <p class="si-margin-0-font-size-12-5px-color-var-faint" data-en="Offline apps, lifetime licenses, no account required.">Offline-Apps, Lifetime-Lizenzen, kein Konto nötig.</p>
       <a class="btn btn-primary btn-sm" href="probierstand.html"><span data-en="Try four tools live">Vier Werkzeuge live testen</span> <span class="arr">&rarr;</span></a>
       <a class="btn btn-ghost btn-sm" href="vergleich.html"><span data-en="Compare all products">Alle Produkte vergleichen</span> <span class="arr">&rarr;</span></a>
     </div>
@@ -268,7 +269,7 @@
       <div class="recent-row" id="recent-row"></div>
     </div>
 
-    <p class="reveal" style="margin-top:40px;font-family:var(--mono);font-size:13px;color:var(--faint)" data-en="// Offline apps, lifetime licenses, no account required. Questions and purchases by email.">// Alle Apps laufen offline. Fragen und Kauf per E-Mail: Haqmalh@icloud.com</p>
+    <p class="reveal si-margin-top-40px-font-family-var-mono-font-size-13px-color-var-faint" data-en="// Offline apps, lifetime licenses, no account required. Questions and purchases by email.">// Alle Apps laufen offline. Fragen und Kauf per E-Mail: Haqmalh@icloud.com</p>
   </div>
 </section>
 
