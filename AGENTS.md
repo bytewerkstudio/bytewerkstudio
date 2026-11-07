@@ -40,8 +40,8 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `components.js` | Header, Footer, DE/EN |
 | `ui-v4.js` | Suche, Shop-Werkzeuge, Konfigurator |
 | `background.js` | Bewegter Hintergrund, code-only |
-| `styles-studio3d.css` | Hero-Bühne (Studio-Modell), zuletzt geladen |
-| `scene-studio.js` | three.js-Szene der Hero-Bühne (r180 aus `vendor/`) |
+| `styles-schichtmodell.css` + `schichtmodell.js` | Startseiten-Sektion „Ein Produkt. Vier Schichten." (three.js, r180) |
+| `styles-studio3d.css` + `scene-studio.js` | frühere Hero-Bühne, derzeit von keiner Seite geladen; bleibt als Rückfall im Repo |
 | `styles-mittag.css` | Startseiten-Sektion Entwickler/Forum/Sicherheit (`.mw-*`) |
 | `styles-forum.css` + `forum.js` + `forum-scene.js` | Forum, Pro-Stufe, three.js-Pinwand |
 | `styles-entwickler.css` + `entwickler.js` | API-Referenz, Sandbox, Abo-Stufen |
