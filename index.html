@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-HG5m42jPf6NGEaiPg+KUvnUXrccWz+PD7HASt10BtGQ='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Bytewerk Studio — Software, Web & Apps aus Ludwigshafen</title>
 <meta name="description" content="Bytewerk Studio entwickelt Software, Websites, Apps und digitale Produkte in Ludwigshafen am Rhein. Klarer Ablauf, ehrliche Festpreise, Code, der dir gehört.">
@@ -19,8 +19,9 @@
 <meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -28,6 +29,7 @@
 <link rel="stylesheet" href="styles-studio3d.css">
 <link rel="stylesheet" href="styles-workstoff.css">
 <link rel="stylesheet" href="styles-v5.css">
+<link rel="stylesheet" href="styles-community-teaser.css">
   <link rel="stylesheet" href="styles-3d.css">
 <link rel="stylesheet" href="styles-work.css">
 <link rel="stylesheet" href="styles-showroom.css">
@@ -79,6 +81,7 @@
 }
 </script>
 <link rel="stylesheet" href="styles-entscheidung.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
 
@@ -97,8 +100,8 @@
       <span class="hero-badge reveal">
         <span class="pulse" aria-hidden="true"></span>
         <span data-en="Studio for software, web &amp; apps">Studio für Software, Web &amp; Apps</span>
-        <span style="color:var(--faint)" aria-hidden="true">·</span>
-        <span style="color:var(--muted)" data-en="Ludwigshafen">Ludwigshafen</span>
+        <span class="si-color-var-faint" aria-hidden="true">·</span>
+        <span class="si-color-var-muted" data-en="Ludwigshafen">Ludwigshafen</span>
       </span>
 
       <h1 class="hero-v3-title reveal" data-d="1" data-en="<span class=&quot;line&quot;>Software<span class=&quot;line-dot&quot;>.</span></span><span class=&quot;line&quot;>Web<span class=&quot;line-dot&quot;>.</span></span><span class=&quot;line accent-line&quot;>Apps<span class=&quot;line-dot&quot;>.</span></span>">
@@ -119,7 +122,7 @@
 
       <div class="hero-v3-note reveal" data-d="4">
         <b data-en="Now available:">Jetzt verfügbar:</b>
-        <a href="neon-horde/" style="color:var(--accent-300)" data-en="NEON HORDE browser shooter">NEON HORDE Browserspiel</a>
+        <a class="si-color-var-accent-300" href="neon-horde/" data-en="NEON HORDE browser shooter">NEON HORDE Browserspiel</a>
         <span aria-hidden="true">·</span>
         <span data-en="11 own products">11 eigene Produkte</span>
       </div>
@@ -182,7 +185,7 @@
   </div>
 
   <a class="hero-chip" href="neon-horde/">
-    <img src="media/neon-horde-icon.svg" alt="">
+    <img decoding="async" src="media/neon-horde-icon.svg" alt="" width="128" height="128">
     <span><b>NEON HORDE</b> · <span data-en="Browser shooter">Browser-Shooter</span></span>
     <span class="tag-live" data-en="Play">Spielen</span>
   </a>
@@ -250,7 +253,7 @@
         <svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/></svg>
         <span data-en="Drag to rotate">Ziehen zum Drehen</span>
       </span>
-      <span class="ws-fig" aria-hidden="true">Abb. 01 — Werkstoff</span>
+      <span class="ws-fig" aria-hidden="true" data-en="Fig. 01 — Material">Abb. 01 — Werkstoff</span>
     </div>
   </div>
 </section>
@@ -271,7 +274,7 @@
 <!-- ============ LEISTUNGEN ============ -->
 <section class="sec-pad" id="leistungen" data-screen-label="Leistungen">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:48px">
+    <div class="sec-head reveal si-margin-bottom-48px">
       <span class="eyebrow" data-en="What we build">Was wir bauen</span>
       <h2 class="h2" data-en="Software, websites, apps and IT.">Software, Websites, Apps und IT.</h2>
       <p class="lead" data-en="We plan, build and support digital solutions from the first draft to launch.">Wir planen, entwickeln und betreuen digitale Lösungen vom ersten Entwurf bis zur Veröffentlichung.</p>
@@ -306,7 +309,7 @@
         <div class="tags"><span class="tag">Apps</span><span class="tag">Learning Tools</span><span class="tag">DevOps</span></div>
       </article>
     </div>
-    <div class="reveal" data-d="2" style="margin-top:34px">
+    <div class="reveal si-margin-top-34px" data-d="2">
       <a class="btn btn-ghost" href="softwareentwicklung-ludwigshafen.html">
         <span data-en="Explore software development in Ludwigshafen">Softwareentwicklung in Ludwigshafen ansehen</span> <span class="arr">→</span>
       </a>
@@ -315,9 +318,9 @@
 </section>
 
 <!-- ============ ARBEITEN ============ -->
-<section class="sec-pad" id="arbeiten" style="padding-top:0" data-screen-label="Arbeiten">
+<section class="sec-pad si-padding-top-0" id="arbeiten" data-screen-label="Arbeiten">
   <div class="wrap">
-    <div class="shop-head reveal" style="margin-bottom:44px">
+    <div class="shop-head reveal si-margin-bottom-44px">
       <div class="sec-head">
         <span class="eyebrow" data-en="Selected work">Ausgewählte Arbeiten</span>
         <h2 class="h2" data-en="Products people actually use.">Produkte, die wirklich benutzt werden.</h2>
@@ -328,7 +331,7 @@
 
     <div class="work-bento reveal" data-d="1">
       <a class="work-card big" href="keyforge-vault.html">
-        <img src="media/keyforge-vault-dashboard.png" alt="KeyForge Vault Dashboard">
+        <img decoding="async" loading="lazy" src="media/keyforge-vault-dashboard.webp" alt="KeyForge Vault Dashboard" width="1349" height="835" srcset="media/keyforge-vault-dashboard-800w.webp 800w, media/keyforge-vault-dashboard-1200w.webp 1200w, media/keyforge-vault-dashboard.webp 1349w" sizes="(max-width: 900px) 94vw, 48vw">
         <span class="wc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
         <div class="wc-body">
           <span class="wc-cat">Security · Windows · 2026</span>
@@ -337,7 +340,7 @@
         </div>
       </a>
       <a class="work-card" href="neon-dominion.html">
-        <img src="media/neon-dominion-gameplay.jpg" alt="Neon Dominion Gameplay">
+        <img decoding="async" loading="lazy" src="media/neon-dominion-gameplay.webp" alt="Neon Dominion Gameplay" width="1400" height="875" srcset="media/neon-dominion-gameplay-800w.webp 800w, media/neon-dominion-gameplay-1200w.webp 1200w, media/neon-dominion-gameplay.webp 1400w" sizes="(max-width: 900px) 94vw, 48vw">
         <span class="wc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
         <div class="wc-body">
           <span class="wc-cat">Game · Windows · 2026</span>
@@ -345,7 +348,7 @@
         </div>
       </a>
       <a class="work-card" href="mastil.html">
-        <img src="media/mastil-start-bg.jpg" alt="MASTIL Startbildschirm">
+        <img decoding="async" loading="lazy" src="media/mastil-start-bg.webp" alt="MASTIL Startbildschirm" width="1672" height="941" srcset="media/mastil-start-bg-800w.webp 800w, media/mastil-start-bg-1200w.webp 1200w, media/mastil-start-bg.webp 1672w" sizes="(max-width: 900px) 94vw, 48vw">
         <span class="wc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
         <div class="wc-body">
           <span class="wc-cat">Game · Web &amp; Windows</span>
@@ -373,7 +376,7 @@
 </section>
 
 <!-- ============ SHOP ============ -->
-<section class="sec-pad" id="shop" style="background:var(--paper-2);border-block:1px solid var(--line)" data-screen-label="Shop">
+<section class="sec-pad si-background-var-paper-2-border-block-1px-solid-var-line" id="shop" data-screen-label="Shop">
   <div class="wrap">
     <div class="shop-head reveal">
       <div class="sec-head">
@@ -384,9 +387,9 @@
       <a class="btn btn-ghost" href="shop.html"><span data-en="Browse all">Zum ganzen Shop</span> <span class="arr">→</span></a>
     </div>
 
-    <div class="shop-grid reveal" data-d="1" style="margin-top:46px">
+    <div class="shop-grid reveal si-margin-top-46px" data-d="1">
       <a class="prod" href="lernreich-pro.html">
-        <div class="ph app-mark-panel"><span class="badge">Pro</span><img class="app-logo-mark" src="media/lernreich-pro-icon.svg" alt="Lernreich Pro Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Pro</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/lernreich-pro-icon.svg" alt="Lernreich Pro Logo" width="256" height="256"></div>
         <div class="body">
           <span class="cat">Windows · Pro · PayPal</span>
           <h3>Lernreich Pro</h3>
@@ -395,7 +398,7 @@
         </div>
       </a>
       <a class="prod" href="keyforge-vault.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/keyforge-vault-icon.svg" alt="KeyForge Vault Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/keyforge-vault-icon.svg" alt="KeyForge Vault Logo" width="256" height="256"></div>
         <div class="body">
           <span class="cat">Windows · Security · PayPal</span>
           <h3>KeyForge Vault</h3>
@@ -404,7 +407,7 @@
         </div>
       </a>
       <a class="prod" href="updatepilot.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo" width="512" height="512"></div>
         <div class="body">
           <span class="cat">Windows · Updates · Lifetime</span>
           <h3>UpdatePilot</h3>
@@ -413,7 +416,7 @@
         </div>
       </a>
       <a class="prod" href="bytewerk-pdf-text-pro.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo" width="512" height="512"></div>
         <div class="body">
           <span class="cat">Windows · PDF/OCR · Lifetime</span>
           <h3>Bytewerk PDF Text Pro</h3>
@@ -422,7 +425,7 @@
         </div>
       </a>
       <a class="prod" href="neon-dominion.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo" width="1024" height="1024"></div>
         <div class="body">
           <span class="cat">Windows · Premium · Strategy</span>
           <h3>Neon Dominion</h3>
@@ -431,7 +434,7 @@
         </div>
       </a>
       <a class="prod" href="neon-horde/">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/neon-horde-icon.svg" alt="NEON HORDE Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/neon-horde-icon.svg" alt="NEON HORDE Logo" width="128" height="128"></div>
         <div class="body">
           <span class="cat">Web · Browser · Free</span>
           <h3>NEON HORDE</h3>
@@ -448,19 +451,88 @@
   <div class="wrap sr-teaser-grid">
     <div class="reveal">
       <span class="eyebrow" data-en="Showroom · 3D">Showroom · 3D</span>
-      <h2 class="h2" id="sr-teaser-title" style="margin-top:18px" data-en="Eleven products, one shelf.">Elf Produkte, ein Regal.</h2>
-      <p class="lead" style="margin-top:20px" data-en="Every app and game as a printed plate: drag, browse, open. Rendered with three.js directly in the browser — no external scripts, no tracking, no network calls at runtime.">
+      <h2 class="h2 si-margin-top-18px" id="sr-teaser-title" data-en="Eleven products, one shelf.">Elf Produkte, ein Regal.</h2>
+      <p class="lead si-margin-top-20px" data-en="Every app and game as a printed plate: drag, browse, open. Rendered with three.js directly in the browser — no external scripts, no tracking, no network calls at runtime.">
         Jede App und jedes Spiel als gedruckte Tafel: ziehen, blättern, öffnen. Gerendert mit three.js direkt im Browser — ohne fremde Skripte, ohne Tracking, ohne Netzwerkaufrufe zur Laufzeit.
       </p>
       <div class="sr-teaser-meta"><i aria-hidden="true"></i> three.js · 11 <span data-en="plates">Tafeln</span> · 0 <span data-en="external scripts">fremde Skripte</span></div>
-      <a class="btn btn-primary" style="margin-top:26px" href="showroom.html"><span data-en="Open showroom">Showroom öffnen</span> <span class="arr">→</span></a>
+      <a class="btn btn-primary si-margin-top-26px" href="showroom.html"><span data-en="Open showroom">Showroom öffnen</span> <span class="arr">→</span></a>
     </div>
     <a class="sr-teaser-stage reveal" data-d="1" href="showroom.html" aria-hidden="true" tabindex="-1">
-      <span class="sr-plate is-back"><img src="media/lernreich-logo.png" alt="" loading="lazy" width="120" height="120"><span>Lernreich</span></span>
-      <span class="sr-plate is-mid"><img src="media/lernreich-pro-icon.svg" alt="" loading="lazy" width="120" height="120"><span>Lernreich Pro</span></span>
-      <span class="sr-plate is-front"><img src="media/keyforge-vault-icon.svg" alt="" loading="lazy" width="120" height="120"><span>KeyForge Vault</span></span>
-      <span class="sr-plate is-side"><img src="media/neon-dominion-icon.svg" alt="" loading="lazy" width="120" height="120"><span>Neon Dominion</span></span>
-      <span class="sr-plate is-far"><img src="media/burgenwerk-logo.png" alt="" loading="lazy" width="120" height="120"><span>BURGENWERK</span></span>
+      <span class="sr-plate is-back"><img decoding="async" src="media/lernreich-logo.webp" alt="" loading="lazy" width="120" height="120"><span>Lernreich</span></span>
+      <span class="sr-plate is-mid"><img decoding="async" src="media/lernreich-pro-icon.svg" alt="" loading="lazy" width="120" height="120"><span>Lernreich Pro</span></span>
+      <span class="sr-plate is-front"><img decoding="async" src="media/keyforge-vault-icon.svg" alt="" loading="lazy" width="120" height="120"><span>KeyForge Vault</span></span>
+      <span class="sr-plate is-side"><img decoding="async" src="media/neon-dominion-icon.svg" alt="" loading="lazy" width="120" height="120"><span>Neon Dominion</span></span>
+      <span class="sr-plate is-far"><img decoding="async" src="media/burgenwerk-logo.webp" alt="" loading="lazy" width="120" height="120"><span>BURGENWERK</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="bwcm-t" id="community" aria-labelledby="cm-teaser-title" data-screen-label="Community">
+  <div class="wrap bwcm-t-grid">
+    <div class="bwcm-t-copy reveal">
+      <span class="eyebrow" data-en="Community · Workshop">Community · Werkstatt</span>
+      <h2 class="h2" id="cm-teaser-title" data-en="Questions that keep building.">Fragen, die weiterbauen.</h2>
+      <p class="lead" data-en="A forum for people who ship: code, products, tools. Ask precisely, answer briefly — and the answer that helped stays marked. The workshop, the code reviews and the archive open with the developer subscription.">
+        Ein Forum für Leute, die ausliefern: Code, Produkte, Werkzeuge. Präzise fragen, knapp antworten — und die Antwort, die geholfen hat, bleibt markiert. Werkstatt, Code-Reviews und Archiv öffnen mit dem Entwickler-Abo.
+      </p>
+      <div class="bwcm-t-meta">
+        <i aria-hidden="true"></i>
+        <span data-en="5 categories">5 Kategorien</span>
+        <span aria-hidden="true">·</span>
+        <span data-en="DE / EN">DE / EN</span>
+        <span aria-hidden="true">·</span>
+        <span data-en="no tracking">kein Tracking</span>
+      </div>
+      <div class="bwcm-t-actions">
+        <a class="btn btn-primary" href="community.html"><span data-en="Open community">Community öffnen</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="community.html#abo"><span data-en="Plans for developers">Abo für Entwickler</span></a>
+      </div>
+    </div>
+
+    <a class="bwcm-t-stack reveal" data-d="1" href="community.html" aria-label="Community öffnen: Beispiele aus dem Forum" data-en-aria="Open the community: sample threads">
+      <article class="bwcm-t-card">
+        <span class="bwcm-t-ava si-background-linear-gradient-145deg-446b56-50775f" aria-hidden="true">MK</span>
+        <div class="bwcm-t-body">
+          <span class="bwcm-t-cat"><i class="si-background-4f7a63" aria-hidden="true"></i><span data-en="Code">Code</span></span>
+          <p class="bwcm-t-title" data-en="Three.js: scene does not pause in a background tab">Three.js: Szene pausiert nicht im Hintergrund-Tab</p>
+          <div class="bwcm-t-meta2">
+            <span>14 <span data-en="answers">Antworten</span></span>
+            <span>2 h</span>
+          </div>
+        </div>
+        <span class="bwcm-t-solved"><span aria-hidden="true">✓</span><span data-en="solved">gelöst</span></span>
+      </article>
+
+      <article class="bwcm-t-card">
+        <span class="bwcm-t-ava si-background-linear-gradient-145deg-4e5c78-66769a" aria-hidden="true">TR</span>
+        <div class="bwcm-t-body">
+          <span class="bwcm-t-cat"><i class="si-background-5b6b8a" aria-hidden="true"></i><span data-en="Workshop">Werkstatt</span></span>
+          <p class="bwcm-t-title" data-en="CSP without inline: how do you ship a strict policy?">CSP ohne Inline: wie liefert man eine strikte Policy aus?</p>
+          <div class="bwcm-t-meta2">
+            <span>9 <span data-en="answers">Antworten</span></span>
+            <span>5 h</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="bwcm-t-card">
+        <span class="bwcm-t-ava si-background-linear-gradient-145deg-a8482c-b05a3d" aria-hidden="true">SB</span>
+        <div class="bwcm-t-body">
+          <span class="bwcm-t-cat"><i class="si-background-b04f31" aria-hidden="true"></i><span data-en="Questions">Fragen</span></span>
+          <p class="bwcm-t-title" data-en="How do you ask a question that actually gets answered?">Wie stellt man eine Frage, die wirklich beantwortet wird?</p>
+          <div class="bwcm-t-meta2">
+            <span>21 <span data-en="answers">Antworten</span></span>
+            <span>1 d</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="bwcm-t-foot">
+        <span data-en="Open board · free to read and post">Offenes Brett · Lesen und Schreiben frei</span>
+        <b data-en="Enter →">Öffnen →</b>
+      </div>
     </a>
   </div>
 </section>
@@ -468,7 +540,7 @@
 <!-- ============ PROZESS ============ -->
 <section class="sec-pad" id="prozess" data-screen-label="Prozess">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:44px">
+    <div class="sec-head reveal si-margin-bottom-44px">
       <span class="eyebrow" data-en="How we work">Wie wir arbeiten</span>
       <h2 class="h2" data-en="Clear process, clear results.">Klarer Ablauf, klare Ergebnisse.</h2>
     </div>
@@ -493,12 +565,12 @@
 </section>
 
 <!-- ============ STUDIO / WHY ============ -->
-<section class="sec-pad" id="studio-teaser" style="padding-top:0" data-screen-label="Studio">
+<section class="sec-pad si-padding-top-0" id="studio-teaser" data-screen-label="Studio">
   <div class="wrap studio-split">
     <div class="reveal">
       <span class="eyebrow" data-en="The studio">Das Studio</span>
-      <h2 class="h2" style="margin-top:18px" data-en="A small studio for software, web and apps.">Ein kleines Studio für Software, Web und Apps.</h2>
-      <p class="lead" style="margin-top:22px" data-en="Bytewerk Studio develops software, websites and apps for client projects and its own products. Communication is direct from the first conversation to launch.">
+      <h2 class="h2 si-margin-top-18px" data-en="A small studio for software, web and apps.">Ein kleines Studio für Software, Web und Apps.</h2>
+      <p class="lead si-margin-top-22px" data-en="Bytewerk Studio develops software, websites and apps for client projects and its own products. Communication is direct from the first conversation to launch.">
         Bytewerk Studio entwickelt Software, Websites und Apps für Kundenprojekte und eigene Produkte.
         Die Abstimmung bleibt direkt, vom ersten Gespräch bis zur Veröffentlichung.
       </p>
@@ -507,7 +579,7 @@
         <div class="pt"><span class="dot"></span> <span data-en="Code that's yours — full transparency">Code, der dir gehört — volle Transparenz</span></div>
         <div class="pt"><span class="dot"></span> <span data-en="Open-source friendly, published on GitHub">Open-Source-freundlich, veröffentlicht auf GitHub</span></div>
       </div>
-      <a class="btn btn-primary" style="margin-top:30px" href="studio.html"><span data-en="Get to know us">Lern uns kennen</span> <span class="arr">→</span></a>
+      <a class="btn btn-primary si-margin-top-30px" href="studio.html"><span data-en="Get to know us">Lern uns kennen</span> <span class="arr">→</span></a>
     </div>
     <div class="studio-visual reveal" data-d="1" aria-hidden="true">
       <div class="code-card">
@@ -526,9 +598,9 @@
 </section>
 
 <!-- ============ PREISE ============ -->
-<section class="sec-pad" id="preise" style="background:var(--paper-2);border-block:1px solid var(--line)" data-screen-label="Preise">
+<section class="sec-pad si-background-var-paper-2-border-block-1px-solid-var-line" id="preise" data-screen-label="Preise">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:44px">
+    <div class="sec-head reveal si-margin-bottom-44px">
       <span class="eyebrow" data-en="Packages">Pakete</span>
       <h2 class="h2" data-en="A clear frame for your project.">Ein klarer Rahmen für dein Projekt.</h2>
       <p class="lead" data-en="Every project is quoted individually after a short call. These packages show the scope and the typical timeline.">Jedes Projekt wird nach einem kurzen Gespräch individuell kalkuliert. Die Pakete zeigen Umfang und typischen Zeitrahmen.</p>
@@ -579,14 +651,14 @@
         <a class="btn btn-ghost" href="kontakt.html" data-en="Ask about care">Betreuung anfragen</a>
       </article>
     </div>
-    <p class="reveal" style="margin-top:22px;font-size:12.5px;color:var(--faint);max-width:70ch" data-en="All prices are non-binding orientation. A final fixed price follows after the scope is defined. No hidden costs.">Alle Preise sind unverbindliche Orientierung. Ein endgültiger Festpreis folgt nach Definition des Umfangs. Keine versteckten Kosten.</p>
+    <p class="reveal si-margin-top-22px-font-size-12-5px-color-var-faint-max-width-70ch" data-en="All prices are non-binding orientation. A final fixed price follows after the scope is defined. No hidden costs.">Alle Preise sind unverbindliche Orientierung. Ein endgültiger Festpreis folgt nach Definition des Umfangs. Keine versteckten Kosten.</p>
   </div>
 </section>
 
 <!-- ============ KONFIGURATOR ============ -->
-<section class="sec-pad" id="konfigurator" style="background:var(--paper-2);border-block:1px solid var(--line)" data-screen-label="Konfigurator">
+<section class="sec-pad si-background-var-paper-2-border-block-1px-solid-var-line" id="konfigurator" data-screen-label="Konfigurator">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:38px">
+    <div class="sec-head reveal si-margin-bottom-38px">
       <span class="eyebrow" data-en="Project configurator">Projekt-Konfigurator</span>
       <h2 class="h2" data-en="Three steps to a clear brief.">In drei Schritten zum klaren Briefing.</h2>
       <p class="lead" data-en="Choose what you need and get a realistic package recommendation plus a ready-to-send request. No account, no obligation.">Wähle, was du brauchst, und erhalte eine realistische Paket-Empfehlung plus eine fertige Anfrage. Ohne Konto, unverbindlich.</p>
@@ -646,8 +718,8 @@
               <small data-en="Full product with several areas">Volles Produkt mit mehreren Bereichen</small>
             </button>
           </div>
-          <div class="cfg-kicker" style="margin-top:22px" data-en="Extras (optional)">Extras (optional)</div>
-          <div class="cfg-opts" style="margin-top:10px">
+          <div class="cfg-kicker si-margin-top-22px" data-en="Extras (optional)">Extras (optional)</div>
+          <div class="cfg-opts si-margin-top-10px">
             <button class="cfg-opt" type="button" data-key="extras" data-val="login" data-multi aria-pressed="false">
               <span data-en="Login &amp; accounts">Login &amp; Konten</span>
             </button>
@@ -709,7 +781,7 @@
           <div class="cr-s" id="cfg-rec-sub">Typisch 6–12 Wochen</div>
         </div>
         <a class="btn btn-primary" data-cfg-mail href="mailto:Haqmalh@icloud.com"><span data-en="Send brief by email">Briefing per E-Mail</span> <span class="arr">&rarr;</span></a>
-        <a class="btn btn-ghost" data-cfg-contact href="kontakt.html" style="margin-top:8px" data-en="Open contact form">Im Kontaktformular öffnen</a>
+        <a class="btn btn-ghost si-margin-top-8px" data-cfg-contact href="kontakt.html" data-en="Open contact form">Im Kontaktformular öffnen</a>
         <p class="cfg-note" data-en="No obligation. The fixed price follows after a short call.">Unverbindlich. Der Festpreis folgt nach einem kurzen Gespräch.</p>
       </aside>
     </div>
@@ -723,7 +795,7 @@
       <span class="eyebrow" data-en="Questions">Fragen</span>
       <h2 class="h2" data-en="Good to know.">Gut zu wissen.</h2>
       <p class="lead" data-en="Short answers to the things people ask before starting. Something missing? Just send a message.">Kurze Antworten auf das, was vor einem Start gefragt wird. Etwas offen? Schreib einfach.</p>
-      <a class="btn btn-ghost" href="kontakt.html" style="margin-top:8px"><span data-en="Ask a question">Frage stellen</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost si-margin-top-8px" href="kontakt.html"><span data-en="Ask a question">Frage stellen</span> <span class="arr">→</span></a>
     </div>
 
     <div class="faq-list reveal" data-d="1">
@@ -756,16 +828,16 @@
 </section>
 
 <!-- ============ CTA ============ -->
-<section style="padding-bottom:clamp(72px,11vw,140px)" data-screen-label="CTA">
+<section class="si-padding-bottom-clamp-72px-11vw-140px" data-screen-label="CTA">
   <div class="wrap">
     <div class="cta-band reveal">
       <canvas id="cta-canvas" class="cta-grid-bg" aria-hidden="true"></canvas>
-      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Ready?">Bereit?</span>
-      <h2 class="h2" style="position:relative" data-en="Let's start your next project.">Lass uns dein nächstes Projekt starten.</h2>
-      <p class="lead" style="max-width:48ch" data-en="Send a short message and we will reply with the next step.">Schick eine kurze Nachricht, wir melden uns mit dem nächsten Schritt.</p>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;position:relative">
+      <span class="eyebrow si-color-var-accent-300-position-relative" data-en="Ready?">Bereit?</span>
+      <h2 class="h2 si-position-relative" data-en="Let's start your next project.">Lass uns dein nächstes Projekt starten.</h2>
+      <p class="lead si-max-width-48ch" data-en="Send a short message and we will reply with the next step.">Schick eine kurze Nachricht, wir melden uns mit dem nächsten Schritt.</p>
+      <div class="si-display-flex-gap-14px-flex-wrap-wrap-position-relative">
         <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>
-        <a class="btn btn-ghost btn-lg" style="background:transparent;color:var(--accent-300);border-color:var(--line-2)" href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>
+        <a class="btn btn-ghost btn-lg si-background-transparent-color-var-accent-300-border-color-var-line-2" href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>
       </div>
     </div>
   </div>

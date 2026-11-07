@@ -44,9 +44,25 @@
     session: 'bw.session.v1',
     sbSession: 'bw.sb.session.v1'
   };
-  const ITERATIONS = 310000;
+  const ITERATIONS = 600000;
   const MAX_FAILS = 5;
-  const LOCK_MS = 60000;
+  // Lockouts escalate: 30 s, 1 min, 2 min, 4 min … capped at one hour.
+  // A flat 60 s lock is cheap to sit out; doubling makes guessing expensive.
+  const LOCK_BASE_MS = 30000;
+  const LOCK_MAX_MS = 3600000;
+  function lockMs(level) {
+    return Math.min(LOCK_MAX_MS, LOCK_BASE_MS * Math.pow(2, Math.max(0, level - 1)));
+  }
+  function waitText(ms) {
+    if (ms < 90000) {
+      const s = Math.max(1, Math.ceil(ms / 1000));
+      return t('Zu viele Versuche. Bitte in ' + s + ' Sekunden erneut probieren.',
+        'Too many attempts. Please try again in ' + s + ' seconds.');
+    }
+    const m = Math.ceil(ms / 60000);
+    return t('Zu viele Versuche. Bitte in ' + m + ' Minuten erneut probieren.',
+      'Too many attempts. Please try again in ' + m + ' minutes.');
+  }
 
   const useSupabase = CFG.mode === 'supabase' && CFG.supabaseUrl && CFG.supabaseAnonKey;
   if (CFG.mode === 'supabase' && !useSupabase) {
@@ -97,18 +113,37 @@
   function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(normalizeEmail(email));
   }
+  /* Passwords that show up at the top of every breach list. Not a full
+     dictionary — just a cheap floor so "Passwort1!" cannot pass. */
+  const WEAK_PASSWORDS = [
+    'passwort', 'password', 'passwort1', 'password1', 'passwort123', 'password123',
+    '1234567890', '12345678', 'qwertz123', 'qwerty123', 'qwertzuiop', 'qwertyuiop',
+    'admin1234', 'willkommen', 'welcome1', 'letmein1', 'iloveyou1', 'sommer2026',
+    'bytewerk', 'lernreich', 'hallo1234', 'geheim123', 'schatz123', 'dragon123'
+  ];
+  function looksCommon(pw) {
+    const p = String(pw || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (!p) return true;
+    if (WEAK_PASSWORDS.some(w => p === w || p.startsWith(w) && p.length < w.length + 4)) return true;
+    // one repeated character, or a plain run of digits
+    if (/^(.)\1+$/.test(p)) return true;
+    if (/^\d+$/.test(p)) return true;
+    return false;
+  }
   function passwordScore(pw) {
     let s = 0;
     if (pw.length >= 10) s++;
     if (pw.length >= 14) s++;
     if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) s++;
     if (/\d/.test(pw) && /[^A-Za-z0-9]/.test(pw)) s++;
+    if (looksCommon(pw)) s = Math.min(s, 1);
     return Math.min(4, s);
   }
   function passwordOk(pw) {
     return typeof pw === 'string' && pw.length >= 10 &&
       /[a-z]/.test(pw) && /[A-Z]/.test(pw) &&
-      (/\d/.test(pw) || /[^A-Za-z0-9]/.test(pw));
+      (/\d/.test(pw) || /[^A-Za-z0-9]/.test(pw)) &&
+      !looksCommon(pw);
   }
   function safeEqual(a, b) {
     if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
@@ -207,18 +242,23 @@
       const acc = list.find(a => a.email === email);
       if (!acc) throw new Error(t('E-Mail oder Passwort ist falsch.', 'Email or password is incorrect.'));
       if (acc.lockUntil && acc.lockUntil > now()) {
-        const secs = Math.ceil((acc.lockUntil - now()) / 1000);
-        throw new Error(t('Zu viele Versuche. Bitte in ' + secs + ' Sekunden erneut probieren.',
-          'Too many attempts. Please try again in ' + secs + ' seconds.'));
+        throw new Error(waitText(acc.lockUntil - now()));
       }
       const hash = await derive(password, acc.salt, acc.iterations || ITERATIONS);
       if (!safeEqual(hash, acc.hash)) {
         acc.fails = (acc.fails || 0) + 1;
-        if (acc.fails >= MAX_FAILS) { acc.lockUntil = now() + LOCK_MS; acc.fails = 0; }
+        if (acc.fails >= MAX_FAILS) {
+          // Each lockout raises the level, so the wait doubles instead of
+          // resetting to a flat minute the attacker can simply sit out.
+          acc.lockLevel = Math.min(12, (acc.lockLevel || 0) + 1);
+          acc.lockUntil = now() + lockMs(acc.lockLevel);
+          acc.fails = 0;
+          this.pushActivity(acc, 'account.locked');
+        }
         this.save(list);
         throw new Error(t('E-Mail oder Passwort ist falsch.', 'Email or password is incorrect.'));
       }
-      acc.fails = 0; acc.lockUntil = 0;
+      acc.fails = 0; acc.lockUntil = 0; acc.lockLevel = 0;
       acc.lastLogin = new Date().toISOString();
       this.pushActivity(acc, 'account.login');
       this.save(list);

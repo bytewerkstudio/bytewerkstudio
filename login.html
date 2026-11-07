@@ -2,27 +2,33 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-kOfg+g19WrJE0dwbl7CcUYVS142+R7lA253y+IQzp+Q='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex, follow">
 <title>Anmelden — Bytewerk Studio Konto</title>
 <meta name="description" content="Melde dich in deinem Bytewerk-Studio-Konto an: Bibliothek, Lizenzen und Bestellungen an einem Ort.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body class="auth-page">
 
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
 <div data-include="header"></div>
 
-<main class="auth-main">
+<main id="main" class="auth-main">
   <div class="auth-shell">
 
     <section class="auth-card">
@@ -88,7 +94,7 @@
     <aside class="auth-aside">
       <div class="aa-brand">
         <svg viewBox="0 0 28 28" class="bw-logo"><rect x="1.5" y="1.5" width="11.5" height="11.5" rx="3" class="sq"/><rect x="15" y="1.5" width="11.5" height="11.5" rx="3" class="sq"/><rect x="1.5" y="15" width="11.5" height="11.5" rx="3" class="sq"/><circle cx="20.75" cy="20.75" r="5.95" class="dot"/></svg>
-        <span>Bytewerk <i style="color:var(--muted);font-style:normal">Studio</i></span>
+        <span>Bytewerk <i class="si-color-var-muted-font-style-normal">Studio</i></span>
       </div>
       <div>
         <p class="aa-quote">Software, die <em>bleibt.</em><br>Konten, die alles<br>an einem Ort bündeln.</p>
@@ -96,14 +102,14 @@
       </div>
       <div>
         <a class="aa-product" href="keyforge-vault.html">
-          <img src="media/keyforge-vault-icon.svg" alt="">
+          <img decoding="async" src="media/keyforge-vault-icon.svg" alt="" width="256" height="256">
           <div>
             <div class="t">KeyForge Vault</div>
             <div class="s" data-en="Encrypted vault · Windows">Verschlüsselter Vault · Windows</div>
           </div>
           <span class="ar">→</span>
         </a>
-        <div class="aa-stats" style="margin-top:18px">
+        <div class="aa-stats si-margin-top-18px">
           <div class="s"><div class="n">11</div><div class="k" data-en="Products">Produkte</div></div>
           <div class="s"><div class="n">4</div><div class="k" data-en="Disciplines">Disziplinen</div></div>
           <div class="s"><div class="n">100%</div><div class="k" data-en="Handover">Übergabe</div></div>

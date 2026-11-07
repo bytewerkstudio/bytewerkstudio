@@ -15,7 +15,7 @@ die Einstellungen in `auth-config.js`.
 ### 1. `mode: 'local'` (Standard, funktioniert sofort)
 
 Konten werden im Browser gespeichert (`localStorage`). Passwörter werden mit
-PBKDF2-SHA256 (310.000 Iterationen, zufälliges Salt) gehasht, niemals im Klartext abgelegt.
+PBKDF2-SHA256 (600.000 Iterationen, zufälliges Salt) gehasht, niemals im Klartext abgelegt.
 Die Session liegt in `localStorage` (30 Tage) oder `sessionStorage` (ohne „angemeldet bleiben“).
 
 Grenzen, die man kennen muss:

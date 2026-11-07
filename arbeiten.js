@@ -111,6 +111,11 @@
 
     var isMark = !link.getAttribute('data-preview-img');
     var img = document.createElement('img');
+    var srcset = link.getAttribute('data-preview-srcset');
+    if (srcset) {
+      img.setAttribute('srcset', srcset);
+      img.setAttribute('sizes', '306px');
+    }
     img.src = src;
     img.alt = '';
     img.decoding = 'async';

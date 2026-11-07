@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-4UASAuTYJc0SuX95+EizRP69n1bSFZq2AglPIGUlHZk='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Kontakt — Bytewerk Studio</title>
 <meta name="description" content="Projektanfrage an Bytewerk Studio senden: Software, Web, Apps, digitale Produkte und IT-Dienstleistungen.">
@@ -18,25 +18,29 @@
 <meta property="og:site_name" content="Bytewerk Studio">
 <meta property="og:locale" content="de_DE">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
 <div data-include="header"></div>
 
-<main class="wrap contact-grid" data-screen-label="Kontakt">
+<main id="main" class="wrap contact-grid" data-screen-label="Kontakt">
   <aside class="contact-info reveal">
     <div>
       <span class="eyebrow" data-en="Contact">Kontakt</span>
-      <h1 class="display" style="font-size:clamp(38px,5.8vw,74px);margin-top:18px" data-en="Start a clean digital project.">Starte ein sauberes digitales Projekt.</h1>
-      <p class="lead" style="margin-top:22px" data-en="Send a short brief. We reply with the next practical step and an honest first assessment.">
+      <h1 class="display si-font-size-clamp-38px-5-8vw-74px-margin-top-18px" data-en="Start a clean digital project.">Starte ein sauberes digitales Projekt.</h1>
+      <p class="lead si-margin-top-22px" data-en="Send a short brief. We reply with the next practical step and an honest first assessment.">
         Schick uns ein kurzes Briefing. Wir antworten mit dem naechsten sinnvollen Schritt und einer ehrlichen Ersteinschaetzung.
       </p>
     </div>
@@ -77,20 +81,20 @@
         <div class="field">
           <label for="type" data-en="Project type">Projektart</label>
           <select id="type" name="type">
-            <option>Softwareentwicklung</option>
-            <option>Web-Entwicklung</option>
-            <option>App-Entwicklung</option>
-            <option>Game / Digitales Produkt</option>
-            <option>IT-Dienstleistung</option>
+            <option data-en="Software development">Softwareentwicklung</option>
+            <option data-en="Web development">Web-Entwicklung</option>
+            <option data-en="App development">App-Entwicklung</option>
+            <option data-en="Game / Digital product">Game / Digitales Produkt</option>
+            <option data-en="IT services">IT-Dienstleistung</option>
           </select>
         </div>
         <div class="field">
           <label for="budget" data-en="Budget">Budget</label>
           <select id="budget" name="budget">
-            <option>Noch offen</option>
-            <option>bis 2.500 €</option>
-            <option>2.500 - 10.000 €</option>
-            <option>10.000+ €</option>
+            <option data-en="Still open">Noch offen</option>
+            <option data-en="up to €2,500">bis 2.500 €</option>
+            <option data-en="€2,500 - €10,000">2.500 - 10.000 €</option>
+            <option data-en="€10,000+">10.000+ €</option>
           </select>
         </div>
         <div class="field full">

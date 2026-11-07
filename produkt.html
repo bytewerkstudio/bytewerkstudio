@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-FaYyWXjb9PlXH58oBfgMf2VEl60V76yv7NQFcu0qoY0='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Lernreich — Lern-App · Bytewerk Studio</title>
 <meta name="description" content="Lernreich ist die aktuelle App von Bytewerk Studio: fokussiertes Lernen mit Fokus-Sanduhr, XP, Streaks, Heatmap, Journal und Wiederholungen.">
@@ -19,8 +19,9 @@
 <meta property="og:image" content="https://bytewerkstudio.com/media/lernreich-logo.png">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -51,15 +52,19 @@
   }
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
 <div data-include="header"></div>
+<main id="main">
 
 <section class="wrap pd" data-screen-label="Produkt">
   <!-- MEDIA -->
   <div class="pd-media reveal">
-    <div class="pd-hero app-mark-panel"><img class="app-logo-mark hero-logo-mark" src="media/lernreich-logo.png" alt="Lernreich Logo"></div>
+    <div class="pd-hero app-mark-panel"><img decoding="async" class="app-logo-mark hero-logo-mark" src="media/lernreich-logo.webp" alt="Lernreich Logo" width="256" height="256"></div>
     <div class="pd-thumbs">
       <div class="pd-thumb"></div>
       <div class="pd-thumb"></div>
@@ -70,8 +75,8 @@
 
   <!-- INFO -->
   <div class="pd-info reveal" data-d="1">
-    <div class="crumb" style="margin-bottom:18px"><a href="shop.html" data-en="Shop">Shop</a> <span>/</span> <span data-en="App">App</span> <span>/</span> Lernreich</div>
-    <span class="cat">Windows · Lernen · Produktivitaet</span>
+    <div class="crumb si-margin-bottom-18px"><a href="shop.html" data-en="Shop">Shop</a> <span>/</span> <span data-en="App">App</span> <span>/</span> Lernreich</div>
+    <span class="cat" data-en="Windows · Learning · Productivity">Windows · Lernen · Produktivitaet</span>
     <h1>Lernreich</h1>
     <div class="pd-price">
       <span class="amount" data-en="Free">Kostenlos</span>
@@ -87,16 +92,16 @@
     </div>
 
     <div class="pd-features" id="details">
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Fokus-Sanduhr fuer klare Lerneinheiten</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>XP, Streaks und Heatmap fuer sichtbaren Fortschritt</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Journal und Wiederholungen fuer nachhaltiges Lernen</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Offline nutzbar, werbefrei und ruhig gestaltet</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Focus timer for clear study blocks">Fokus-Sanduhr fuer klare Lerneinheiten</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="XP, streaks and a heatmap for visible progress">XP, Streaks und Heatmap fuer sichtbaren Fortschritt</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Journal and spaced repetition for lasting learning">Journal und Wiederholungen fuer nachhaltiges Lernen</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Works offline, ad-free and quietly designed">Offline nutzbar, werbefrei und ruhig gestaltet</span></div>
     </div>
 
-    <div class="pd-list" style="margin-top:30px">
+    <div class="pd-list si-margin-top-30px">
       <div class="row"><span class="key" data-en="Platform">Plattform</span><span class="val">Windows</span></div>
-      <div class="row"><span class="key">Kategorie</span><span class="val">Lernen · Fokus · Produktivitaet</span></div>
-      <div class="row"><span class="key" data-en="Price">Preis</span><span class="val">Kostenlos</span></div>
+      <div class="row"><span class="key" data-en="Category">Kategorie</span><span class="val" data-en="Learning · Focus · Productivity">Lernen · Fokus · Produktivitaet</span></div>
+      <div class="row"><span class="key" data-en="Price">Preis</span><span class="val" data-en="Free">Kostenlos</span></div>
       <div class="row"><span class="key">Website</span><span class="val"><a href="https://lernreich.pro/#download" target="_blank" rel="noopener">lernreich.pro/#download</a></span></div>
       <div class="row"><span class="key">Studio</span><span class="val">Bytewerk Studio</span></div>
     </div>
@@ -104,12 +109,12 @@
 </section>
 
 <!-- DOWNLOAD -->
-<section class="sec-pad" id="download" style="padding-top:0" data-screen-label="Download">
+<section class="sec-pad si-padding-top-0" id="download" data-screen-label="Download">
   <div class="wrap">
     <div class="cta-band reveal">
-      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Download">Download</span>
-      <h2 class="h2" style="position:relative" data-en="Open the official Lernreich download.">Offiziellen Lernreich-Download oeffnen.</h2>
-      <p class="lead" style="max-width:52ch" data-en="The download is provided through the official Lernreich website.">
+      <span class="eyebrow si-color-var-accent-300-position-relative" data-en="Download">Download</span>
+      <h2 class="h2 si-position-relative" data-en="Open the official Lernreich download.">Offiziellen Lernreich-Download oeffnen.</h2>
+      <p class="lead si-max-width-52ch" data-en="The download is provided through the official Lernreich website.">
         Der Download wird ueber die offizielle Lernreich-Website bereitgestellt.
       </p>
       <a class="btn btn-primary btn-lg" href="https://lernreich.pro/#download" target="_blank" rel="noopener"><span data-en="Go to download">Zum Download</span> <span class="arr">→</span></a>
@@ -118,24 +123,24 @@
 </section>
 
 <!-- RELATED -->
-<section class="sec-pad" style="padding-top:0" data-screen-label="Mehr">
+<section class="sec-pad si-padding-top-0" data-screen-label="Mehr">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:34px">
+    <div class="sec-head reveal si-margin-bottom-34px">
       <span class="eyebrow" data-en="Bytewerk Studio">Bytewerk Studio</span>
       <h2 class="h2" data-en="Software, web and app development behind Lernreich.">Software, Web- und App-Entwicklung hinter Lernreich.</h2>
     </div>
     <div class="shop-page-grid reveal" data-d="1">
       <a class="prod" href="pruefungs-countdown.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/pruefungs-countdown-logo.png" alt="Pruefungs-Countdown Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/pruefungs-countdown-logo.webp" alt="Pruefungs-Countdown Logo" width="1024" height="1024"></div>
         <div class="body">
-          <span class="cat">Windows · Pruefung · Planung</span>
+          <span class="cat" data-en="Windows · Exams · Planning">Windows · Pruefung · Planung</span>
           <h3>Pruefungs-Countdown</h3>
           <p data-en="A free Windows app for exam countdowns, learning goals, focus timer, XP, streaks, heatmap and local export.">Eine kostenlose Windows-App fuer Pruefungscountdowns, Lernziele, Fokus-Timer, XP, Streaks, Heatmap und lokalen Export.</p>
           <div class="foot"><span class="price">Kostenlos</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
       <a class="prod" href="lernreich-pro.html">
-        <div class="ph app-mark-panel"><span class="badge">Pro</span><img class="app-logo-mark" src="media/lernreich-pro-icon.svg" alt="Lernreich Pro Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Pro</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/lernreich-pro-icon.svg" alt="Lernreich Pro Logo" width="256" height="256"></div>
         <div class="body">
           <span class="cat">Windows · Pro · PayPal</span>
           <h3>Lernreich Pro</h3>
@@ -144,7 +149,7 @@
         </div>
       </a>
       <a class="prod" href="keyforge-vault.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/keyforge-vault-icon.svg" alt="KeyForge Vault Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/keyforge-vault-icon.svg" alt="KeyForge Vault Logo" width="256" height="256"></div>
         <div class="body">
           <span class="cat">Windows · Security · PayPal</span>
           <h3>KeyForge Vault</h3>
@@ -153,44 +158,46 @@
         </div>
       </a>
       <a class="prod" href="lumaweek-planner.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/lumaweek-icon.svg" alt="LumaWeek Planner Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/lumaweek-icon.svg" alt="LumaWeek Planner Logo" width="1024" height="1024"></div>
         <div class="body">
-          <span class="cat">Windows · Planung · PayPal</span>
+          <span class="cat" data-en="Windows · Planning · PayPal">Windows · Planung · PayPal</span>
           <h3>LumaWeek Planner</h3>
           <p data-en="Minimal weekly and yearly planner for school, university and work with tasks, notes, PDF export and local backups.">Minimaler Wochen- und Jahresplaner fuer Schule, Uni und Arbeit mit Aufgaben, Notizen, PDF-Export und lokalen Backups.</p>
           <div class="foot"><span class="price">5,99 €</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
       <a class="prod" href="updatepilot.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo" width="512" height="512"></div>
         <div class="body">
-          <span class="cat">Windows · Updates · Lebenslange Lizenz</span>
+          <span class="cat" data-en="Windows · Updates · Lifetime licence">Windows · Updates · Lebenslange Lizenz</span>
           <h3>UpdatePilot</h3>
           <p data-en="Minimal Windows update manager with winget scanning, approved updates, blocklists, technician profiles and PDF/CSV reports.">Minimaler Windows-Update-Manager mit winget-Scan, freigegebenen Updates, Blocklisten, Technikerprofilen und PDF/CSV-Reports.</p>
           <div class="foot"><span class="price">12,99 €</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
       <a class="prod" href="bytewerk-pdf-text-pro.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo" width="512" height="512"></div>
         <div class="body">
-          <span class="cat">Windows · PDF/OCR · Lifetime-Lizenz</span>
+          <span class="cat" data-en="Windows · PDF/OCR · Lifetime licence">Windows · PDF/OCR · Lifetime-Lizenz</span>
           <h3>Bytewerk PDF Text Pro</h3>
           <p data-en="Convert PDFs into clean text, with OCR for scanned PDFs, five free PDFs per day and a lifetime license.">PDFs in sauberen Text umwandeln, mit OCR fuer Scans, 5 Gratis-PDFs pro Tag und Lifetime-Lizenz.</p>
           <div class="foot"><span class="price">59,00 €</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
       <a class="prod" href="kontakt.html">
-        <div class="ph"><span>[ Projekt starten ]</span></div>
+        <div class="ph"><span data-en="[ Start a project ]">[ Projekt starten ]</span></div>
         <div class="body">
           <span class="cat">Software · Web · Apps</span>
-          <h3>Eigenes Projekt anfragen</h3>
+          <h3 data-en="Request your own project">Eigenes Projekt anfragen</h3>
           <p data-en="Need a digital product like Lernreich? Send a short brief to Bytewerk Studio.">Du brauchst ein digitales Produkt wie Lernreich? Sende Bytewerk Studio ein kurzes Briefing.</p>
-          <div class="foot"><span class="price">Anfrage</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
+          <div class="foot"><span class="price" data-en="On request">Anfrage</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
     </div>
   </div>
 </section>
+
+</main>
 
 <div data-include="footer"></div>
 

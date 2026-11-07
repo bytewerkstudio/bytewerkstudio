@@ -13,12 +13,27 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 
 ## Prüfen vor jedem Push
 
+- `node tools/verify-site.mjs` — CSP-Hashes, keine `unsafe-inline`, keine
+  `style`-Attribute, keine Fremdladungen, alle internen Links und Anker,
+  Bildmaße, doppelte IDs, `security.txt`. Exit-Code 1 heißt: nicht pushen.
 - `node --check` für jede geänderte JavaScript-Datei.
 - Interne Links und Anker prüfen, doppelte IDs vermeiden.
 - 1440 px und 390 px ohne horizontales Überlaufen testen.
 - 0 Konsolenfehler im Browser.
 - Keine Secrets, Keys, Logs, `status.json`, Build-Artefakte oder `*.bak_*`
   committen.
+
+## Wenn du Markup anfasst
+
+- **Kein `style="…"`.** Der CSP erlaubt es nicht mehr. Nimm eine Klasse aus
+  `styles-inline.css` oder lege eine neue dort an
+  (`node tools/inline-styles-to-classes.mjs .` erzeugt sie aus vorhandenen
+  Attributen; danach `node tools/harden-csp.mjs .`).
+- **Kein Inline-Skript ohne Rehash.** Nach jeder Änderung an einem
+  `<script>`-Block `node tools/harden-csp.mjs .` laufen lassen, sonst blockiert
+  der Browser die Seite.
+- **Bilder:** WebP mit `width`/`height`; ab 1200 px Breite zusätzlich
+  `srcset` mit `-800w`/`-1200w`-Varianten (`node tools/responsive-images.mjs .`).
 
 ## Koordination
 
@@ -45,6 +60,10 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `scene-studio.js` | Hero-Buehne der Startseite (`#studio-stage`), Modul |
 | `styles-studio3d.css` | Styling der Hero-Buehne |
 | `vendor/three.module.min.js` + `vendor/three.core.min.js` | Three.js r180, lokal - die CSP erlaubt nur `'self'` |
+| `community.html`, `styles-community.css`, `community.js` | Forum, Abo, Sicherheits-Selbsttest |
+| `community-scene.js` | Ideenregal der Community-Seite (three.js) |
+| `docs/COMMUNITY.md` | Aufbau und Sicherheitsmodell der Community-Seite |
+| `docs/AGENTEN-BRETT.md` | Datei-Ownership, solange das GitHub-Issue fehlt |
 
 #| `scene-notfound.js`, `styles-notfound.css` | Karteikasten auf der 404-Seite, three.js |
 # Three.js - eine Regel, ein Build

@@ -51,7 +51,12 @@
       href: href,
       img: img ? {
         src: img.getAttribute('src') || '',
-        alt: img.getAttribute('alt') || ''
+        webp: img.getAttribute('data-webp') || '',
+        srcset: img.getAttribute('srcset') || '',
+        sizes: img.getAttribute('sizes') || '',
+        alt: img.getAttribute('alt') || '',
+        w: img.getAttribute('width') || null,
+        h: img.getAttribute('height') || null
       } : null,
       catEl: card.querySelector('.wc-cat'),
       titleEl: card.querySelector('h3'),
@@ -60,6 +65,36 @@
   });
 
   if (cases.length < 2) return;
+
+  /* The bento stays in the DOM, and Chrome loads lazy images well below
+     the fold. Blank the originals now so the gallery's <picture> is the
+     only fetch; a no-JS visitor never reaches this line. */
+  var stashed = [];
+  cards.forEach(function (card) {
+    var img = card.querySelector('img');
+    if (!img) return;
+    var src = img.getAttribute('src');
+    if (!src) return;
+    img.setAttribute('data-wg-src', src);
+    img.removeAttribute('src');
+    var srcset = img.getAttribute('srcset');
+    if (srcset) {
+      img.setAttribute('data-wg-srcset', srcset);
+      img.removeAttribute('srcset');
+    }
+    stashed.push(img);
+  });
+  function restore() {
+    stashed.forEach(function (img) {
+      var src = img.getAttribute('data-wg-src');
+      if (src) img.setAttribute('src', src);
+      var srcset = img.getAttribute('data-wg-srcset');
+      if (srcset) img.setAttribute('srcset', srcset);
+    });
+  }
+  window.addEventListener('error', function () {
+    if (!section.classList.contains('wg-active')) restore();
+  });
 
   var LABEL = {
     open: { de: 'Fall öffnen', en: 'Open case' },
@@ -106,11 +141,27 @@
 
     if (item.img && item.img.src) {
       var img = doc.createElement('img');
-      img.src = item.img.src;
       img.alt = item.img.alt;
       img.decoding = 'async';
+      if (item.img.w) img.width = item.img.w;
+      if (item.img.h) img.height = item.img.h;
       img.loading = i === 0 ? 'eager' : 'lazy';
-      frame.appendChild(img);
+      if (item.img.srcset) img.setAttribute('srcset', item.img.srcset);
+      if (item.img.sizes) img.setAttribute('sizes', item.img.sizes);
+      if (item.img.webp) {
+        var pic = doc.createElement('picture');
+        var source = doc.createElement('source');
+        source.type = 'image/webp';
+        source.setAttribute('srcset', item.img.webp);
+        pic.appendChild(source);
+        pic.appendChild(img);
+        frame.appendChild(pic);
+      } else {
+        frame.appendChild(img);
+      }
+      /* src only after the element is in the picture, so the browser picks
+         one format instead of starting a fetch on the detached image */
+      img.src = item.img.src;
     } else {
       /* No screenshot: a typographic plate instead of a hole. */
       var plate = el('div', 'wg-plate');
@@ -251,7 +302,7 @@
   setActive(0);
 
   if (bento.parentNode) bento.parentNode.insertBefore(root, bento.nextSibling);
-  else return;
+  else { restore(); return; }
 
   section.classList.add('wg-active');
   root.removeAttribute('hidden');
@@ -262,6 +313,8 @@
     cases.forEach(function (item) {
       if (item.img && item.img.src) {
         var probe = new Image();
+        if (item.img.srcset) probe.setAttribute('srcset', item.img.srcset);
+        if (item.img.sizes) probe.setAttribute('sizes', item.img.sizes);
         probe.src = item.img.src;
       }
     });

@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Showroom — elf Produkte in 3D — Bytewerk Studio</title>
 <meta name="description" content="Der Bytewerk Showroom: alle elf Produkte als drehbare 3D-Tafel — Lernreich, KeyForge Vault, UpdatePilot, MASTIL, Neon Dominion, BURGENWERK, NEON HORDE und mehr.">
@@ -19,8 +19,9 @@
 <meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -37,8 +38,11 @@
   "about": { "@type": "Organization", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" }
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body class="sr-page">
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 
 <div data-include="header"></div>
 
@@ -104,7 +108,7 @@
 
           <div class="sr-flat" aria-hidden="true">
             <div class="sr-flat-plate">
-              <img alt="" data-sr-flat-icon src="media/lernreich-logo.png">
+              <img decoding="async" alt="" data-sr-flat-icon src="media/lernreich-logo.webp" width="256" height="256">
               <span class="sr-flat-name" data-sr-flat-name>Lernreich</span>
               <span class="sr-flat-meta" data-sr-flat-meta>Windows · Lernen</span>
             </div>
@@ -144,7 +148,7 @@
             <span class="sr-detail-kind" data-sr-kind>Windows</span>
           </div>
           <div class="sr-detail-head">
-            <span class="sr-detail-icon"><img alt="" data-sr-icon src="media/lernreich-logo.png"></span>
+            <span class="sr-detail-icon"><img decoding="async" loading="lazy" alt="" data-sr-icon src="media/lernreich-logo.webp" width="256" height="256"></span>
             <div>
               <h2 class="sr-detail-name" data-sr-name>Lernreich</h2>
               <p class="sr-detail-cat" data-sr-cat>Windows · Lernen</p>
@@ -190,7 +194,7 @@
              data-license="Kostenlos" data-license-en="Free"
              data-icon="media/lernreich-logo.png" data-kind="App">
             <span class="sr-row-num">01</span>
-            <span class="sr-row-icon"><img src="media/lernreich-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/lernreich-logo.webp" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>Lernreich</b><small data-en="Windows · Learning">Windows · Lernen</small></span>
             <span class="sr-row-price" data-en="Free">Kostenlos</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -206,7 +210,7 @@
              data-license="Kostenlos" data-license-en="Free"
              data-icon="media/pruefungs-countdown-logo.png" data-kind="App">
             <span class="sr-row-num">02</span>
-            <span class="sr-row-icon"><img src="media/pruefungs-countdown-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/pruefungs-countdown-logo.webp" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>Prüfungs-Countdown</b><small data-en="Windows · Exam">Windows · Prüfung</small></span>
             <span class="sr-row-price" data-en="Free">Kostenlos</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -222,7 +226,7 @@
              data-license="Einmalig" data-license-en="One-time"
              data-icon="media/lernreich-pro-icon.svg" data-kind="App">
             <span class="sr-row-num">03</span>
-            <span class="sr-row-icon"><img src="media/lernreich-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/lernreich-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>Lernreich Pro</b><small data-en="Windows · Focus">Windows · Fokus</small></span>
             <span class="sr-row-price">9,99 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -238,7 +242,7 @@
              data-license="Einmalig" data-license-en="One-time"
              data-icon="media/keyforge-vault-icon.svg" data-kind="App">
             <span class="sr-row-num">04</span>
-            <span class="sr-row-icon"><img src="media/keyforge-vault-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/keyforge-vault-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>KeyForge Vault</b><small data-en="Windows · Security">Windows · Sicherheit</small></span>
             <span class="sr-row-price">12,99 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -254,7 +258,7 @@
              data-license="Einmalig" data-license-en="One-time"
              data-icon="media/lumaweek-icon.svg" data-kind="App">
             <span class="sr-row-num">05</span>
-            <span class="sr-row-icon"><img src="media/lumaweek-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/lumaweek-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>LumaWeek Planner</b><small data-en="Windows · Planning">Windows · Planung</small></span>
             <span class="sr-row-price">5,99 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -270,7 +274,7 @@
              data-license="Lebenslang" data-license-en="Lifetime"
              data-icon="media/updatepilot-icon.svg" data-kind="App">
             <span class="sr-row-num">06</span>
-            <span class="sr-row-icon"><img src="media/updatepilot-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/updatepilot-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>UpdatePilot</b><small data-en="Windows · Updates">Windows · Updates</small></span>
             <span class="sr-row-price">12,99 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -286,7 +290,7 @@
              data-license="Lifetime" data-license-en="Lifetime"
              data-icon="media/bytewerk-pdf-text-pro-icon.svg" data-kind="App">
             <span class="sr-row-num">07</span>
-            <span class="sr-row-icon"><img src="media/bytewerk-pdf-text-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/bytewerk-pdf-text-pro-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>Bytewerk PDF Text Pro</b><small>Windows · PDF/OCR</small></span>
             <span class="sr-row-price">59,00 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -302,7 +306,7 @@
              data-license="Kostenlos" data-license-en="Free"
              data-icon="media/burgenwerk-logo.png" data-kind="Spiel">
             <span class="sr-row-num">08</span>
-            <span class="sr-row-icon"><img src="media/burgenwerk-logo.png" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/burgenwerk-logo.webp" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>BURGENWERK</b><small data-en="Web · Strategy">Web · Strategie</small></span>
             <span class="sr-row-price" data-en="Free">Kostenlos</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -318,7 +322,7 @@
              data-license="Kostenlos" data-license-en="Free"
              data-icon="media/neon-horde-icon.svg" data-kind="Spiel">
             <span class="sr-row-num">09</span>
-            <span class="sr-row-icon"><img src="media/neon-horde-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/neon-horde-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>NEON HORDE</b><small data-en="Web · Shooter">Web · Shooter</small></span>
             <span class="sr-row-price" data-en="Free">Kostenlos</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -334,7 +338,7 @@
              data-license="Demo frei" data-license-en="Free demo"
              data-icon="media/mastil-logo.jpg" data-kind="Spiel">
             <span class="sr-row-num">10</span>
-            <span class="sr-row-icon"><img src="media/mastil-logo.jpg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/mastil-logo.webp" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>MASTIL</b><small data-en="Web &amp; Windows · Strategy">Web &amp; Windows · Strategie</small></span>
             <span class="sr-row-price">Demo frei</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -350,7 +354,7 @@
              data-license="Einmalig" data-license-en="One-time"
              data-icon="media/neon-dominion-icon.svg" data-kind="Spiel">
             <span class="sr-row-num">11</span>
-            <span class="sr-row-icon"><img src="media/neon-dominion-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
+            <span class="sr-row-icon"><img decoding="async" src="media/neon-dominion-icon.svg" alt="" loading="lazy" width="40" height="40"></span>
             <span class="sr-row-main"><b>Neon Dominion</b><small data-en="Windows · Premium">Windows · Premium</small></span>
             <span class="sr-row-price">20,00 €</span>
             <span class="sr-row-go" aria-hidden="true">→</span>
@@ -365,9 +369,9 @@
 <section class="sr-cta-sec">
   <div class="wrap">
     <div class="cta-band reveal">
-      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Your product">Dein Produkt</span>
-      <h2 class="h2" style="position:relative" data-en="The next plate on this shelf could be yours.">Die nächste Tafel in diesem Regal könnte deine sein.</h2>
-      <p class="lead" style="max-width:48ch" data-en="From the first sketch to the shipped app — with a fixed price and a direct line.">
+      <span class="eyebrow si-color-var-accent-300-position-relative" data-en="Your product">Dein Produkt</span>
+      <h2 class="h2 si-position-relative" data-en="The next plate on this shelf could be yours.">Die nächste Tafel in diesem Regal könnte deine sein.</h2>
+      <p class="lead si-max-width-48ch" data-en="From the first sketch to the shipped app — with a fixed price and a direct line.">
         Vom ersten Entwurf bis zur fertigen App — mit Festpreis und direktem Draht.
       </p>
       <a class="btn btn-primary btn-lg" href="kontakt.html"><span data-en="Start a project">Projekt starten</span> <span class="arr">→</span></a>

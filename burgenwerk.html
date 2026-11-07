@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-/If8mXv3r3P9+eEyCHpiw/qSJfP7bDB5/g2jVl9PGWc='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>BURGENWERK - Burg bauen, verteidigen, erobern · Bytewerk Studio</title>
 <meta name="description" content="BURGENWERK ist das HTML-Strategiespiel von Bytewerk Studio: Baue eine Burg, verteidige sie gegen feindliche Wellen und erobere fremde Festungen - direkt im Browser, kostenlos und ohne Download.">
@@ -19,8 +19,9 @@
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -53,16 +54,20 @@
   }
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
 <div data-include="header"></div>
+<main id="main">
 
 <section class="wrap pd" data-screen-label="BURGENWERK">
   <div class="pd-media reveal">
-    <div class="pd-hero app-mark-panel"><img class="app-logo-mark hero-logo-mark" src="media/burgenwerk-logo.png" alt="BURGENWERK Logo"></div>
+    <div class="pd-hero app-mark-panel"><img decoding="async" class="app-logo-mark hero-logo-mark" src="media/burgenwerk-logo.webp" alt="BURGENWERK Logo" width="512" height="512"></div>
     <div class="pd-thumbs">
-      <div class="pd-thumb app-mark-panel"><img src="media/burgenwerk-logo.png" alt="BURGENWERK Logo"></div>
+      <div class="pd-thumb app-mark-panel"><img decoding="async" loading="lazy" src="media/burgenwerk-logo.webp" alt="BURGENWERK Logo" width="512" height="512"></div>
       <div class="pd-thumb"></div>
       <div class="pd-thumb"></div>
       <div class="pd-thumb"></div>
@@ -70,8 +75,8 @@
   </div>
 
   <div class="pd-info reveal" data-d="1">
-    <div class="crumb" style="margin-bottom:18px"><a href="shop.html" data-en="Shop">Shop</a> <span>/</span> <span data-en="Game">Spiel</span> <span>/</span> BURGENWERK</div>
-    <span class="cat">Web · Browser · Strategie</span>
+    <div class="crumb si-margin-bottom-18px"><a href="shop.html" data-en="Shop">Shop</a> <span>/</span> <span data-en="Game">Spiel</span> <span>/</span> BURGENWERK</div>
+    <span class="cat" data-en="Web · Browser · Strategy">Web · Browser · Strategie</span>
     <h1>BURGENWERK</h1>
     <div class="pd-price">
       <span class="amount" data-en="Free">Kostenlos</span>
@@ -87,34 +92,34 @@
     </div>
 
     <div class="pd-features" id="details">
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Burg bauen mit 7 Gebaeudetypen und Ausbau bis Stufe 3</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Verteidigung: 10 Wellen mit 4 Gegnertypen auf 4 Angriffsspuren</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Erobern: 4 Festungen auf der Feldzug-Karte einnehmen</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Eigene Armee in Kasernen ausbilden und mit Schmieden verstaerken</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Echtzeit-Kaempfe mit Tuermen, Soldaten, Projektilen und Sound</span></div>
-      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span>Automatisches Speichern, kein Download, kein Account, kostenlos</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Build a castle with 7 building types and upgrades to level 3">Burg bauen mit 7 Gebaeudetypen und Ausbau bis Stufe 3</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Defence: 10 waves with 4 enemy types on 4 attack lanes">Verteidigung: 10 Wellen mit 4 Gegnertypen auf 4 Angriffsspuren</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Conquer: take 4 fortresses on the campaign map">Erobern: 4 Festungen auf der Feldzug-Karte einnehmen</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Train your own army in barracks and strengthen it with forges">Eigene Armee in Kasernen ausbilden und mit Schmieden verstaerken</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Real-time battles with towers, soldiers, projectiles and sound">Echtzeit-Kaempfe mit Tuermen, Soldaten, Projektilen und Sound</span></div>
+      <div class="f"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg><span data-en="Automatic saving, no download, no account, free">Automatisches Speichern, kein Download, kein Account, kostenlos</span></div>
     </div>
 
-    <div class="pd-list" style="margin-top:30px">
+    <div class="pd-list si-margin-top-30px">
       <div class="row"><span class="key" data-en="Platform">Plattform</span><span class="val" data-en="Web browser">Web-Browser</span></div>
-      <div class="row"><span class="key">Kategorie</span><span class="val">Spiel · Strategie · Aufbau · Tower Defense</span></div>
+      <div class="row"><span class="key" data-en="Category">Kategorie</span><span class="val" data-en="Game · Strategy · Building · Tower defence">Spiel · Strategie · Aufbau · Tower Defense</span></div>
       <div class="row"><span class="key" data-en="Price">Preis</span><span class="val" data-en="Free">Kostenlos</span></div>
-      <div class="row"><span class="key">Speichern</span><span class="val">Automatisch im Browser (Autosave)</span></div>
-      <div class="row"><span class="key">Sound</span><span class="val">WebAudio, abschaltbar mit Taste M</span></div>
+      <div class="row"><span class="key" data-en="Saving">Speichern</span><span class="val" data-en="Automatically in the browser (autosave)">Automatisch im Browser (Autosave)</span></div>
+      <div class="row"><span class="key">Sound</span><span class="val" data-en="WebAudio, can be muted with the M key">WebAudio, abschaltbar mit Taste M</span></div>
       <div class="row"><span class="key">Version</span><span class="val">1.0.0</span></div>
-      <div class="row"><span class="key">Technik</span><span class="val">HTML5 Canvas, JavaScript, WebAudio</span></div>
-      <div class="row"><span class="key" data-en="Play">Spielen</span><span class="val"><a href="https://bytewerkstudio.github.io/burgenwerk/" target="_blank" rel="noopener">BURGENWERK im Browser starten</a></span></div>
-      <div class="row"><span class="key">Quellprojekt</span><span class="val"><a href="https://github.com/bytewerkstudio/burgenwerk" target="_blank" rel="noopener">GitHub Repository</a></span></div>
+      <div class="row"><span class="key" data-en="Tech">Technik</span><span class="val">HTML5 Canvas, JavaScript, WebAudio</span></div>
+      <div class="row"><span class="key" data-en="Play">Spielen</span><span class="val"><a href="https://bytewerkstudio.github.io/burgenwerk/" target="_blank" rel="noopener" data-en="Start BURGENWERK in the browser">BURGENWERK im Browser starten</a></span></div>
+      <div class="row"><span class="key" data-en="Source project">Quellprojekt</span><span class="val"><a href="https://github.com/bytewerkstudio/burgenwerk" target="_blank" rel="noopener">GitHub Repository</a></span></div>
     </div>
   </div>
 </section>
 
-<section class="sec-pad" id="spielen" style="padding-top:0" data-screen-label="BURGENWERK spielen">
+<section class="sec-pad si-padding-top-0" id="spielen" data-screen-label="BURGENWERK spielen">
   <div class="wrap">
     <div class="cta-band reveal">
-      <span class="eyebrow" style="color:var(--accent-300);position:relative" data-en="Now playable">Jetzt spielbar</span>
-      <h2 class="h2" style="position:relative" data-en="Start BURGENWERK directly in your browser.">BURGENWERK direkt im Browser starten.</h2>
-      <p class="lead" style="max-width:56ch" data-en="No download, no account: the game starts immediately and saves automatically. Build, defend and conquer - right in your browser.">
+      <span class="eyebrow si-color-var-accent-300-position-relative" data-en="Now playable">Jetzt spielbar</span>
+      <h2 class="h2 si-position-relative" data-en="Start BURGENWERK directly in your browser.">BURGENWERK direkt im Browser starten.</h2>
+      <p class="lead si-max-width-56ch" data-en="No download, no account: the game starts immediately and saves automatically. Build, defend and conquer - right in your browser.">
         Kein Download, kein Account: Das Spiel startet sofort und speichert automatisch. Bauen, verteidigen und erobern - direkt im Browser.
       </p>
       <a class="btn btn-primary btn-lg" href="https://bytewerkstudio.github.io/burgenwerk/" target="_blank" rel="noopener"><span data-en="Play BURGENWERK now">BURGENWERK jetzt spielen</span> <span class="arr">→</span></a>
@@ -122,34 +127,36 @@
   </div>
 </section>
 
-<section class="sec-pad" style="padding-top:0" data-screen-label="Mehr">
+<section class="sec-pad si-padding-top-0" data-screen-label="Mehr">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:34px">
+    <div class="sec-head reveal si-margin-bottom-34px">
       <span class="eyebrow" data-en="More games and apps">Weitere Spiele und Apps</span>
       <h2 class="h2" data-en="More releases from Bytewerk Studio.">Weitere Releases von Bytewerk Studio.</h2>
     </div>
     <div class="shop-page-grid reveal" data-d="1">
       <a class="prod" href="mastil.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/mastil-logo.jpg" alt="MASTIL Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/mastil-logo.webp" alt="MASTIL Logo" width="620" height="620"></div>
         <div class="body">
-          <span class="cat">Web · Windows · Strategie</span>
+          <span class="cat" data-en="Web · Windows · Strategy">Web · Windows · Strategie</span>
           <h3>MASTIL</h3>
-          <p>Mittelalterliches Strategie- und Tower-Defense-Spiel fuer Web und Windows, mit Offline-KI, Wellenfortschritt, Reichsauswahl und geplantem Online-1v1.</p>
+          <p data-en="Medieval strategy and tower defence game for web and Windows, with offline AI, wave progress, realm selection and a planned online 1v1.">Mittelalterliches Strategie- und Tower-Defense-Spiel fuer Web und Windows, mit Offline-KI, Wellenfortschritt, Reichsauswahl und geplantem Online-1v1.</p>
           <div class="foot"><span class="price">Demo frei</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
       <a class="prod" href="neon-dominion.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo" width="1024" height="1024"></div>
         <div class="body">
-          <span class="cat">Windows · Premium · Tower Conquest</span>
+          <span class="cat" data-en="Windows · Premium · Tower conquest">Windows · Premium · Tower Conquest</span>
           <h3>Neon Dominion</h3>
-          <p>Premium-Neon-Tech-Tower-Conquest-Spiel mit 30 Offline-Missionen, lokalen Saves, Achievements, Overdrive und Upgrade Lab.</p>
+          <p data-en="Premium neon tech tower conquest game with 30 offline missions, local saves, achievements, overdrive and upgrade lab.">Premium-Neon-Tech-Tower-Conquest-Spiel mit 30 Offline-Missionen, lokalen Saves, Achievements, Overdrive und Upgrade Lab.</p>
           <div class="foot"><span class="price">20,00&nbsp;€</span><span class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></div>
         </div>
       </a>
     </div>
   </div>
 </section>
+
+</main>
 
 <div data-include="footer"></div>
 

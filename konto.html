@@ -2,26 +2,32 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-SXk4w+WC2UZB/39AebGOcVLT+eAyphPoRfOrvpmvVfU='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex, nofollow">
 <title>Mein Konto — Bytewerk Studio</title>
 <link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body class="dash-page">
 
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
 <div data-include="header"></div>
 
-<main class="dash-main">
+<main id="main" class="dash-main">
   <div class="wrap">
 
     <div class="dash-head">
@@ -35,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div class="si-display-flex-gap-10px-flex-wrap-wrap">
         <a class="btn btn-ghost" href="shop.html"><span data-en="Browse shop">Zum Shop</span> <span class="arr">→</span></a>
         <button class="btn btn-ghost" type="button" data-logout data-en="Sign out">Abmelden</button>
       </div>
@@ -96,7 +102,7 @@
             </div>
             <div class="stat-tile">
               <span class="st-k" data-en="Member since">Mitglied seit</span>
-              <span class="st-n" id="stat-since" style="font-size:22px">—</span>
+              <span class="st-n si-font-size-22px" id="stat-since">—</span>
               <span class="st-s" data-en="Free account">Kostenloses Konto</span>
               <a class="st-link" href="#profil" data-en="Edit profile →">Profil bearbeiten →</a>
             </div>
@@ -106,7 +112,7 @@
             <div class="dash-card">
               <h3 data-en="Quick start">Schnellstart</h3>
               <p class="dc-sub" data-en="Add free tools to your library or pick a premium app.">Füge kostenlose Tools deiner Bibliothek hinzu oder wähle eine Premium-App.</p>
-              <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <div class="si-display-flex-gap-10px-flex-wrap-wrap">
                 <a class="btn btn-primary" href="#bibliothek" data-en="Browse library">Bibliothek ansehen</a>
                 <a class="btn btn-ghost" href="shop.html" data-en="All products">Alle Produkte</a>
               </div>
@@ -186,7 +192,7 @@
                 <input id="pf-plan" name="plan" readonly value="Free">
               </div>
               <div class="field full">
-                <label class="checkline" for="pf-marketing" style="font-family:var(--body);font-size:13.5px;letter-spacing:0">
+                <label class="checkline si-font-family-var-body-font-size-13-5px-letter-spacing-0" for="pf-marketing">
                   <input type="checkbox" id="pf-marketing" name="marketing">
                   <span data-en="Send me occasional product news. No spam, unsubscribe anytime.">Schick mir gelegentlich Produktneuigkeiten. Kein Spam, jederzeit abbestellbar.</span>
                 </label>
@@ -200,7 +206,7 @@
           <div class="dash-card">
             <h3 data-en="Your data">Deine Daten</h3>
             <p class="dc-sub" data-en="Download everything stored about your account as JSON.">Lade alles, was zu deinem Konto gespeichert ist, als JSON herunter.</p>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div class="si-display-flex-gap-10px-flex-wrap-wrap">
               <button class="btn btn-ghost" type="button" id="export-data" data-en="Export data">Daten exportieren</button>
               <a class="btn btn-ghost" href="datenschutz.html" data-en="Privacy policy">Datenschutzerklärung</a>
             </div>
@@ -242,11 +248,11 @@
           <div class="danger-zone">
             <h4 data-en="Delete account">Konto löschen</h4>
             <p data-en="This removes the account and its library from this browser. This cannot be undone.">Dies entfernt das Konto und seine Bibliothek aus diesem Browser. Das kann nicht rückgängig gemacht werden.</p>
-            <div class="field" style="max-width:340px">
+            <div class="field si-max-width-340px">
               <label for="del-confirm" data-en="Type DELETE to confirm">Zum Bestätigen LÖSCHEN eintippen</label>
               <input id="del-confirm" placeholder="LÖSCHEN" autocomplete="off">
             </div>
-            <div class="field" style="max-width:340px">
+            <div class="field si-max-width-340px">
               <label for="del-password" data-en="Password">Passwort</label>
               <input id="del-password" type="password" autocomplete="current-password">
             </div>
@@ -374,7 +380,7 @@
         action = '<a class="btn btn-ghost" href="' + p.href + '">' + tr('Im Shop ansehen', 'View in shop') + '</a>';
       }
       return '<article class="lib-item">' +
-        '<div class="li-head"><img src="' + p.img + '" alt="" loading="lazy"><div><div class="li-t">' + esc(p.name) + '</div><div class="li-s">' + esc(p.cat) + '</div></div></div>' +
+        '<div class="li-head"><img decoding="async" src="' + p.img + '" alt="" loading="lazy"><div><div class="li-t">' + esc(p.name) + '</div><div class="li-s">' + esc(p.cat) + '</div></div></div>' +
         '<div class="li-body"><span class="li-state ' + (owned ? 'owned' : '') + '">' + stateText + ' · ' + esc(p.price) + '</span>' + action + '</div>' +
         '</article>';
     }).join('');
@@ -397,7 +403,7 @@
   function renderOrders() {
     const card = document.getElementById('orders-card');
     if (!state.orders.length) return;
-    card.innerHTML = '<table class="orders"><thead><tr><th>' + tr('Bestellung', 'Order') + '</th><th>' + tr('Datum', 'Date') + '</th><th>' + tr('Produkt', 'Product') + '</th><th style="text-align:right">' + tr('Betrag', 'Amount') + '</th></tr></thead><tbody>' +
+    card.innerHTML = '<table class="orders"><thead><tr><th>' + tr('Bestellung', 'Order') + '</th><th>' + tr('Datum', 'Date') + '</th><th>' + tr('Produkt', 'Product') + '</th><th class="si-text-align-right">' + tr('Betrag', 'Amount') + '</th></tr></thead><tbody>' +
       state.orders.map(o => '<tr><td class="o-id">' + esc(o.id) + '</td><td>' + esc(BWAuth.prettyDate(o.date)) + '</td><td>' + esc(o.product) + '</td><td class="o-amount">' + esc(o.amount) + '</td></tr>').join('') +
       '</tbody></table>';
   }

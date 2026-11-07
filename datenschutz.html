@@ -2,59 +2,63 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Datenschutz — Bytewerk Studio</title>
 <meta name="description" content="Datenschutzhinweise von Bytewerk Studio.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://bytewerkstudio.com/datenschutz.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 <div data-include="header"></div>
-<main class="wrap legal-wrap">
+<main id="main" class="wrap legal-wrap">
   <div class="legal-grid">
     <aside class="legal-toc reveal">
-      <a href="#verantwortlicher">Verantwortlicher</a>
-      <a href="#grundsatz">Grundsatz</a>
+      <a href="#verantwortlicher" data-en="Controller">Verantwortlicher</a>
+      <a href="#grundsatz" data-en="Principle">Grundsatz</a>
       <a href="#hosting">Hosting</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#rechte">Rechte</a>
+      <a href="#kontakt" data-en="Contact">Kontakt</a>
+      <a href="#rechte" data-en="Rights">Rechte</a>
     </aside>
     <section class="legal-copy reveal" data-d="1">
       <div>
-        <span class="eyebrow">Privacy</span>
-        <h1 class="display" style="font-size:clamp(38px,5vw,68px);margin-top:18px">Datenschutz</h1>
+        <span class="eyebrow" data-en="Legal">Rechtliches</span>
+        <h1 class="display si-font-size-clamp-38px-5vw-68px-margin-top-18px" data-en="Privacy">Datenschutz</h1>
       </div>
       <article id="verantwortlicher">
-        <h2>Verantwortlicher</h2>
-        <p>Bytewerk Studio<br>Inhaber: Hijratullah Haqmal<br>Heinigstraße 13, 67059 Ludwigshafen am Rhein<br>E-Mail: <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a></p>
+        <h2 data-en="Controller">Verantwortlicher</h2>
+        <p data-en="Bytewerk Studio<br>Owner: Hijratullah Haqmal<br>Heinigstraße 13, 67059 Ludwigshafen am Rhein, Germany<br>E-mail: <a href=&quot;mailto:Haqmalh@icloud.com&quot;>Haqmalh@icloud.com</a>">Bytewerk Studio<br>Inhaber: Hijratullah Haqmal<br>Heinigstraße 13, 67059 Ludwigshafen am Rhein<br>E-Mail: <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a></p>
       </article>
       <article id="grundsatz">
-        <h2>Grundsatz</h2>
-        <p>Diese statische Website verzichtet auf Tracking, Werbung und Analyse-Skripte. Beim Besuch koennen technisch notwendige Server-Logdaten durch den Hosting-Anbieter verarbeitet werden.</p>
+        <h2 data-en="Principle">Grundsatz</h2>
+        <p data-en="This static website uses no tracking, advertising or analytics scripts. When you visit, the hosting provider may process technically necessary server log data.">Diese statische Website verzichtet auf Tracking, Werbung und Analyse-Skripte. Beim Besuch koennen technisch notwendige Server-Logdaten durch den Hosting-Anbieter verarbeitet werden.</p>
       </article>
       <article id="hosting">
-        <h2>Hosting</h2>
-        <p>Die Website wird ueber GitHub Pages bereitgestellt. Beim Abruf koennen IP-Adresse, Zeitpunkt, angefragte Datei und technische Browserdaten verarbeitet werden, um die Seite auszuliefern und den Betrieb abzusichern.</p>
+        <h2 data-en="Hosting">Hosting</h2>
+        <p data-en="The website is provided via GitHub Pages. When it is accessed, IP address, time, requested file and technical browser data may be processed in order to deliver the page and secure operation.">Die Website wird ueber GitHub Pages bereitgestellt. Beim Abruf koennen IP-Adresse, Zeitpunkt, angefragte Datei und technische Browserdaten verarbeitet werden, um die Seite auszuliefern und den Betrieb abzusichern.</p>
       </article>
       <article id="kontakt">
-        <h2>Kontaktaufnahme</h2>
-        <p>Wenn du per E-Mail Kontakt aufnimmst, verarbeiten wir deine Angaben zur Bearbeitung der Anfrage. Die Kontaktseite sendet keine Daten an ein eigenes Backend, sondern oeffnet dein Mailprogramm.</p>
+        <h2 data-en="Contacting us">Kontaktaufnahme</h2>
+        <p data-en="If you contact us by e-mail, we process your details to handle the enquiry. The contact page does not send data to our own backend; it opens your mail client.">Wenn du per E-Mail Kontakt aufnimmst, verarbeiten wir deine Angaben zur Bearbeitung der Anfrage. Die Kontaktseite sendet keine Daten an ein eigenes Backend, sondern oeffnet dein Mailprogramm.</p>
       </article>
       <article id="rechte">
-        <h2>Deine Rechte</h2>
-        <p>Du kannst Auskunft, Berichtigung, Loeschung oder Einschraenkung der Verarbeitung verlangen. Schreibe dazu an <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>.</p>
+        <h2 data-en="Your rights">Deine Rechte</h2>
+        <p data-en="You can request information, correction, deletion or restriction of processing. Write to <a href=&quot;mailto:Haqmalh@icloud.com&quot;>Haqmalh@icloud.com</a>.">Du kannst Auskunft, Berichtigung, Loeschung oder Einschraenkung der Verarbeitung verlangen. Schreibe dazu an <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a>.</p>
       </article>
     </section>
   </div>

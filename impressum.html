@@ -2,55 +2,59 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Impressum — Bytewerk Studio</title>
 <meta name="description" content="Impressum von Bytewerk Studio.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://bytewerkstudio.com/impressum.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
 <link rel="stylesheet" href="styles-claude.css">
 <link rel="stylesheet" href="styles-v5.css">
   <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 <div data-include="header"></div>
-<main class="wrap legal-wrap">
+<main id="main" class="wrap legal-wrap">
   <div class="legal-grid">
     <aside class="legal-toc reveal">
-      <a href="#angaben">Angaben gemäß DDG</a>
-      <a href="#taetigkeit">Tätigkeit</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#inhalt">Inhalt</a>
+      <a href="#angaben" data-en="Information pursuant to DDG">Angaben gemäß DDG</a>
+      <a href="#taetigkeit" data-en="Activity">Tätigkeit</a>
+      <a href="#kontakt" data-en="Contact">Kontakt</a>
+      <a href="#inhalt" data-en="Content">Inhalt</a>
     </aside>
     <section class="legal-copy reveal" data-d="1">
       <div>
-        <span class="eyebrow">Rechtliches</span>
-        <h1 class="display" style="font-size:clamp(38px,5vw,68px);margin-top:18px">Impressum</h1>
+        <span class="eyebrow" data-en="Legal">Rechtliches</span>
+        <h1 class="display si-font-size-clamp-38px-5vw-68px-margin-top-18px" data-en="Imprint">Impressum</h1>
       </div>
       <article id="angaben">
-        <h2>Angaben gemäß § 5 DDG</h2>
-        <p>Bytewerk Studio<br>Inhaber: Hijratullah Haqmal<br>Heinigstraße 13<br>67059 Ludwigshafen am Rhein<br>Deutschland</p>
+        <h2 data-en="Information pursuant to § 5 DDG">Angaben gemäß § 5 DDG</h2>
+        <p data-en="Bytewerk Studio<br>Owner: Hijratullah Haqmal<br>Heinigstraße 13<br>67059 Ludwigshafen am Rhein<br>Germany">Bytewerk Studio<br>Inhaber: Hijratullah Haqmal<br>Heinigstraße 13<br>67059 Ludwigshafen am Rhein<br>Deutschland</p>
       </article>
       <article id="taetigkeit">
-        <h2>Geschäftsbezeichnung und Tätigkeit</h2>
-        <p>Geschäftsbezeichnung: Bytewerk Studio</p>
-        <p>Tätigkeit: Entwicklung und Vertrieb von Software, Web- und App-Entwicklung, IT-Dienstleistungen sowie Betrieb eines Online-Shops für digitale Produkte.</p>
+        <h2 data-en="Business name and activity">Geschäftsbezeichnung und Tätigkeit</h2>
+        <p data-en="Business name: Bytewerk Studio">Geschäftsbezeichnung: Bytewerk Studio</p>
+        <p data-en="Activity: development and distribution of software, web and app development, IT services, and operation of an online shop for digital products.">Tätigkeit: Entwicklung und Vertrieb von Software, Web- und App-Entwicklung, IT-Dienstleistungen sowie Betrieb eines Online-Shops für digitale Produkte.</p>
       </article>
       <article id="kontakt">
-        <h2>Kontakt</h2>
-        <p>E-Mail: <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a></p>
+        <h2 data-en="Contact">Kontakt</h2>
+        <p data-en="E-mail: <a href=&quot;mailto:Haqmalh@icloud.com&quot;>Haqmalh@icloud.com</a>">E-Mail: <a href="mailto:Haqmalh@icloud.com">Haqmalh@icloud.com</a></p>
       </article>
       <article id="inhalt">
-        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>Hijratullah Haqmal, Inhaber von Bytewerk Studio, Anschrift wie oben.</p>
+        <h2 data-en="Responsible for content pursuant to § 18 (2) MStV">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <p data-en="Hijratullah Haqmal, owner of Bytewerk Studio, address as above.">Hijratullah Haqmal, Inhaber von Bytewerk Studio, Anschrift wie oben.</p>
       </article>
     </section>
   </div>

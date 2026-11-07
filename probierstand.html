@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Probierstand — vier Werkzeuge live im Browser | Bytewerk Studio</title>
 <meta name="description" content="Passwort-Schmiede, Prüfungs-Countdown, Text-Werkstatt und Wochenbrett: vier Bytewerk-Produkte direkt im Browser testen. Ohne Konto, ohne Upload, ohne Installation.">
@@ -18,8 +18,9 @@
 <meta property="og:site_name" content="Bytewerk Studio">
 <meta property="og:locale" content="de_DE">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -36,8 +37,11 @@
   "publisher": { "@type": "Organization", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" }
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 
 <div data-include="header"></div>
 
@@ -179,7 +183,7 @@
           </div>
 
           <div class="pb-slider">
-            <label class="pb-label" for="pb-pw-len" style="margin:0" data-en="Length">Länge</label>
+            <label class="pb-label si-margin-0" for="pb-pw-len" data-en="Length">Länge</label>
             <input type="range" id="pb-pw-len" min="12" max="48" value="20" step="1" data-pw-len>
             <output for="pb-pw-len" data-pw-len-out>20</output>
           </div>
@@ -305,7 +309,7 @@ Ein Antrag auf Fristverlängerung muss spätestens zwei Wochen&#10;vor dem Prüf
           </div>
 
           <div class="pb-row pb-row-between">
-            <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)" data-en="Nothing leaves this page">Nichts verlässt diese Seite</span>
+            <span class="si-font-family-var-mono-font-size-10-5px-letter-spacing-07em-text-transform-uppercase-color-var-faint" data-en="Nothing leaves this page">Nichts verlässt diese Seite</span>
             <button class="pb-btn" type="button" data-tx-copy>
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
               <span data-en="Copy result">Ergebnis kopieren</span>

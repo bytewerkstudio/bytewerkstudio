@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Die Marke — Bytewerk Studio</title>
 <meta name="description" content="Das Bytewerk-Zeichen als greifbares 3D-Objekt: drei Papierkacheln, ein Terrakotta-Punkt, ein Faden. Aufbau, Regeln und Dateien der Marke.">
@@ -19,8 +19,9 @@
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" href="fonts/newsreader-4aa9bb70.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-bec94a4d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -48,6 +49,7 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="styles-inline.css">
 </head>
 <body class="mk-page">
 
@@ -205,7 +207,7 @@
     <div>
       <span class="mk-eyebrow" data-en="Four rules">Vier Regeln</span>
       <h2 class="mk-h2" data-en="How the mark stays itself.">Wie das Zeichen es selbst bleibt.</h2>
-      <p class="mk-lead" style="font-size:15px" data-en="Short enough to remember, strict enough to keep eleven products looking like one studio.">
+      <p class="mk-lead si-font-size-15px" data-en="Short enough to remember, strict enough to keep eleven products looking like one studio.">
         Kurz genug, um sie zu behalten, streng genug, damit elf Produkte wie ein Studio aussehen.
       </p>
     </div>
@@ -257,7 +259,7 @@
     <div>
       <span class="mk-eyebrow" data-en="Files">Dateien</span>
       <h2 class="mk-h2" data-en="Use it, don't redraw it.">Benutzen, nicht nachzeichnen.</h2>
-      <p class="mk-lead" style="font-size:15px" data-en="The mark is one SVG file with no external references. Every size, every colour variant comes from it, so nothing drifts apart over time.">
+      <p class="mk-lead si-font-size-15px" data-en="The mark is one SVG file with no external references. Every size, every colour variant comes from it, so nothing drifts apart over time.">
         Das Zeichen ist eine SVG-Datei ohne externe Verweise. Jede Größe und jede Farbvariante kommt daraus,
         damit nichts über die Zeit auseinanderläuft.
       </p>

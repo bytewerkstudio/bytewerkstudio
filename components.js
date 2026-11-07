@@ -18,13 +18,16 @@
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', match: 'bauplan' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
+    { href: 'stadt.html',              de: 'Spiel',      en: 'Game',     match: 'stadt' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
+    { href: 'community.html',        de: 'Community',  en: 'Community', match: 'community' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
   ];
 
   const page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
+  const homeCurrent = page === 'index' ? ' aria-current="page"' : '';
 
   const langToggle = `
     <div class="lang-toggle" role="group" aria-label="Sprache / Language">
@@ -34,14 +37,15 @@
     </div>`;
 
   const linksHTML = (mobile) => NAV_LINKS.map(l => {
-    const active = l.match && page === l.match ? ' class="active"' : '';
-    return `<a href="${l.href}"${active} data-en="${l.en}">${l.de}</a>`;
+    const isActive = l.match && page === l.match;
+    const attrs = isActive ? ' class="active" aria-current="page"' : '';
+    return `<a href="${l.href}"${attrs} data-en="${l.en}">${l.de}</a>`;
   }).join('');
 
   const HEADER = `
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite" data-en-aria="Bytewerk Studio — Home">
+        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite" data-en-aria="Bytewerk Studio — Home"${homeCurrent}>
           ${LOGO}
           <span class="brand-name">Bytewerk<i> Studio</i></span>
         </a>
@@ -99,6 +103,7 @@
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
+            <a href="community.html" data-en="Community &amp; forum">Community &amp; Forum</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
             <a href="marke.html" data-en="The mark">Die Marke</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
@@ -107,6 +112,7 @@
           </div>
           <div class="footer-col">
             <h4 data-en="Legal">Rechtliches</h4>
+            <a href="sicherheit.html" data-en="Security">Sicherheit</a>
             <a href="impressum.html" data-en="Imprint">Impressum</a>
             <a href="datenschutz.html" data-en="Privacy">Datenschutz</a>
             <a href="agb.html" data-en="Terms">AGB</a>
