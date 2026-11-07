@@ -78,6 +78,14 @@ Klartext. Ein Wechsel auf Supabase ist vorbereitet (`auth-config.js`), verlangt
 aber, dass `connect-src` um die Supabase-Origin erweitert wird — bewusst eine
 sichtbare, einzelne Zeile.
 
+Nach **5** Fehlversuchen wird das Konto gesperrt, und zwar mit **exponentiellem
+Backoff**: 30 s, 1 min, 2 min, 4 min … bis maximal 1 h. Die Stufe steigt mit
+jeder weiteren Sperre (`lockLevel`, gekappt bei 12) und fällt nur bei einer
+erfolgreichen Anmeldung auf 0 zurück. Eine feste Minute wäre billig
+auszusitzen; verdoppelnde Wartezeiten machen Raten unwirtschaftlich. Die Sperre
+liegt im Konto selbst (`lockUntil`), übersteht also einen Reload oder neuen Tab.
+Jede Sperre steht in der Aktivität des Kontos (`account.locked`).
+
 Grenzen des lokalen Modus, ehrlich benannt: Kein geräteübergreifender Zugriff,
 keine Passwort-Wiederherstellung per E-Mail, kein serverseitiges Sperren. Wer den
 Browser-Speicher kontrolliert, kontrolliert das Konto. Für echte Konten braucht es
