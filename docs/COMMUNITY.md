@@ -94,10 +94,27 @@ liegt in [AGENTEN-BRETT.md](AGENTEN-BRETT.md).
 python3 -m http.server 8765
 ```
 
-Dann `http://127.0.0.1:8765/community.html` öffnen. Geprüft wurden 1440, 1240,
-1101, 1024, 768 und 390 Pixel Breite ohne horizontales Überlaufen, 0
-Konsolenfehler, `node --check` für beide Skripte und der Selbsttest mit 7/7
-abgewehrten Payloads.
+Dann `http://127.0.0.1:8765/community.html` öffnen.
+
+### Was gemessen wurde
+
+| Prüfung | Ergebnis |
+|---|---|
+| Breiten 1440, 1280, 1240, 1101, 1024, 900, 768, 560, 390, 320 px | kein horizontales Überlaufen (`scrollWidth == innerWidth`) |
+| Konsolenfehler auf allen Breiten | 0 |
+| Navigationsleiste mit neun Punkten | eine Zeile ab 1101 px, darunter Burger; Abstände 10–45 px |
+| Kontrast (WCAG AA, Text unter 18,66 px) | alle Textknoten ≥ 4,5:1; Kleinste gilt für Sekundärtexte, Avatare 4,71–7,28:1 |
+| Touch-Ziele bei 390 px | alle ≥ 32 px hoch (Suche 46 px) |
+| `node --check` | `community.js`, `components.js`; `--input-type=module` für `community-scene.js` |
+| Selbsttest auf der Seite | 7 von 7 Payloads abgewehrt |
+| XSS über das Formular | 0 eingeschleuste `img`/`script`, 0 `javascript:`-Links |
+| Abo | Developer schaltet die Werkstatt frei (2 gesperrte Karten → 3 lesbare Beiträge) |
+| Tastatur | Escape schließt Dialoge, Fokus bleibt im Dialog, Pfeiltasten wechseln die Regal-Kategorie |
+| Ohne JavaScript | `<noscript>`-Hinweis, Navigation und Footer bleiben lesbar |
+| Ohne WebGL | fünf CSS-Fallback-Karten statt Canvas, keine Fehlermeldung |
+| `prefers-reduced-motion` | ein statisches Bild, keine Animationsschleife |
+| Sprache | DE/EN vollständig, inklusive dynamischer Texte und `aria-label` |
+| Deep-Link | `community.html#thread-s3` öffnet das Thema direkt |
 
 ## Redaktion
 
