@@ -81,6 +81,8 @@ jeweils ohne Konsolenfehler:
 | three.js | Forum-, Sicherheits-, Entwickler- und Startseiten-Szene melden `three.js r180`, WebGL aktiv |
 | Schriften | `document.fonts.check` für Inter, Newsreader, JetBrains Mono = true, 0 Google-Requests |
 | Interne Links | 32 Seiten geprüft, keine fehlende Datei |
+| Startseiten-Karten | 360 px breit, 347 px hoch, kein Textanschnitt; die 107 px „Overflow" je Karte sind der dekorative Radial-Glow (`::after`), der bewusst per `overflow: hidden` beschnitten wird |
+| Abschluss-Audit | 15 Hinweise, alle vorbestehend: externe Produkt-Domains (BURGENWERK, LernReich, Mastil), Googles Verifizierungsdatei, Template-Platzhalter in `konto.html` |
 
 ## Offene Punkte
 
