@@ -106,10 +106,11 @@ richten sich danach: `de-DE` nur bei `de`, sonst `en-GB`.
   vierteljährliche Sprechstunde. Preis und Stufen stehen bewusst nur auf
   `entwickler.html#abo` — eine Zahl an zwei Stellen läuft auseinander.
 
-Der Link dorthin wird beim Laden einmal geprüft (`HEAD`). Antwortet die
-Seite mit 404, ersetzt ein Satz den Link, statt einen toten Verweis
-stehen zu lassen. Ein Netzwerk- oder `file://`-Fehler ändert nichts —
-nur ein eindeutiges 404.
+Der Link setzt voraus, dass `entwickler.html` mit ausgeliefert wird —
+sie kommt aus dem Entwickler-Change-Set. Eine Prüfung per `HEAD` gab es
+kurzzeitig, sie erzeugte aber bei fehlender Seite einen 404 im
+Konsolenprotokoll und verstößt damit gegen die Regel „0 Konsolenfehler“.
+Deshalb steht dort ein normaler Link.
 
 Im Vorschau-Modus gibt es keine Zahlung. `Pro anfragen` setzt
 `bw-forum-pro-preview` und zeigt den Zugang als „Pro (Vorschau)“ an. Für
