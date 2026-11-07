@@ -1,0 +1,9 @@
+# Bytewerk Studio — security contact
+# RFC 9116. Valid until 2027-11-07.
+
+Contact: mailto:security@bytewerkstudio.com
+Contact: https://bytewerkstudio.com/kontakt.html
+Expires: 2027-11-07T00:00:00.000Z
+Preferred-Languages: de, en
+Canonical: https://bytewerkstudio.com/security.txt
+Policy: https://bytewerkstudio.com/datenschutz.html

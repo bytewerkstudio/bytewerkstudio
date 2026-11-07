@@ -21,6 +21,7 @@
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
+    { href: 'entwickler.html',       de: 'Entwickler', en: 'Developers', match: 'entwickler' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
   ];
 
@@ -101,6 +102,7 @@
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
             <a href="marke.html" data-en="The mark">Die Marke</a>
+            <a href="entwickler.html" data-en="Developers &amp; API">Entwickler &amp; API</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
             <a href="login.html" data-en="Sign in">Anmelden</a>
             <a href="kontakt.html" data-en="Contact">Kontakt</a>
