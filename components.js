@@ -206,6 +206,9 @@
 
   // expose for other scripts / pages added later
   window.bwApplyLang = applyLang;
+  /* Page scripts that build their own strings must ask here instead of
+     reading documentElement.lang by hand — 'es' is a real value now. */
+  window.bwLang = () => normalizeLang(document.documentElement.lang) || 'de';
 
   /* ---- Werkkorb: only where something can be bought ---- */
   (function () {
