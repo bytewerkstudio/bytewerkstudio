@@ -81,6 +81,14 @@ der Fokus auf „Speichern“ oder im Titelfeld liegt; `Strg`/`Cmd` +
 `Enter` speichert. Beide Felder sind über `label for` beschriftet, die
 IDs kommen aus der Beitrags-ID.
 
+## Teilen
+
+`og:image` ist `media/og-forum.png` (1200 × 630, Papieroptik, gleiche
+Palette wie die Seite). Die Karte wird nicht vom Browser geladen,
+sondern nur von Crawlern — sie kostet also keine Ladezeit. Erzeugt aus
+einer HTML-Vorlage mit denselben Schriften; bei einer Textänderung neu
+rendern, sonst steht auf der Karte etwas anderes als im Titel.
+
 ## Sprachen
 
 Die Seite ist auf Deutsch und Englisch geschrieben. `lang()` liest
