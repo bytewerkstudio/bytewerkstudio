@@ -18,6 +18,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `index.html`: Startseite mit Hero, Kennzahlen, Leistungen, Arbeiten, Shop-Auszug, Prozess, Studio, Paketen und FAQ
 - `softwareentwicklung-ludwigshafen.html`: lokale SEO-Landingpage fuer Softwareentwicklung, Webentwicklung, App-Entwicklung und IT-Dienstleistungen
 - `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
+- `forum.html`: Entwickler-Forum mit Kategorien, Suche, Threads, Antworten, Loesungsmarkierung, Abo-Stufen und three.js-Pinwand
 - `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
 - `arbeiten.html`: Werkverzeichnis aller elf Produkte mit Filter, Tastaturbedienung und drei Fallstudien
 - `zeichenwerk.html`: 3D-Letterpress — Wortmarken aus Papierplatten, live gesetzt, drehbar, als PNG exportierbar
@@ -85,6 +86,14 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   `zeichenwerk.html` und das Band `#zeichenwerk` auf der Startseite. Nutzt
   `vendor/three.module.min.js` (r180), kein CDN, kein Build. `styles-zeichenwerk.css`
   kapselt alles unter `.zw-*`.
+
+- `forum.js` + `styles-forum.css` + `forum-scene.js`: Entwickler-Forum. Themen,
+  Antworten, Suche, Kategorien, Loesungsmarkierung und Abo-Stufen; Nutzertexte
+  werden ausschliesslich als Textknoten gerendert, Markdown laeuft ueber eine
+  Allowlist mit Link-Protokollpruefung. Daten liegen im `localStorage`
+  (`bw-forum-v1`), das optionale Supabase-Schema steht in
+  `supabase/forum-schema.sql`, die Uebergabe an ein Backend in
+  [docs/FORUM.md](docs/FORUM.md). Die Pinwand im Seitenkopf ist three.js.
 
 ## Betrieb
 

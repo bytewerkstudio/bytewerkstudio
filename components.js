@@ -18,6 +18,7 @@
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     es: 'Proyectos', match: 'arbeiten' },
     { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', es: 'Plano', match: 'bauplan' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', es: 'Showroom', match: 'showroom' },
+    { href: 'forum.html',              de: 'Forum',      en: 'Forum',    es: 'Foro', match: 'forum' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  es: 'Precios', match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     es: 'Tienda', match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   es: 'Estudio', match: 'studio' },
