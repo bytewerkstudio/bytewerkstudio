@@ -107,6 +107,22 @@ Alle 32 Seiten, jeweils 390 und 1440 px, im Headless-Chromium gegen
   Community (`#community-stage`), Showroom (`#sr-stage`), Bauplan (`#contour`),
   Marke, Studio, Probierstand und 404; keine WebGL-Fehler
 
+## Abschlusslauf Sprachaudit (07.11.2026, 08:05) — Commit `d680db0`
+
+`tools/audit-lang-final.mjs` gegen alle 31 Seiten, Sprache auf EN geschaltet:
+
+    SUMMARY pages=31 clean=31 problems=0
+
+0 deutsche Reste, 0 Konsolenfehler. Zusätzlich übersetzt: AGB, Datenschutz,
+Impressum samt Fließtexten und Tabellen-Ankern, `softwareentwicklung-ludwigshafen.html`
+(54 Stellen), `shop.html`, alle zehn Produktseiten, Kontakt-Dropdowns,
+`register.html` (Passwort-Meter reagiert jetzt auf den Sprachwechsel) und
+`index.html` (`ws-fig`).
+
+Marketing steht in `docs/MARKETING.md`: Positionierung, Zielgruppen, Kanäle,
+Abo-Stufen, Launch-Ablauf, Messung ohne Tracking, Redaktionsplan, Vorlagen,
+offene Punkte (OG-Bild 1200×630, Suchkonsole, englische URLs, Abo-Abrechnung).
+
 ## Testwerkzeuge (außerhalb des Repos, unter `~/tools`)
 
 `shot2.mjs` (Screenshot), `audit-one.js` (Seitenprüfung), `audit-i18n.mjs`
