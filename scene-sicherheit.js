@@ -569,5 +569,25 @@
     raf = window.requestAnimationFrame(loop);
   }
 
-  init();
+  /* three.js wiegt 700 KB. Auf dem Telefon steht die Bühne unter dem Text,
+     also erst laden, wenn sie wirklich zu sehen ist — sonst zahlt jeder
+     Leser für eine Szene, die er nur als Streifen sieht. */
+  function whenNear(fn) {
+    if (!('IntersectionObserver' in window)) {
+      fn();
+      return;
+    }
+    const io = new IntersectionObserver(function (entries) {
+      for (let i = 0; i < entries.length; i += 1) {
+        if (entries[i].intersectionRatio >= 0.35) {
+          io.disconnect();
+          fn();
+          return;
+        }
+      }
+    }, { threshold: [0, 0.35, 0.6] });
+    io.observe(stage);
+  }
+
+  whenNear(init);
 })();
