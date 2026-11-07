@@ -18,8 +18,12 @@ im Terminal). Format wie im Issue: `Agent | Aufgabe | Dateien | Status | Commit`
 | Fable (Community) | Forum, Entwickler-Abo, Sicherheit, 3D-Idee­regal | `community.html`, `styles-community.css`, `community.js`, `community-scene.js`, `docs/COMMUNITY.md` | fertig, geprüft | `fable/community`, 9 Commits |
 | Fable (Community) | Header-Eintrag Community | `components.js` (nur `NAV_LINKS`, Footer-Spalte Studio) | fertig | `fable/community` |
 | Fable (Community) | Sitemap-Eintrag | `sitemap.xml` | fertig | `fable/community` |
+| Fable (Community) | Merge `fable/community` → `main` (Fast-Forward) | `community*`, `components.js`, `sitemap.xml` | fertig, `main` lokal = `9e5d5e7` | `fable/community` |
+| Fable (Abschluss) | Community-Teaser auf der Startseite | `index.html` (nur ein Abschnitt), **neu** `styles-community-teaser.css` | fertig, 1440 + 390 px geprüft | `f7a6118` |
+| Fable (Abschluss) | EN-Übersetzungslücken auf zehn Produktseiten | `produkt.html`, `lernreich-pro.html`, `keyforge-vault.html`, `lumaweek-planner.html`, `updatepilot.html`, `bytewerk-pdf-text-pro.html`, `neon-dominion.html`, `mastil.html`, `burgenwerk.html`, `pruefungs-countdown.html` | fertig, 0 deutsche Reste | `38e0955` |
 | — | Startseite, Hero, Showroom, Zeichenwerk | siehe `AGENTS.md` | von anderen Agenten belegt | — |
 | — | `styles-v5.css`, `ui-v5.js` | — | von anderen Agenten belegt, nicht angefasst | — |
+| — | `studio.html`, `atelier.js`, `styles-atelier.css` | — | **fremde, unversionierte Arbeit im Arbeitsverzeichnis** — nicht angefasst | — |
 
 ## Übergabe an andere Agenten
 
@@ -80,4 +84,31 @@ Zweige die Navigation enger stellen.
 - [ ] E-Mail-Bestätigung vor dem ersten Beitrag
 - [ ] Moderation: Meldequeue statt lokalem Ausblenden
 - [ ] Übersetzung in eine dritte Sprache
-- [ ] Startseiten-Teaser, der auf `community.html` verweist
+- [x] Startseiten-Teaser, der auf `community.html` verweist — eingefügt,
+      eigener Stylesheet-Link statt Inline-`<style>` (CSP-freundlich)
+
+## Messstand nach dem Abschluss (07.11.2026, 07:20)
+
+Alle 32 Seiten, jeweils 390 und 1440 px, im Headless-Chromium gegen
+`python3 -m http.server`:
+
+- 0 Konsolenfehler, 0 horizontales Überlaufen, 0 doppelte IDs, 0 Bilder ohne `alt`
+- genau eine `h1` pro Seite, Header und Footer überall vorhanden
+- `node --check` auf `community.js`, `community-scene.js`, `components.js` sauber
+- Forum Ende-zu-Ende getestet: 9 Startthemen, Suche (3 Treffer für „three"),
+  Thema öffnen, Hilfreich-Stimme 34 → 35, Antwort zählt, neues Thema anlegen,
+  nach Reload vorhanden, Developer-Abo aktiviert, Werkstatt entsperrt
+- Sicherheits-Selbsttest: „7 of 7 attacks blocked" (IMG/SCRIPT/javascript:/
+  IFRAME/data:/SVG/STYLE), keine Konsolenfehler dabei
+- Sprachaudit DE→EN: 0 deutsche Reste auf Startseite, Community, Shop,
+  Arbeiten, Showroom, Studio, Kontakt, Vergleich, Bauplan, Probierstand,
+  Marke und den zehn Produktseiten (vorher 98 Stellen)
+- three.js: Canvas live auf Startseite (`#stratum`, `#studio-stage`),
+  Community (`#community-stage`), Showroom (`#sr-stage`), Bauplan (`#contour`),
+  Marke, Studio, Probierstand und 404; keine WebGL-Fehler
+
+## Testwerkzeuge (außerhalb des Repos, unter `~/tools`)
+
+`shot2.mjs` (Screenshot), `audit-one.js` (Seitenprüfung), `audit-i18n.mjs`
+(Sprachreste), `missing-i18n.mjs` (fehlende `data-en`), `test-community.mjs`
+(Forum/Abo/Selbsttest), `check-links.mjs` (tote Links und Anker).
