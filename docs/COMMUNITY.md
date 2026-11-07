@@ -119,31 +119,29 @@ Dann `http://127.0.0.1:8765/community.html` öffnen.
 ## Teaser für die Startseite
 
 `index.html` gehört einem anderen Agenten und wurde hier absichtlich **nicht**
-angefasst. Der fertige Abschnitt liegt als Kopiervorlage bereit; er benutzt nur
-vorhandene Klassen (`sec-pad`, `wrap`, `sec-head`, `eyebrow`, `h2`, `lead`,
-`btn`), braucht also kein zusätzliches CSS. Einfügen zwischen Showroom-Teaser
-und Prozess (`<!-- ============ PROZESS ============ -->`), dann DE/EN prüfen:
+angefasst. Der fertige Abschnitt liegt als eigenständige Kopiervorlage in
+[teaser-community.html](teaser-community.html).
 
-```html
-<section class="sec-pad" id="community" aria-labelledby="cm-teaser-title" data-screen-label="Community">
-  <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:32px">
-      <span class="eyebrow" data-en="Community · Workshop">Community · Werkstatt</span>
-      <h2 class="h2" id="cm-teaser-title" data-en="Questions that keep building.">Fragen, die weiterbauen.</h2>
-      <p class="lead" data-en="A forum for people who ship: code, products, tools. Ask precisely, answer briefly, and the answer that helped stays marked. The workshop opens with the developer subscription.">
-        Ein Forum für Leute, die ausliefern: Code, Produkte, Werkzeuge. Präzise fragen, knapp antworten — und die Antwort, die geholfen hat, bleibt markiert. Die Werkstatt öffnet mit dem Entwickler-Abo.
-      </p>
-    </div>
-    <div class="reveal" style="display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-primary" href="community.html"><span data-en="Open community">Community öffnen</span> <span class="arr">→</span></a>
-      <a class="btn btn-ghost" href="community.html#abo"><span data-en="Plans for developers">Abo für Entwickler</span></a>
-    </div>
-  </div>
-</section>
-```
+- **Einfügen:** den ganzen Block zwischen Showroom-Teaser und Prozess setzen,
+  also direkt vor den Kommentar, der den Prozess-Abschnitt einleitet.
+- **Selbsttragend:** `<style>` und Markup liegen zusammen; es wird kein
+  zusätzliches Stylesheet und kein JavaScript geladen. Farben und Schriften
+  kommen aus den vorhandenen Tokens (`--paper`, `--ink`, `--accent`, `--line`,
+  `--display`, `--mono`), damit der Abschnitt im Claude-Look bleibt.
+- **Inhalt:** links Eyebrow, Überschrift, Text, drei Kennwerte und zwei
+  Handlungswege (`community.html`, `community.html#abo`); rechts eine
+  Vorschau aus drei Thread-Karten mit Kategorie, Lösung-Marke und Antwortzahl,
+  die als Ganzes auf die Community verlinkt.
+- **Barrierefrei:** die Karten-Vorschau ist ein Link mit `aria-label`
+  (DE/EN über `data-en-aria`), die Avatare sind `aria-hidden`, die
+  Lösung-Marke wird auf schmalen Geräten ausgeblendet statt gequetscht.
+- **Bewegung:** nur ein Hover-Lift; bei `prefers-reduced-motion` entfällt er.
 
-Sobald der Abschnitt drin ist: 1440 und 390 px prüfen, `node --check` entfällt
-(kein JavaScript), aber die Sprachumschaltung einmal durchklicken.
+Geprüft mit dem echten Partial in einer Vorschauseite (danach wieder entfernt):
+1440 px (zweispaltig, 478/562 px) und 390 px (einspaltig, 350 px), jeweils
+DE und EN, kein horizontales Überlaufen, 0 Konsolenfehler. Der Teaser ist
+noch **nicht** in `index.html` eingebaut — das entscheidet der Agent, dem die
+Startseite gehört.
 
 ## Redaktion
 
