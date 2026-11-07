@@ -21,7 +21,7 @@ Header). Stand nach der Härtung:
     script-src 'self' 'sha256-…' 'sha256-…';   (ein Hash je Inline-Block)
     style-src 'self';
     font-src 'self';
-    img-src 'self' data:;
+    img-src 'self';
     object-src 'none';
     frame-src 'none';
     base-uri 'self';
@@ -49,8 +49,11 @@ Spezifikation bewusst, weil sie nicht aus Markup stammen.
   Vorher lud jede Seite zwei Google-Fonts-Stylesheets und die Schriftdateien von
   `fonts.gstatic.com` — dabei wurde die IP jedes Besuchers an Google übertragen.
 - Kein CDN, kein Tag-Manager, kein Analyse-Skript, kein Pixel.
-- `img-src 'self' data:` — `data:` nur für im Browser erzeugte Texturen der
-  three.js-Szenen.
+- `img-src 'self'` — Bildquellen sind ausschließlich eigene Dateien. Die sieben
+  `data:image/svg+xml`-Symbole, die früher in CSS-Regeln steckten, liegen jetzt
+  als Dateien in `media/ui/` (`tools/externalize-data-uris.mjs`). Three.js
+  erzeugt seine Texturen direkt aus `<canvas>`; das sind keine Bildladungen und
+  braucht kein `data:`.
 
 Prüfung: `performance.getEntriesByType('resource')` im Browser, alle Seiten,
 muss 0 Einträge mit fremder Origin liefern.

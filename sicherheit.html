@@ -5,7 +5,7 @@
 <script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-11UjV5xN6pZdNlEtTmAhbPEIFgw+4PbUdGLDl43gC5I='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-11UjV5xN6pZdNlEtTmAhbPEIFgw+4PbUdGLDl43gC5I='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Sicherheit — Bytewerk Studio</title>
 <meta name="description" content="Wie bytewerkstudio.com geschützt ist: CSP mit Hashes statt unsafe-inline, keine Fremdanfragen, kein Tracking, lokale Schriften, Rahmen- und Formularschutz. Mit Live-Prüfung im Browser.">
@@ -199,8 +199,8 @@
         <span class="sec-pill is-on" data-en="active">aktiv</span>
       </div>
       <div class="sec-row" role="row">
-        <code>img-src 'self' data:</code>
-        <span data-en="Images only from this domain; data URIs are allowed for generated textures.">Bilder nur von dieser Domain; data-URIs sind für erzeugte Texturen erlaubt.</span>
+        <code>img-src 'self'</code>
+        <span data-en="Images only from this domain — no data URIs either. The seven inline SVG icons now live as files in media/ui/.">Bilder nur von dieser Domain — auch keine data-URIs. Die sieben Inline-SVG-Symbole liegen jetzt als Dateien in media/ui/.</span>
         <span class="sec-pill is-on" data-en="active">aktiv</span>
       </div>
       <div class="sec-row" role="row">
