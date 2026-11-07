@@ -17,6 +17,8 @@
     { href: 'index.html#leistungen', de: 'Leistungen', en: 'Services', match: null },
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
+    { href: 'forum.html',              de: 'Forum',      en: 'Forum',      match: 'forum' },
+    { href: 'entwickler.html',         de: 'Entwickler', en: 'Developers', match: 'entwickler' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
@@ -89,12 +91,18 @@
             <a href="softwareentwicklung-ludwigshafen.html#webentwicklung" data-en="Web development">Web-Entwicklung</a>
             <a href="softwareentwicklung-ludwigshafen.html#app-entwicklung" data-en="App development">App-Entwicklung</a>
             <a href="softwareentwicklung-ludwigshafen.html" data-en="IT services">IT-Dienstleistungen</a>
+            <a href="sicherheit.html" data-en="Security">Sicherheit</a>
           </div>
           <div class="footer-col">
             <h4 data-en="Studio">Studio</h4>
             <a href="studio.html" data-en="About us">Über uns</a>
             <a href="arbeiten.html" data-en="Work">Arbeiten</a>
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
+            <a href="forum.html" data-en="Community forum">Community-Forum</a>
+            <a href="entwickler.html" data-en="Developers &amp; API">Entwickler &amp; API</a>
+            <a href="zeichenwerk.html" data-en="Letterpress">Zeichenwerk</a>
+            <a href="marke.html" data-en="The mark">Die Marke</a>
+            <a href="musterbuch.html" data-en="Pattern book">Musterbuch</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
@@ -139,7 +147,7 @@
 
   function applyLang(lang) {
     document.documentElement.lang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage blocked: keep the choice for this page only */ }
 
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset.de === undefined) el.dataset.de = el.innerHTML;
@@ -167,4 +175,5 @@
 
   // expose for other scripts / pages added later
   window.bwApplyLang = applyLang;
+  window.bwLang = currentLang;
 })();

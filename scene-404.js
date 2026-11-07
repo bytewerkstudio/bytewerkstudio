@@ -49,6 +49,17 @@ function hasWebGL() {
 
   const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  /* The site keeps one motion preference (bw-motion, written by
+     scene3d.js) and one switching class on <html>. Honour both, so a
+     visitor who paused motion on another page gets a still mark here. */
+  function motionAllowed() {
+    if (REDUCE.matches) return false;
+    try {
+      if (localStorage.getItem('bw-motion') === 'off') return false;
+    } catch (_) { /* storage blocked — keep the default */ }
+    return !document.documentElement.classList.contains('scene3d-paused');
+  }
+
   let renderer = null;
   try {
     renderer = new THREE.WebGLRenderer({
@@ -337,7 +348,7 @@ function hasWebGL() {
     }
 
     /* ---------- State ---------- */
-    let mode = REDUCE.matches ? 'assembled' : 'exploded';
+    let mode = motionAllowed() ? 'exploded' : 'assembled';
     let anim = null;             // { from, to, start, dur }
     let dirty = true;
     let raf = 0;
@@ -373,7 +384,7 @@ function hasWebGL() {
 
     function applyMode(next) {
       mode = next;
-      anim = { start: performance.now(), dur: REDUCE.matches ? 1 : 1000 };
+      anim = { start: performance.now(), dur: motionAllowed() ? 1000 : 1 };
       updateLabels();
       dirty = true;
       start();
@@ -431,7 +442,7 @@ function hasWebGL() {
           parts.forEach((g) => { g.userData.fromPos = null; g.userData.fromRot = null; });
         }
         moving = true;
-      } else if (!REDUCE.matches) {
+      } else if (motionAllowed()) {
         // Slow float, only while the mark is apart.
         if (mode === 'exploded') {
           parts.forEach((g) => {
@@ -457,7 +468,7 @@ function hasWebGL() {
         moving = true;
       }
 
-      const idle = (!REDUCE.matches && mode === 'exploded') ? Math.sin(elapsed * 0.16) * 0.10 : 0;
+      const idle = (motionAllowed() && mode === 'exploded') ? Math.sin(elapsed * 0.16) * 0.10 : 0;
       const targetYaw = dragYaw + px * 0.16 + idle;
       const targetPitch = dragPitch + py * 0.11;
 
@@ -588,6 +599,19 @@ function hasWebGL() {
     }
 
     document.addEventListener('bw:lang', updateLabels);
+
+    /* Follow the site-wide motion switch when it is used on this page. */
+    if ('MutationObserver' in window) {
+      new MutationObserver(() => {
+        if (!motionAllowed() && anim) {
+          // Finish the current transition immediately instead of freezing mid-way.
+          parts.forEach((g) => { g.userData.fromPos = null; g.userData.fromRot = null; });
+          anim.start = performance.now() - anim.dur;
+        }
+        dirty = true;
+        start();
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    }
 
     /* ---------- Boot ---------- */
     stage.setAttribute('data-scene', 'on');

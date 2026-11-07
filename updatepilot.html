@@ -5,7 +5,7 @@
 <script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>UpdatePilot - Windows Update-Manager · Bytewerk Studio</title>
 <meta name="description" content="UpdatePilot ist ein minimalistischer Windows Update-Manager von Bytewerk Studio mit winget-Scan, Update-Automation, Blocklisten, Technikerprofilen und PDF/CSV-Reports. Lebenslange Lizenz: 12,99 €.">
@@ -16,11 +16,19 @@
 <meta property="og:title" content="UpdatePilot - lebenslange Lizenz fuer 12,99 €">
 <meta property="og:description" content="Windows Update-Manager mit winget-Scan, freigegebenen Updates, Blocklisten, Lizenzierung, Technikerprofilen und PDF/CSV-Reports. Einmal kaufen, dauerhaft behalten.">
 <meta property="og:url" content="https://bytewerkstudio.com/updatepilot.html">
-<meta property="og:image" content="https://bytewerkstudio.com/media/updatepilot-icon.svg">
+<meta property="og:image" content="https://bytewerkstudio.com/media/og-updatepilot.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bytewerkstudio.com/media/og-updatepilot.png">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="media/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="media/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -51,6 +59,7 @@
   }
 }
 </script>
+<link rel="stylesheet" href="styles-integration.css">
 </head>
 <body>
 
