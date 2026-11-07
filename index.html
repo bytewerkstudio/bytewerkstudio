@@ -29,10 +29,11 @@
 <link rel="stylesheet" href="styles-workstoff.css">
 <link rel="stylesheet" href="styles-schichtmodell.css">
 <link rel="stylesheet" href="styles-v5.css">
-  <link rel="stylesheet" href="styles-3d.css">
+<link rel="stylesheet" href="styles-3d.css">
 <link rel="stylesheet" href="styles-work.css">
 <link rel="stylesheet" href="styles-showroom.css">
 <link rel="stylesheet" href="styles-hero.css">
+<link rel="stylesheet" href="styles-zeichenwerk.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -547,6 +548,44 @@
   </div>
 </section>
 
+<!-- ============ ZEICHENWERK ============ -->
+<section class="sec-pad" id="zeichenwerk" data-screen-label="Zeichenwerk">
+  <div class="wrap zw-band-grid">
+    <div class="zw-band-copy reveal">
+      <span class="eyebrow" data-en="Zeichenwerk · 3D letterpress">Zeichenwerk · 3D-Letterpress</span>
+      <h2 class="h2" data-en="Type you can touch.">Schrift, die man anfassen kann.</h2>
+      <p class="lead" data-en="Every wordmark is set from rounded paper plates, pulled into depth and lit like a studio table. Type a word — the type falls into place again. Drag to turn it, take it away as a transparent PNG.">
+        Jede Wortmarke wird aus gerundeten Papierplatten gesetzt, in die Tiefe gezogen und mit weichem
+        Studiolicht beleuchtet. Tippe ein Wort — die Lettern fallen neu ein. Ziehen dreht, ein Klick
+        nimmt die Wortmarke als PNG mit.
+      </p>
+      <div class="zw-band-form">
+        <span class="zw-field">
+          <label class="zw-sr" for="zw-band-text" data-en="Word for the wordmark">Wort für die Wortmarke</label>
+          <input id="zw-band-text" data-zw-input type="text" value="BYTEWERK" maxlength="12"
+                 autocomplete="off" autocapitalize="characters" spellcheck="false"
+                 data-en-aria="Word for the wordmark">
+        </span>
+        <a class="btn btn-primary" href="zeichenwerk.html"><span data-en="Open Zeichenwerk">Zeichenwerk öffnen</span> <span class="arr">→</span></a>
+      </div>
+      <p class="zw-band-note" data-en="three.js, local, no tracking — and it still reads without WebGL.">three.js, lokal, kein Tracking — und ohne WebGL bleibt es lesbar.</p>
+    </div>
+
+    <div class="zw-stage zw-stage--band" data-zeichenwerk data-mode="band" data-word="BYTEWERK" data-material="terrakotta" data-depth="0.62">
+      <span class="zw-badge" aria-hidden="true">three.js · 5 × 7 Raster</span>
+      <canvas class="zw-canvas" role="img" tabindex="0"
+              aria-label="3D-Schriftzug BYTEWERK aus Papierplatten in Terrakotta. Ziehen oder Pfeiltasten zum Drehen."
+              aria-describedby="zw-band-hint"></canvas>
+      <p class="zw-static" aria-hidden="true">BYTEWERK</p>
+      <p class="zw-spec" aria-hidden="true">
+        <span data-zw-spec-chars>8 Zeichen</span>
+        <span data-zw-spec-material>Terrakotta</span>
+      </p>
+      <p class="zw-hint" id="zw-band-hint" data-en="Drag to rotate">Ziehen zum Drehen</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SHOP ============ -->
 <section class="sec-pad" id="shop" style="background:var(--paper-2);border-block:1px solid var(--line)" data-screen-label="Shop">
   <div class="wrap">
@@ -961,6 +1000,7 @@
 <script type="module" src="scene-studio.js"></script>
 <script type="module" src="scene-workstoff.js"></script>
 <script type="module" src="schichtmodell.js"></script>
+<script type="module" src="zeichenwerk.js"></script>
 <script>
 /* CTA band subtle grid canvas */
 (function () {
