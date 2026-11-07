@@ -132,3 +132,34 @@ offene Punkte (OG-Bild 1200×630, Suchkonsole, englische URLs, Abo-Abrechnung).
 `shot2.mjs` (Screenshot), `audit-one.js` (Seitenprüfung), `audit-i18n.mjs`
 (Sprachreste), `missing-i18n.mjs` (fehlende `data-en`), `test-community.mjs`
 (Forum/Abo/Selbsttest), `check-links.mjs` (tote Links und Anker).
+
+## Abschluss Härtung und Bildformate (07.11.2026, 11:15)
+
+Commits `6b14295` (CSP, Schriften, Sicherheitsseite) und `5621cc2`
+(Barrierefreiheit, Robustheit) auf `main`, danach der Bildformat-Durchgang.
+
+Belege, alle gegen `http://127.0.0.1:8961/`:
+
+| Prüfung | Werkzeug | Ergebnis |
+|---|---|---|
+| CSP-Hashes | `verify-csp.mjs` | 32 Seiten, 52 Inline-Blöcke, 0 Abweichungen |
+| Laufzeit: CSP, JS, Rahmen | `audit-security.mjs` | `pages=32 clean=32 problems=0` |
+| Barrierefreiheit | `audit-a11y.mjs` | `pages=32 clean=32` |
+| Sprache DE→EN | `audit-lang-final.mjs` | `pages=32 clean=32 problems=0` |
+| Links und Anker | `check-links.mjs` | 33 Seiten, 624 Links, 0 Probleme |
+| Performance | `audit-perf.mjs` | CLS 0,001 auf allen 5 Stichproben, 0 Fremdanfragen |
+| Forum Ende-zu-Ende | `test-community.mjs` | 7/7 Payloads blockiert, 0 Konsolenfehler |
+
+**Bildformate.** 46 `<img>`-Verweise zeigen jetzt direkt auf WebP
+(`media/*.webp`, 9 Dateien, zusammen 443 KB statt 864 KB). Die JPEG/PNG-Originale
+bleiben als Quelle im Repo; kein Browser lädt sie noch. Vorher lud die
+Startseite das MASTIL-Bild doppelt (JPEG 308 KB + WebP 236 KB), weil der
+statische Bento die Quelle vor dem Galerieaufbau anforderte — dieser
+Doppelabruf ist weg, `work-gallery.js` entzieht den Originalen die `src`,
+sobald die Galerie steht, und stellt sie bei einem Fehler wieder her.
+
+Startseite: 2263 KB → 1736 KB, LCP 1500 → 160 ms (Stichprobe, 1440 px).
+`shop.html` 1469 → 1382 KB, `arbeiten.html` 1741 → 1532 KB.
+
+Offen: die Originale (JPEG/PNG) könnten nach einer Übergangsfrist gelöscht
+werden; solange ältere Caches sie anfordern, bleiben sie liegen.

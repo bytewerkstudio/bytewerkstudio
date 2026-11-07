@@ -409,3 +409,6 @@
     border-top: none;
   }
 }
+
+/* WebP source wrapper: the picture box itself must not change layout */
+.wg-frame picture { display: contents; }

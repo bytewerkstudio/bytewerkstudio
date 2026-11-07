@@ -95,8 +95,10 @@ Honigfalle gegen Bots, defensives Parsen des gespeicherten Zustands.
 | CSP-Hashes stimmen mit den Inline-Blöcken überein | `tools/verify-csp.mjs` | 32 Seiten, 52 Blöcke, 0 Abweichungen |
 | Laufzeit: CSP-Verstöße, JS-Fehler, Rahmen-Schutz | `tools/audit-security.mjs` | 31/31 Seiten sauber, 0 Verstöße |
 | Keine Fremdanfragen | `audit-security.mjs` + Live-Panel | 0 externe Hosts |
-| Tote Links und Anker | `tools/check-links.mjs` | 533 Links, 0 Probleme |
+| Tote Links und Anker | `tools/check-links.mjs` | 624 Links, 0 Probleme |
 | Sprache DE/EN | `tools/audit-lang-final.mjs` | 32/32 sauber |
+| Barrierefreiheit | `tools/audit-a11y.mjs` | 32/32 ohne Befund |
+| Bildformate | `tools/img-dimensions.mjs`, WebP | 46 Verweise auf WebP, 0 defekte Bilder |
 | Konto-Anlage mit 600k Iterationen | Browser-Probe | 120 ms, Konto + Session angelegt |
 | Forum Ende-zu-Ende | `tools/test-community.mjs` | 9 Themen, Suche, Stimme, Persistenz, Abo |
 
