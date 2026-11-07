@@ -20,6 +20,7 @@
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
+    { href: 'community.html',        de: 'Community',  en: 'Community', match: 'community' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
   ];
@@ -99,6 +100,7 @@
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
+            <a href="community.html" data-en="Community &amp; forum">Community &amp; Forum</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
             <a href="marke.html" data-en="The mark">Die Marke</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
