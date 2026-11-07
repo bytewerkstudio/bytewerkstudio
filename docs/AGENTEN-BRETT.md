@@ -335,13 +335,18 @@ Sprachwechsel DE↔EN samt Paletten- und Überschriftentext.
 **Einbindung:** `stadt.html` steht im Suchindex (`ui-v4.js`), in der
 Hauptnavigation (`components.js`, Eintrag „Spiel") und in `sitemap.xml`.
 
-## Veröffentlichung — offen
+## Veröffentlichung — PR #32 wartet auf Merge
 
-Stand auf dem Fork `predatorhwg-commits/bytewerkstudio`, Branch `main`.
-`git push origin main` scheitert mit 403 (keine Schreibrechte).
+Stand auf dem Fork `predatorhwg-commits/bytewerkstudio`, Branch `main`,
+Commit `d5cf4ca`. `git push origin main` scheitert mit 403 (keine
+Schreibrechte), auch der Merge über die API wird mit 404 abgewiesen.
 
-Im Hauptrepo sind **fünf** Pull-Requests offen (#26–#30), keiner davon ist
-`predatorhwg-commits:main`. `community.html` und `sicherheit.html` liefern live
-weiterhin **404**. Zum Veröffentlichen entweder Schreibrechte auf
-`bytewerkstudio/bytewerkstudio` geben oder einen PR von
-`predatorhwg-commits:main` → `bytewerkstudio:main` öffnen.
+Angestoßen: **PR #32** von `predatorhwg-commits:main` → `bytewerkstudio:main`,
+<https://github.com/bytewerkstudio/bytewerkstudio/pull/32>. GitHub meldet
+`mergeable: true`, `mergeable_state: clean`; der Branch ist 30 Commits vor
+`main` und 0 dahinter, der Merge wäre ein Fast-Forward über 107 Dateien
+(+13106 / -800).
+
+`community.html`, `sicherheit.html` und `stadt.html` sind live weiterhin nicht
+erreichbar, bis der PR gemergt ist. Danach genügt ein Merge über die
+Weboberfläche; ein lokaler Push ist nicht nötig.
