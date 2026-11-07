@@ -186,3 +186,33 @@ Farbe: 21 Seiten pixelgleich, die übrigen Abweichungen liegen im Messrauschen
 (identische Stände zeigen bis zu 8 px bei Reveal-Animationen). Ausnahmen:
 `sicherheit.html` (neue Tabellenzeile, gewollt) und `studio.html` (fremde,
 unversionierte Arbeit — nicht von mir).
+
+## Responsive Bilder und Prüfwerkzeug im Repo (07.11.2026, 12:05)
+
+**Bilder.** Die drei großen Screenshots haben jetzt `srcset` mit 800w/1200w-
+Varianten und `sizes`; drei falsche `width`/`height`-Angaben (1200×800 bei
+16:9-Bildern) sind auf die echten Maße korrigiert. Das Vorschau-Bild in
+`arbeiten.html` lädt beim Hover die 800w-Fassung (62 KB statt 236 KB), die
+Galerie reicht `srcset`/`sizes` an ihre `<img>` weiter und der Preload-Warmup
+respektiert sie ebenfalls.
+
+Messung Startseite, `performance.getEntriesByType('resource')`, 0 Fremdanfragen:
+
+| Breite | vorher | jetzt |
+|---|---|---|
+| 390 px | – | **208 KB**, 38 Anfragen |
+| 1440 px | 2263 KB | **1519 KB**, 38 Anfragen |
+
+**Werkzeuge jetzt im Repo** (`tools/`, keine Abhängigkeiten, Node ≥ 18):
+
+| Datei | Zweck |
+|---|---|
+| `verify-site.mjs` | 12 statische Prüfungen, Exit-Code 1 bei Befund |
+| `verify-csp.mjs` | Hash-Abgleich Inline-Skript ↔ CSP |
+| `harden-csp.mjs` | CSP-Hashes neu erzeugen (nach jeder Skript-Änderung) |
+| `inline-styles-to-classes.mjs` | `style="…"` → Klassen in `styles-inline.css` |
+| `responsive-images.mjs` | `srcset`/`sizes` + echte Bildmaße |
+
+`node tools/verify-site.mjs` auf dem Stand davor (`8211496`): **102 Befunde**;
+auf dem aktuellen Stand: **0**. Damit ist der Prüfer selbst belegt, nicht nur
+die Seiten.

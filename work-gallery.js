@@ -52,6 +52,8 @@
       img: img ? {
         src: img.getAttribute('src') || '',
         webp: img.getAttribute('data-webp') || '',
+        srcset: img.getAttribute('srcset') || '',
+        sizes: img.getAttribute('sizes') || '',
         alt: img.getAttribute('alt') || '',
         w: img.getAttribute('width') || null,
         h: img.getAttribute('height') || null
@@ -75,12 +77,19 @@
     if (!src) return;
     img.setAttribute('data-wg-src', src);
     img.removeAttribute('src');
+    var srcset = img.getAttribute('srcset');
+    if (srcset) {
+      img.setAttribute('data-wg-srcset', srcset);
+      img.removeAttribute('srcset');
+    }
     stashed.push(img);
   });
   function restore() {
     stashed.forEach(function (img) {
       var src = img.getAttribute('data-wg-src');
       if (src) img.setAttribute('src', src);
+      var srcset = img.getAttribute('data-wg-srcset');
+      if (srcset) img.setAttribute('srcset', srcset);
     });
   }
   window.addEventListener('error', function () {
@@ -137,6 +146,8 @@
       if (item.img.w) img.width = item.img.w;
       if (item.img.h) img.height = item.img.h;
       img.loading = i === 0 ? 'eager' : 'lazy';
+      if (item.img.srcset) img.setAttribute('srcset', item.img.srcset);
+      if (item.img.sizes) img.setAttribute('sizes', item.img.sizes);
       if (item.img.webp) {
         var pic = doc.createElement('picture');
         var source = doc.createElement('source');
@@ -302,6 +313,8 @@
     cases.forEach(function (item) {
       if (item.img && item.img.src) {
         var probe = new Image();
+        if (item.img.srcset) probe.setAttribute('srcset', item.img.srcset);
+        if (item.img.sizes) probe.setAttribute('sizes', item.img.sizes);
         probe.src = item.img.src;
       }
     });
