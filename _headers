@@ -5,8 +5,15 @@
 # nicht an. Sie ist eine Vorlage für den Umzug, kein aktiver Schutz.
 # Stand: 7. November 2026
 #
-# Was hier steht, ist bewusst strenger als die <meta>-CSP im HTML:
+# Was hier steht, ergänzt die <meta>-CSP im HTML:
 # Header können frame-ancestors und HSTS, eine Meta-CSP nicht.
+#
+# Wichtig: Wenn Header- und Meta-CSP gleichzeitig greifen, müssen
+# Ressourcen BEIDE Policies erfüllen — die strengere gewinnt.
+# Die Meta-CSP jeder Seite führt ihre Inline-Skripte deshalb als
+# sha256-Hash auf und kommt ohne 'unsafe-inline' aus. Das
+# 'unsafe-inline' hier ist nur die Rückfallebene für Clients, die
+# Meta-CSP ignorieren; es lockert die Hash-Regel nicht.
 
 /*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; upgrade-insecure-requests
