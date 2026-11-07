@@ -596,9 +596,10 @@
     return Math.abs(out);
   }
 
+  /* Second stop stays dark enough for white initials (>= 4.5:1). */
   const AVATARS = [
-    ['#b04f31', '#d98d6d'], ['#4f7a63', '#8fae94'], ['#5b6b8a', '#93a3c2'],
-    ['#8a6a3f', '#c3a173'], ['#7a5c6a', '#b28f9f'], ['#3f6f7a', '#84aab2']
+    ['#a8482c', '#b05a3d'], ['#446b56', '#50775f'], ['#4e5c78', '#66769a'],
+    ['#785c36', '#8a6a42'], ['#6a4f5c', '#8a6b79'], ['#37616b', '#4a7682']
   ];
 
   const catOf = (id) => CATS.find((c) => c.id === id) || CATS[0];
