@@ -1,0 +1,201 @@
+/* ============================================================
+   BYTEWERK STUDIO — styles-3d.css
+   ------------------------------------------------------------
+   Rahmen für scene3d.js. Wird als letzte Ebene geladen.
+   Alles ist auf die 3D-Slots begrenzt; ohne WebGL bleibt
+   das übrige Design unverändert.
+   ============================================================ */
+
+/* ---------- Grundlage ---------- */
+
+.scene3d-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.scene3d-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Hero-Skulptur ---------- */
+
+.hero-scene {
+  position: absolute;
+  z-index: 1;
+  top: -72px;
+  right: max(-9vw, -140px);
+  width: min(56vw, 840px);
+  height: min(78%, 720px);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(62% 64% at 55% 46%, #000 36%, rgba(0, 0, 0, 0.68) 66%, transparent 91%);
+  mask-image: radial-gradient(62% 64% at 55% 46%, #000 36%, rgba(0, 0, 0, 0.68) 66%, transparent 91%);
+}
+
+.hero-v3-copy,
+.hero-v3-panel {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text bleibt vor der Skulptur ruhig */
+.hero-v3--scene .hero-v3-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(250, 249, 245, 0.28) 0%,
+    rgba(250, 249, 245, 0.9) 42%,
+    var(--paper) 100%
+  );
+}
+
+/* Bewegungsschalter: klein, ruhig, tastaturfreundlich */
+.scene3d-toggle {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(250, 249, 245, 0.86);
+  color: var(--ink-soft);
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 2px rgba(31, 30, 29, 0.06);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.scene3d-toggle:hover {
+  color: var(--accent-700);
+  border-color: var(--accent);
+  background: var(--paper);
+}
+
+.scene3d-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.scene3d-i {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.scene3d-i-play { display: none; }
+.scene3d-toggle[data-paused="true"] .scene3d-i-pause { display: none; }
+.scene3d-toggle[data-paused="true"] .scene3d-i-play { display: block; }
+
+/* ---------- Seitenkopf-Kontur ---------- */
+
+.page-head-bg.scene3d-ready {
+  background-image: none;
+  opacity: 0.9;
+}
+
+.page-head-bg .scene3d-canvas {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
+}
+
+/* ---------- Ohne WebGL: ruhige Papierschichtung als Ersatz ---------- */
+
+.no-scene3d .hero-scene::before {
+  content: "";
+  position: absolute;
+  left: 24%;
+  right: 18%;
+  top: 26%;
+  bottom: 22%;
+  border-radius: 22px;
+  background:
+    linear-gradient(102deg, rgba(255, 255, 255, 0.55), rgba(243, 240, 232, 0.2) 52%, rgba(216, 209, 192, 0.35)),
+    repeating-linear-gradient(180deg, #f7f3e9 0 26px, #efe9da 26px 28px, #faf9f5 28px 44px);
+  border: 1px solid var(--line-2);
+  box-shadow:
+    20px 26px 0 -6px rgba(239, 233, 218, 0.95),
+    42px 54px 0 -14px rgba(243, 240, 232, 0.9),
+    0 34px 70px -34px rgba(31, 30, 29, 0.35);
+  transform: rotate(-7deg) skewY(1.5deg);
+}
+
+.no-scene3d .hero-scene::after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 28%;
+  top: 58%;
+  height: 7px;
+  border-radius: 3px;
+  background: rgba(176, 79, 49, 0.75);
+  transform: rotate(-7deg);
+}
+
+/* ---------- Schmale Geräte ---------- */
+
+@media (max-width: 1024px) {
+  .hero-scene {
+    position: relative;
+    inset: auto;
+    display: block;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: clamp(200px, 30vh, 280px);
+    margin: -6px 0 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  }
+
+  .hero-v3--scene .hero-v3-panel {
+    background: linear-gradient(180deg, rgba(250, 249, 245, 0.3), var(--paper) 26%);
+  }
+
+  .no-scene3d .hero-scene::before {
+    left: 12%;
+    right: 12%;
+    top: 12%;
+    bottom: 12%;
+  }
+
+  .no-scene3d .hero-scene::after {
+    left: 20%;
+    right: 20%;
+    top: 66%;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 1025px) {
+  .hero-scene {
+    width: min(50vw, 620px);
+    right: -12vw;
+    top: -48px;
+  }
+}
+
+/* ---------- Druck ---------- */
+
+@media print {
+  .hero-scene,
+  .scene3d-canvas,
+  .scene3d-toggle,
+  .page-head-bg {
+    display: none !important;
+  }
+}
