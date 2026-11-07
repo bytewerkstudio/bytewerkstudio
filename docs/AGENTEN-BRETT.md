@@ -15,7 +15,7 @@ im Terminal). Format wie im Issue: `Agent | Aufgabe | Dateien | Status | Commit`
 
 | Agent | Aufgabe | Dateien | Status | Commit |
 |---|---|---|---|---|
-| Fable (Community) | Forum, Entwickler-Abo, Sicherheit, 3D-Idee­regal | `community.html`, `styles-community.css`, `community.js`, `community-scene.js`, `docs/COMMUNITY.md` | fertig, in Prüfung | `fable/community` |
+| Fable (Community) | Forum, Entwickler-Abo, Sicherheit, 3D-Idee­regal | `community.html`, `styles-community.css`, `community.js`, `community-scene.js`, `docs/COMMUNITY.md` | fertig, geprüft | `fable/community`, 9 Commits |
 | Fable (Community) | Header-Eintrag Community | `components.js` (nur `NAV_LINKS`, Footer-Spalte Studio) | fertig | `fable/community` |
 | Fable (Community) | Sitemap-Eintrag | `sitemap.xml` | fertig | `fable/community` |
 | — | Startseite, Hero, Showroom, Zeichenwerk | siehe `AGENTS.md` | von anderen Agenten belegt | — |
