@@ -42,3 +42,11 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `background.js` | Bewegter Hintergrund, code-only |
 | `styles-studio3d.css` | Hero-Bühne (Studio-Modell), zuletzt geladen |
 | `scene-studio.js` | three.js-Szene der Hero-Bühne (r180 aus `vendor/`) |
+| `styles-mittag.css` | Startseiten-Sektion Entwickler/Forum/Sicherheit (`.mw-*`) |
+| `styles-forum.css` + `forum.js` + `forum-scene.js` | Forum, Pro-Stufe, three.js-Pinwand |
+| `styles-entwickler.css` + `entwickler.js` | API-Referenz, Sandbox, Abo-Stufen |
+| `styles-sicherheit.css` + `sicherheit.js` + `scene-sicherheit.js` | Sicherheitsseite und Selbsttest |
+| `fonts/fonts.css` | Lokale Schriften (Newsreader, Inter, JetBrains Mono) |
+
+Zusammenführung und Datei-Ownership stehen in
+[`docs/AGENTEN-ISSUE.md`](docs/AGENTEN-ISSUE.md).

@@ -39,6 +39,9 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `kontakt.html`: Kontaktformular mit Mail-Weiterleitung
 - `impressum.html`, `datenschutz.html`, `agb.html`: Rechtliche Seiten
 - `probierstand.html`: vier Produkt-Werkzeuge live im Browser (Passwort, Countdown, Text, Woche)
+- `forum.html`: Forum für Entwickler mit Threads, Antworten, Loesungsmarkierung, Suche und Pro-Stufe
+- `entwickler.html`: API-Referenz, lokale Sandbox-Konsole und Abo-Stufen (Sandbox/Pro/Team)
+- `sicherheit.html`: Sicherheitsseite mit Bedrohungsmodell, Selbsttest, Massnahmen und Meldeweg
 - `404.html`: Fehlerseite fuer GitHub Pages
 
 ## Konto und Anmeldung
@@ -75,6 +78,22 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   vier echte Werkzeuge (Passwort-Schmiede, Prüfungs-Countdown, Text-Werkstatt,
   Wochenbrett) und eine three.js-Werkbank mit vier Papierwerkzeugen. Alle Daten
   bleiben im Browser (localStorage), kein Backend, kein Upload.
+- `forum.js` + `forum-scene.js` + `styles-forum.css`: Forum mit Threads,
+  Antworten, Loesungsmarkierung, Suche, Filtern, Ratenlimits und Pro-Stufe.
+  Markdown laeuft ueber eine geschlossene Elementliste ohne `innerHTML`.
+- `entwickler.js` + `styles-entwickler.css`: API-Referenz, Sandbox-Konsole
+  (Antworten lokal, kein Netzwerk) und Abo-Stufen mit Monats-/Jahresumschalter.
+- `sicherheit.js` + `scene-sicherheit.js` + `styles-sicherheit.css`:
+  Bedrohungsmodell, achtteiliger Selbsttest, Massnahmen-Tabs, Meldeweg.
+- `styles-mittag.css`: Startseiten-Sektion `#entwickler` (Forum, API-Abo,
+  Sicherheit). Namespace `.mw-*`, nur auf `index.html` geladen.
+
+## Schriften
+
+`fonts/fonts.css` liefert Newsreader, Inter und JetBrains Mono als lokale
+WOFF2-Dateien (SIL OFL 1.1). `styles.css` importiert nur diese Datei; keine
+Seite laedt `fonts.googleapis.com` oder `fonts.gstatic.com`. Die CSP steht
+deshalb auf `font-src 'self'`.
 
 ## Betrieb
 

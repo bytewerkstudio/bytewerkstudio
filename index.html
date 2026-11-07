@@ -5,7 +5,7 @@
 <script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Bytewerk Studio — Software, Web & Apps aus Ludwigshafen</title>
 <meta name="description" content="Bytewerk Studio entwickelt Software, Websites, Apps und digitale Produkte in Ludwigshafen am Rhein. Klarer Ablauf, ehrliche Festpreise, Code, der dir gehört.">
@@ -19,8 +19,6 @@
 <meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -28,6 +26,7 @@
 <link rel="stylesheet" href="styles-schichtmodell.css">
 <link rel="stylesheet" href="styles-v5.css">
 <link rel="stylesheet" href="styles-work.css">
+<link rel="stylesheet" href="styles-mittag.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -572,6 +571,85 @@
     <span class="c-key">return</span> publish(project)
   }
 }</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTWICKLER & COMMUNITY ============ -->
+<section class="sec-pad mw-dev" id="entwickler" data-screen-label="Entwickler &amp; Community">
+  <div class="wrap">
+    <div class="mw-head reveal">
+      <span class="eyebrow" data-en="For developers">Für Entwickler</span>
+      <h2 class="h2" data-en="Build with us. Ask us. Check us.">Bau mit uns. Frag uns. Prüf uns.</h2>
+      <p class="lead" data-en="A forum that keeps answers, an API with honest tiers and a security check you can run yourself. No tracking, no lock-in — the same standard we use for client projects.">
+        Ein Forum, das Antworten behält, eine API mit ehrlichen Stufen und ein Sicherheitscheck, den du selbst ausführen kannst. Kein Tracking, kein Lock-in — derselbe Maßstab wie bei Kundenprojekten.
+      </p>
+    </div>
+
+    <div class="mw-grid">
+      <a class="mw-card reveal" href="forum.html">
+        <span class="mw-num">01 / Forum</span>
+        <h3 data-en="Questions that stay answered.">Fragen, die beantwortet bleiben.</h3>
+        <p data-en="three.js, frontend, backend, tooling. One problem per thread, answers from the studio, solved problems stay in the archive. Reading is free.">
+          three.js, Frontend, Backend, Werkzeuge. Ein Problem pro Thema, Antworten aus dem Studio, gelöste Fälle bleiben im Archiv. Lesen ist frei.
+        </p>
+        <ul class="mw-list">
+          <li data-en="Solved archive">Lösungsarchiv</li>
+          <li data-en="Pro area">Pro-Bereich</li>
+          <li>DE / EN</li>
+        </ul>
+        <span class="mw-go"><span data-en="Open forum">Forum öffnen</span> <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="mw-card reveal" data-d="1" href="entwickler.html">
+        <span class="mw-num">02 / API &amp; Abo</span>
+        <h3 data-en="Sandbox first. Tiers that fit.">Erst Sandbox. Dann passende Stufe.</h3>
+        <p data-en="Issue licences, fetch builds, receive webhooks. Test without an account, then pick a tier — monthly, cancellable, with soft limits and clear status codes.">
+          Lizenzen ausstellen, Builds abrufen, Webhooks empfangen. Ohne Konto testen, dann eine Stufe wählen — monatlich, kündbar, mit weichen Limits und klaren Statuscodes.
+        </p>
+        <ul class="mw-list">
+          <li>REST</li>
+          <li data-en="3 tiers">3 Stufen</li>
+          <li data-en="Scoped keys">Begrenzte Schlüssel</li>
+        </ul>
+        <span class="mw-go"><span data-en="See tiers">Abo-Stufen ansehen</span> <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="mw-card reveal" data-d="2" href="sicherheit.html">
+        <span class="mw-num">03 / Sicherheit</span>
+        <h3 data-en="Proof instead of promises.">Nachweis statt Versprechen.</h3>
+        <p data-en="CSP, PBKDF2, row-level security, scoped keys. Read the threat model, run the eight-point self-check and report a finding through a defined channel.">
+          CSP, PBKDF2, Row-Level-Security, begrenzte Schlüssel. Lies das Bedrohungsmodell, mach den Acht-Punkte-Selbsttest und melde einen Fund über einen definierten Weg.
+        </p>
+        <ul class="mw-list">
+          <li>CSP</li>
+          <li>PBKDF2</li>
+          <li>RLS</li>
+        </ul>
+        <span class="mw-go"><span data-en="Run the check">Selbsttest starten</span> <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+
+    <div class="mw-tiers reveal" data-d="1" aria-label="Abo-Stufen der Entwickler-API" data-en-aria="Developer API tiers">
+      <div class="mw-tier">
+        <span>Sandbox</span>
+        <b>0 €</b>
+        <small data-en="Forever · 1,000 requests / month">Dauerhaft · 1.000 Anfragen / Monat</small>
+      </div>
+      <div class="mw-tier is-pro">
+        <span>Pro</span>
+        <b>29 €</b>
+        <small data-en="Per month · 50,000 requests">Pro Monat · 50.000 Anfragen</small>
+      </div>
+      <div class="mw-tier">
+        <span>Team</span>
+        <b>99 €</b>
+        <small data-en="Per month · 500,000 requests">Pro Monat · 500.000 Anfragen</small>
+      </div>
+      <div class="mw-tier-note">
+        <p data-en="Monthly, cancellable. Yearly billing equals ten months. Prices plus VAT.">Monatlich kündbar. Jährlich entspricht zehn Monaten. Preise zzgl. MwSt.</p>
+        <a href="entwickler.html#abo" data-en="Compare all tiers →">Alle Stufen vergleichen →</a>
       </div>
     </div>
   </div>

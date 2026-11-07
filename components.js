@@ -20,6 +20,8 @@
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
+    { href: 'forum.html',            de: 'Forum',      en: 'Forum',    match: 'forum' },
+    { href: 'entwickler.html',       de: 'Entwickler', en: 'Developers', match: 'entwickler' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
   ];
 
@@ -98,6 +100,8 @@
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
+            <a href="forum.html" data-en="Forum">Forum</a>
+            <a href="entwickler.html" data-en="Developers &amp; API">Entwickler &amp; API</a>
             <a href="konto.html" data-en="My account">Mein Konto</a>
             <a href="login.html" data-en="Sign in">Anmelden</a>
             <a href="kontakt.html" data-en="Contact">Kontakt</a>
@@ -107,6 +111,7 @@
             <a href="impressum.html" data-en="Imprint">Impressum</a>
             <a href="datenschutz.html" data-en="Privacy">Datenschutz</a>
             <a href="agb.html" data-en="Terms">AGB</a>
+            <a href="sicherheit.html" data-en="Security">Sicherheit</a>
           </div>
         </div>
         <div class="footer-bottom">
@@ -139,7 +144,7 @@
 
   function applyLang(lang) {
     document.documentElement.lang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage blocked: keep the choice for this page only */ }
 
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset.de === undefined) el.dataset.de = el.innerHTML;
