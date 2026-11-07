@@ -123,11 +123,31 @@
     $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); },
   };
 
-  /* ---------- CSS injection (gathers module styles into one tag) ---------- */
+  /* ---------- CSS injection (gathers module styles into one sheet) ----------
+     A <style> element created at runtime counts as an inline style and is
+     blocked by `style-src 'self'`. A constructable stylesheet is not document
+     markup and stays allowed, so the modules keep their styling under CSP.
+     The <style> fallback only runs where neither API exists (old browsers,
+     and file:// where no CSP applies). */
   NH.css = {
     _styles: [],
+    _sheet: null,
+    _ensure() {
+      if (this._sheet) return this._sheet;
+      try {
+        if (typeof CSSStyleSheet === 'function' && 'adoptedStyleSheets' in document) {
+          this._sheet = new CSSStyleSheet();
+          document.adoptedStyleSheets = document.adoptedStyleSheets.concat(this._sheet);
+        }
+      } catch (e) { this._sheet = null; }
+      return this._sheet;
+    },
     add(cssText) {
       this._styles.push(cssText);
+      const sheet = this._ensure();
+      if (sheet) {
+        try { sheet.replaceSync(this._styles.join('\n')); return; } catch (e) { /* fall through */ }
+      }
       let tag = NH.dom.$('#nh-styles');
       if (tag && typeof tag.appendChild !== 'function') tag = null;
       if (!tag) {

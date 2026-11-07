@@ -10,7 +10,10 @@
   <meta property="og:url" content="https://bytewerkstudio.github.io/neon-horde/">
   <meta name="theme-color" content="#0a0f16">
   <title>NEON HORDE — Bytewerk Studio</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-7GlQawMMGgfgxNSLKM/pcQyuqrQ1PQSPysW57Z69G94=' 'sha256-1KWPXKJNimw6kR8EYZt/NYUS955dZu9DsO+Nf7m23yM='; style-src 'self' 'sha256-CA8AzWouo4stcdc5pdcIGTrD1v0zXO4n8sMLSFB5W10='; img-src 'self'; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.hidden=true}}</script>
   <style>
     /* Boot-Basis: Module (ui.js) injizieren ihr Theme per NH.css.add() */
     html, body {
@@ -45,7 +48,7 @@
 
   <!-- Lade-Reihenfolge: Basis -> Daten -> Vertrag -> Module -> Boot -->
     <script>
-/* ==== src/loader.js (5.1 KB) ==== */
+/* ==== src/loader.js (5.9 KB) ==== */
 /* ============================================================
  * NEON HORDE — Bytewerk Studio
  * loader.js — NH Namespace, Utilities, Event-Bus, i18n, DOM, CSS
@@ -171,11 +174,31 @@
     $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); },
   };
 
-  /* ---------- CSS injection (gathers module styles into one tag) ---------- */
+  /* ---------- CSS injection (gathers module styles into one sheet) ----------
+     A <style> element created at runtime counts as an inline style and is
+     blocked by `style-src 'self'`. A constructable stylesheet is not document
+     markup and stays allowed, so the modules keep their styling under CSP.
+     The <style> fallback only runs where neither API exists (old browsers,
+     and file:// where no CSP applies). */
   NH.css = {
     _styles: [],
+    _sheet: null,
+    _ensure() {
+      if (this._sheet) return this._sheet;
+      try {
+        if (typeof CSSStyleSheet === 'function' && 'adoptedStyleSheets' in document) {
+          this._sheet = new CSSStyleSheet();
+          document.adoptedStyleSheets = document.adoptedStyleSheets.concat(this._sheet);
+        }
+      } catch (e) { this._sheet = null; }
+      return this._sheet;
+    },
     add(cssText) {
       this._styles.push(cssText);
+      const sheet = this._ensure();
+      if (sheet) {
+        try { sheet.replaceSync(this._styles.join('\n')); return; } catch (e) { /* fall through */ }
+      }
       let tag = NH.dom.$('#nh-styles');
       if (tag && typeof tag.appendChild !== 'function') tag = null;
       if (!tag) {
@@ -4296,7 +4319,7 @@
 })();
 
 
-/* ==== src/shop.js (40.5 KB) ==== */
+/* ==== src/shop.js (39.7 KB) ==== */
 /* ============================================================
  * NEON HORDE — Bytewerk Studio
  * shop.js — Draft-Shop nach jeder Welle (Herzstück)
