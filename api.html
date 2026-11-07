@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf9f5">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>API — Sandbox, Webhooks und Abo | Bytewerk Studio</title>
+<meta name="description" content="Die Bytewerk-API für eigene Produkte: Lizenzen ausstellen, Builds abrufen, Webhooks empfangen. Sandbox ohne Konto, drei Abo-Stufen, Schlüssel mit begrenzten Rechten.">
+<link rel="canonical" href="https://bytewerkstudio.com/api.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bytewerk API — Sandbox, Webhooks und Abo">
+<meta property="og:description" content="Lizenzen, Builds und Webhooks über eine API. Sandbox ohne Konto, Abo ab 0 €, Schlüssel mit begrenzten Rechten.">
+<meta property="og:url" content="https://bytewerkstudio.com/api.html">
+<meta property="og:site_name" content="Bytewerk Studio">
+<meta property="og:image" content="https://bytewerkstudio.com/media/og-api.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bytewerk Studio API — Sandbox, Webhooks und Abo-Stufen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bytewerkstudio.com/media/og-api.png">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="icon" href="media/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="media/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles-v3.css">
+<link rel="stylesheet" href="styles-auth.css">
+<link rel="stylesheet" href="styles-claude.css">
+<link rel="stylesheet" href="styles-v5.css">
+<link rel="stylesheet" href="styles-api.css">
+<link rel="stylesheet" href="styles-3d.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "API — Sandbox, Webhooks und Abo",
+  "url": "https://bytewerkstudio.com/api.html",
+  "description": "Die Bytewerk-API: Lizenzen ausstellen, Builds abrufen, Webhooks empfangen. Sandbox ohne Konto, drei Abo-Stufen.",
+  "isPartOf": { "@type": "WebSite", "name": "Bytewerk Studio", "url": "https://bytewerkstudio.com/" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bytewerk Studio",
+    "url": "https://bytewerkstudio.com/",
+    "email": "hallo@bytewerkstudio.com"
+  },
+  "mainEntity": {
+    "@type": "Service",
+    "name": "Bytewerk API",
+    "serviceType": "Software-API mit Abonnement",
+    "provider": { "@type": "Organization", "name": "Bytewerk Studio" },
+    "offers": [
+      { "@type": "Offer", "name": "Sandbox", "price": "0", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Team", "price": "99", "priceCurrency": "EUR" }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Brauche ich ein Konto für die Sandbox?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Der Sandbox-Schlüssel wird beim ersten Aufruf der Sandbox lokal im Browser erzeugt und funktioniert nur gegen die Testdaten. Für echte Daten ist ein Konto nötig." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert bei mehr Anfragen als im Tarif enthalten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die API antwortet mit Status 429 und dem Header Retry-After. Es wird nichts abgeschaltet und nichts zusätzlich berechnet; Anfragen laufen nach Ablauf des Fensters weiter." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich monatlich kündigen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Jede Stufe läuft monatlich und ist zum Ende des Abrechnungszeitraums kündbar. Die jährliche Zahlung ist optional und entspricht zehn Monaten." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wo liegen die Daten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In der EU. Auftragsverarbeitung nach DSGVO, Löschung auf Anfrage, keine Weitergabe an Dritte zu Werbezwecken." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div data-include="header"></div>
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="dev-hero">
+  <div class="page-head-bg" data-scene3d="contour" aria-hidden="true"></div>
+  <div class="wrap dev-hero-inner">
+    <div class="crumb reveal"><a href="index.html" data-en="Home">Start</a> <span>/</span> <span data-en="API">API</span></div>
+
+    <span class="dev-kicker reveal" data-d="1">
+      <span class="dev-kicker-dot" aria-hidden="true"></span>
+      <span data-en="API v1 · sandbox without an account">API v1 · Sandbox ohne Konto</span>
+    </span>
+
+    <h1 class="display dev-title reveal" data-d="2" data-en="Build on the shelf.<br><em>Not next to it.</em>">
+      Bau auf dem Regal.<br><em>Nicht daneben.</em>
+    </h1>
+
+    <p class="lead dev-lead reveal" data-d="3" data-en="One HTTP interface for every Bytewerk product: issue licences, fetch builds, read usage, receive events. Keys carry scoped rights, the sandbox needs no account, and every answer is plain JSON.">
+      Eine HTTP-Schnittstelle für alle Bytewerk-Produkte: Lizenzen ausstellen, Builds abrufen,
+      Verbrauch lesen, Ereignisse empfangen. Schlüssel tragen begrenzte Rechte, die Sandbox
+      braucht kein Konto, und jede Antwort ist reines JSON.
+    </p>
+
+    <div class="dev-hero-actions reveal" data-d="4">
+      <a class="btn btn-primary btn-lg" href="#start"><span data-en="Quickstart">Quickstart</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost btn-lg" href="#sandbox" data-en="Open sandbox">Sandbox öffnen</a>
+    </div>
+
+    <dl class="dev-facts reveal" data-d="5">
+      <div><dt data-en="Base URL">Basis-URL</dt><dd><code>https://api.bytewerkstudio.com/v1</code></dd></div>
+      <div><dt data-en="Authentication">Auth</dt><dd><code>Authorization: Bearer bwk_live_…</code></dd></div>
+      <div><dt data-en="Payload">Format</dt><dd>JSON · UTF-8 · <code>application/json</code></dd></div>
+      <div><dt data-en="Region">Region</dt><dd data-en="EU · Frankfurt, Germany">EU (Frankfurt)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ PREISE / ABO ============ -->
+<section class="sec-pad dev-tiers" id="preise">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Subscription">Abo</span>
+      <h2 class="h2" data-en="Three steps. Cancel any month.">Drei Stufen. Monatlich kündbar.</h2>
+      <p class="lead" data-en="Start free in the sandbox. Move up when the calls grow, not when the invoice does.">
+        Starte kostenlos in der Sandbox. Steig auf, wenn die Aufrufe wachsen — nicht wenn die Rechnung es tut.
+      </p>
+    </div>
+
+    <div class="dev-billing reveal" data-d="1">
+      <div class="dev-switch" role="group" aria-label="Abrechnungszeitraum / Billing period">
+        <button type="button" class="is-active" data-billing="month" aria-pressed="true" data-en="Monthly">Monatlich</button>
+        <button type="button" data-billing="year" aria-pressed="false">
+          <span data-en="Yearly">Jährlich</span>
+          <span class="dev-save" data-en="2 months free">2 Monate frei</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="dev-plans">
+      <article class="dev-plan reveal" data-d="1">
+        <header>
+          <h3>Sandbox</h3>
+          <p data-en="For trying the contract. No account, no card.">Zum Ausprobieren des Vertrags. Ohne Konto, ohne Karte.</p>
+        </header>
+        <p class="dev-price"><span class="dev-amount">0 €</span><span class="dev-per" data-en="/ forever">/ dauerhaft</span></p>
+        <ul class="dev-list">
+          <li data-en="1.000 requests per month">1.000 Anfragen pro Monat</li>
+          <li data-en="60 requests per minute">60 Anfragen pro Minute</li>
+          <li data-en="Test data only, no live licences">Nur Testdaten, keine echten Lizenzen</li>
+          <li data-en="1 key, read-only">1 Schlüssel, nur lesend</li>
+          <li data-en="No webhooks">Keine Webhooks</li>
+        </ul>
+        <a class="btn btn-ghost dev-plan-cta" href="#sandbox" data-en="Try in the sandbox">In der Sandbox testen</a>
+      </article>
+
+      <article class="dev-plan is-featured reveal" data-d="2">
+        <span class="dev-badge" data-en="Most chosen">Meistgewählt</span>
+        <header>
+          <h3>Pro</h3>
+          <p data-en="For solo developers shipping one product.">Für Solo-Entwickler mit einem Produkt.</p>
+        </header>
+        <p class="dev-price">
+          <span class="dev-amount" data-monthly="29 €" data-yearly="24 €">29 €</span>
+          <span class="dev-per"><span data-en="per month">pro Monat</span><span class="dev-vat" data-en="plus VAT">zzgl. MwSt.</span></span>
+        </p>
+        <ul class="dev-list">
+          <li data-en="50.000 requests per month">50.000 Anfragen pro Monat</li>
+          <li data-en="600 requests per minute">600 Anfragen pro Minute</li>
+          <li data-en="Live licences and builds">Echte Lizenzen und Builds</li>
+          <li data-en="3 keys with separate scopes">3 Schlüssel mit getrennten Rechten</li>
+          <li data-en="Webhooks with signing secret">Webhooks mit Signatur-Geheimnis</li>
+          <li data-en="Email support, 1 business day">E-Mail-Support, 1 Werktag</li>
+        </ul>
+        <a class="btn btn-primary dev-plan-cta" href="kontakt.html?thema=api-pro" data-en="Start with Pro">Mit Pro starten</a>
+      </article>
+
+      <article class="dev-plan reveal" data-d="3">
+        <header>
+          <h3>Team</h3>
+          <p data-en="For teams that bill on top of the API.">Für Teams, die auf der API aufbauen.</p>
+        </header>
+        <p class="dev-price">
+          <span class="dev-amount" data-monthly="99 €" data-yearly="82 €">99 €</span>
+          <span class="dev-per"><span data-en="per month">pro Monat</span><span class="dev-vat" data-en="plus VAT">zzgl. MwSt.</span></span>
+        </p>
+        <ul class="dev-list">
+          <li data-en="500.000 requests per month">500.000 Anfragen pro Monat</li>
+          <li data-en="3.000 requests per minute">3.000 Anfragen pro Minute</li>
+          <li data-en="Unlimited keys and seats">Unbegrenzte Schlüssel und Plätze</li>
+          <li data-en="Priority queue and 99,9 % target">Vorrang-Warteschlange und 99,9 % Ziel</li>
+          <li data-en="Sandbox with production data copy">Sandbox mit Kopie der Echtdaten</li>
+          <li data-en="Invoice, DPA, named contact">Rechnung, AVV, fester Ansprechpartner</li>
+        </ul>
+        <a class="btn btn-ghost dev-plan-cta" href="kontakt.html?thema=api-team" data-en="Talk to us">Sprich mit uns</a>
+      </article>
+    </div>
+
+    <p class="dev-fineprint reveal" data-en="All prices plus VAT. Monthly plans end at the end of the billing period. Yearly billing equals ten monthly payments. Limits are soft: requests above the quota are answered with 429, never billed silently.">
+      Alle Preise zzgl. MwSt. Monatsstufen enden zum Ende des Abrechnungszeitraums. Jährliche Zahlung
+      entspricht zehn Monatsbeiträgen. Limits sind weich: Anfragen über dem Kontingent werden mit 429
+      beantwortet, nie stillschweigend berechnet.
+    </p>
+  </div>
+</section>
+
+<!-- ============ QUICKSTART ============ -->
+<section class="sec-pad dev-quick" id="start">
+  <div class="wrap">
+    <div class="dev-split">
+      <div class="dev-split-copy">
+        <span class="eyebrow" data-en="Quick start">Quickstart</span>
+        <h2 class="h2" data-en="Three steps to the first answer.">Drei Schritte zur ersten Antwort.</h2>
+
+        <ol class="dev-steps">
+          <li>
+            <h3 data-en="Get a key">Schlüssel holen</h3>
+            <p data-en="Create an account, open a project, copy the key. The prefix tells environments apart: bwk_test_ for the sandbox, bwk_live_ for real data.">
+              Konto anlegen, Projekt öffnen, Schlüssel kopieren. Die Vorsilbe trennt die Umgebungen:
+              <code>bwk_test_</code> für die Sandbox, <code>bwk_live_</code> für echte Daten.
+            </p>
+          </li>
+          <li>
+            <h3 data-en="Send a request">Anfrage senden</h3>
+            <p data-en="Every call is a plain HTTPS request. No SDK required, no handshake, no token exchange.">
+              Jeder Aufruf ist eine einfache HTTPS-Anfrage. Kein SDK nötig, kein Handshake, kein Token-Tausch.
+            </p>
+          </li>
+          <li>
+            <h3 data-en="Read the answer">Antwort lesen</h3>
+            <p data-en="Data sits in data, paging in meta, errors in error with a stable code you can branch on.">
+              Daten stehen in <code>data</code>, Blättern in <code>meta</code>, Fehler in <code>error</code>
+              mit einem stabilen Code, auf den du verzweigen kannst.
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="dev-code-card reveal" data-d="2">
+        <div class="dev-code-head">
+          <div class="dev-tabs" role="tablist" aria-label="Sprache / Language">
+            <button type="button" role="tab" id="tab-curl" aria-controls="pane-curl" aria-selected="true" class="is-active">cURL</button>
+            <button type="button" role="tab" id="tab-js" aria-controls="pane-js" aria-selected="false">JavaScript</button>
+            <button type="button" role="tab" id="tab-py" aria-controls="pane-py" aria-selected="false">Python</button>
+          </div>
+          <button type="button" class="dev-copy" data-copy-target="pane-curl" aria-label="Code kopieren" data-en-aria="Copy code">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+            <span data-en="Copy">Kopieren</span>
+          </button>
+        </div>
+
+        <div class="dev-panes">
+<pre class="dev-pane is-active" id="pane-curl" role="tabpanel" aria-labelledby="tab-curl" tabindex="0"><code>curl https://api.bytewerkstudio.com/v1/licenses \
+  -H "Authorization: Bearer bwk_test_7f3a…" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "product": "keyforge-vault",
+    "email": "dev@example.com",
+    "seats": 1
+  }'</code></pre>
+<pre class="dev-pane" id="pane-js" role="tabpanel" aria-labelledby="tab-js" tabindex="0" hidden><code>const res = await fetch('https://api.bytewerkstudio.com/v1/licenses', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${process.env.BW_KEY}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    product: 'keyforge-vault',
+    email: 'dev@example.com',
+    seats: 1
+  })
+});
+
+const { data, error } = await res.json();
+if (error) throw new Error(`${error.code}: ${error.message}`);
+console.log(data.license.key);</code></pre>
+<pre class="dev-pane" id="pane-py" role="tabpanel" aria-labelledby="tab-py" tabindex="0" hidden><code>import os, requests
+
+res = requests.post(
+    "https://api.bytewerkstudio.com/v1/licenses",
+    headers={"Authorization": f"Bearer {os.environ['BW_KEY']}"},
+    json={
+        "product": "keyforge-vault",
+        "email": "dev@example.com",
+        "seats": 1,
+    },
+    timeout=10,
+)
+payload = res.json()
+if payload.get("error"):
+    raise RuntimeError(payload["error"]["message"])
+
+print(payload["data"]["license"]["key"])</code></pre>
+        </div>
+
+        <p class="dev-code-note" data-en="Keys belong in environment variables, never in a repository and never in client-side code.">
+          Schlüssel gehören in Umgebungsvariablen — nie ins Repository, nie in Code, der im Browser läuft.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SANDBOX ============ -->
+<section class="sec-pad dev-sandbox" id="sandbox">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Sandbox">Sandbox</span>
+      <h2 class="h2" data-en="Build a request, read the answer.">Anfrage bauen, Antwort lesen.</h2>
+      <p class="lead" data-en="This playground runs entirely in your browser against fixed test data. Nothing is sent, no key is stored, no request leaves the page.">
+        Dieser Spielplatz läuft vollständig in deinem Browser gegen feste Testdaten. Nichts wird gesendet,
+        kein Schlüssel gespeichert, keine Anfrage verlässt die Seite.
+      </p>
+    </div>
+
+    <div class="dev-console reveal" data-d="1">
+      <form class="dev-console-form" data-sandbox novalidate>
+        <div class="dev-field">
+          <label for="sb-method" data-en="Method">Methode</label>
+          <select id="sb-method" name="method">
+            <option>GET</option>
+            <option>POST</option>
+            <option>DELETE</option>
+          </select>
+        </div>
+
+        <div class="dev-field dev-field-wide">
+          <label for="sb-path" data-en="Endpoint">Endpunkt</label>
+          <select id="sb-path" name="path">
+            <option value="/products">/v1/products</option>
+            <option value="/licenses">/v1/licenses</option>
+            <option value="/licenses/new">/v1/licenses · POST</option>
+            <option value="/licenses/revoke">/v1/licenses/{id}/revoke</option>
+            <option value="/downloads">/v1/downloads/{product}</option>
+            <option value="/usage">/v1/usage</option>
+            <option value="/webhooks">/v1/webhooks</option>
+          </select>
+        </div>
+
+        <div class="dev-field dev-field-wide">
+          <label for="sb-key" data-en="API key">API-Schlüssel</label>
+          <input id="sb-key" name="key" type="text" spellcheck="false" autocomplete="off"
+                 value="bwk_test_sandbox" placeholder="bwk_test_…">
+          <p class="dev-hint" data-en="Only the prefix is checked: bwk_test_ or bwk_live_. Every other value is ignored.">
+            Geprüft wird nur die Vorsilbe: <code>bwk_test_</code> oder <code>bwk_live_</code>. Alles andere wird ignoriert.
+          </p>
+        </div>
+
+        <div class="dev-field dev-field-full" data-body-field hidden>
+          <label for="sb-body" data-en="Request body">Anfragekörper</label>
+          <textarea id="sb-body" name="body" rows="7" spellcheck="false">{
+  "product": "keyforge-vault",
+  "email": "dev@example.com",
+  "seats": 1
+}</textarea>
+        </div>
+
+        <div class="dev-console-actions dev-field-full">
+          <button type="submit" class="btn btn-primary">
+            <span data-en="Send request">Anfrage senden</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </button>
+          <button type="reset" class="btn btn-ghost" data-en="Reset">Zurücksetzen</button>
+          <span class="dev-console-note" data-en="Simulated · local only">Simuliert · nur lokal</span>
+        </div>
+      </form>
+
+      <div class="dev-response" aria-live="polite">
+        <div class="dev-response-head">
+          <span class="dev-status" data-status>—</span>
+          <span class="dev-time" data-time></span>
+        </div>
+        <pre class="dev-json" data-json tabindex="0"><code>{
+  "hint": "Send a request to see the answer."
+}</code></pre>
+        <p class="dev-response-foot" data-en="Shape of the real API: data, meta and error share the same envelope on every endpoint.">
+          Form der echten API: <code>data</code>, <code>meta</code> und <code>error</code> nutzen auf
+          jedem Endpunkt denselben Umschlag.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENZ ============ -->
+<section class="sec-pad dev-ref" id="referenz">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Reference">Referenz</span>
+      <h2 class="h2" data-en="Eight endpoints. That is the whole surface.">Acht Endpunkte. Mehr Oberfläche gibt es nicht.</h2>
+    </div>
+
+    <div class="dev-ref-tools reveal" data-d="1">
+      <label class="dev-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+        <input type="search" data-ref-search placeholder="Endpunkt suchen — z. B. licenses" aria-label="Endpunkt suchen" data-en-ph="Search endpoints — e.g. licenses">
+      </label>
+      <div class="dev-filter" role="group" aria-label="Nach Methode filtern">
+        <button type="button" class="is-active" data-method="all" aria-pressed="true" data-en="All">Alle</button>
+        <button type="button" data-method="GET" aria-pressed="false">GET</button>
+        <button type="button" data-method="POST" aria-pressed="false">POST</button>
+        <button type="button" data-method="DELETE" aria-pressed="false">DELETE</button>
+      </div>
+    </div>
+
+    <div class="dev-endpoints" data-ref-list>
+      <details class="dev-ep reveal" data-method="GET" data-name="products list produkte" open>
+        <summary>
+          <span class="dev-method is-get">GET</span>
+          <code class="dev-path">/v1/products</code>
+          <span class="dev-ep-title" data-en="List products">Produkte auflisten</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Every product with its id, current version and licence model.">Jedes Produkt mit ID, aktueller Version und Lizenzmodell.</p>
+          <table class="dev-params">
+            <caption class="dev-visually-hidden">Parameter</caption>
+            <thead><tr><th scope="col" data-en="Parameter">Parameter</th><th scope="col" data-en="In">In</th><th scope="col" data-en="Note">Hinweis</th></tr></thead>
+            <tbody>
+              <tr><td><code>limit</code></td><td>query</td><td data-en="1–100, default 20">1–100, Standard 20</td></tr>
+              <tr><td><code>cursor</code></td><td>query</td><td data-en="Value from meta.next_cursor">Wert aus <code>meta.next_cursor</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="GET" data-name="products show produkt">
+        <summary>
+          <span class="dev-method is-get">GET</span>
+          <code class="dev-path">/v1/products/{id}</code>
+          <span class="dev-ep-title" data-en="One product">Ein Produkt</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Single product including build history and supported platforms.">Einzelnes Produkt inklusive Build-Verlauf und unterstützten Plattformen.</p>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="GET" data-name="licenses list lizenzen">
+        <summary>
+          <span class="dev-method is-get">GET</span>
+          <code class="dev-path">/v1/licenses</code>
+          <span class="dev-ep-title" data-en="List licences">Lizenzen auflisten</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Filter by product, status or customer email. Each licence carries seats, issue date and activation count.">
+            Filter nach Produkt, Status oder Kunden-E-Mail. Jede Lizenz trägt Plätze, Ausstellungsdatum und Aktivierungszahl.
+          </p>
+          <table class="dev-params">
+            <caption class="dev-visually-hidden">Parameter</caption>
+            <thead><tr><th scope="col" data-en="Parameter">Parameter</th><th scope="col" data-en="In">In</th><th scope="col" data-en="Note">Hinweis</th></tr></thead>
+            <tbody>
+              <tr><td><code>product</code></td><td>query</td><td data-en="Product id">Produkt-ID</td></tr>
+              <tr><td><code>status</code></td><td>query</td><td><code>active</code> · <code>revoked</code> · <code>expired</code></td></tr>
+              <tr><td><code>email</code></td><td>query</td><td data-en="Exact match">Exakte Übereinstimmung</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="POST" data-name="licenses create lizenz ausstellen">
+        <summary>
+          <span class="dev-method is-post">POST</span>
+          <code class="dev-path">/v1/licenses</code>
+          <span class="dev-ep-title" data-en="Issue a licence">Lizenz ausstellen</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Idempotent with an Idempotency-Key header: the same key returns the same licence instead of creating a second one.">
+            Idempotent mit <code>Idempotency-Key</code>: derselbe Schlüssel liefert dieselbe Lizenz, statt eine zweite anzulegen.
+          </p>
+          <table class="dev-params">
+            <caption class="dev-visually-hidden">Parameter</caption>
+            <thead><tr><th scope="col" data-en="Field">Feld</th><th scope="col" data-en="Type">Typ</th><th scope="col" data-en="Note">Hinweis</th></tr></thead>
+            <tbody>
+              <tr><td><code>product</code></td><td>string</td><td data-en="Required">Pflicht</td></tr>
+              <tr><td><code>email</code></td><td>string</td><td data-en="Required, validated">Pflicht, geprüft</td></tr>
+              <tr><td><code>seats</code></td><td>integer</td><td data-en="1–500, default 1">1–500, Standard 1</td></tr>
+              <tr><td><code>expires_at</code></td><td>ISO 8601</td><td data-en="Optional, ISO 8601">Optional</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="POST" data-name="licenses revoke lizenz widerrufen">
+        <summary>
+          <span class="dev-method is-post">POST</span>
+          <code class="dev-path">/v1/licenses/{id}/revoke</code>
+          <span class="dev-ep-title" data-en="Revoke a licence">Lizenz widerrufen</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Revocation is immediate and emits a licence.revoked event.">Der Widerruf wirkt sofort und löst ein <code>licence.revoked</code>-Ereignis aus.</p>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="GET" data-name="downloads build herunterladen">
+        <summary>
+          <span class="dev-method is-get">GET</span>
+          <code class="dev-path">/v1/downloads/{product}</code>
+          <span class="dev-ep-title" data-en="Latest build">Aktueller Build</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Signed download URL, valid for fifteen minutes, with SHA-256 checksum and release notes.">
+            Signierte Download-URL, fünfzehn Minuten gültig, mit SHA-256-Prüfsumme und Release-Notes.
+          </p>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="GET" data-name="usage verbrauch">
+        <summary>
+          <span class="dev-method is-get">GET</span>
+          <code class="dev-path">/v1/usage</code>
+          <span class="dev-ep-title" data-en="Usage and quota">Verbrauch und Kontingent</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="Requests per day, quota, remaining amount and the next reset — the same numbers the dashboard shows.">
+            Anfragen pro Tag, Kontingent, Restmenge und der nächste Reset — dieselben Zahlen wie im Dashboard.
+          </p>
+        </div>
+      </details>
+
+      <details class="dev-ep reveal" data-method="POST" data-name="webhooks registrieren">
+        <summary>
+          <span class="dev-method is-post">POST</span>
+          <code class="dev-path">/v1/webhooks</code>
+          <span class="dev-ep-title" data-en="Register a webhook">Webhook registrieren</span>
+        </summary>
+        <div class="dev-ep-body">
+          <p data-en="HTTPS only. The signing secret is shown once, on creation.">Nur HTTPS. Das Signatur-Geheimnis wird einmalig bei der Anlage angezeigt.</p>
+        </div>
+      </details>
+
+      <p class="dev-empty" data-ref-empty hidden data-en="No endpoint matches this filter.">Kein Endpunkt passt zu diesem Filter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WEBHOOKS ============ -->
+<section class="sec-pad dev-hooks" id="webhooks">
+  <div class="wrap dev-split">
+    <div class="dev-split-copy">
+      <span class="eyebrow" data-en="Events">Ereignisse</span>
+      <h2 class="h2" data-en="The API calls you back.">Die API ruft zurück.</h2>
+      <p class="lead" data-en="Five events cover the licence lifecycle. Each delivery is signed, retried for 24 hours with exponential backoff, and listed in the dashboard with its response code.">
+        Fünf Ereignisse decken den Lizenz-Lebenszyklus ab. Jede Zustellung ist signiert, wird 24 Stunden
+        mit wachsenden Abständen wiederholt und erscheint mit Antwortcode im Dashboard.
+      </p>
+
+      <ul class="dev-events">
+        <li><code>licence.created</code><span data-en="A key was issued">Ein Schlüssel wurde ausgestellt</span></li>
+        <li><code>licence.activated</code><span data-en="First activation on a device">Erste Aktivierung auf einem Gerät</span></li>
+        <li><code>licence.revoked</code><span data-en="Refund, chargeback or manual">Erstattung, Rückbuchung oder manuell</span></li>
+        <li><code>licence.expired</code><span data-en="Term ended">Laufzeit beendet</span></li>
+        <li><code>payment.failed</code><span data-en="Subscription payment failed">Abo-Zahlung fehlgeschlagen</span></li>
+      </ul>
+    </div>
+
+    <div class="dev-code-card reveal" data-d="2">
+      <div class="dev-code-head">
+        <span class="dev-code-title" data-en="Verify a delivery">Zustellung prüfen</span>
+        <button type="button" class="dev-copy" data-copy-target="pane-hook" aria-label="Code kopieren" data-en-aria="Copy code">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span data-en="Copy">Kopieren</span>
+        </button>
+      </div>
+<pre class="dev-pane is-active" id="pane-hook" tabindex="0"><code>import { createHmac, timingSafeEqual } from 'node:crypto';
+
+// header: X-Bytewerk-Signature: t=1730000000,v1=8f2c…
+export function verify(rawBody, header, secret) {
+  const parts = Object.fromEntries(
+    header.split(',').map((p) =&gt; p.split('='))
+  );
+
+  const expected = createHmac('sha256', secret)
+    .update(`${parts.t}.${rawBody}`)
+    .digest('hex');
+
+  const a = Buffer.from(expected);
+  const b = Buffer.from(parts.v1);
+  return a.length === b.length &amp;&amp; timingSafeEqual(a, b);
+}</code></pre>
+      <p class="dev-code-note" data-en="Compare in constant time and reject timestamps older than five minutes — otherwise a captured request can be replayed.">
+        Vergleiche in konstanter Zeit und weise Zeitstempel älter als fünf Minuten ab — sonst lässt sich
+        eine mitgeschnittene Anfrage erneut abspielen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIMITS ============ -->
+<section class="sec-pad dev-limits" id="limits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Limits">Grenzen</span>
+      <h2 class="h2" data-en="Known limits beat hidden ones.">Bekannte Grenzen statt versteckter.</h2>
+      <p class="lead" data-en="Every limit is visible in a header, and every rejection says what to do next.">
+        Jede Grenze steht in einem Header, und jede Ablehnung sagt, was als Nächstes zu tun ist.
+      </p>
+    </div>
+
+    <div class="dev-grid-2">
+      <div class="dev-card reveal">
+        <h3 data-en="Rate limits">Rate-Limits</h3>
+        <table class="dev-table">
+          <caption class="dev-visually-hidden" data-en="Rate limits per tier">Rate-Limits je Stufe</caption>
+          <thead><tr><th scope="col" data-en="Tier">Stufe</th><th scope="col" data-en="Per minute">Pro Minute</th><th scope="col" data-en="Per month">Pro Monat</th></tr></thead>
+          <tbody>
+            <tr><td>Sandbox</td><td>60</td><td>1.000</td></tr>
+            <tr><td>Pro</td><td>600</td><td>50.000</td></tr>
+            <tr><td>Team</td><td>3.000</td><td>500.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="dev-card reveal" data-d="1">
+        <h3 data-en="Headers">Header</h3>
+        <table class="dev-table">
+          <caption class="dev-visually-hidden" data-en="Response headers">Antwort-Header</caption>
+          <thead><tr><th scope="col">Header</th><th scope="col" data-en="Meaning">Bedeutung</th></tr></thead>
+          <tbody>
+            <tr><td><code>X-RateLimit-Limit</code></td><td data-en="Limit of the window">Grenze des Fensters</td></tr>
+            <tr><td><code>X-RateLimit-Remaining</code></td><td data-en="Calls left">Verbleibende Aufrufe</td></tr>
+            <tr><td><code>X-RateLimit-Reset</code></td><td data-en="Unix time of the reset">Unix-Zeit des Resets</td></tr>
+            <tr><td><code>Retry-After</code></td><td data-en="Seconds until the next try">Sekunden bis zum nächsten Versuch</td></tr>
+            <tr><td><code>X-Request-Id</code></td><td data-en="Quote this in support">Für den Support angeben</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="dev-card dev-card-wide reveal">
+        <h3 data-en="Status codes">Statuscodes</h3>
+        <ul class="dev-codes">
+          <li><b>200</b><span data-en="Request succeeded">Anfrage erfolgreich</span></li>
+          <li><b>201</b><span data-en="Licence or webhook created">Lizenz oder Webhook angelegt</span></li>
+          <li><b>204</b><span data-en="Revoked, no body">Widerrufen, kein Körper</span></li>
+          <li><b>400</b><span data-en="Malformed JSON">Fehlerhaftes JSON</span></li>
+          <li><b>401</b><span data-en="Missing or wrong key">Schlüssel fehlt oder ist falsch</span></li>
+          <li><b>403</b><span data-en="Scope does not allow this">Recht des Schlüssels reicht nicht</span></li>
+          <li><b>404</b><span data-en="Unknown id">Unbekannte ID</span></li>
+          <li><b>409</b><span data-en="Idempotency conflict">Idempotenz-Konflikt</span></li>
+          <li><b>422</b><span data-en="Field failed validation">Feld hat die Prüfung nicht bestanden</span></li>
+          <li><b>429</b><span data-en="Limit reached, see Retry-After">Limit erreicht, siehe Retry-After</span></li>
+          <li><b>500</b><span data-en="Our fault, request id helps">Unser Fehler, Request-ID hilft</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SICHERHEIT ============ -->
+<section class="sec-pad dev-safety" id="sicherheit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Security">Sicherheit</span>
+      <h2 class="h2" data-en="Keys that cannot do everything.">Schlüssel, die nicht alles können.</h2>
+      <p class="lead" data-en="Scoped rights, hashed storage, separated environments. A leaked test key costs nothing; a leaked live key loses only the scope you gave it.">
+        Begrenzte Rechte, gehashte Ablage, getrennte Umgebungen. Ein verlorener Test-Schlüssel kostet
+        nichts; ein verlorener Live-Schlüssel verliert nur das Recht, das du ihm gegeben hast.
+      </p>
+    </div>
+
+    <div class="dev-safety-grid">
+      <div class="dev-safety-item reveal">
+        <h3 data-en="Scopes per key">Rechte je Schlüssel</h3>
+        <p data-en="Read, write, webhook and billing are separate scopes. A build server never needs billing rights.">
+          Lesen, Schreiben, Webhook und Abrechnung sind getrennte Rechte. Ein Build-Server braucht nie Abrechnungsrechte.
+        </p>
+      </div>
+      <div class="dev-safety-item reveal" data-d="1">
+        <h3 data-en="Hashed at rest">Gehasht abgelegt</h3>
+        <p data-en="Keys are stored as SHA-256 hashes with a prefix for identification. The plain key is shown once.">
+          Schlüssel liegen als SHA-256-Hash mit erkennbarer Vorsilbe. Der Klartext wird einmalig angezeigt.
+        </p>
+      </div>
+      <div class="dev-safety-item reveal" data-d="2">
+        <h3 data-en="Test and live are separate">Test und Live getrennt</h3>
+        <p data-en="Different data stores, different rate limits. A test key cannot touch a live licence.">
+          Getrennte Datenbestände, getrennte Limits. Ein Test-Schlüssel kommt an keine echte Lizenz.
+        </p>
+      </div>
+      <div class="dev-safety-item reveal" data-d="3">
+        <h3 data-en="Rotation without downtime">Wechsel ohne Ausfall</h3>
+        <p data-en="Two keys can be active at once, so you can rotate by deploying the new one first.">
+          Zwei Schlüssel dürfen gleichzeitig aktiv sein, damit du den neuen zuerst ausrollen kannst.
+        </p>
+      </div>
+      <div class="dev-safety-item reveal" data-d="4">
+        <h3 data-en="No third-party scripts">Keine Fremdskripte</h3>
+        <p data-en="This page loads no analytics and no CDN. three.js is served from our own domain, guarded by a strict CSP.">
+          Diese Seite lädt keine Analyse und kein CDN. three.js kommt von unserer eigenen Domain, abgesichert durch eine strikte CSP.
+        </p>
+      </div>
+      <div class="dev-safety-item reveal" data-d="5">
+        <h3 data-en="Report a finding">Fund melden</h3>
+        <p data-en="security@bytewerkstudio.com — we answer within two business days and name a fix date.">
+          security@bytewerkstudio.com — wir antworten binnen zwei Werktagen und nennen einen Termin für den Fix.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec-pad dev-faq" id="faq">
+  <div class="wrap dev-faq-wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Questions">Fragen</span>
+      <h2 class="h2" data-en="Before you write the first line.">Bevor du die erste Zeile schreibst.</h2>
+    </div>
+
+    <div class="dev-accordion reveal" data-d="1">
+      <details>
+        <summary data-en="Do I need an account for the sandbox?">Brauche ich ein Konto für die Sandbox?</summary>
+        <p data-en="No. The sandbox key is created locally in your browser and only works against the fixed test data. Real data needs an account.">
+          Nein. Der Sandbox-Schlüssel entsteht lokal im Browser und funktioniert nur gegen die festen Testdaten.
+          Für echte Daten braucht es ein Konto.
+        </p>
+      </details>
+      <details>
+        <summary data-en="What happens above the quota?">Was passiert über dem Kontingent?</summary>
+        <p data-en="The API answers 429 with Retry-After. Nothing is switched off and nothing is billed silently; requests continue once the window has passed.">
+          Die API antwortet mit 429 und <code>Retry-After</code>. Nichts wird abgeschaltet und nichts still
+          berechnet; nach Ablauf des Fensters laufen Anfragen weiter.
+        </p>
+      </details>
+      <details>
+        <summary data-en="Can I cancel monthly?">Kann ich monatlich kündigen?</summary>
+        <p data-en="Yes, every tier runs monthly and ends at the end of the billing period. Yearly payment is optional and equals ten monthly payments.">
+          Ja, jede Stufe läuft monatlich und endet zum Ende des Abrechnungszeitraums. Die jährliche Zahlung
+          ist optional und entspricht zehn Monatsbeiträgen.
+        </p>
+      </details>
+      <details>
+        <summary data-en="Where does the data live?">Wo liegen die Daten?</summary>
+        <p data-en="In the EU. Processing per GDPR with a DPA on request, deletion on request, no sharing for advertising.">
+          In der EU. Verarbeitung nach DSGVO mit AVV auf Anfrage, Löschung auf Anfrage, keine Weitergabe
+          zu Werbezwecken.
+        </p>
+      </details>
+      <details>
+        <summary data-en="Is there an SDK?">Gibt es ein SDK?</summary>
+        <p data-en="The API is plain HTTP, so any HTTP client works. Typed helpers for TypeScript and Python are in preparation; the contract will not change for them.">
+          Die API ist reines HTTP, jeder HTTP-Client funktioniert. Typisierte Helfer für TypeScript und
+          Python sind in Vorbereitung; der Vertrag ändert sich dafür nicht.
+        </p>
+      </details>
+      <details>
+        <summary data-en="Do you support self-hosting?">Gibt es Selbstbetrieb?</summary>
+        <p data-en="For Team customers we deliver the licence service as a container image with a compose file. Support for the deployment is part of the tier.">
+          Für Team-Kunden liefern wir den Lizenzdienst als Container-Image mit Compose-Datei. Der Support
+          für den Betrieb ist Teil der Stufe.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec-pad dev-cta">
+  <div class="wrap">
+    <div class="dev-cta-inner reveal">
+      <span class="eyebrow" data-en="Next step">Nächster Schritt</span>
+      <h2 class="h2" data-en="Tell us what you are building.">Erzähl uns, was du baust.</h2>
+      <p class="lead" data-en="A short message is enough. You get a real answer about limits, pricing and whether the API fits — no sales call.">
+        Eine kurze Nachricht reicht. Du bekommst eine echte Antwort zu Limits, Preis und ob die API passt —
+        kein Verkaufsgespräch.
+      </p>
+      <div class="dev-cta-actions">
+        <a class="btn btn-primary btn-lg" href="kontakt.html?thema=api" data-en="Send a message">Nachricht schreiben</a>
+        <a class="btn btn-ghost btn-lg" href="mailto:security@bytewerkstudio.com" data-en="Report a security issue">Sicherheitslücke melden</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="main.js"></script>
+<script src="ui-v3.js"></script>
+<script src="ui-v4.js"></script>
+<script src="ui-v5.js"></script>
+<script src="background.js"></script>
+<script src="scene3d.js"></script>
+<script src="api.js"></script>
+</body>
+</html>
