@@ -60,9 +60,10 @@ Ergebnis: null eingeschleuste Elemente, null ausgelöste Handler, keine
 
 | Aktion | Maus/Touch | Tastatur |
 |---|---|---|
-| Suche | Feld im Kopf der Liste | `/` |
+| Suche | Feld im Kopf der Liste | `/` (die Site-Suche bleibt auf `Cmd`/`Strg` + `K`) |
 | Neues Thema | Knopf oben rechts | `n` |
 | Senden | Knopf im Formular | `Strg`/`Cmd` + `Enter` |
+| Formular schließen | X oder Klick daneben | `Esc` — der Fokus kehrt zum Knopf zurück |
 | Thema öffnen | Klick auf die Zeile | `Tab`, dann `Enter` |
 | Pinwand drehen | ziehen | Pfeiltasten bei Fokus |
 

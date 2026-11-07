@@ -1483,13 +1483,14 @@
 
   const composer = {
     dialog: null, form: null, cat: null, type: null,
-    title: null, body: null, tags: null, err: null
+    title: null, body: null, tags: null, err: null, opener: null
   };
 
   function openComposer(presetCat) {
     if (!requireAccount()) return;
     const d = composer.dialog;
     if (!d) return;
+    composer.opener = document.activeElement;
 
     composer.cat.replaceChildren();
     CATS.forEach(cat => {
@@ -1524,6 +1525,17 @@
     if (!d) return;
     if (typeof d.close === 'function' && d.open) d.close();
     else d.removeAttribute('open');
+    restoreComposerFocus();
+  }
+
+  /* A dialog that closes should put the cursor back where it came from —
+     otherwise Esc drops the reader at the top of the document. */
+  function restoreComposerFocus() {
+    const back = composer.opener;
+    composer.opener = null;
+    if (back && back !== document.body && document.contains(back) && typeof back.focus === 'function') {
+      back.focus();
+    }
   }
 
   function updateComposerNote() {
@@ -1876,6 +1888,8 @@
       composer.dialog.addEventListener('click', e => {
         if (e.target === composer.dialog) closeComposer();
       });
+      // Native Escape closes a <dialog> without calling closeComposer().
+      composer.dialog.addEventListener('close', restoreComposerFocus);
     }
 
     document.querySelectorAll('[data-fm-scope]').forEach(btn => {
@@ -1939,21 +1953,33 @@
       });
     });
 
-    // keyboard: "/" focuses search, "n" opens composer
+    // Keyboard: "/" focuses the forum search, "n" opens the composer.
+    // Both keys also exist site-wide (ui-v4.js binds "/" to the header
+    // search overlay). On this page the forum search is the primary one,
+    // so the handler runs in the capture phase and stops there — the
+    // header search keeps Cmd/Ctrl+K and its button.
     document.addEventListener('keydown', e => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       const tag = (e.target.tagName || '').toLowerCase();
-      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
-      if (typing) return;
-      if (e.key === '/' && !e.metaKey && !e.ctrlKey) {
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+
+      if (e.key === '/') {
         const s = document.querySelector('[data-fm-search]');
-        if (s) { e.preventDefault(); s.focus(); s.select(); }
+        if (!s) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        s.focus();
+        s.select();
+        return;
       }
-      if ((e.key === 'n' || e.key === 'N') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+
+      if (e.key === 'n' || e.key === 'N') {
         if (composer.dialog && composer.dialog.open) return;
         e.preventDefault();
+        e.stopImmediatePropagation();
         openComposer();
       }
-    });
+    }, true);
 
     window.addEventListener('hashchange', () => {
       parseRoute();
