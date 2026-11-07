@@ -18,6 +18,7 @@
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', match: 'bauplan' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
+    { href: 'forum.html',              de: 'Forum',      en: 'Forum',    match: 'forum' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
@@ -97,6 +98,7 @@
             <a href="arbeiten.html" data-en="Work">Arbeiten</a>
             <a href="bauplan.html" data-en="Blueprint">Bauplan</a>
             <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
+            <a href="hochspannung.html" data-en="Game · HOCHSPANNUNG">Spiel · HOCHSPANNUNG</a>
             <a href="index.html#preise" data-en="Pricing">Preise</a>
             <a href="shop.html" data-en="Shop">Shop</a>
             <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
@@ -115,9 +117,6 @@
         <div class="footer-bottom">
           <span class="small">© <span data-year>2026</span> Bytewerk Studio · bytewerkstudio.com</span>
           <div class="footer-social">
-            <a href="https://github.com/bytewerkstudio/bytewerkstudio" aria-label="GitHub" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" stroke="none"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.4 9.4 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-            </a>
             <a href="mailto:Haqmalh@icloud.com" aria-label="E-Mail">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
             </a>
@@ -142,7 +141,7 @@
 
   function applyLang(lang) {
     document.documentElement.lang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage blocked: keep the choice for this page only */ }
 
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset.de === undefined) el.dataset.de = el.innerHTML;

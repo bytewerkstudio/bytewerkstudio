@@ -44,6 +44,9 @@ Statische Website für bytewerkstudio.com. GitHub Pages veröffentlicht direkt a
 | `scene3d.js` | Three.js-Szenen (`stratum`, `contour`), laedt `vendor/` on demand |
 | `scene-studio.js` | Hero-Buehne der Startseite (`#studio-stage`), Modul |
 | `styles-studio3d.css` | Styling der Hero-Buehne |
+| `styles-forum.css` | Forum-Oberflaeche, nur auf `forum.html` geladen |
+| `forum.js` | Forum-Logik: Markdown-Allowlist, Suche, Ratenlimits, localStorage |
+| `forum-scene.js` | three.js-Pinwand im Forum-Kopf, Modul |
 | `vendor/three.module.min.js` + `vendor/three.core.min.js` | Three.js r180, lokal - die CSP erlaubt nur `'self'` |
 
 #| `scene-notfound.js`, `styles-notfound.css` | Karteikasten auf der 404-Seite, three.js |
