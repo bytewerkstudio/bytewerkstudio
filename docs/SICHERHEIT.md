@@ -107,19 +107,29 @@ Honigfalle gegen Bots, defensives Parsen des gespeicherten Zustands.
 | Prüfung | Werkzeug | Ergebnis (07.11.2026) |
 |---|---|---|
 | CSP-Hashes stimmen mit den Inline-Blöcken überein | `tools/verify-csp.mjs` | 32 Seiten, 52 Blöcke, 0 Abweichungen |
-| Laufzeit: CSP-Verstöße, JS-Fehler, Rahmen-Schutz | `tools/audit-security.mjs` | 31/31 Seiten sauber, 0 Verstöße |
+| Statisch: CSP, Stile, Links, Anker, Bildmaße, IDs, `security.txt` | `tools/verify-site.mjs` | 32 Seiten + Spielseite, **0 Befunde** |
+| Laufzeit: CSP-Verstöße, JS-Fehler, Rahmen-Schutz | `audit-security.mjs` (lokal) | 32/32 Seiten sauber, 0 Verstöße |
 | Keine Fremdanfragen | `audit-security.mjs` + Live-Panel | 0 externe Hosts |
-| Tote Links und Anker | `tools/check-links.mjs` | 624 Links, 0 Probleme |
-| Sprache DE/EN | `tools/audit-lang-final.mjs` | 32/32 sauber |
-| Barrierefreiheit | `tools/audit-a11y.mjs` | 32/32 ohne Befund |
-| Bildformate | `tools/img-dimensions.mjs`, WebP | 46 Verweise auf WebP, 0 defekte Bilder |
-| Konto-Anlage mit 600k Iterationen | Browser-Probe | 120 ms, Konto + Session angelegt |
-| Forum Ende-zu-Ende | `tools/test-community.mjs` | 9 Themen, Suche, Stimme, Persistenz, Abo |
+| Tote Links und Anker | `tools/verify-site.mjs` | 777 Links, 0 Probleme |
+| Sprache DE/EN | `audit-lang-final.mjs` (lokal) | 32/32 sauber |
+| Barrierefreiheit | `audit-a11y.mjs` (lokal) | 32/32 ohne Befund |
+| Bildformate | `tools/responsive-images.mjs` | 46 Verweise auf WebP, 11 mit `srcset`, 0 defekte Bilder |
+| Konto-Sperre | `tools/e2e-page.mjs` | 5 Fehlversuche → 30 s, richtiges Passwort abgewiesen |
+| Spielseite unter CSP | `tools/verify-site.mjs` + Browser | Hashes stimmen, 179 CSS-Regeln, 0 Verstöße |
+| Forum Ende-zu-Ende | `test-community.mjs` (lokal) | 9 Themen, Suche, Stimme, Persistenz, Abo |
+
+Die mit „lokal" markierten Werkzeuge liegen bewusst außerhalb des Repos, weil sie
+einen Browser starten; die statischen Prüfer in `tools/` laufen überall mit Node.
 
 ## 8. Offene Punkte
 
 - [x] `style-src 'unsafe-inline'` entfernt: 203 Attribute → 73 Klassen in
       `styles-inline.css`, 32/32 Seiten ohne Verstoß.
+- [x] `img-src` ohne `data:`: sieben SVG-Symbole als Dateien in `media/ui/`,
+      32/32 Seiten ohne Verstoß.
+- [x] Konto-Sperre mit exponentiellem Backoff statt fester Minute.
+- [x] Spielseite `neon-horde/` mit CSP (vorher keine), Einzeldatei-Build zieht
+      die Hashes automatisch nach.
 - [ ] Echte HTTP-Header statt Meta-CSP. GitHub Pages kann das nicht; ein Proxy
       (Cloudflare) oder ein eigener Hoster könnte `Content-Security-Policy`,
       `Strict-Transport-Security`, `X-Content-Type-Options`,
