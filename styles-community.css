@@ -1996,6 +1996,17 @@ pre:hover .cm-copy, .cm-copy:focus-visible { opacity: 1; }
   .cm-selftest-list li { font-size: 11px; padding: 8px 9px; }
   .cm-st-name { overflow-wrap: anywhere; }
   .cm-cta-mail { font-size: 10px; }
+
+  /* Touch: mindestens 32 px hohe Trefferflaechen, ohne das Layout zu verdicken */
+  .crumb a,
+  .cm-textlink { display: inline-flex; align-items: center; min-height: 32px; }
+  .cm-search { height: 46px; }
+  /* 16 px verhindert den Zoom-Sprung auf iOS, 32 px die zu kleine Trefferflaeche */
+  .cm-search input { font-size: 16px; min-height: 32px; }
+  .cm-cta-mail { min-height: 32px; display: inline-flex; align-items: center; }
+  .cm-share-btn { height: 42px; }
+  .cm-stage-chip { min-height: 32px; }
+  .cm-selftest-note a { display: inline-flex; align-items: center; min-height: 32px; }
 }
 
 /* ---------- 14. Bewegung, Druck ---------- */
