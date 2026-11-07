@@ -216,7 +216,7 @@
     win.setAttribute('aria-hidden', 'true');
 
     const icon = options.icon
-      ? '<img src="' + esc(options.icon) + '" alt="" loading="lazy" decoding="async">'
+      ? '<img src="' + esc(options.icon) + '" alt="" width="14" height="14" loading="lazy" decoding="async">'
       : '';
     const title = options.title ? '<div class="v5-title">' + esc(options.title) + '</div>' : '';
     const tag = options.tag === false ? '' : '<div class="v5-tag">' + esc(meta.tag) + '</div>';
@@ -443,7 +443,7 @@
           '<div class="v5-qv-price"></div>' +
           '<div class="v5-qv-actions">' +
             '<a class="btn btn-primary" data-v5-qv-buy href="#">' + esc(T('Details ansehen', 'View details')) + ' <span class="arr">&rarr;</span></a>' +
-            '<button class="btn btn-ghost v5-qv-cmp" type="button" aria-pressed="false"></button>' +
+            '<button class="btn btn-ghost v5-qv-cmp" type="button" aria-pressed="false">' + esc(T('In den Vergleich', 'Add to compare')) + '</button>' +
           '</div>' +
         '</div>' +
       '</div>';

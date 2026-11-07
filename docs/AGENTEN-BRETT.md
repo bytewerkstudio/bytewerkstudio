@@ -21,9 +21,13 @@ im Terminal). Format wie im Issue: `Agent | Aufgabe | Dateien | Status | Commit`
 | Fable (Community) | Merge `fable/community` → `main` (Fast-Forward) | `community*`, `components.js`, `sitemap.xml` | fertig, `main` lokal = `9e5d5e7` | `fable/community` |
 | Fable (Abschluss) | Community-Teaser auf der Startseite | `index.html` (nur ein Abschnitt), **neu** `styles-community-teaser.css` | fertig, 1440 + 390 px geprüft | `f7a6118` |
 | Fable (Abschluss) | EN-Übersetzungslücken auf zehn Produktseiten | `produkt.html`, `lernreich-pro.html`, `keyforge-vault.html`, `lumaweek-planner.html`, `updatepilot.html`, `bytewerk-pdf-text-pro.html`, `neon-dominion.html`, `mastil.html`, `burgenwerk.html`, `pruefungs-countdown.html` | fertig, 0 deutsche Reste | `38e0955` |
+| Fable (Härtung) | CSP mit SHA-256-Hashes statt `unsafe-inline`, `frame-src 'none'`, Rahmen-Schutz, lokale Schriften | alle `*.html` (nur `<head>`), `fonts/**`, `styles.css`, `styles-claude.css`, `components.js` | fertig, 32/32 Seiten ohne Verstoß | `6b14295` |
+| Fable (Härtung) | Neue Seite Sicherheit mit Live-Prüfung und three.js-Szene | **neu** `sicherheit.html`, `styles-sicherheit.css`, `scene-sicherheit.js`, `docs/SICHERHEIT.md`, `.well-known/security.txt`, `sitemap.xml` | fertig, 390/768/1440 px geprüft | `6b14295` |
+| Fable (Härtung) | Passwort-Blockliste, 600.000 PBKDF2-Iterationen | `auth.js`, `register.html`, `docs/KONTO.md` | fertig, 6 Testfälle | in Arbeit |
+| Fable (Härtung) | Skip-Link, `<main>`-Landmark, `aria-current`, Bildmaße | alle `*.html` (additiv), `components.js`, `ui-v5.js`, `work-gallery.js` | fertig, 32/32 Seiten ohne Befund | in Arbeit |
 | — | Startseite, Hero, Showroom, Zeichenwerk | siehe `AGENTS.md` | von anderen Agenten belegt | — |
-| — | `styles-v5.css`, `ui-v5.js` | — | von anderen Agenten belegt, nicht angefasst | — |
-| — | `studio.html`, `atelier.js`, `styles-atelier.css` | — | **fremde, unversionierte Arbeit im Arbeitsverzeichnis** — nicht angefasst | — |
+| — | `styles-v5.css`, `ui-v5.js` | — | von anderen Agenten belegt, `ui-v5.js` nur um Bildmaße und Button-Text ergänzt | — |
+| — | `studio.html`, `atelier.js`, `styles-atelier.css` | — | **fremde, unversionierte Arbeit im Arbeitsverzeichnis** — nicht committet; `studio.html` nur mechanisch an CSP/Schriften/Boot angepasst | — |
 
 ## Übergabe an andere Agenten
 

@@ -26,6 +26,7 @@
   ];
 
   const page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
+  const homeCurrent = page === 'index' ? ' aria-current="page"' : '';
 
   const langToggle = `
     <div class="lang-toggle" role="group" aria-label="Sprache / Language">
@@ -35,14 +36,15 @@
     </div>`;
 
   const linksHTML = (mobile) => NAV_LINKS.map(l => {
-    const active = l.match && page === l.match ? ' class="active"' : '';
-    return `<a href="${l.href}"${active} data-en="${l.en}">${l.de}</a>`;
+    const isActive = l.match && page === l.match;
+    const attrs = isActive ? ' class="active" aria-current="page"' : '';
+    return `<a href="${l.href}"${attrs} data-en="${l.en}">${l.de}</a>`;
   }).join('');
 
   const HEADER = `
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite" data-en-aria="Bytewerk Studio — Home">
+        <a class="brand" href="index.html" aria-label="Bytewerk Studio — Startseite" data-en-aria="Bytewerk Studio — Home"${homeCurrent}>
           ${LOGO}
           <span class="brand-name">Bytewerk<i> Studio</i></span>
         </a>

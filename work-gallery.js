@@ -51,7 +51,9 @@
       href: href,
       img: img ? {
         src: img.getAttribute('src') || '',
-        alt: img.getAttribute('alt') || ''
+        alt: img.getAttribute('alt') || '',
+        w: img.getAttribute('width') || null,
+        h: img.getAttribute('height') || null
       } : null,
       catEl: card.querySelector('.wc-cat'),
       titleEl: card.querySelector('h3'),
@@ -109,6 +111,8 @@
       img.src = item.img.src;
       img.alt = item.img.alt;
       img.decoding = 'async';
+      if (item.img.w) img.width = item.img.w;
+      if (item.img.h) img.height = item.img.h;
       img.loading = i === 0 ? 'eager' : 'lazy';
       frame.appendChild(img);
     } else {

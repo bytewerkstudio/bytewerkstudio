@@ -97,18 +97,37 @@
   function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(normalizeEmail(email));
   }
+  /* Passwords that show up at the top of every breach list. Not a full
+     dictionary — just a cheap floor so "Passwort1!" cannot pass. */
+  const WEAK_PASSWORDS = [
+    'passwort', 'password', 'passwort1', 'password1', 'passwort123', 'password123',
+    '1234567890', '12345678', 'qwertz123', 'qwerty123', 'qwertzuiop', 'qwertyuiop',
+    'admin1234', 'willkommen', 'welcome1', 'letmein1', 'iloveyou1', 'sommer2026',
+    'bytewerk', 'lernreich', 'hallo1234', 'geheim123', 'schatz123', 'dragon123'
+  ];
+  function looksCommon(pw) {
+    const p = String(pw || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (!p) return true;
+    if (WEAK_PASSWORDS.some(w => p === w || p.startsWith(w) && p.length < w.length + 4)) return true;
+    // one repeated character, or a plain run of digits
+    if (/^(.)\1+$/.test(p)) return true;
+    if (/^\d+$/.test(p)) return true;
+    return false;
+  }
   function passwordScore(pw) {
     let s = 0;
     if (pw.length >= 10) s++;
     if (pw.length >= 14) s++;
     if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) s++;
     if (/\d/.test(pw) && /[^A-Za-z0-9]/.test(pw)) s++;
+    if (looksCommon(pw)) s = Math.min(s, 1);
     return Math.min(4, s);
   }
   function passwordOk(pw) {
     return typeof pw === 'string' && pw.length >= 10 &&
       /[a-z]/.test(pw) && /[A-Z]/.test(pw) &&
-      (/\d/.test(pw) || /[^A-Za-z0-9]/.test(pw));
+      (/\d/.test(pw) || /[^A-Za-z0-9]/.test(pw)) &&
+      !looksCommon(pw);
   }
   function safeEqual(a, b) {
     if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
