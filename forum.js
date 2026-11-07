@@ -407,6 +407,54 @@
           }]
         },
         {
+          id: 'th-resize', slug: 'canvas-flackert-resize', cat: 'frontend', type: 'question',
+          title: { de: 'Canvas flackert beim Resize auf dem Tablet', en: 'Canvas flickers on resize on tablet' },
+          body: {
+            de: 'Beim Drehen des iPads springt die Zeichnung für einen Frame auf die alte Größe zurück, dann sitzt sie. Ich setze `canvas.width` und `canvas.height` im `resize`-Handler und rufe danach neu.\n\nWas fehlt, ist offensichtlich der Kontext-Reset — aber warum nur ein Frame?',
+            en: 'When the iPad rotates, the drawing snaps back to the old size for one frame, then settles. I set `canvas.width` and `canvas.height` in the `resize` handler and redraw.\n\nObviously the context reset is missing — but why only one frame?'
+          },
+          tags: ['canvas', 'resize', 'mobile'],
+          author: team, createdAt: at(9, 4), updatedAt: at(8, 7), pinned: false, solved: true,
+          solvedPost: 'po-resize-1', views: 143, votes: [], official: true,
+          posts: [{
+            id: 'po-resize-1', author: team, createdAt: at(8, 7), editedAt: null, votes: [],
+            body: {
+              de: 'Der eine Frame kommt von der Reihenfolge: `resize` feuert **vor** dem Layout-Durchlauf, also ist `clientWidth` im Handler noch der alte Wert. Du schreibst die alte Größe zurück, der Browser layoutet neu, und erst der nächste Frame zeichnet richtig.\n\nZwei Zeilen lösen es:\n\n```js\nconst ro = new ResizeObserver(entries => {\n  const box = entries[0].contentBoxSize[0];\n  canvas.width  = Math.round(box.inlineSize * dpr);\n  canvas.height = Math.round(box.blockSize * dpr);\n  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);\n  draw();\n});\nro.observe(canvas);\n```\n\n`ResizeObserver` läuft nach dem Layout, und `setTransform` muss nach jeder Größenänderung neu gesetzt werden — sonst zeichnet der Kontext mit dem alten Maßstab.',
+              en: 'The single frame comes from ordering: `resize` fires **before** the layout pass, so `clientWidth` still holds the old value in the handler. You write the old size back, the browser lays out again, and only the next frame draws correctly.\n\nTwo lines fix it:\n\n```js\nconst ro = new ResizeObserver(entries => {\n  const box = entries[0].contentBoxSize[0];\n  canvas.width  = Math.round(box.inlineSize * dpr);\n  canvas.height = Math.round(box.blockSize * dpr);\n  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);\n  draw();\n});\nro.observe(canvas);\n```\n\n`ResizeObserver` runs after layout, and `setTransform` has to be set again after every size change — otherwise the context draws with the old scale.'
+            }
+          }]
+        },
+        {
+          id: 'th-fonts', slug: 'webfonts-selbst-hosten', cat: 'tools', type: 'question',
+          title: { de: 'Webfonts selbst hosten: welche Dateien reichen wirklich?', en: 'Self-hosting webfonts: which files are actually enough?' },
+          body: {
+            de: 'Wir laden Newsreader und Inter über Google Fonts. Datenschutz und die CSP sprechen dagegen, außerdem kostet der externe Request einen Roundtrip.\n\nReicht `woff2` allein, oder brauche ich `woff` als Fallback? Und wie schneide ich die Datei auf die Zeichen, die wir wirklich nutzen?',
+            en: 'We load Newsreader and Inter from Google Fonts. Privacy and the CSP argue against it, and the external request costs a round trip.\n\nIs `woff2` alone enough, or do I need `woff` as a fallback? And how do I subset to the characters we actually use?'
+          },
+          tags: ['fonts', 'performance', 'dsgvo'],
+          author: team, createdAt: at(14, 3), updatedAt: at(13, 5), pinned: false, solved: true,
+          solvedPost: 'po-fonts-1', views: 187, votes: [], official: true,
+          posts: [{
+            id: 'po-fonts-1', author: team, createdAt: at(13, 5), editedAt: null, votes: [],
+            body: {
+              de: '`woff2` allein reicht. Alle Browser, die deine three.js-Seite ohnehin voraussetzt, können es; `woff` ist nur für IE11 und sehr alte Android-Versionen nötig.\n\nZum Subset: `glyphhanger` oder `pyftsubset` mit dem Zeichensatz, den die Seite wirklich braucht. Für Deutsch plus Englisch sind das rund 120 Glyphen statt 900 — bei Newsreader etwa 38 kB statt 210 kB.\n\n```css\n@font-face {\n  font-family: \'Newsreader\';\n  src: url(\'fonts/newsreader-latin.woff2\') format(\'woff2\');\n  font-display: swap;\n  unicode-range: U+0000-00FF, U+2013-2014, U+2018-201D;\n}\n```\n\n`font-display: swap` ist wichtig, sonst blockiert der Text, bis die Datei da ist — und genau das war der Grund für den externen Request.',
+              en: '`woff2` alone is enough. Every browser your three.js page already requires supports it; `woff` is only needed for IE11 and very old Android.\n\nFor subsetting: `glyphhanger` or `pyftsubset` with the character set the page actually uses. German plus English is around 120 glyphs instead of 900 — about 38 kB instead of 210 kB for Newsreader.\n\n```css\n@font-face {\n  font-family: \'Newsreader\';\n  src: url(\'fonts/newsreader-latin.woff2\') format(\'woff2\');\n  font-display: swap;\n  unicode-range: U+0000-00FF, U+2013-2014, U+2018-201D;\n}\n```\n\n`font-display: swap` matters, otherwise text blocks until the file arrives — which was the reason for the external request in the first place.'
+            }
+          }]
+        },
+        {
+          id: 'th-licence', slug: 'lizenz-ohne-login', cat: 'backend', type: 'discussion',
+          title: { de: 'Lizenzschlüssel ohne Login prüfen — geht das sicher?', en: 'Verify a licence key without login — can that be secure?' },
+          body: {
+            de: 'Unsere Windows-Apps sind offline. Ein Schlüssel wird beim Start geprüft, ohne Server. Jetzt soll es eine Web-Seite geben, auf der man den Schlüssel prüfen kann.\n\nOhne Backend ist das trivial fälschbar. Wie macht ihr das, ohne gleich ein Konto zu verlangen?',
+            en: 'Our Windows apps are offline. A key is checked at start, without a server. Now there should be a web page where people can check their key.\n\nWithout a backend that is trivially forgeable. How do you do it without requiring an account?'
+          },
+          tags: ['lizenz', 'security'],
+          author: team, createdAt: at(5, 9), updatedAt: at(4, 2), pinned: false, solved: false,
+          solvedPost: null, views: 88, votes: [], official: true,
+          posts: []
+        },
+        {
           id: 'th-werkkorb', slug: 'werkkorb-feedback', cat: 'feedback', type: 'discussion',
           title: { de: 'Werkkorb: Was fehlt euch beim Bündeln?', en: 'Gift basket: what is missing when bundling products?' },
           body: {
@@ -640,9 +688,23 @@
     if (parts[0] === 't' && parts[1]) { route.view = 'thread'; route.slug = decodeURIComponent(parts[1]); }
     else if (parts[0] === 'c' && parts[1]) { route.cat = decodeURIComponent(parts[1]); }
     else if (parts[0] === 'neu' || parts[0] === 'new') { route.view = 'new'; }
+
+    // ?t=slug makes a thread link shareable before the hash is read
+    if (route.view === 'list') {
+      const param = new URLSearchParams(location.search).get('t');
+      if (param) { route.view = 'thread'; route.slug = param; }
+    }
   }
 
   function go(hash) {
+    // a ?t= deep link must not survive navigation, otherwise a reload
+    // would reopen the thread the reader just left
+    if (location.search.indexOf('t=') !== -1) {
+      const params = new URLSearchParams(location.search);
+      params.delete('t');
+      const rest = params.toString();
+      try { history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '')); } catch (e) {}
+    }
     if (location.hash === hash) { render(); return; }
     location.hash = hash;
   }
@@ -651,13 +713,21 @@
   /* 12. Rendering: list                                         */
   /* ---------------------------------------------------------- */
 
-  const state = { q: '', sort: 'latest', limit: CFG.pageSize };
+  const state = { q: '', sort: 'latest', limit: CFG.pageSize, scope: 'all' };
 
   function filtered() {
     const q = state.q.trim().toLowerCase();
     let list = db.threads.slice();
 
     if (route.cat) list = list.filter(t => t.cat === route.cat);
+
+    if (state.scope === 'mine') {
+      const uid_ = user() && user().id;
+      list = uid_ ? list.filter(t => t.author.id === uid_) : [];
+    } else if (state.scope === 'watching') {
+      const subs = subscriptions();
+      list = list.filter(t => subs.indexOf(t.slug) !== -1);
+    }
 
     if (state.sort === 'unanswered') list = list.filter(t => t.posts.length === 0);
 
@@ -707,11 +777,19 @@
     if (!list.length) {
       const text = document.getElementById('fm-empty-text');
       if (text) {
-        text.textContent = state.q
-          ? t('Kein Thema passt zu „' + state.q + '“. Andere Schreibweise oder weniger Wörter probieren.',
-              'No thread matches “' + state.q + '”. Try another spelling or fewer words.')
-          : t('In dieser Kategorie ist noch nichts. Eröffne das erste Thema.',
-              'Nothing in this category yet. Start the first thread.');
+        if (state.q) {
+          text.textContent = t('Kein Thema passt zu „' + state.q + '“. Andere Schreibweise oder weniger Wörter probieren.',
+                               'No thread matches “' + state.q + '”. Try another spelling or fewer words.');
+        } else if (state.scope === 'mine') {
+          text.textContent = t('Du hast noch kein Thema eröffnet. Das erste dauert eine Minute.',
+                               'You have not started a thread yet. The first one takes a minute.');
+        } else if (state.scope === 'watching') {
+          text.textContent = t('Du beobachtest noch nichts. Öffne ein Thema und drücke „Beobachten“.',
+                               'You are not watching anything yet. Open a thread and press “Watch”.');
+        } else {
+          text.textContent = t('In dieser Kategorie ist noch nichts. Eröffne das erste Thema.',
+                               'Nothing in this category yet. Start the first thread.');
+        }
       }
     }
 
@@ -794,6 +872,8 @@
     if (state.q) bits.push('„' + state.q + '“');
     if (route.cat) bits.push(txt(catOf(route.cat)));
     if (state.sort === 'unanswered') bits.push(t('nur offene', 'unanswered only'));
+    if (state.scope === 'mine') bits.push(t('meine Themen', 'my threads'));
+    if (state.scope === 'watching') bits.push(t('beobachtet', 'watching'));
     const on = bits.length > 0;
     box.hidden = !on;
     if (on) value.textContent = bits.join(' · ') + ' — ' + count;
@@ -1504,6 +1584,58 @@
   }
 
   /* ---------------------------------------------------------- */
+  /* 16b. Solved archive ("Werkstattwissen")                     */
+  /* ---------------------------------------------------------- */
+
+  function renderKnowledge() {
+    const host = document.getElementById('fm-know-grid');
+    const section = document.getElementById('wissen');
+    if (!host || !section) return;
+
+    const solved = db.threads
+      .filter(t => t.solved)
+      .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+
+    section.hidden = solved.length === 0;
+    host.replaceChildren();
+
+    solved.slice(0, 6).forEach(th => {
+      const cat = catOf(th.cat);
+      const answer = th.posts.find(p => p.id === th.solvedPost) || th.posts[0];
+      const card = el('article', { class: 'fm-know-card' });
+
+      const top = el('div', { class: 'fm-know-top' });
+      const chip = el('span', { class: 'fm-chip fm-cat-chip' });
+      chip.appendChild(icon(CAT_ICONS[cat.id] || CAT_ICONS.frontend));
+      chip.appendChild(el('span', { text: txt(cat) }));
+      top.appendChild(chip);
+      const solvedChip = el('span', { class: 'fm-chip fm-chip-solved' });
+      solvedChip.appendChild(icon(ICONS.check));
+      solvedChip.appendChild(el('span', { text: t('Gelöst', 'Solved') }));
+      top.appendChild(solvedChip);
+      card.appendChild(top);
+
+      const title = el('h3', { class: 'fm-know-title' });
+      const link = el('a', { href: '#/t/' + encodeURIComponent(th.slug), text: txt(th.title) });
+      link.addEventListener('click', e => { e.preventDefault(); go('#/t/' + encodeURIComponent(th.slug)); });
+      title.appendChild(link);
+      card.appendChild(title);
+
+      if (answer) {
+        const quote = el('p', { class: 'fm-know-answer' });
+        renderMarkdown(excerpt(txt(answer.body), 190), quote);
+        card.appendChild(quote);
+        const by = el('p', { class: 'fm-know-by' });
+        by.appendChild(el('span', { text: answer.author.role === 'team' ? t('Antwort des Studios', 'Studio answer') : t('Antwort von ', 'Answer by ') + answer.author.name }));
+        card.appendChild(by);
+      }
+
+      card.appendChild(el('span', { class: 'fm-know-count', text: th.posts.length + ' ' + t('Antworten', 'replies') }));
+      host.appendChild(card);
+    });
+  }
+
+  /* ---------------------------------------------------------- */
   /* 17. Render dispatch + wiring                                */
   /* ---------------------------------------------------------- */
 
@@ -1515,6 +1647,7 @@
         document.title = th
           ? txt(th.title) + ' — Bytewerk Forum'
           : t('Thema nicht gefunden — Bytewerk Forum', 'Thread not found — Bytewerk Forum');
+        updateMeta(th);
       }
     } else {
       const listWrap = document.getElementById('themen');
@@ -1524,9 +1657,56 @@
       renderList();
       document.title = t('Forum — Fragen, Antworten und Werkstattwissen | Bytewerk Studio',
                          'Forum — questions, answers and workshop knowledge | Bytewerk Studio');
+      updateMeta(null);
     }
     renderAccess();
+    renderKnowledge();
     document.body.classList.toggle('fm-is-thread', route.view === 'thread');
+  }
+
+  /* ---- shareable metadata ---- */
+  const META_DEFAULT = {
+    title: 'Forum — Fragen, Antworten und Werkstattwissen | Bytewerk Studio',
+    description: 'Das Bytewerk-Forum für Entwickler: three.js, Frontend, Backend, Werkzeuge. Fragen stellen, Antworten finden, gelöste Probleme im Archiv.',
+    url: 'https://bytewerkstudio.com/forum.html'
+  };
+
+  function setMeta(selector, attr, key, value) {
+    let node = document.head.querySelector(selector);
+    if (!node) {
+      node = document.createElement('meta');
+      node.setAttribute(attr, key);
+      document.head.appendChild(node);
+    }
+    node.setAttribute('content', value);
+  }
+
+  function updateMeta(th) {
+    // Thread content is user text. It goes into attributes only, never into
+    // JSON-LD: a script block would need escaping rules this page cannot
+    // guarantee for every future edit.
+    const title = th ? txt(th.title) + ' — Bytewerk Forum' : META_DEFAULT.title;
+    const description = th
+      ? excerpt(txt(th.body), 155) || META_DEFAULT.description
+      : META_DEFAULT.description;
+    const url = th
+      ? 'https://bytewerkstudio.com/forum.html?t=' + encodeURIComponent(th.slug)
+      : META_DEFAULT.url;
+
+    setMeta('meta[name="description"]', 'name', 'description', description);
+    setMeta('meta[property="og:title"]', 'property', 'og:title', title);
+    setMeta('meta[property="og:description"]', 'property', 'og:description', description);
+    setMeta('meta[property="og:url"]', 'property', 'og:url', url);
+    setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
+    setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = url;
   }
 
   function wire() {
@@ -1563,6 +1743,15 @@
       });
     }
 
+    document.querySelectorAll('[data-fm-scope]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.scope = btn.dataset.fmScope;
+        state.limit = CFG.pageSize;
+        document.querySelectorAll('[data-fm-scope]').forEach(b => b.classList.toggle('is-on', b === btn));
+        if (route.view !== 'list') go('#/'); else renderList();
+      });
+    });
+
     document.querySelectorAll('[data-fm-sort]').forEach(btn => {
       btn.addEventListener('click', () => {
         state.sort = btn.dataset.fmSort;
@@ -1593,7 +1782,9 @@
       btn.addEventListener('click', () => {
         state.q = '';
         state.sort = 'latest';
+        state.scope = 'all';
         state.limit = CFG.pageSize;
+        document.querySelectorAll('[data-fm-scope]').forEach(b => b.classList.toggle('is-on', b.dataset.fmScope === 'all'));
         const s = document.querySelector('[data-fm-search]');
         if (s) s.value = '';
         document.querySelectorAll('[data-fm-sort]').forEach(b => b.classList.toggle('is-on', b.dataset.fmSort === 'latest'));
@@ -1718,6 +1909,7 @@
     openComposer: openComposer,
     state: () => ({ route: Object.assign({}, route), q: state.q, sort: state.sort, pro: isPro(), user: !!user() }),
     _renderMarkdown: renderMarkdown,
+    _knowledgeCount: () => document.querySelectorAll('#fm-know-grid .fm-know-card').length,
     _safeUrl: safeUrl
   };
 })();
