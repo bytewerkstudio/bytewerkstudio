@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Community &amp; Forum — Bytewerk Studio</title>
 <meta name="description" content="Das Bytewerk Forum: Fragen zu Code, Produkten und Werkzeugen, Antworten aus dem Studio und eine Werkstatt für Entwickler mit Abo. Offen, ruhig, ohne Tracking.">
@@ -19,8 +19,7 @@
 <meta property="og:image" content="https://bytewerkstudio.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -438,6 +437,7 @@
     </div>
 
     <div class="cm-selftest reveal" id="cm-selftest">
+      <span id="selbsttest" class="cm-anchor" aria-hidden="true"></span>
       <div class="cm-selftest-head">
         <div>
           <span class="cm-widget-kicker" data-en="Live check">Live-Prüfung</span>
@@ -453,7 +453,10 @@
       </ul>
       <p class="cm-selftest-note">
         <span data-en="Result is computed in your browser. Client-side checks protect the page — server-side rules are still required for real accounts.">Das Ergebnis entsteht in deinem Browser. Clientseitige Prüfungen schützen die Seite — für echte Konten braucht es weiterhin Serverregeln.</span>
-        <a href="docs/COMMUNITY.md" data-en="Read the security notes →">Sicherheitsnotizen lesen →</a>
+        <span class="cm-selftest-links">
+          <a href="docs/COMMUNITY.md" data-en="Read the security notes →">Sicherheitsnotizen lesen →</a>
+          <a href="sicherheit.html" data-en="How this site is protected →">Wie diese Seite geschützt ist →</a>
+        </span>
       </p>
     </div>
   </div>

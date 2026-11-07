@@ -2,14 +2,15 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-4LD4Kd8RcTgA208SIPmnpwwM19gc6YXbmoQVI59YAyg='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex, nofollow">
 <title>Mein Konto — Bytewerk Studio</title>
 <link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -374,7 +375,7 @@
         action = '<a class="btn btn-ghost" href="' + p.href + '">' + tr('Im Shop ansehen', 'View in shop') + '</a>';
       }
       return '<article class="lib-item">' +
-        '<div class="li-head"><img src="' + p.img + '" alt="" loading="lazy"><div><div class="li-t">' + esc(p.name) + '</div><div class="li-s">' + esc(p.cat) + '</div></div></div>' +
+        '<div class="li-head"><img decoding="async" src="' + p.img + '" alt="" loading="lazy"><div><div class="li-t">' + esc(p.name) + '</div><div class="li-s">' + esc(p.cat) + '</div></div></div>' +
         '<div class="li-body"><span class="li-state ' + (owned ? 'owned' : '') + '">' + stateText + ' · ' + esc(p.price) + '</span>' + action + '</div>' +
         '</article>';
     }).join('');

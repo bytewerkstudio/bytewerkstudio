@@ -1,0 +1,116 @@
+# Sicherheit
+
+Stand: 07.11.2026. Diese Datei beschreibt das Sicherheitsmodell der Website, was
+geprüft wird und was bewusst nicht abgedeckt ist. Die sichtbare Fassung steht auf
+`sicherheit.html`.
+
+## 1. Grundhaltung
+
+Die Seite ist statisch. Es gibt keinen Anwendungsserver, keine Datenbank auf dem
+Host, keinen Upload und keinen Formular-POST. Damit entfallen ganze Klassen von
+Angriffen (SQL-Injection, Datei-Upload, Session-Fixation auf dem Server,
+serverseitige Template-Injection). Was bleibt, ist der Browser: Injection in die
+Seite, fremde Ressourcen, Rahmen-Einbettung und der lokale Speicher.
+
+## 2. Content-Security-Policy
+
+Jede Seite liefert eine CSP als Meta-Tag aus (GitHub Pages erlaubt keine eigenen
+Header). Stand nach der Härtung:
+
+    default-src 'self';
+    script-src 'self' 'sha256-…' 'sha256-…';   (ein Hash je Inline-Block)
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    img-src 'self' data:;
+    object-src 'none';
+    frame-src 'none';
+    base-uri 'self';
+    form-action 'self' mailto:;
+    connect-src 'self';
+    upgrade-insecure-requests
+
+Wichtig: `script-src` enthält **kein** `unsafe-inline` mehr. Die 52 Inline-Blöcke
+(Sprachstart, JSON-LD zählt nicht, Seitenlogik) sind einzeln gehasht. Wird ein
+Inline-Skript geändert, ohne die CSP neu zu erzeugen, blockiert der Browser es —
+das ist Absicht, weil es bedeutet, dass die Datei außerhalb des Builds geändert
+wurde.
+
+`style-src` erlaubt weiterhin `unsafe-inline`, weil 203 `style="…"`-Attribute
+für Layout-Abstände im Bestand stehen. Das ist ein bekanntes, begrenztes
+Restrisiko: Ein Injection-Angriff könnte damit das Aussehen ändern, aber kein
+Skript ausführen. Der Weg dahin ist dokumentiert (siehe offene Punkte).
+
+## 3. Keine Fremdanfragen
+
+- Schriften liegen lokal in `fonts/` (19 `@font-face`-Regeln, 226 KB, latin).
+  Vorher lud jede Seite zwei Google-Fonts-Stylesheets und die Schriftdateien von
+  `fonts.gstatic.com` — dabei wurde die IP jedes Besuchers an Google übertragen.
+- Kein CDN, kein Tag-Manager, kein Analyse-Skript, kein Pixel.
+- `img-src 'self' data:` — `data:` nur für im Browser erzeugte Texturen der
+  three.js-Szenen.
+
+Prüfung: `performance.getEntriesByType('resource')` im Browser, alle Seiten,
+muss 0 Einträge mit fremder Origin liefern.
+
+## 4. Rahmen- und Navigationsschutz
+
+- `frame-src 'none'` verbietet das Einbetten fremder Frames in die Seite.
+- Ein Boot-Skript in jeder Seite prüft `window.top !== window.self`. Steckt die
+  Seite in einem fremden Rahmen, versucht sie, das oberste Fenster auf die eigene
+  URL zu setzen; ist das blockiert, wird der Inhalt ausgeblendet. Das ist der
+  Ersatz für `X-Frame-Options`, das als Meta-Tag nicht existiert.
+- `base-uri 'self'` verhindert, dass ein eingeschleustes `<base>` alle relativen
+  Links umbiegt.
+- `form-action 'self' mailto:` begrenzt Formulare auf die eigene Origin und den
+  Mail-Client.
+
+## 5. Lokale Konten
+
+`auth.js` speichert Konten im Browser (Modus `local`). Passwörter werden mit
+PBKDF2-SHA256, zufälligem Salt und **600.000** Iterationen abgeleitet, nie im
+Klartext. Ein Wechsel auf Supabase ist vorbereitet (`auth-config.js`), verlangt
+aber, dass `connect-src` um die Supabase-Origin erweitert wird — bewusst eine
+sichtbare, einzelne Zeile.
+
+Grenzen des lokalen Modus, ehrlich benannt: Kein geräteübergreifender Zugriff,
+keine Passwort-Wiederherstellung per E-Mail, kein serverseitiges Sperren. Wer den
+Browser-Speicher kontrolliert, kontrolliert das Konto. Für echte Konten braucht es
+ein Backend — siehe `docs/KONTO.md`.
+
+## 6. Forum
+
+Der Renderer arbeitet mit DOM-Knoten und `textContent`, Markdown wird auf eine
+Whitelist abgebildet. Der Selbsttest auf `community.html` schickt sieben echte
+Payloads durch dieselbe Funktion: `IMG onerror`, `SCRIPT`, `javascript:`-Link,
+`IFRAME`, `data:`-Link, `SVG onload`, `STYLE`-Injection. Ergebnis im letzten Lauf:
+**7 von 7 blockiert**.
+
+Zusätzlich: Längenbegrenzungen, 30 Sekunden zwischen Beiträgen, Tageslimit,
+Honigfalle gegen Bots, defensives Parsen des gespeicherten Zustands.
+
+## 7. Was geprüft wird
+
+| Prüfung | Werkzeug | Ergebnis (07.11.2026) |
+|---|---|---|
+| CSP-Hashes stimmen mit den Inline-Blöcken überein | `tools/verify-csp.mjs` | 32 Seiten, 52 Blöcke, 0 Abweichungen |
+| Laufzeit: CSP-Verstöße, JS-Fehler, Rahmen-Schutz | `tools/audit-security.mjs` | 31/31 Seiten sauber, 0 Verstöße |
+| Keine Fremdanfragen | `audit-security.mjs` + Live-Panel | 0 externe Hosts |
+| Tote Links und Anker | `tools/check-links.mjs` | 533 Links, 0 Probleme |
+| Sprache DE/EN | `tools/audit-lang-final.mjs` | 32/32 sauber |
+| Konto-Anlage mit 600k Iterationen | Browser-Probe | 120 ms, Konto + Session angelegt |
+| Forum Ende-zu-Ende | `tools/test-community.mjs` | 9 Themen, Suche, Stimme, Persistenz, Abo |
+
+## 8. Offene Punkte
+
+- [ ] `style-src 'unsafe-inline'` entfernen: 203 `style`-Attribute in Klassen
+      überführen, dann Hashes oder `style-src-attr 'none'`.
+- [ ] Echte HTTP-Header statt Meta-CSP. GitHub Pages kann das nicht; ein Proxy
+      (Cloudflare) oder ein eigener Hoster könnte `Content-Security-Policy`,
+      `Strict-Transport-Security`, `X-Content-Type-Options`,
+      `Cross-Origin-Opener-Policy` und `Permissions-Policy` setzen.
+- [ ] `Subresource Integrity` ist erst nötig, wenn wieder fremde Ressourcen
+      geladen werden — derzeit gibt es keine.
+- [ ] Supabase-Modus: RLS-Regeln, Ratenlimits in einer Edge Function,
+      E-Mail-Bestätigung.
+- [ ] Sicherheitshinweise-Eingang: `security.txt` ist gesetzt, ein fester
+      Ablauf (Eingang bestätigen, 90 Tage Frist, Danke-Seite) fehlt noch.

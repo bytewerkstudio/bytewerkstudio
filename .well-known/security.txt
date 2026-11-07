@@ -1,0 +1,6 @@
+Contact: mailto:Haqmalh@icloud.com
+Contact: https://bytewerkstudio.com/sicherheit.html
+Expires: 2027-11-07T00:00:00.000Z
+Preferred-Languages: de, en
+Canonical: https://bytewerkstudio.com/.well-known/security.txt
+Policy: https://bytewerkstudio.com/sicherheit.html

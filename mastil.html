@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.classList.add('js');var L=localStorage.getItem('bw-lang');if(L)document.documentElement.lang=L;</script>
+<script>document.documentElement.classList.add('js');var L=null;try{L=localStorage.getItem('bw-lang')}catch(e){}if(L)document.documentElement.lang=L;if(window.top!==window.self){try{window.top.location=window.self.location}catch(e){document.documentElement.style.visibility='hidden'}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#faf9f5">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self' https://*.supabase.co; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self' mailto:; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'sha256-TgO9HaQm/Ug3wEyskuuEHS5L61TFY8s32CkTE18oHhA=' 'sha256-/If8mXv3r3P9+eEyCHpiw/qSJfP7bDB5/g2jVl9PGWc='">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>MASTIL - Mittelalter-Strategie & Tower Defense · Bytewerk Studio</title>
 <meta name="description" content="MASTIL ist ein Mittelalter-Strategie- und Tower-Defense-Spiel von Bytewerk Studio fuer Web und Windows. Offline-KI, Wellenfortschritt, Reichsauswahl, Demo bis Welle 5 und Lizenzmodell.">
@@ -19,8 +19,7 @@
 <meta property="og:image" content="https://bytewerkstudio.com/media/mastil-start-bg.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles-v3.css">
 <link rel="stylesheet" href="styles-auth.css">
@@ -62,10 +61,10 @@
 
 <section class="wrap pd" data-screen-label="MASTIL">
   <div class="pd-media reveal">
-    <div class="pd-hero pd-screenshot"><img class="pd-screenshot-img" src="media/mastil-start-bg.jpg" alt="MASTIL Spielwelt mit mittelalterlicher Burg und Strategiekarte"></div>
+    <div class="pd-hero pd-screenshot"><img decoding="async" class="pd-screenshot-img" src="media/mastil-start-bg.jpg" alt="MASTIL Spielwelt mit mittelalterlicher Burg und Strategiekarte"></div>
     <div class="pd-thumbs">
-      <div class="pd-thumb app-mark-panel"><img src="media/mastil-logo.jpg" alt="MASTIL Logo"></div>
-      <div class="pd-thumb pd-screenshot"><img class="pd-screenshot-img" src="media/mastil-start-bg.jpg" alt="MASTIL Startszene"></div>
+      <div class="pd-thumb app-mark-panel"><img decoding="async" loading="lazy" src="media/mastil-logo.jpg" alt="MASTIL Logo"></div>
+      <div class="pd-thumb pd-screenshot"><img decoding="async" loading="lazy" class="pd-screenshot-img" src="media/mastil-start-bg.jpg" alt="MASTIL Startszene"></div>
       <div class="pd-thumb"></div>
       <div class="pd-thumb"></div>
     </div>
@@ -132,7 +131,7 @@
     </div>
     <div class="shop-page-grid reveal" data-d="1">
       <a class="prod" href="burgenwerk.html">
-        <div class="ph app-mark-panel"><span class="badge">Neu</span><img class="app-logo-mark" src="media/burgenwerk-logo.png" alt="BURGENWERK Logo"></div>
+        <div class="ph app-mark-panel"><span class="badge">Neu</span><img decoding="async" loading="lazy" class="app-logo-mark" src="media/burgenwerk-logo.png" alt="BURGENWERK Logo"></div>
         <div class="body">
           <span class="cat" data-en="Web · Browser · Strategy">Web · Browser · Strategie</span>
           <h3>BURGENWERK</h3>
@@ -141,7 +140,7 @@
         </div>
       </a>
       <a class="prod" href="neon-dominion.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/neon-dominion-icon.svg" alt="Neon Dominion Logo"></div>
         <div class="body">
           <span class="cat" data-en="Windows · Premium · Tower conquest">Windows · Premium · Tower Conquest</span>
           <h3>Neon Dominion</h3>
@@ -150,7 +149,7 @@
         </div>
       </a>
       <a class="prod" href="bytewerk-pdf-text-pro.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/bytewerk-pdf-text-pro-icon.svg" alt="Bytewerk PDF Text Pro Logo"></div>
         <div class="body">
           <span class="cat" data-en="Windows · PDF/OCR · Lifetime licence">Windows · PDF/OCR · Lifetime-Lizenz</span>
           <h3>Bytewerk PDF Text Pro</h3>
@@ -159,7 +158,7 @@
         </div>
       </a>
       <a class="prod" href="updatepilot.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/updatepilot-icon.svg" alt="UpdatePilot Logo"></div>
         <div class="body">
           <span class="cat" data-en="Windows · Updates · Lifetime licence">Windows · Updates · Lebenslange Lizenz</span>
           <h3>UpdatePilot</h3>
@@ -168,7 +167,7 @@
         </div>
       </a>
       <a class="prod" href="produkt.html">
-        <div class="ph app-mark-panel"><img class="app-logo-mark" src="media/lernreich-logo.png" alt="Lernreich Logo"></div>
+        <div class="ph app-mark-panel"><img decoding="async" loading="lazy" class="app-logo-mark" src="media/lernreich-logo.png" alt="Lernreich Logo"></div>
         <div class="body">
           <span class="cat" data-en="Windows · Learning · Productivity">Windows · Lernen · Produktivitaet</span>
           <h3>Lernreich</h3>

@@ -2149,3 +2149,9 @@ pre:hover .cm-copy, .cm-copy:focus-visible { opacity: 1; }
 
 .cm-stage:focus-visible { outline: 2px solid var(--cm-accent); outline-offset: 4px; }
 .cm-stage-chip.is-active { pointer-events: none; }
+
+/* Two links next to the self-test note */
+.cm-selftest-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
+/* Public anchor for the self-test, offset below the sticky header */
+.cm-anchor { display: block; position: relative; top: -96px; visibility: hidden; }

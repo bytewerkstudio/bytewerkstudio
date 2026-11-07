@@ -109,6 +109,7 @@
           </div>
           <div class="footer-col">
             <h4 data-en="Legal">Rechtliches</h4>
+            <a href="sicherheit.html" data-en="Security">Sicherheit</a>
             <a href="impressum.html" data-en="Imprint">Impressum</a>
             <a href="datenschutz.html" data-en="Privacy">Datenschutz</a>
             <a href="agb.html" data-en="Terms">AGB</a>

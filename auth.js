@@ -44,7 +44,7 @@
     session: 'bw.session.v1',
     sbSession: 'bw.sb.session.v1'
   };
-  const ITERATIONS = 310000;
+  const ITERATIONS = 600000;
   const MAX_FAILS = 5;
   const LOCK_MS = 60000;
 
