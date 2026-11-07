@@ -193,6 +193,7 @@ a.brf-meta-row:hover .brf-meta-v { color: var(--accent); }
 
 /* Fallback-Collage (ohne WebGL) */
 .brf-art { display: none; }
+html.brf-no3d #brief-canvas { display: none; }
 html.brf-no3d .brf-art {
   display: block;
   position: absolute;
