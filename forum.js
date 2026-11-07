@@ -987,7 +987,8 @@
     if (cat.pro) chips.appendChild(el('span', { class: 'fm-chip fm-chip-pro', text: 'Pro' }));
     head.appendChild(chips);
 
-    head.appendChild(el('h1', { class: 'fm-th-title', text: txt(th.title) }));
+    // Seiten-<h1> bleibt der Hero; der Thementitel ist eine Abschnittsüberschrift.
+    head.appendChild(el('h2', { class: 'fm-th-title', text: txt(th.title) }));
 
     const meta = el('div', { class: 'fm-th-meta' });
     meta.appendChild(avatar(th.author, 'sm'));
