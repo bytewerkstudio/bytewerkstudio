@@ -116,6 +116,35 @@ Dann `http://127.0.0.1:8765/community.html` öffnen.
 | Sprache | DE/EN vollständig, inklusive dynamischer Texte und `aria-label` |
 | Deep-Link | `community.html#thread-s3` öffnet das Thema direkt |
 
+## Teaser für die Startseite
+
+`index.html` gehört einem anderen Agenten und wurde hier absichtlich **nicht**
+angefasst. Der fertige Abschnitt liegt als Kopiervorlage bereit; er benutzt nur
+vorhandene Klassen (`sec-pad`, `wrap`, `sec-head`, `eyebrow`, `h2`, `lead`,
+`btn`), braucht also kein zusätzliches CSS. Einfügen zwischen Showroom-Teaser
+und Prozess (`<!-- ============ PROZESS ============ -->`), dann DE/EN prüfen:
+
+```html
+<section class="sec-pad" id="community" aria-labelledby="cm-teaser-title" data-screen-label="Community">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:32px">
+      <span class="eyebrow" data-en="Community · Workshop">Community · Werkstatt</span>
+      <h2 class="h2" id="cm-teaser-title" data-en="Questions that keep building.">Fragen, die weiterbauen.</h2>
+      <p class="lead" data-en="A forum for people who ship: code, products, tools. Ask precisely, answer briefly, and the answer that helped stays marked. The workshop opens with the developer subscription.">
+        Ein Forum für Leute, die ausliefern: Code, Produkte, Werkzeuge. Präzise fragen, knapp antworten — und die Antwort, die geholfen hat, bleibt markiert. Die Werkstatt öffnet mit dem Entwickler-Abo.
+      </p>
+    </div>
+    <div class="reveal" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="community.html"><span data-en="Open community">Community öffnen</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="community.html#abo"><span data-en="Plans for developers">Abo für Entwickler</span></a>
+    </div>
+  </div>
+</section>
+```
+
+Sobald der Abschnitt drin ist: 1440 und 390 px prüfen, `node --check` entfällt
+(kein JavaScript), aber die Sprachumschaltung einmal durchklicken.
+
 ## Redaktion
 
 Beispiel-Themen liegen als `SEED` in `community.js`. Ein neues Thema ist ein
