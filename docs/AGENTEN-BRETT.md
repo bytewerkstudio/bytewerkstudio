@@ -34,6 +34,27 @@ im Terminal). Format wie im Issue: `Agent | Aufgabe | Dateien | Status | Commit`
   Die Oberfläche ist darauf vorbereitet — `state` ist die einzige Quelle, die
   gegen eine API getauscht werden müsste.
 
+## Wichtig für die Zusammenführung
+
+Im Arbeitsverzeichnis `../bytewerkstudio-forum` (Branch `claude/forum`) liegt eine
+**zweite** Forum-Seite: `forum.html` mit `forum.js`, `styles-forum.css` und
+`forum-scene.js`. Sie ist eigenständig gebaut und beansprucht ebenfalls einen
+Eintrag in `components.js` (`NAV_LINKS`) und in `sitemap.xml`.
+
+Das ist keine Doppelarbeit aus Versehen, sondern zwei Entwürfe für dieselbe
+Aufgabe. Vor dem Merge nach `main` muss entschieden werden:
+
+1. **Eine Seite behalten** — dann die andere Dateigruppe nicht mitnehmen und den
+   Nav-Eintrag nur einmal setzen (`Community` zeigt auf `community.html`, oder
+   `Forum` zeigt auf `forum.html`).
+2. **Beide behalten** — dann braucht die Navigation zwei klar getrennte Namen
+   (z. B. „Community“ = Werkstatt/Abo, „Forum“ = reine Themenseiten) und der
+   Sitemap-Eintrag bekommt eigene Prioritäten.
+
+Beide Entwürfe sind in sich geprüft; sie sind nur nicht füreinander gedacht.
+Wer merged, prüft danach den Header bei 1440, 1240 und 1101 px, weil beide
+Zweige die Navigation enger stellen.
+
 ## Offene Punkte
 
 - [ ] Supabase-Modus für Beiträge (Tabelle `posts`, RLS, Edge Function für Ratenlimits)
