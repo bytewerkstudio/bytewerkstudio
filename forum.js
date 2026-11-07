@@ -63,19 +63,31 @@
   /* 2. Language                                                 */
   /* ---------------------------------------------------------- */
 
+  // The site speaks DE and EN; the developer pages add ES. This page is
+  // written in DE/EN, so an ES reader gets English — never German by
+  // accident, which is what "not en means de" used to do.
   function lang() {
-    return document.documentElement.lang === 'en' ? 'en' : 'de';
+    let raw = '';
+    try {
+      raw = (window.bwLang && window.bwLang()) || document.documentElement.lang || 'de';
+    } catch (e) {
+      raw = document.documentElement.lang || 'de';
+    }
+    raw = String(raw).toLowerCase().slice(0, 2);
+    return raw === 'en' ? 'en' : raw === 'es' ? 'es' : 'de';
   }
 
-  function t(de, en) {
-    return lang() === 'en' ? en : de;
+  function t(de, en, es) {
+    const l = lang();
+    if (l === 'es') return es || en;
+    return l === 'en' ? en : de;
   }
 
   /** Official content is bilingual; user content stays as written. */
   function txt(value) {
     if (value == null) return '';
     if (typeof value === 'string') return value;
-    return value[lang()] || value.de || value.en || '';
+    return value[lang()] || value.en || value.de || '';
   }
 
   /* ---------------------------------------------------------- */
@@ -630,14 +642,14 @@
     const days = Math.floor(hours / 24);
     if (days < 7) return t('vor ' + days + (days === 1 ? ' Tag' : ' Tagen'),
                            days + (days === 1 ? ' day' : ' days') + ' ago');
-    return d.toLocaleDateString(lang() === 'en' ? 'en-GB' : 'de-DE',
+    return d.toLocaleDateString(lang() === 'de' ? 'de-DE' : 'en-GB',
                                 { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
   function fullDate(iso) {
     const d = new Date(iso);
     if (isNaN(d)) return '';
-    return d.toLocaleString(lang() === 'en' ? 'en-GB' : 'de-DE',
+    return d.toLocaleString(lang() === 'de' ? 'de-DE' : 'en-GB',
                             { dateStyle: 'medium', timeStyle: 'short' });
   }
 
@@ -1189,6 +1201,14 @@
     });
     foot.appendChild(flag);
 
+    if (canEdit(post)) {
+      const edit = el('button', { type: 'button', class: 'fm-link-btn', aria: { label: t('Bearbeiten', 'Edit') } });
+      edit.appendChild(icon(ICONS.edit));
+      edit.appendChild(el('span', { text: t('Bearbeiten', 'Edit') }));
+      edit.addEventListener('click', () => startEdit(th, post, body));
+      foot.appendChild(edit);
+    }
+
     if (post.author.id === (user() && user().id) && !post.isFirst) {
       const del = el('button', { type: 'button', class: 'fm-link-btn fm-link-quiet', aria: { label: t('Löschen', 'Delete') } });
       del.appendChild(icon(ICONS.trash));
@@ -1215,6 +1235,119 @@
     main.appendChild(anchor);
 
     return card;
+  }
+
+  function canEdit(post) {
+    const u = user();
+    return !!(u && post.author && post.author.id === u.id);
+  }
+
+  /* Editing happens in place: the card keeps its place, only the body
+     becomes a textarea. The title can be fixed on the first post, the
+     slug stays — links that were shared must keep working. */
+  function startEdit(th, post, bodyNode) {
+    if (bodyNode.dataset.editing === '1') return;
+    bodyNode.dataset.editing = '1';
+
+    const editor = el('div', { class: 'fm-edit' });
+
+    let titleInput = null;
+    if (post.isFirst) {
+      editor.appendChild(el('label', { class: 'fm-edit-label', text: t('Titel', 'Title') }));
+      titleInput = el('input', { type: 'text', class: 'fm-edit-title', maxlength: CFG.maxTitle, value: txt(th.title) });
+      editor.appendChild(titleInput);
+    }
+
+    editor.appendChild(el('label', { class: 'fm-edit-label', text: post.isFirst ? t('Beitrag', 'Post') : t('Antwort', 'Reply') }));
+    const ta = el('textarea', { class: 'fm-edit-area', rows: 8, maxlength: CFG.maxBody });
+    ta.value = txt(post.body);
+    editor.appendChild(ta);
+
+    const err = el('p', { class: 'fm-form-error', role: 'alert' });
+    err.hidden = true;
+    editor.appendChild(err);
+
+    const bar = el('div', { class: 'fm-edit-bar' });
+    const cancel = el('button', { type: 'button', class: 'btn btn-ghost', text: t('Abbrechen', 'Cancel') });
+    const commit = el('button', { type: 'button', class: 'btn btn-primary', text: t('Änderung speichern', 'Save change') });
+    bar.appendChild(el('span', { class: 'fm-edit-hint', text: t('Esc bricht ab', 'Esc cancels') }));
+    bar.appendChild(cancel);
+    bar.appendChild(commit);
+    editor.appendChild(bar);
+
+    function fail(message) {
+      err.textContent = message;
+      err.hidden = false;
+      return false;
+    }
+
+    let done = false;
+
+    function unbind() {
+      if (done) return false;
+      done = true;
+      document.removeEventListener('keydown', onKey, true);
+      return true;
+    }
+
+    function stop() {
+      if (!unbind()) return;
+      delete bodyNode.dataset.editing;
+      bodyNode.replaceChildren();
+      renderMarkdown(txt(post.body), bodyNode);
+    }
+
+    // Bound to the document, not the textarea: after clicking "Save change"
+    // the focus sits on the button, and Escape must still cancel from there
+    // (or from the title field, or from any link inside the editor).
+    function onKey(e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        stop();
+      } else if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        commit.click();
+      }
+    }
+    document.addEventListener('keydown', onKey, true);
+
+    cancel.addEventListener('click', stop);
+
+    commit.addEventListener('click', () => {
+      const value = ta.value.trim();
+      const min = post.isFirst ? 20 : 8;
+      if (value.length < min) {
+        return fail(post.isFirst
+          ? t('Bitte beschreibe das Problem in mindestens 20 Zeichen.', 'Please describe the problem in at least 20 characters.')
+          : t('Bitte mindestens 8 Zeichen schreiben.', 'Please write at least 8 characters.'));
+      }
+
+      let nextTitle = null;
+      if (titleInput) {
+        nextTitle = titleInput.value.trim();
+        if (nextTitle.length < 8) return fail(t('Der Titel braucht mindestens 8 Zeichen.', 'The title needs at least 8 characters.'));
+      }
+
+      if (post.isFirst) {
+        th.body = value;
+        if (nextTitle) th.title = nextTitle;
+        th.editedAt = nowISO();
+      } else {
+        const target = th.posts.find(p => p.id === post.id);
+        if (!target) return fail(t('Der Beitrag wurde nicht gefunden.', 'The post could not be found.'));
+        target.body = value;
+        target.editedAt = nowISO();
+      }
+      th.updatedAt = nowISO();
+      unbind();
+      save();
+      render();
+      toast(t('Änderung gespeichert.', 'Change saved.'));
+    });
+
+    bodyNode.replaceChildren(editor);
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
   }
 
   function proWall(cat) {
