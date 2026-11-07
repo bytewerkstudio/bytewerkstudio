@@ -418,7 +418,9 @@ function boot() {
   }
 
   document.addEventListener('keydown', (event) => {
-    if (!event.target.closest('.cm-stage')) return;
+    // target can be document when a key event is dispatched programmatically
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target || !target.closest('.cm-stage')) return;
     const index = cards.findIndex((item) => item.active);
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
