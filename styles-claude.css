@@ -971,3 +971,11 @@ body,
   .legal-toc a:hover { border-color: var(--ink); color: var(--ink); }
   .legal-copy article { scroll-margin-top: 96px; }
 }
+
+/* Header fit above the burger breakpoint: nine links plus the call-to-action
+   need 13px more than the 1240px grid has at 1440px in German. The rule only
+   matches once a ninth link exists, so the eight-link header stays untouched;
+   it tightens horizontal padding instead of changing type or the mobile bar. */
+@media (min-width: 1241px) {
+  .nav-links:has(> a:nth-child(9)) a { padding-left: 7px; padding-right: 7px; }
+}

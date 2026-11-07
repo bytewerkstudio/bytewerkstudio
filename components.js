@@ -21,7 +21,6 @@
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
-    { href: 'api.html',              de: 'API',        en: 'API',      match: 'api' },
     { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
   ];
 
