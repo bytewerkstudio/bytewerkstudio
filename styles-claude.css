@@ -880,9 +880,12 @@ body:has(.pd-sticky.show) .bw-flash { bottom: 92px; }
 /* UI list rows stay sans-serif; only editorial headlines use the serif */
 .ed-idx { font-family: var(--body); font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
 
-/* Header fit: slim spacing, avatar-only account, burger below 1100px */
+/* Header fit: slim spacing, avatar-only account, burger below 1150px.
+   Nine links plus the third language need ~50px more than the eight-link
+   header did, so the padding drops by 3px per side and the burger takes
+   over earlier. */
 .nav-links { gap: 0; }
-.nav-links a { padding: 9px 11px; font-size: 14px; }
+.nav-links a { padding: 9px 8px; font-size: 14px; }
 .nav-right { gap: 10px; }
 .acct-btn { padding: 6px; }
 .acct-btn .acct-label { display: none; }
@@ -890,9 +893,9 @@ body:has(.pd-sticky.show) .bw-flash { bottom: 92px; }
 @media (max-width: 1300px) { .nav-search kbd { display: none; } }
 @media (max-width: 1240px) {
   .brand { font-size: 16px; }
-  .nav-links a { padding: 9px 9px; }
+  .nav-links a { padding: 9px 6px; }
 }
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .nav-right > .btn:not(.nav-toggle) { display: none; }

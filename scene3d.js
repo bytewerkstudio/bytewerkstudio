@@ -43,8 +43,8 @@
   };
 
   var LABEL = {
-    pause: { de: 'Bewegung pausieren', en: 'Pause motion' },
-    play: { de: 'Bewegung fortsetzen', en: 'Resume motion' }
+    pause: { de: 'Bewegung pausieren', en: 'Pause motion', es: 'Pausar el movimiento' },
+    play: { de: 'Bewegung fortsetzen', en: 'Resume motion', es: 'Reanudar el movimiento' }
   };
   var ICON_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6.5" width="3.1" height="11" rx="1.1"/><rect x="13.9" y="6.5" width="3.1" height="11" rx="1.1"/></svg>';
   var ICON_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.2 6.4v11.2L18 12z"/></svg>';
@@ -523,7 +523,8 @@
   /* ---------- motion switch ---------- */
 
   function activeLang() {
-    return (ROOT.lang || 'de').slice(0, 2).toLowerCase() === 'en' ? 'en' : 'de';
+    var lang = (ROOT.lang || 'de').slice(0, 2).toLowerCase();
+    return lang === 'en' || lang === 'es' ? lang : 'de';
   }
 
   function paintToggle() {

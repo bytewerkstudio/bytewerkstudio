@@ -14,28 +14,33 @@
     </svg>`;
 
   const NAV_LINKS = [
-    { href: 'index.html#leistungen', de: 'Leistungen', en: 'Services', match: null },
-    { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
-    { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', match: 'bauplan' },
-    { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
-    { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
-    { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
-    { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
-    { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  match: 'kontakt' },
+    { href: 'index.html#leistungen', de: 'Leistungen', en: 'Services', es: 'Servicios', match: null },
+    { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     es: 'Proyectos', match: 'arbeiten' },
+    { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', es: 'Plano', match: 'bauplan' },
+    { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', es: 'Showroom', match: 'showroom' },
+    { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  es: 'Precios', match: null },
+    { href: 'shop.html',             de: 'Shop',       en: 'Shop',     es: 'Tienda', match: 'shop' },
+    { href: 'studio.html',           de: 'Studio',     en: 'Studio',   es: 'Estudio', match: 'studio' },
+    { href: 'entwickler.html',       de: 'Entwickler', en: 'Developers', es: 'Devs', match: 'entwickler' },
+    { href: 'kontakt.html',          de: 'Kontakt',    en: 'Contact',  es: 'Contacto', match: 'kontakt' },
   ];
 
   const page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
 
+  const LANGS = ['de', 'en', 'es'];
+
   const langToggle = `
-    <div class="lang-toggle" role="group" aria-label="Sprache / Language">
-      <button data-lang-btn="de" aria-label="Deutsch">DE</button>
+    <div class="lang-toggle" role="group" aria-label="Sprache / Language / Idioma">
+      <button data-lang-btn="de" aria-label="Deutsch" lang="de">DE</button>
       <span class="lang-sep">/</span>
-      <button data-lang-btn="en" aria-label="English">EN</button>
+      <button data-lang-btn="en" aria-label="English" lang="en">EN</button>
+      <span class="lang-sep">/</span>
+      <button data-lang-btn="es" aria-label="Español" lang="es">ES</button>
     </div>`;
 
   const linksHTML = (mobile) => NAV_LINKS.map(l => {
     const active = l.match && page === l.match ? ' class="active"' : '';
-    return `<a href="${l.href}"${active} data-en="${l.en}">${l.de}</a>`;
+    return `<a href="${l.href}"${active} data-en="${l.en}" data-es="${l.es || l.en}">${l.de}</a>`;
   }).join('');
 
   const HEADER = `
@@ -82,34 +87,37 @@
               ${LOGO}
               <span class="brand-name">Bytewerk<i> Studio</i></span>
             </a>
-            <p class="footer-blurb" data-en="Software, web and app development, IT services and digital products from Ludwigshafen am Rhein.">Software, Web- &amp; App-Entwicklung, IT-Dienstleistungen und digitale Produkte aus Ludwigshafen am Rhein.</p>
+            <p class="footer-blurb" data-en="Software, web and app development, IT services and digital products from Ludwigshafen am Rhein." data-es="Software, desarrollo web y de apps, servicios IT y productos digitales desde Ludwigshafen am Rhein.">Software, Web- &amp; App-Entwicklung, IT-Dienstleistungen und digitale Produkte aus Ludwigshafen am Rhein.</p>
           </div>
           <div class="footer-col">
-            <h4 data-en="Services">Leistungen</h4>
-            <a href="softwareentwicklung-ludwigshafen.html" data-en="Software development">Softwareentwicklung</a>
-            <a href="softwareentwicklung-ludwigshafen.html#webentwicklung" data-en="Web development">Web-Entwicklung</a>
-            <a href="softwareentwicklung-ludwigshafen.html#app-entwicklung" data-en="App development">App-Entwicklung</a>
-            <a href="softwareentwicklung-ludwigshafen.html" data-en="IT services">IT-Dienstleistungen</a>
+            <h4 data-en="Services" data-es="Servicios">Leistungen</h4>
+            <a href="softwareentwicklung-ludwigshafen.html" data-en="Software development" data-es="Desarrollo de software">Softwareentwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html#webentwicklung" data-en="Web development" data-es="Desarrollo web">Web-Entwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html#app-entwicklung" data-en="App development" data-es="Desarrollo de apps">App-Entwicklung</a>
+            <a href="softwareentwicklung-ludwigshafen.html" data-en="IT services" data-es="Servicios IT">IT-Dienstleistungen</a>
           </div>
           <div class="footer-col">
-            <h4 data-en="Studio">Studio</h4>
-            <a href="studio.html" data-en="About us">Über uns</a>
-            <a href="arbeiten.html" data-en="Work">Arbeiten</a>
-            <a href="bauplan.html" data-en="Blueprint">Bauplan</a>
-            <a href="showroom.html" data-en="3D showroom">3D-Showroom</a>
-            <a href="index.html#preise" data-en="Pricing">Preise</a>
-            <a href="shop.html" data-en="Shop">Shop</a>
-            <a href="vergleich.html" data-en="Product comparison">Produktvergleich</a>
-            <a href="marke.html" data-en="The mark">Die Marke</a>
-            <a href="konto.html" data-en="My account">Mein Konto</a>
-            <a href="login.html" data-en="Sign in">Anmelden</a>
-            <a href="kontakt.html" data-en="Contact">Kontakt</a>
+            <h4 data-en="Studio" data-es="Estudio">Studio</h4>
+            <a href="studio.html" data-en="About us" data-es="Nosotros">Über uns</a>
+            <a href="arbeiten.html" data-en="Work" data-es="Proyectos">Arbeiten</a>
+            <a href="bauplan.html" data-en="Blueprint" data-es="Plano">Bauplan</a>
+            <a href="showroom.html" data-en="3D showroom" data-es="Showroom 3D">3D-Showroom</a>
+            <a href="index.html#preise" data-en="Pricing" data-es="Precios">Preise</a>
+            <a href="shop.html" data-en="Shop" data-es="Tienda">Shop</a>
+            <a href="vergleich.html" data-en="Product comparison" data-es="Comparativa">Produktvergleich</a>
+            <a href="entwickler.html" data-en="Developers" data-es="Desarrolladores">Entwickler</a>
+            <a href="entwickler.html#forum" data-en="Workshop forum" data-es="Foro del taller">Werkstatt-Forum</a>
+            <a href="entwickler.html#abo" data-en="Developer subscription" data-es="Suscripción dev">Entwickler-Abo</a>
+            <a href="marke.html" data-en="The mark" data-es="La marca">Die Marke</a>
+            <a href="konto.html" data-en="My account" data-es="Mi cuenta">Mein Konto</a>
+            <a href="login.html" data-en="Sign in" data-es="Iniciar sesión">Anmelden</a>
+            <a href="kontakt.html" data-en="Contact" data-es="Contacto">Kontakt</a>
           </div>
           <div class="footer-col">
-            <h4 data-en="Legal">Rechtliches</h4>
-            <a href="impressum.html" data-en="Imprint">Impressum</a>
-            <a href="datenschutz.html" data-en="Privacy">Datenschutz</a>
-            <a href="agb.html" data-en="Terms">AGB</a>
+            <h4 data-en="Legal" data-es="Legal">Rechtliches</h4>
+            <a href="impressum.html" data-en="Imprint" data-es="Aviso legal">Impressum</a>
+            <a href="datenschutz.html" data-en="Privacy" data-es="Privacidad">Datenschutz</a>
+            <a href="agb.html" data-en="Terms" data-es="Términos">AGB</a>
           </div>
         </div>
         <div class="footer-bottom">
@@ -132,32 +140,60 @@
   const fSlot = document.querySelector('[data-include="footer"]');
   if (fSlot) fSlot.outerHTML = FOOTER;
 
-  /* ---- i18n ---- */
+  /* ---- i18n: DE (markup) / EN (data-en) / ES (data-es) ---- */
   const LANG_KEY = 'bw-lang';
-  function currentLang() {
-    const stored = localStorage.getItem(LANG_KEY);
-    if (stored) return stored;
-    return (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'de';
+
+  function normalizeLang(value) {
+    const v = String(value || '').toLowerCase().slice(0, 2);
+    return LANGS.indexOf(v) === -1 ? null : v;
   }
 
-  function applyLang(lang) {
-    document.documentElement.lang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+  function currentLang() {
+    try {
+      return normalizeLang(localStorage.getItem(LANG_KEY)) || normalizeLang(navigator.language) || 'de';
+    } catch (_) {
+      return normalizeLang(navigator.language) || 'de';
+    }
+  }
 
-    document.querySelectorAll('[data-en]').forEach(el => {
-      if (el.dataset.de === undefined) el.dataset.de = el.innerHTML;
-      el.innerHTML = (lang === 'en') ? el.dataset.en : el.dataset.de;
+  /* Fallback chain ES -> EN -> DE. Everything is snapshotted once, so
+     switching back and forth never stacks translations. */
+  function applyLang(lang) {
+    lang = normalizeLang(lang) || 'de';
+    document.documentElement.lang = lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
+
+    document.querySelectorAll('[data-en], [data-es]').forEach(el => {
+      if (el.dataset.i18nDe === undefined) {
+        el.dataset.i18nDe = el.innerHTML;
+        el.dataset.i18nEn = el.dataset.en !== undefined ? el.dataset.en : el.innerHTML;
+        el.dataset.i18nEs = el.dataset.es !== undefined ? el.dataset.es : el.dataset.i18nEn;
+      }
+      const next = lang === 'de' ? el.dataset.i18nDe : (lang === 'es' ? el.dataset.i18nEs : el.dataset.i18nEn);
+      if (next !== undefined) el.innerHTML = next;
     });
-    document.querySelectorAll('[data-en-ph]').forEach(el => {
-      if (el.dataset.dePh === undefined) el.dataset.dePh = el.getAttribute('placeholder') || '';
-      el.setAttribute('placeholder', (lang === 'en') ? el.dataset.enPh : el.dataset.dePh);
+    document.querySelectorAll('[data-en-ph], [data-es-ph]').forEach(el => {
+      if (el.dataset.i18nDePh === undefined) {
+        el.dataset.i18nDePh = el.getAttribute('placeholder') || '';
+        el.dataset.i18nEnPh = el.dataset.enPh !== undefined ? el.dataset.enPh : el.dataset.i18nDePh;
+        el.dataset.i18nEsPh = el.dataset.esPh !== undefined ? el.dataset.esPh : el.dataset.i18nEnPh;
+      }
+      const next = lang === 'de' ? el.dataset.i18nDePh : (lang === 'es' ? el.dataset.i18nEsPh : el.dataset.i18nEnPh);
+      el.setAttribute('placeholder', next);
     });
-    document.querySelectorAll('[data-en-aria]').forEach(el => {
-      if (el.dataset.deAria === undefined) el.dataset.deAria = el.getAttribute('aria-label') || '';
-      el.setAttribute('aria-label', (lang === 'en') ? el.dataset.enAria : el.dataset.deAria);
+    document.querySelectorAll('[data-en-aria], [data-es-aria]').forEach(el => {
+      if (el.dataset.i18nDeAria === undefined) {
+        el.dataset.i18nDeAria = el.getAttribute('aria-label') || '';
+        el.dataset.i18nEnAria = el.dataset.enAria !== undefined ? el.dataset.enAria : el.dataset.i18nDeAria;
+        el.dataset.i18nEsAria = el.dataset.esAria !== undefined ? el.dataset.esAria : el.dataset.i18nEnAria;
+      }
+      const next = lang === 'de' ? el.dataset.i18nDeAria : (lang === 'es' ? el.dataset.i18nEsAria : el.dataset.i18nEnAria);
+      el.setAttribute('aria-label', next);
     });
     document.querySelectorAll('[data-lang-btn]').forEach(b => {
-      b.classList.toggle('active', b.dataset.langBtn === lang);
+      const active = b.dataset.langBtn === lang;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
     });
     document.dispatchEvent(new CustomEvent('bw:lang', { detail: { lang } }));
   }
@@ -170,6 +206,9 @@
 
   // expose for other scripts / pages added later
   window.bwApplyLang = applyLang;
+  /* Page scripts that build their own strings must ask here instead of
+     reading documentElement.lang by hand — 'es' is a real value now. */
+  window.bwLang = () => normalizeLang(document.documentElement.lang) || 'de';
 
   /* ---- Werkkorb: only where something can be bought ---- */
   (function () {
