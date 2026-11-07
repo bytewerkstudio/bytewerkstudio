@@ -65,6 +65,17 @@ Zweige die Navigation enger stellen.
 
 ## Veröffentlichung
 
+**Vorschau ohne Merge (Stand 7. November, 07:25):**
+`https://predatorhwg-commits.github.io/bytewerkstudio/community.html`
+
+- Läuft über GitHub Pages im Fork, Branch `preview-live` (identisch mit
+  `fable/community`, nur ohne `CNAME` und mit `robots.txt` = `Disallow: /`).
+- Die Hauptdomain bleibt unberührt: `bytewerkstudio.com/community.html` antwortet
+  weiter **404**, bis PR #27 gemerged ist.
+- Wer die Vorschau neu bauen will: `git push fork fable/community:preview-live`
+  (Force nur, wenn der Branch bewusst überschrieben wird), Pages baut selbst.
+- Nach dem Merge der Vorschau-Branch nicht nach `main` bringen — `CNAME` fehlt dort.
+
 - Branch `fable/community` liegt **auf dem Fork** `predatorhwg-commits/bytewerkstudio`
   (Push nach `bytewerkstudio/bytewerkstudio` ist mit dem vorhandenen Token nicht
   erlaubt, HTTP 403).
