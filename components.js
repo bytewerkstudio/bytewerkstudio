@@ -18,6 +18,7 @@
     { href: 'arbeiten.html',           de: 'Arbeiten',   en: 'Work',     match: 'arbeiten' },
     { href: 'bauplan.html',            de: 'Bauplan',    en: 'Blueprint', match: 'bauplan' },
     { href: 'showroom.html',           de: 'Showroom',   en: 'Showroom', match: 'showroom' },
+    { href: 'forum.html',              de: 'Forum',      en: 'Forum',    match: 'forum' },
     { href: 'index.html#preise',     de: 'Preise',     en: 'Pricing',  match: null },
     { href: 'shop.html',             de: 'Shop',       en: 'Shop',     match: 'shop' },
     { href: 'studio.html',           de: 'Studio',     en: 'Studio',   match: 'studio' },
@@ -142,7 +143,7 @@
 
   function applyLang(lang) {
     document.documentElement.lang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage blocked: keep the choice for this page only */ }
 
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset.de === undefined) el.dataset.de = el.innerHTML;

@@ -18,6 +18,7 @@ Produktseiten und der App-Finder auf [vergleich.html](vergleich.html).
 - `index.html`: Startseite mit Hero, Kennzahlen, Leistungen, Arbeiten, Shop-Auszug, Prozess, Studio, Paketen und FAQ
 - `softwareentwicklung-ludwigshafen.html`: lokale SEO-Landingpage fuer Softwareentwicklung, Webentwicklung, App-Entwicklung und IT-Dienstleistungen
 - `shop.html`: Shop-Uebersicht mit Suche, Sortierung und Filtern
+- `forum.html`: Entwickler-Forum mit Kategorien, Suche, Threads, Antworten, Loesungsmarkierung, Abo-Stufen und three.js-Pinwand
 - `vergleich.html`: App-Finder und Vergleichstabelle aller Produkte
 - `arbeiten.html`: Werkverzeichnis aller elf Produkte mit Filter, Tastaturbedienung und drei Fallstudien
 - `produkt.html`: Produktdetailseite fuer Lernreich
@@ -80,6 +81,14 @@ Der Header zeigt automatisch "Anmelden" oder das Konto-Menue. `konto.html` ist a
   Startseite. 72 Papierkarten formen sich beim Scrollen vom Raster ueber Lagen
   und Koerper zum Feld; Ziehen dreht das Modell. Ohne JavaScript oder WebGL
   steht dort ein CSS-Poster, bei `prefers-reduced-motion` ein fester Zustand.
+
+- `forum.js` + `styles-forum.css` + `forum-scene.js`: Entwickler-Forum. Themen,
+  Antworten, Suche, Kategorien, Loesungsmarkierung und Abo-Stufen; Nutzertexte
+  werden ausschliesslich als Textknoten gerendert, Markdown laeuft ueber eine
+  Allowlist mit Link-Protokollpruefung. Daten liegen im `localStorage`
+  (`bw-forum-v1`), das optionale Supabase-Schema steht in
+  `supabase/forum-schema.sql`, die Uebergabe an ein Backend in
+  [docs/FORUM.md](docs/FORUM.md). Die Pinwand im Seitenkopf ist three.js.
 
 ## Betrieb
 
