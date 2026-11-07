@@ -92,9 +92,10 @@ richten sich danach: `de-DE` nur bei `de`, sonst `en-GB`.
 ## Abo-Stufen
 
 - **Community (0 €):** lesen, fragen, antworten in vier offenen Kategorien.
-- **Studio Pro (9 €/Monat):** zusätzlich Studio- und Feedback-Kategorie,
-  Lösung markieren, Pro-Kennzeichen, Vorrang bei offenen Themen,
-  Vierteljährliche Sprechstunde.
+- **Studio Pro:** zusätzlich Studio- und Feedback-Kategorie, Lösung
+  markieren, Pro-Kennzeichen, Vorrang bei offenen Themen,
+  vierteljährliche Sprechstunde. Preis und Stufen stehen bewusst nur auf
+  `entwickler.html#abo` — eine Zahl an zwei Stellen läuft auseinander.
 
 Im Vorschau-Modus gibt es keine Zahlung. `Pro anfragen` setzt
 `bw-forum-pro-preview` und zeigt den Zugang als „Pro (Vorschau)“ an. Für
