@@ -106,6 +106,11 @@ richten sich danach: `de-DE` nur bei `de`, sonst `en-GB`.
   vierteljährliche Sprechstunde. Preis und Stufen stehen bewusst nur auf
   `entwickler.html#abo` — eine Zahl an zwei Stellen läuft auseinander.
 
+Der Link dorthin wird beim Laden einmal geprüft (`HEAD`). Antwortet die
+Seite mit 404, ersetzt ein Satz den Link, statt einen toten Verweis
+stehen zu lassen. Ein Netzwerk- oder `file://`-Fehler ändert nichts —
+nur ein eindeutiges 404.
+
 Im Vorschau-Modus gibt es keine Zahlung. `Pro anfragen` setzt
 `bw-forum-pro-preview` und zeigt den Zugang als „Pro (Vorschau)“ an. Für
 echte Abos braucht es einen Zahlungsanbieter und einen serverseitigen

@@ -2039,6 +2039,23 @@
   /* 18. Boot                                                    */
   /* ---------------------------------------------------------- */
 
+  /* The plan prices live on the developer page. That page ships with its
+     own change set; if a build ever goes out without it, a 404 is worse
+     than a plain sentence. Only a definite 404 degrades the link — a
+     network or file:// error leaves it alone. */
+  function checkPlansLink() {
+    const link = document.querySelector('[data-fm-plans-link]');
+    if (!link || typeof fetch !== 'function') return;
+    fetch('entwickler.html', { method: 'HEAD' })
+      .then(r => {
+        if (r.status !== 404) return;
+        const p = document.createElement('span');
+        p.textContent = t('Preise folgen mit der Entwickler-Seite.', 'Pricing follows with the developer page.');
+        link.replaceWith(p);
+      })
+      .catch(() => { /* offline or file:// — leave the link as it is */ });
+  }
+
   function boot() {
     db = load();
     parseRoute();
@@ -2055,6 +2072,7 @@
     }
 
     document.documentElement.classList.add('fm-ready');
+    checkPlansLink();
   }
 
   if (document.readyState === 'loading') {
